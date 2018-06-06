@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <localize>
+            <sort>
+                <change_fields_order>1</change_fields_order>
+                <lastname>1</lastname>
+                <firstname>2</firstname>
+                <lastnamekana>3</lastnamekana>
+                <firstnamekana>4</firstnamekana>
+                <country_id>5</country_id>
+                <postcode>6</postcode>
+                <region>7</region>
+                <city>8</city>
+                <street>9</street>
+                <telephone>10</telephone>
+                <fax>11</fax>
+                <company>12</company>
+            </sort>
+        </localize>
+    </default>
+</config>

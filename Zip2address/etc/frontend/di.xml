@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="zip2address_config_provider" xsi:type="object">MagentoJapan\Zip2address\Model\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="add_rule" type="MagentoJapan\Zip2address\Plugin\Checkout\Block\Checkout\LayoutProcessor" sortOrder="110"/>
+    </type>
+
+    <type name="Magento\Directory\Model\Country\Postcode\Config\Reader">
+        <arguments>
+            <argument name="idAttributes" xsi:type="array">
+                <item name="/config/zip/codes/code" xsi:type="string">id</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>
