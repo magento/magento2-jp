@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <tax>
+            <calculation>
+                <round>floor</round>
+            </calculation>
+        </tax>
+        <price>
+            <symbol>
+                <position>32</position>
+            </symbol>
+        </price>
+    </default>
+</config>

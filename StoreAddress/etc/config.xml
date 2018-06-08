@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <general>
+            <store_information>
+                <format><![CDATA[{{var name}}<br/>{{var postcode}}<br/>{{var country}}<br/>{{var region}}{{var city}}<br/>{{var street_line1}}<br/>{{depend street_line2}}{{var street_line2}}<br/>{{/depend}}]]></format>
+            </store_information>
+        </general>
+    </default>
+</config>

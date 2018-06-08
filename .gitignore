@@ -1,0 +1,10 @@
+/.buildpath
+/.cache
+/.metadata
+/.project
+/.settings
+atlassian*
+/nbproject
+/.idea
+/.gitattributes
+.DS_Store
