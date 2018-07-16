@@ -68,6 +68,5 @@
                 <aspect name="to_quote_address"/>
             </field>
         </fieldset>
-
     </scope>
 </config>
