@@ -95,7 +95,7 @@ We recommend not to fork https://github.com/magento/magento2-l10n and use a fork
 - [ ] Full translations to Japanese
 - [ ] Valid rounding of JPY currency
 - [ ] Katakana for names
-- [ ] Valid names format for storefront and admin (<lastname> <firstname> <politness suffix>)
+- [ ] Valid names format for storefront and admin (Lastname Firstname PolitnessSuffix)
 - [ ] Perfectures (regions) listed in order from North to South
 - [ ] Autocomplete of address fields based on ZIP code
 - [ ] Possibility to configure store address from Admin Panel
