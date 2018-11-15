@@ -1,0 +1,15 @@
+{
+  "name": "magentojapan/magento-localization-japan",
+  "description": "Magento Japanese localization meta package.",
+  "type": "metapackage",
+  "version": "1.0.0",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "require": {
+    "magentojapan/kana": "^1.0.0",
+    "magentojapan/region": "^1.0.0",
+    "magentojapan/price": "^1.0.0"
+  }
+}
