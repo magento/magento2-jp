@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="sales_pdf">
+            <resource>MagentoJapan_Pdf::config_format</resource>
+            <group id="font" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Font Settings</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Change Font</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>magentojapan_pdf/font/active</config_path>
+                </field>
+                <field id="fontname" translate="label" type="select" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Font file</label>
+                    <source_model>MagentoJapan\Pdf\Model\Config\Source\JapaneseFont</source_model>
+                    <config_path>magentojapan_pdf/font/fontname</config_path>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

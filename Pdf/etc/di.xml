@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <type name="Magento\Sales\Model\Order\Pdf\AbstractPdf">
+        <plugin name="add_font_to_pdf" type="MagentoJapan\Pdf\Plugin\AddFontToPdf" sortOrder="10" disabled="false"/>
+    </type>
+    <preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="MagentoJapan\Pdf\Model\Invoice"/>
+    <preference for="Magento\Sales\Model\Order\Pdf\Creditmemo" type="MagentoJapan\Pdf\Model\Creditmemo"/>
+    <preference for="Magento\Sales\Model\Order\Pdf\Shipment" type="MagentoJapan\Pdf\Model\Shipment"/>
+    <preference for="Magento\Sales\Model\Order\Pdf\Items\Invoice\DefaultInvoice" type="MagentoJapan\Pdf\Model\Order\Pdf\Items\Invoice\DefaultInvoice"/>
+</config>
