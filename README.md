@@ -92,21 +92,21 @@ We recommend not to fork https://github.com/magento/magento2-l10n and use a fork
 ### MVP
 
 **M**inimum **V**iable **P**roduct targeted to support Magento Open Source 2.3.x (with sample data) single store with `ja_JP` locale and `JPY` currency with following features:
-- [ ] #33 Full translations to Japanese
-- [ ] #34 Valid rounding of JPY currency
-- [ ] #35 Katakana for names
-- [ ] #36 Valid names format for storefront and admin (Lastname Firstname PolitnessSuffix)
-- [ ] #37 Perfectures (regions) listed in order from North to South
-- [ ] #38 Autocomplete of address fields based on ZIP code
-- [ ] #39 Possibility to configure store address from Admin Panel
-- [ ] #40 Valid configuration of ElasticSearch index (Kuromoji)
-- [ ] #41 Possibility to generate PDF files with Japanese multibyte characters
-- [ ] #30 Install with single composer dependency (e.g. `magentojapan/common`)
+- [ ] [#33](https://github.com/magento/magento2-jp/issues/33) Full translations to Japanese
+- [ ] [#34](https://github.com/magento/magento2-jp/issues/34) Valid rounding of JPY currency
+- [ ] [#35](https://github.com/magento/magento2-jp/issues/35) Katakana for names
+- [ ] [#36](https://github.com/magento/magento2-jp/issues/36) Valid names format for storefront and admin (Lastname Firstname PolitnessSuffix)
+- [ ] [#37](https://github.com/magento/magento2-jp/issues/37) Perfectures (regions) listed in order from North to South
+- [ ] [#38](https://github.com/magento/magento2-jp/issues/38) Autocomplete of address fields based on ZIP code
+- [ ] [#39](https://github.com/magento/magento2-jp/issues/39) Possibility to configure store address from Admin Panel
+- [ ] [#40](https://github.com/magento/magento2-jp/issues/40) Valid configuration of ElasticSearch index (Kuromoji)
+- [ ] [#41](https://github.com/magento/magento2-jp/issues/41) Possibility to generate PDF files with Japanese multibyte characters
+- [ ] [#30](https://github.com/magento/magento2-jp/issues/30) Install with single composer dependency (e.g. `magentojapan/common`)
 
 MVP optional features:
-- [ ] #42 Preset of configuration options (locale, currency, measurement units, etc.) applied during installation
-- [ ] #43 Cache on delivery as payment method (consider possibility to us [MSP CacheOnDelivery module](https://github.com/it4mage/CashOnDelivery))
-- [ ] #44 Possibility to specify delivery time
+- [ ] [#42](https://github.com/magento/magento2-jp/issues/42) Preset of configuration options (locale, currency, measurement units, etc.) applied during installation
+- [ ] [#43](https://github.com/magento/magento2-jp/issues/43) Cache on delivery as payment method (consider possibility to us [MSP CacheOnDelivery module](https://github.com/it4mage/CashOnDelivery))
+- [ ] [#44](https://github.com/magento/magento2-jp/issues/44) Possibility to specify delivery time
 - [ ] Payment Methods (GMO Payment Gateway, Veritrans, Sony Payment Service)
 - [ ] Support of main delivery companies (Yamato, Sagawa)
 - [ ] Valid date format in admin
