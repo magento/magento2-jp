@@ -1,7 +1,4 @@
 <?php
-/**
- * Copyright © 2016 MagentoJapan Inc. All rights reserved.
- */
 
 namespace MagentoJapan\Kana\Setup;
 
