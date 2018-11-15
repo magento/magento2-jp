@@ -92,21 +92,21 @@ We recommend not to fork https://github.com/magento/magento2-l10n and use a fork
 ### MVP
 
 **M**inimum **V**iable **P**roduct targeted to support Magento Open Source 2.3.x (with sample data) single store with `ja_JP` locale and `JPY` currency with following features:
-- [ ] Full translations to Japanese
-- [ ] Valid rounding of JPY currency
-- [ ] Katakana for names
-- [ ] Valid names format for storefront and admin (Lastname Firstname PolitnessSuffix)
-- [ ] Perfectures (regions) listed in order from North to South
-- [ ] Autocomplete of address fields based on ZIP code
-- [ ] Possibility to configure store address from Admin Panel
-- [ ] Valid configuration of ElasticSearch index (Kuromoji)
-- [ ] Possibility to generate PDF files with Japanese multibyte characters
-- [ ] Install with single composer dependency (e.g. `magentojapan/common`)
+- [ ] #33 Full translations to Japanese
+- [ ] #34 Valid rounding of JPY currency
+- [ ] #35 Katakana for names
+- [ ] #36 Valid names format for storefront and admin (Lastname Firstname PolitnessSuffix)
+- [ ] #37 Perfectures (regions) listed in order from North to South
+- [ ] #38 Autocomplete of address fields based on ZIP code
+- [ ] #39 Possibility to configure store address from Admin Panel
+- [ ] #40 Valid configuration of ElasticSearch index (Kuromoji)
+- [ ] #41 Possibility to generate PDF files with Japanese multibyte characters
+- [ ] #30 Install with single composer dependency (e.g. `magentojapan/common`)
 
 MVP optional features:
-- [ ] Preset of configuration options (locale, currency, measurement units, etc.) applied during installation
-- [ ] Cache on delivery as payment method (consider possibility to us [MSP CacheOnDelivery module](https://github.com/it4mage/CashOnDelivery))
-- [ ] Valid date format in admin
-- [ ] Possibility to specify delivery time
+- [ ] #42 Preset of configuration options (locale, currency, measurement units, etc.) applied during installation
+- [ ] #43 Cache on delivery as payment method (consider possibility to us [MSP CacheOnDelivery module](https://github.com/it4mage/CashOnDelivery))
+- [ ] #44 Possibility to specify delivery time
 - [ ] Payment Methods (GMO Payment Gateway, Veritrans, Sony Payment Service)
 - [ ] Support of main delivery companies (Yamato, Sagawa)
+- [ ] Valid date format in admin
