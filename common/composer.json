@@ -1,5 +1,5 @@
 {
-  "name": "magentojapan/magento-localization-japan",
+  "name": "magentojapan/common",
   "version": "1.0.0",
   "description": "Magento Japanese localization meta package.",
   "type": "metapackage",
