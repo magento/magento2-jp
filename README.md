@@ -101,6 +101,7 @@ We recommend not to fork https://github.com/magento/magento2-l10n and use a fork
 - [ ] Possibility to configure store address from Admin Panel
 - [ ] Valid configuration of ElasticSearch index (Kuromoji)
 - [ ] Possibility to generate PDF files with Japanese multibyte characters
+- [ ] Cache on delivery as payment method
 - [ ] Install with single composer dependency (e.g. `magentojapan/common`)
 
 MVP optional features:
