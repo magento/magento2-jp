@@ -86,3 +86,27 @@ If you don't have permissions to push new branch in https://github.com/magento/m
 Optionally, you may fork https://github.com/magento/magento2-jp repository and create pull requests from it.
 
 We recommend not to fork https://github.com/magento/magento2-l10n and use a fork of main Magento Open Source repository (https://github.com/magento/magento2) instead.
+
+## Goals
+
+### MVP
+
+**M**inimum **V**iable **P**roduct targeted to support Magento Open Source 2.3.x (with sample data) single store with `ja_JP` locale and `JPY` currency with following features:
+- [ ] Full translations to Japanese
+- [ ] Valid rounding of JPY currency
+- [ ] Katakana for names
+- [ ] Valid names format for storefront and admin (<lastname> <firstname> <politness suffix>)
+- [ ] Perfectures (regions) listed in order from North to South
+- [ ] Autocomplete of address fields based on ZIP code
+- [ ] Possibility to configure store address from Admin Panel
+- [ ] Valid configuration of ElasticSearch index (Kuromoji)
+- [ ] Possibility to generate PDF files with Japanese multibyte characters
+- [ ] Install with single composer dependency (e.g. `magentojapan/common`)
+
+MVP optional features:
+- [ ] Preset of configuration options (locale, currency, measurement units, etc.) applied during installation
+- [ ] Valid date format in admin
+- [ ] Possibility to specify delivery time
+- [ ] Payment Methods (GMO Payment Gateway, Veritrans, Sony Payment Service)
+- [ ] Support of main delivery companies (Yamato, Sagawa)
+- [ ] Social logins (Yahoo! Japan, mixi, twitter, facebook, Instagram, Google)
