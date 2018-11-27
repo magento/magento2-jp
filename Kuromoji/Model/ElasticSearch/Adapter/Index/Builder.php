@@ -12,7 +12,7 @@ class Builder extends DefaultBuilder
     {
         $tokenizer = [
             'default_tokenizer' => [
-                'type' => 'kuromoji_neologd_tokenizer',
+                'type' => 'kuromoji_tokenizer',
                 "mode"=> "search",
                 "discard_punctuation"=> "true",
                 "user_dictionary" => "search_dic.csv"
@@ -29,8 +29,8 @@ class Builder extends DefaultBuilder
         $tokenizer = $this->getTokenizer();
         $analyzerFilter = [
             'cjk_width',
-            'kuromoji_neologd_part_of_speech',
-            'kuromoji_neologd_baseform'
+            'kuromoji_part_of_speech',
+            'kuromoji_baseform'
         ];
         $filter = $this->getFilter();
         $filter['synonym_dict'] = [
