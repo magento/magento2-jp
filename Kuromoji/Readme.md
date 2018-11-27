@@ -9,8 +9,10 @@ Also, this extension can use synonym and user defined dictionary file. If you ho
 
 Please install [Kuromoji Neologd](https://github.com/codelibs/elasticsearch-analysis-kuromoji-neologd) before you activate this extension.
 
-Also create thse 2 files into ElasticSearch home directory.
+Also create these 2 files into ElasticSearch home directory.
 
 - search_dic.csv
 - synonym.txt
 
+search_dic.csv is user defined dictionary. Its format is described in [ElasticSearch document](https://www.elastic.co/guide/en/elasticsearch/plugins/5.0/analysis-kuromoji-tokenizer.html).
+synonym.txt is user defined synonym file. Its format is described in [ElasticSearch document](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/analysis-synonym-tokenfilter.html).
