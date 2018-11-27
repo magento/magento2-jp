@@ -1,0 +1,66 @@
+<?php
+namespace MagentoJapan\Kuromoji\Model\ElasticSearch\Adapter\Index;
+
+use Magento\Elasticsearch\Model\Adapter\Index\Builder as DefaultBuilder;
+
+class Builder extends DefaultBuilder
+{
+    /**
+     * @return array
+     */
+    protected function getTokenizer()
+    {
+        $tokenizer = [
+            'default_tokenizer' => [
+                'type' => 'kuromoji_neologd_tokenizer',
+                "mode"=> "search",
+                "discard_punctuation"=> "true",
+                "user_dictionary" => "search_dic.csv"
+            ],
+        ];
+        return $tokenizer;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function build()
+    {
+        $tokenizer = $this->getTokenizer();
+        $analyzerFilter = [
+            'cjk_width',
+            'kuromoji_neologd_part_of_speech',
+            'kuromoji_neologd_baseform'
+        ];
+        $filter = $this->getFilter();
+        $filter['synonym_dict'] = [
+            'type' => 'synonym',
+            'synonyms_path' => 'synonym.txt'
+        ];
+        $charFilter = $this->getCharFilter();
+
+        $settings = [
+            'analysis' => [
+                'analyzer' => [
+                    'default' => [
+                        'type' => 'custom',
+                        'tokenizer' => key($tokenizer),
+                        'filter' => array_merge(
+                            ['lowercase', 'keyword_repeat'],
+                            array_keys($filter),
+                            $analyzerFilter,
+                            ['synonym_dict']
+                        ),
+                        'char_filter' => array_keys($charFilter)
+                    ]
+                ],
+                'tokenizer' => $tokenizer,
+                'filter' => $filter,
+                'char_filter' => $charFilter,
+            ],
+        ];
+
+        return $settings;
+    }
+
+}
