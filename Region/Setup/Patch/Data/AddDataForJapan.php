@@ -90,7 +90,7 @@ class AddDataForJapan implements DataPatchInterface, PatchVersionInterface
         $adapter->update(
             $this->resourceConnection->getTableName('core_config_data'),
             [
-                'value' => implode(',', array_keys($countries)) . ',JP'
+                'value' => implode(',', array_keys($countries))
             ],
             [
                 'scope="default"',
