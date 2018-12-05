@@ -1,4 +1,5 @@
 <?php
+
 namespace MagentoJapan\Region\Setup;
 
 use Magento\Directory\Helper\Data;
@@ -6,6 +7,9 @@ use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 
+/**
+ * Regions list and sort order for ja_JP locale.
+ */
 class InstallData implements InstallDataInterface
 {
     /**
@@ -13,7 +17,7 @@ class InstallData implements InstallDataInterface
      *
      * @var Data
      */
-    protected $directoryData;
+    private $directoryData;
 
     /**
      * Constructor
@@ -25,14 +29,8 @@ class InstallData implements InstallDataInterface
         $this->directoryData = $directoryData;
     }
 
-
     /**
-     * Install Data
-     *
-     * @param ModuleDataSetupInterface $setup   Module Data Setup
-     * @param ModuleContextInterface   $context Module Context
-     *
-     * @return void
+     * @inheritdoc
      */
     public function install(
         ModuleDataSetupInterface $setup,
