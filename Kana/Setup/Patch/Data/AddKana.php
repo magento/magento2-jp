@@ -1,48 +1,59 @@
 <?php
-namespace MagentoJapan\Kana\Setup;
+namespace MagentoJapan\Kana\Setup\Patch\Data;
 
-use Magento\Directory\Helper\Data;
-use Magento\Framework\Setup\InstallDataInterface;
-use Magento\Framework\Setup\ModuleContextInterface;
+use Magento\Framework\DB\Adapter\AdapterInterface;
+use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Magento\Framework\Setup\Patch\PatchVersionInterface;
 use Magento\Eav\Setup\EavSetupFactory;
-use Magento\Customer\Model\Customer;
+use Magento\Customer\Api\CustomerMetadataInterface;
+use Magento\Customer\Api\AddressMetadataInterface;
 use Magento\Eav\Setup\EavSetup;
+use Magento\Customer\Setup\CustomerSetupFactory;
+use Magento\Customer\Setup\CustomerSetup;
 
 /**
- * @codeCoverageIgnore
+ * Class AddKana
+ * @package MagentoJapan\Kana\Setup\Patch\Data
  */
-class InstallData implements InstallDataInterface
+class AddKana implements DataPatchInterface, PatchVersionInterface
 {
     /**
-     * Localize setup factory
-     *
-     * @var EavSetupFactory
+     * @var ModuleDataSetupInterface
      */
-    private $localizeSetupFactory;
+    private $moduleDataSetup;
 
     /**
-     * Init
+     * Customer setup factory
      *
-     * @param EavSetupFactory $localizeSetupFactory
+     * @var CustomerSetupFactory
      */
-    public function __construct(EavSetupFactory $localizeSetupFactory)
-    {
-        $this->localizeSetupFactory = $localizeSetupFactory;
+    private $setupFactory;
+
+
+    /**
+     * AddKana constructor.
+     *
+     * @param ModuleDataSetupInterface $moduleDataSetup
+     * @param CustomerSetupFactory $setupFactory
+     */
+    public function __construct(
+        ModuleDataSetupInterface $moduleDataSetup,
+        CustomerSetupFactory $setupFactory
+    ) {
+        $this->moduleDataSetup = $moduleDataSetup;
+        $this->setupFactory = $setupFactory;
     }
 
     /**
      * {@inheritdoc}
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
-    public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
+    public function apply()
     {
+        $setup = $this->moduleDataSetup;
         /** @var CustomerSetup $customerSetup */
-        $customerSetup = $this->localizeSetupFactory->create(['setup' => $setup]);
-
-        $setup->startSetup();
+        $customerSetup = $this->setupFactory->create(['resourceConnection' => $setup]);
 
         $attributes = [
             'firstnamekana' =>
@@ -72,47 +83,54 @@ class InstallData implements InstallDataInterface
         ];
 
         foreach ($attributes as $code => $options) {
-            $customerSetup->addAttribute(
-                Customer::ENTITY,
-                $code,
-                $options
+            $customerAttribute = $customerSetup->getAttribute(
+                CustomerMetadataInterface::ENTITY_TYPE_CUSTOMER, $code
             );
+            //if(!$customerAttribute->getId()) {
+                $customerSetup->addAttribute(
+                    CustomerMetadataInterface::ENTITY_TYPE_CUSTOMER,
+                    $code,
+                    $options
+                );
+            //}
 
-            $customerSetup->addAttribute(
-                'customer_address',
-                $code,
-                $options
+            $addressAttribute = $customerSetup->getAttribute(
+                AddressMetadataInterface::ENTITY_TYPE_ADDRESS, $code
             );
+            //if(!$addressAttribute->getId()) {
+                $customerSetup->addAttribute(
+                    AddressMetadataInterface::ENTITY_TYPE_ADDRESS,
+                    $code,
+                    $options
+                );
+            //}
         }
 
         $this->installCustomerForms($customerSetup, $attributes);
-        $setup->endSetup();
 
     }
 
-
     /**
-     * @param \Magento\Eav\Setup\EavSetup $eavSetup
+     * @param CustomerSetup $eavSetup
      * @param array $attributes
      */
     public function installCustomerForms(EavSetup $eavSetup, array $attributes)
     {
         $customer = (int)$eavSetup->getEntityTypeId('customer');
         $customerAddress = (int)$eavSetup->getEntityTypeId('customer_address');
-        /**
-         * @var ModuleDataSetupInterface $setup
-         */
-        $setup = $eavSetup->getSetup();
+
+        /** @var AdapterInterface $connection */
+        $connection = $this->moduleDataSetup->getConnection();
 
         $attributeIds = [];
-        $select = $setup->getConnection()->select()->from(
-            ['ea' => $setup->getTable('eav_attribute')],
+        $select = $connection->select()->from(
+            ['ea' => $this->moduleDataSetup->getTable('eav_attribute')],
             ['entity_type_id', 'attribute_code', 'attribute_id']
         )->where(
             'ea.entity_type_id IN(?)',
             [$customer, $customerAddress]
         );
-        foreach ($setup->getConnection()->fetchAll($select) as $row) {
+        foreach ($connection->fetchAll($select) as $row) {
             if(preg_match('/kana/', $row['attribute_code'])) {
                 $attributeIds[$row['entity_type_id']][$row['attribute_code']] = $row['attribute_id'];
             }
@@ -139,8 +157,33 @@ class InstallData implements InstallDataInterface
         }
 
         if ($data) {
-            $setup->getConnection()
-                ->insertMultiple($setup->getTable('customer_form_attribute'), $data);
+            $connection->insertMultiple(
+                $this->moduleDataSetup->getTable('customer_form_attribute'), $data
+            );
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getDependencies()
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getVersion()
+    {
+        return '1.0.0';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAliases()
+    {
+        return [];
     }
 }

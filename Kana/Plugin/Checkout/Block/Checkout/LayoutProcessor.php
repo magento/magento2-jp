@@ -1,10 +1,9 @@
 <?php
 namespace MagentoJapan\Kana\Plugin\Checkout\Block\Checkout;
 
-use Magento\Store\Model\ScopeInterface;
 use Magento\Customer\Api\CustomerRepositoryInterface as CustomerRepository;
 use Magento\Customer\Model\Session;
-use MagentoJapan\Kana\Helper\Data;
+use MagentoJapan\Kana\Model\Config\System;
 
 class LayoutProcessor
 {
@@ -26,9 +25,9 @@ class LayoutProcessor
     private $customer;
 
     /**
-     * @var \MagentoJapan\Kana\Helper\Data
+     * @var System
      */
-    private $helper;
+    private $system;
 
 
     /**
@@ -36,17 +35,17 @@ class LayoutProcessor
      * @param \Magento\Framework\View\Element\Context $context
      * @param \Magento\Customer\Model\Session $customerSession
      * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
-     * @param \MagentoJapan\Kana\Helper\Data $helper
+     * @param System $system
      */
     public function __construct(
         \Magento\Framework\View\Element\Context $context,
         Session $customerSession,
         CustomerRepository $customerRepository,
-        Data $helper
+        System $system
     ) {
         $this->customerSession = $customerSession;
         $this->customerRepository = $customerRepository;
-        $this->helper = $helper;
+        $this->system = $system;
     }
 
     /**
@@ -58,12 +57,12 @@ class LayoutProcessor
         \Magento\Checkout\Block\Checkout\LayoutProcessor $subject,
         array  $jsLayout
     ) {
-        $locale = $this->helper->getLocale();
-        $format = $this->helper->getSortOrder();
+        $locale = $this->system->getLocale();
+        $format = $this->system->getSortOrder();
 
-        $hideCountry = $this->helper->getShowCounry();
-        $useKana = $this->helper->getUseKana();
-        $requireKana = $this->helper->getRequireKana();
+        $hideCountry = $this->system->getShowCounry();
+        $useKana = $this->system->getUseKana();
+        $requireKana = $this->system->getRequireKana();
 
         if ($format) {
             $shippingElements =& $jsLayout['components']['checkout']['children']
@@ -75,7 +74,7 @@ class LayoutProcessor
                     $key = 'region';
                 }
                 $path = self::CONFIG_ELEMENT_ORDER . $key;
-                $config = $this->helper->getConfigValue($path);
+                $config = $this->system->getConfigValue($path);
                 $shippingelement['sortOrder'] = $config;
 
                 if ($key == 'country_id' && $hideCountry) {
@@ -124,7 +123,7 @@ class LayoutProcessor
                         $key = 'region';
                     }
                     $path = self::CONFIG_ELEMENT_ORDER . $key;
-                    $config = $this->helper->getConfigValue($path);
+                    $config = $this->system->getConfigValue($path);
                     $billingElement['sortOrder'] = $config;
 
                     if ($key == 'country_id' && $hideCountry) {

@@ -1,60 +1,63 @@
 <?php
-/**
- * Copyright © 2016 MagentoJapan Inc. All rights reserved.
- */
+namespace MagentoJapan\Kana\Setup\Patch\Schema;
 
-namespace MagentoJapan\Kana\Setup;
-
-use Magento\Framework\DB\Ddl\Table;
-use Magento\Framework\Setup\InstallSchemaInterface;
-use Magento\Framework\Setup\ModuleContextInterface;
+use Magento\Framework\Setup\Patch\SchemaPatchInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
+use Magento\Framework\DB\Ddl\Table;
 
-/**
- * @codeCoverageIgnore
- */
-class InstallSchema implements InstallSchemaInterface
+class AddKana implements SchemaPatchInterface
 {
+    private $setup;
+
+    public function __construct(
+        SchemaSetupInterface $setup
+    ) {
+        $this->setup = $setup;
+    }
+
     /**
-     * {@inheritdoc}
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @inheritDoc
      */
-    public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
+    public function getAliases()
     {
-        $installer = $setup;
+        return [];
+    }
+
+    public function apply()
+    {
+        $installer = $this->setup;
 
         /**
          * update columns created_at and updated_at in sales entities tables
          */
 
-        $tables = ['sales_order',
-                    'quote',
-                ];
+        $tables = [
+            'sales_order',
+            'quote',
+        ];
         /** @var \Magento\Framework\DB\Adapter\AdapterInterface $connection */
         $connection = $installer->getConnection();
         foreach ($tables as $table) {
             $columns = $connection->describeTable($installer->getTable($table));
             if (!isset($columns['customer_lastnamekana'])) {
-                $setup->getConnection()
+                $connection
                     ->addColumn(
                         $table,
-                    'customer_lastnamekana',
-                    [
-                    'type' => Table::TYPE_TEXT,
-                    'length' => 255,
-                    'comment' => 'Customer Lastname Kana']);
+                        'customer_lastnamekana',
+                        [
+                            'type' => Table::TYPE_TEXT,
+                            'length' => 255,
+                            'comment' => 'Customer Lastname Kana']);
             }
             if (!isset($columns['customer_firstnamekana'])) {
-                $setup->getConnection()
+                $connection
                     ->addColumn(
                         $table,
-                    'customer_firstnamekana',
-                    [
-                    'type' => Table::TYPE_TEXT,
-                    'length' => 255,
-                    'comment' => 'Customer Firstname Kana']);
+                        'customer_firstnamekana',
+                        [
+                            'type' => Table::TYPE_TEXT,
+                            'length' => 255,
+                            'comment' => 'Customer Firstname Kana']);
             }
         }
 
@@ -65,7 +68,7 @@ class InstallSchema implements InstallSchemaInterface
         foreach ($tables as $table) {
             $columns = $connection->describeTable($installer->getTable($table));
             if (!isset($columns['lastnamekana'])) {
-                $setup->getConnection()
+                $connection
                     ->addColumn(
                         $table,
                         'lastnamekana',
@@ -75,7 +78,7 @@ class InstallSchema implements InstallSchemaInterface
                             'comment' => 'Customer Lastname Kana']);
             }
             if (!isset($columns['firstnamekana'])) {
-                $setup->getConnection()
+                $connection
                     ->addColumn(
                         $table,
                         'firstnamekana',
@@ -86,4 +89,13 @@ class InstallSchema implements InstallSchemaInterface
             }
         }
     }
+
+    /**
+     * @inheritDoc
+     */
+    public static function getDependencies()
+    {
+        return [];
+    }
+
 }
