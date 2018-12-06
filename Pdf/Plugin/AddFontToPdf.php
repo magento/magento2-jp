@@ -1,41 +1,24 @@
 <?php
 namespace MagentoJapan\Pdf\Plugin;
 
-use Magento\Framework\App\Filesystem\DirectoryList;
-use MagentoJapan\Pdf\Helper\Data;
+use MagentoJapan\Pdf\ModelConfig\Service;
 
 
-/**
- * Class AddFontToPdf
- * @package MagentoJapan\Pdf\Plugin
- */
 class AddFontToPdf
 {
-
     /**
-     * @var \Magento\Framework\Filesystem\Directory\ReadInterface
+     * @var Service
      */
-    protected $_rootDirectory;
+    private $service;
 
     /**
      * AddFontToPdf constructor.
-     * @param \Magento\Framework\Filesystem $filesystem
+     * @param Service $service
      */
     public function __construct(
-        \Magento\Framework\Filesystem $filesystem,
-        Data $_helper
-    )
-    {
-        $this->_rootDirectory = $filesystem->getDirectoryRead(DirectoryList::ROOT);
-        $this->_helper = $_helper;
-    }
-
-    /**
-     * @return \MagentoJapan\Pdf\Helper\Data
-     */
-    public function getHelper()
-    {
-        return $this->_helper;
+        Service $service
+    ) {
+        $this->service = $service;
     }
 
     /**
@@ -48,8 +31,8 @@ class AddFontToPdf
     public function beforeDrawLineBlocks($subject, $page, array $draw, array $pageSettings = [])
     {
         $newDraw = [];
-        if ($this->getHelper()->getJapaneseFontIsActive()) {
-            $fontpath = $this->getHelper()->getJapaneseFont();
+        if ($this->service->getJapaneseFontIsActive()) {
+            $fontpath = $this->service->getJapaneseFont();
 
             foreach ($draw as &$itemsProp) {
                 $lines = $itemsProp['lines'];

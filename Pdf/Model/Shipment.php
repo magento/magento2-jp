@@ -1,22 +1,17 @@
 <?php
 namespace MagentoJapan\Pdf\Model;
 
-use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Sales\Model\Order\Pdf\Shipment as BaseShipment;
-use MagentoJapan\Pdf\Helper\Data;
+use MagentoJapan\Pdf\ModelConfig\Service;
 
 
 class Shipment extends BaseShipment
 {
 
     /**
-     * @var \Magento\Framework\Filesystem\Directory\ReadInterface
+     * @var Service
      */
-    protected $_rootDirectory;
-    /**
-     * @var Data
-     */
-    protected $_helper;
+    protected $service;
 
 
     /**
@@ -33,7 +28,7 @@ class Shipment extends BaseShipment
      * @param \Magento\Sales\Model\Order\Address\Renderer $addressRenderer
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
-     * @param \MagentoJapan\Pdf\Helper\Data $_helper
+     * @param Service $service
      * @param array $data
      */
     public function __construct(
@@ -49,12 +44,10 @@ class Shipment extends BaseShipment
         \Magento\Sales\Model\Order\Address\Renderer $addressRenderer,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Locale\ResolverInterface $localeResolver,
-        Data $_helper,
+        Service $service,
         array $data = []
-    )
-    {
-        $this->_rootDirectory = $filesystem->getDirectoryRead(DirectoryList::ROOT);
-        $this->_helper = $_helper;
+    ) {
+        $this->service = $service;
         parent::__construct(
             $paymentData,
             $string,
@@ -73,20 +66,13 @@ class Shipment extends BaseShipment
     }
 
     /**
-     * @return Data
-     */
-    public function getHelper()
-    {
-        return $this->_helper;
-    }
-    /**
      * @param $object
      * @param int $size
      * @return mixed
      */
     protected function _setFontRegular($object, $size = 7)
     {
-        if ($this->getHelper()->getJapaneseFontIsActive()) {
+        if ($this->service->getJapaneseFontIsActive()) {
             $fontpath = $this->getHelper()->getJapaneseFont();
             $font = \Zend_Pdf_Font::fontWithPath($fontpath);
             $object->setFont($font, $size);
@@ -102,7 +88,7 @@ class Shipment extends BaseShipment
      */
     protected function _setFontBold($object, $size = 7)
     {
-        if ($this->getHelper()->getJapaneseFontIsActive()) {
+        if ($this->service->getJapaneseFontIsActive()) {
             $fontpath = $this->getHelper()->getJapaneseFont();
             $font = \Zend_Pdf_Font::fontWithPath($fontpath);
             $object->setFont($font, $size);
@@ -118,8 +104,8 @@ class Shipment extends BaseShipment
      */
     protected function _setFontItalic($object, $size = 7)
     {
-        if ($this->getHelper()->getJapaneseFontIsActive()) {
-            $fontpath = $this->getHelper()->getJapaneseFont();
+        if ($this->service->getJapaneseFontIsActive()) {
+            $fontpath = $this->service->getJapaneseFont();
             $font = \Zend_Pdf_Font::fontWithPath($fontpath);
             $object->setFont($font, $size);
             return $font;

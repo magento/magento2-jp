@@ -1,22 +1,19 @@
 <?php
-namespace MagentoJapan\Pdf\Test\Unit\Helper;
+namespace MagentoJapan\Pdf\Test\Unit\ModelConfig;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Class DataTest
- * @package MagentoJapan\Pdf\Test\Unit\Helper
- */
-class DataTest extends \PHPUnit_Framework_TestCase
+class ServiceTest extends TestCase
 {
     /**
-     * @var
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $_scopeMock;
+    private $scopeMock;
     /**
-     * @var
+     * @var \MagentoJapan\Pdf\ModelConfig\Service|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $_helper;
+    private $service;
 
     /**
      *
@@ -24,7 +21,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $objectManager = new ObjectManager($this);
-        $this->_scopeMock =
+        $this->scopeMock =
             $this->getMockBuilder('Magento\Framework\App\Config\ScopeConfigInterface')
                 ->disableOriginalConstructor()
                 ->getMock();
@@ -33,9 +30,9 @@ class DataTest extends \PHPUnit_Framework_TestCase
             ->getMock();
         $contextMock->expects($this->any())
             ->method('getScopeConfig')
-            ->willReturn($this->_scopeMock);
-        $this->_helper =
-            $objectManager->getObject('MagentoJapan\Pdf\Helper\Data',
+            ->willReturn($this->scopeMock);
+        $this->service =
+            $objectManager->getObject('MagentoJapan\Pdf\ModelConfig\Service',
                 ['context'=>$contextMock]);
     }
 
@@ -44,10 +41,10 @@ class DataTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetJapaneseFontIsActive()
     {
-        $this->_scopeMock->expects($this->once())
+        $this->scopeMock->expects($this->once())
             ->method('getValue')
             ->willReturn('1');
-        $this->assertEquals($this->_helper->getJapaneseFontIsActive(), '1');
+        $this->assertEquals($this->service->getJapaneseFontIsActive(), '1');
     }
 
     /**
@@ -55,10 +52,10 @@ class DataTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetJapaneseFont()
     {
-        $this->_scopeMock->expects($this->once())
+        $this->scopeMock->expects($this->once())
             ->method('getValue')
             ->willReturn('ipag.ttf');
-        $this->assertEquals($this->_helper->getJapaneseFont(),
+        $this->assertEquals($this->service->getJapaneseFont(),
             'ipag.ttf');
     }
 }

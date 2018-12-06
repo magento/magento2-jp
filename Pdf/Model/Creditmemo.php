@@ -1,25 +1,19 @@
 <?php
 namespace MagentoJapan\Pdf\Model;
 
-use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Sales\Model\Order\Pdf\Creditmemo as BaseCreditmemo;
-use MagentoJapan\Pdf\Helper\Data;
+use MagentoJapan\Pdf\ModelConfig\Service;
 
 class Creditmemo extends BaseCreditmemo
 {
-
     /**
-     * @var \Magento\Framework\Filesystem\Directory\ReadInterface
+     * @var Service
      */
-    protected $_rootDirectory;
-    /**
-     * @var Data
-     */
-    protected $_helper;
+    private $service;
 
 
     /**
-     * CreditmemoJp constructor.
+     *
      * @param \Magento\Payment\Helper\Data $paymentData
      * @param \Magento\Framework\Stdlib\StringUtils $string
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
@@ -32,7 +26,7 @@ class Creditmemo extends BaseCreditmemo
      * @param \Magento\Sales\Model\Order\Address\Renderer $addressRenderer
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
-     * @param \MagentoJapan\Pdf\Helper\Data $_helper
+     * @param Service $service
      * @param array $data
      */
     public function __construct(
@@ -48,12 +42,11 @@ class Creditmemo extends BaseCreditmemo
         \Magento\Sales\Model\Order\Address\Renderer $addressRenderer,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Locale\ResolverInterface $localeResolver,
-        Data $_helper,
+        Service $service,
         array $data = []
     )
     {
-        $this->_rootDirectory = $filesystem->getDirectoryRead(DirectoryList::ROOT);
-        $this->_helper = $_helper;
+        $this->service = $service;
         parent::__construct(
             $paymentData,
             $string,
@@ -70,13 +63,6 @@ class Creditmemo extends BaseCreditmemo
             $data
         );
     }
-    /**
-     * @return Data
-     */
-    public function getHelper()
-    {
-        return $this->_helper;
-    }
 
     /**
      * @param $object
@@ -85,8 +71,8 @@ class Creditmemo extends BaseCreditmemo
      */
     protected function _setFontRegular($object, $size = 7)
     {
-        if ($this->getHelper()->getJapaneseFontIsActive()) {
-            $fontpath = $this->getHelper()->getJapaneseFont();
+        if ($this->service->getJapaneseFontIsActive()) {
+            $fontpath = $this->service->getJapaneseFont();
             $font = \Zend_Pdf_Font::fontWithPath($fontpath);
             $object->setFont($font, $size);
             return $font;
@@ -101,8 +87,8 @@ class Creditmemo extends BaseCreditmemo
      */
     protected function _setFontBold($object, $size = 7)
     {
-        if ($this->getHelper()->getJapaneseFontIsActive()) {
-            $fontpath = $this->getHelper()->getJapaneseFont();
+        if ($this->service->getJapaneseFontIsActive()) {
+            $fontpath = $this->service->getJapaneseFont();
             $font = \Zend_Pdf_Font::fontWithPath($fontpath);
             $object->setFont($font, $size);
             return $font;
@@ -117,8 +103,8 @@ class Creditmemo extends BaseCreditmemo
      */
     protected function _setFontItalic($object, $size = 7)
     {
-        if ($this->getHelper()->getJapaneseFontIsActive()) {
-            $fontpath = $this->getHelper()->getJapaneseFont();
+        if ($this->service->getJapaneseFontIsActive()) {
+            $fontpath = $this->service->getJapaneseFont();
             $font = \Zend_Pdf_Font::fontWithPath($fontpath);
             $object->setFont($font, $size);
             return $font;

@@ -1,25 +1,18 @@
 <?php
 namespace MagentoJapan\Pdf\Model;
 
-use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Sales\Model\Order\Pdf\Invoice as BaseInvoice;
-use MagentoJapan\Pdf\Helper\Data;
+use MagentoJapan\Pdf\ModelConfig\Service;
 
 class Invoice extends BaseInvoice
 {
-
     /**
-     * @var \Magento\Framework\Filesystem\Directory\ReadInterface
+     * @var Service
      */
-    protected $_rootDirectory;
+    protected $service;
 
     /**
-     * @var Data
-     */
-    protected $_helper;
-
-    /**
-     * InvoiceJp constructor.
+     *
      * @param \Magento\Payment\Helper\Data $paymentData
      * @param \Magento\Framework\Stdlib\StringUtils $string
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
@@ -32,6 +25,7 @@ class Invoice extends BaseInvoice
      * @param \Magento\Sales\Model\Order\Address\Renderer $addressRenderer
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
+     * @param Service $service
      * @param array $data
      */
     public function __construct(
@@ -47,12 +41,11 @@ class Invoice extends BaseInvoice
         \Magento\Sales\Model\Order\Address\Renderer $addressRenderer,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Locale\ResolverInterface $localeResolver,
-        Data $_helper,
+        Service $service,
         array $data = []
     )
     {
-        $this->_rootDirectory = $filesystem->getDirectoryRead(DirectoryList::ROOT);
-        $this->_helper = $_helper;
+        $this->service = $service;
         parent::__construct(
             $paymentData,
             $string,
@@ -71,22 +64,14 @@ class Invoice extends BaseInvoice
     }
 
     /**
-     * @return Data
-     */
-    public function getHelper()
-    {
-        return $this->_helper;
-    }
-
-    /**
      * @param $object
      * @param int $size
      * @return mixed
      */
     protected function _setFontRegular($object, $size = 7)
     {
-        if ($this->getHelper()->getJapaneseFontIsActive()) {
-            $fontpath = $this->getHelper()->getJapaneseFont();
+        if ($this->service->getJapaneseFontIsActive()) {
+            $fontpath = $this->service->getJapaneseFont();
             $font = \Zend_Pdf_Font::fontWithPath($fontpath);
             $object->setFont($font, $size);
             return $font;
@@ -101,8 +86,8 @@ class Invoice extends BaseInvoice
      */
     protected function _setFontBold($object, $size = 7)
     {
-        if ($this->getHelper()->getJapaneseFontIsActive()) {
-            $fontpath = $this->getHelper()->getJapaneseFont();
+        if ($this->service->getJapaneseFontIsActive()) {
+            $fontpath = $this->service->getJapaneseFont();
             $font = \Zend_Pdf_Font::fontWithPath($fontpath);
             $object->setFont($font, $size);
             return $font;
@@ -117,8 +102,8 @@ class Invoice extends BaseInvoice
      */
     protected function _setFontItalic($object, $size = 7)
     {
-        if ($this->getHelper()->getJapaneseFontIsActive()) {
-            $fontpath = $this->getHelper()->getJapaneseFont();
+        if ($this->service->getJapaneseFontIsActive()) {
+            $fontpath = $this->service->getJapaneseFont();
             $font = \Zend_Pdf_Font::fontWithPath($fontpath);
             $object->setFont($font, $size);
             return $font;
