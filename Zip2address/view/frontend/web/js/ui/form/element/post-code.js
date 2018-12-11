@@ -34,7 +34,8 @@ define([
                 endpoint = 'https://madefor.github.io/postal-code-api/api/v1',
                 code1 = postCode.replace(/^([0-9]{3}).*/, "$1"),
                 code2 = postCode.replace(/.*([0-9]{4})$/, "$1"),
-                lang = window.checkoutConfig.zip2address.lang,
+                lang = window.checkoutConfig.zip2address.lang === 'ja_JP' ? 'ja' : 'en',
+                regionSelector = $('#' + region),
                 pattern,
                 regex;
 
@@ -51,8 +52,8 @@ define([
                                 endpoint + '/' + code1 +'/' + code2 + '.json',
                                 {cache: false}
                             ).done(function (data) {
-                                if ($('#'+ region)[0]) {
-                                    $('#'+ region)[0][data.data[0].prefcode].selected = true;
+                                if (regionSelector[0]) {
+                                    $(regionSelector)[0][data.data[0].prefcode].selected = true;
                                     regionObj.value($('#'+ region)[0][data.data[0].prefcode].value);
                                 }
 

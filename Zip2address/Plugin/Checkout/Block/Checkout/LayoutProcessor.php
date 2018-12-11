@@ -2,7 +2,6 @@
 
 namespace MagentoJapan\Zip2address\Plugin\Checkout\Block\Checkout;
 
-use Magento\Braintree\Model\LocaleResolver;
 use Magento\Framework\Locale\ResolverInterface;
 
 /**
@@ -16,7 +15,7 @@ class LayoutProcessor
     private $localeResolver;
 
     /**
-     * @param LocaleResolver $localeResolver
+     * @param ResolverInterface $localeResolver
      */
     public function __construct(ResolverInterface $localeResolver)
     {
