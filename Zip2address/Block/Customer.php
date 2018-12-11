@@ -2,37 +2,39 @@
 namespace MagentoJapan\Zip2address\Block;
 
 use Magento\Framework\View\Element\Template;
-use MagentoJapan\Zip2address\Helper\Data;
+use Magento\Framework\Locale\ResolverInterface;
+use Magento\Framework\View\Element\Template\Context;
 
+/**
+ * Customer zip validation block.
+ */
 class Customer extends Template
 {
-
     /**
-     * @var \MagentoJapan\Zip2address\Helper\Data
+     * @var ResolverInterface
      */
-    protected $helper;
+    private $localeResolver;
 
     /**
      * Customer constructor.
-     * @param \MagentoJapan\Zip2address\Helper\Data $helper
-     * @param \Magento\Framework\View\Element\Template\Context $context
+     * @param ResolverInterface $localeResolver
+     * @param Context $context
      * @param array $data
      */
     public function __construct(
-        \MagentoJapan\Zip2address\Helper\Data $helper,
-        \Magento\Framework\View\Element\Template\Context $context,
+        ResolverInterface $localeResolver,
+        Context $context,
         array $data = []
     ) {
         parent::__construct($context, $data);
-        $this->helper = $helper;
+        $this->localeResolver = $localeResolver;
     }
 
     /**
-     * @return \MagentoJapan\Zip2address\Helper\Data
+     * @return string
      */
-    public function getHelper()
+    public function getCurrentLocale(): string
     {
-        return $this->helper;
+        return $this->localeResolver->getLocale();
     }
-
 }
