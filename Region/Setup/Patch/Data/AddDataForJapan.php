@@ -11,8 +11,7 @@ use Magento\Directory\Model\ResourceModel\Region\CollectionFactory;
 use Magento\Directory\Model\ResourceModel\Region\Collection;
 
 /**
- * Class AddDataForJapan
- * @package MagentoJapan\Region\Setup\Patch\Data
+ * Japan Regions information.
  */
 class AddDataForJapan implements DataPatchInterface, PatchVersionInterface
 {
@@ -31,16 +30,12 @@ class AddDataForJapan implements DataPatchInterface, PatchVersionInterface
      */
     private $data;
 
-
     /**
      * @var CollectionFactory
      */
     private $collectionFactory;
 
-
     /**
-     * AddDataForJapan constructor.
-     *
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param Data $data
      * @param CollectionFactory $collectionFactory
@@ -59,11 +54,11 @@ class AddDataForJapan implements DataPatchInterface, PatchVersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function apply()
     {
-        if($this->checkExistingJpRegions()) {
+        if ($this->checkExistingJpRegions()) {
             return;
         }
 
@@ -113,20 +108,20 @@ class AddDataForJapan implements DataPatchInterface, PatchVersionInterface
                 'path=?' => Data::XML_PATH_STATES_REQUIRED
             ]
         );
-
     }
 
     /**
-     * Check existing JP regions
+     * Check existing JP regions.
+     *
      * @return bool
      */
-    private function checkExistingJpRegions()
+    private function checkExistingJpRegions(): bool
     {
         /** @var Collection $collection */
         $collection = $this->collectionFactory->create();
         $count = $collection->addCountryFilter('JP')->count();
 
-        if($count > 0) {
+        if ($count > 0) {
             return true;
         }
 
@@ -192,7 +187,7 @@ class AddDataForJapan implements DataPatchInterface, PatchVersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public static function getDependencies()
     {
@@ -200,7 +195,7 @@ class AddDataForJapan implements DataPatchInterface, PatchVersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public static function getVersion()
     {
@@ -208,7 +203,7 @@ class AddDataForJapan implements DataPatchInterface, PatchVersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getAliases()
     {
