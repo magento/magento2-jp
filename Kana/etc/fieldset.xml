@@ -47,11 +47,9 @@
         <fieldset id="sales_convert_quote_address">
             <field name="firstnamekana">
                 <aspect name="to_order_address" />
-                <aspect name="to_customer_address" />
             </field>
             <field name="lastnamekana">
                 <aspect name="to_order_address" />
-                <aspect name="to_customer_address" />
             </field>
         </fieldset>
         <fieldset id="sales_convert_order">
