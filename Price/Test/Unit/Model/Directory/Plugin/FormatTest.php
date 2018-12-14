@@ -28,9 +28,9 @@ class FormatTest extends TestCase
     private $closure;
 
     /**
-     * @var \MagentoJapan\Price\Helper\Data|\PHPUnit_Framework_MockObject_MockObject
+     * @var \MagentoJapan\Price\Model\Config\System|\PHPUnit_Framework_MockObject_MockObject
      */
-    private $helperMock;
+    private $systemMock;
 
     /**
      * Setup
@@ -39,14 +39,14 @@ class FormatTest extends TestCase
      */
     protected function setUp()
     {
-        $this->helperMock = $this->getMockBuilder(
-            'MagentoJapan\Price\Helper\Data'
+        $this->systemMock = $this->getMockBuilder(
+            'MagentoJapan\Price\Model\Config\System'
         )->disableOriginalConstructor()->getMock();
 
         $objectManager = new ObjectManager($this);
         $this->formatPlugin = $objectManager->getObject(
             'MagentoJapan\Price\Model\Directory\Plugin\Format',
-            ['helper' => $this->helperMock]
+            ['system' => $this->systemMock]
         );
 
         $this->priceCurrency = $this->getMockBuilder(
@@ -73,9 +73,9 @@ class FormatTest extends TestCase
         $currency->expects($this->atLeastOnce())
             ->method('formatPrecision')
             ->willReturn('<span class="price">￥100</span>');
-        $this->helperMock->expects($this->atLeastOnce())
+        $this->systemMock->expects($this->atLeastOnce())
             ->method('getIntegerCurrencies')->willReturn(['JPY']);
-        $this->helperMock->expects($this->atLeastOnce())
+        $this->systemMock->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('round');
 
@@ -113,7 +113,7 @@ class FormatTest extends TestCase
         $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
 
-        $this->helperMock->expects($this->atLeastOnce())
+        $this->systemMock->expects($this->atLeastOnce())
             ->method('getIntegerCurrencies')->willReturn(['JPY']);
 
         $this->assertNotEquals(

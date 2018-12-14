@@ -21,9 +21,9 @@ class PrecisionTest extends TestCase
     private $closure;
 
     /**
-     * @var \MagentoJapan\Price\Helper\Data|\PHPUnit_Framework_MockObject_MockObject
+     * @var \MagentoJapan\Price\Model\Config\System|\PHPUnit_Framework_MockObject_MockObject
      */
-    private $helperMock;
+    private $systemMock;
 
     /**
      * Setup
@@ -32,14 +32,14 @@ class PrecisionTest extends TestCase
      */
     protected function setUp()
     {
-        $this->helperMock = $this->getMockBuilder(
-            'MagentoJapan\Price\Helper\Data'
+        $this->systemMock = $this->getMockBuilder(
+            'MagentoJapan\Price\Model\Config\System'
         )->disableOriginalConstructor()->getMock();
 
         $objectManager = new ObjectManager($this);
         $this->precisionPlugin = $objectManager->getObject(
             'MagentoJapan\Price\Model\Directory\Plugin\Precision',
-            ['helper' => $this->helperMock]
+            ['system' => $this->systemMock]
         );
 
         $this->closure = function () {
@@ -59,7 +59,7 @@ class PrecisionTest extends TestCase
         ->disableOriginalConstructor()->getMock();
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
-        $this->helperMock->expects($this->atLeastOnce())
+        $this->systemMock->expects($this->atLeastOnce())
             ->method('getIntegerCurrencies')->willReturn(['JPY']);
 
 
@@ -90,7 +90,7 @@ class PrecisionTest extends TestCase
             ->getMock();
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('USD');
-        $this->helperMock->expects($this->atLeastOnce())
+        $this->systemMock->expects($this->atLeastOnce())
             ->method('getIntegerCurrencies')->willReturn(['JPY']);
 
         $this->assertNotEquals(

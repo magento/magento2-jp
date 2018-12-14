@@ -2,8 +2,8 @@
 namespace MagentoJapan\Price\Observer;
 
 use \Magento\CurrencySymbol\Model\System\CurrencysymbolFactory;
-use Magento\Framework\Event\ObserverInterface;
-use MagentoJapan\Price\Helper\Data;
+use \Magento\Framework\Event\ObserverInterface;
+use \MagentoJapan\Price\Model\Config\System;
 
 class ModifyCurrencyOptions implements ObserverInterface
 {
@@ -14,20 +14,20 @@ class ModifyCurrencyOptions implements ObserverInterface
      */
     protected $symbolFactory;
 
-    private $helper;
+    private $system;
 
     /**
      * Constructor
      *
      * @param CurrencysymbolFactory $symbolFactory Currency Symbol Factory
-     * @param Data $helper
+     * @param System $system
      */
     public function __construct(
         CurrencysymbolFactory $symbolFactory,
-        Data $helper
+        System $system
     ) {
         $this->symbolFactory = $symbolFactory;
-        $this->helper = $helper;
+        $this->system = $system;
     }
 
     /**
@@ -63,7 +63,7 @@ class ModifyCurrencyOptions implements ObserverInterface
     protected function getCurrencyOptions($baseCode, $originalOptions)
     {
         $currencyOptions = [];
-        if (in_array($baseCode, $this->helper->getIntegerCurrencies())) {
+        if (in_array($baseCode, $this->system->getIntegerCurrencies())) {
             $currencyOptions['precision'] = '0';
         }
 

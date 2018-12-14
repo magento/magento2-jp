@@ -5,7 +5,6 @@ use Magento\Framework\Locale\Format;
 use \Magento\Framework\App\ScopeResolverInterface;
 use \Magento\Framework\Locale\ResolverInterface;
 use \Magento\Directory\Model\CurrencyFactory;
-use MagentoJapan\Price\Helper\Data;
 
 class ModifyPriceFormat
 {
@@ -30,11 +29,6 @@ class ModifyPriceFormat
      */
     private $_currencyFactory;
 
-    /**
-     * @var Data
-     */
-    private $helper;
-
     private static $format;
 
     /**
@@ -43,50 +37,16 @@ class ModifyPriceFormat
      * @param ScopeResolverInterface $scopeResolver   Scope Resolver
      * @param ResolverInterface      $localeResolver  Locale Resolver
      * @param CurrencyFactory        $currencyFactory Currency Resolver
-     * @param Data                                    $helper  Helper
      */
     public function __construct(
         ScopeResolverInterface $scopeResolver,
         ResolverInterface $localeResolver,
-        CurrencyFactory $currencyFactory,
-        Data $helper
+        CurrencyFactory $currencyFactory
     ) {
         $this->_scopeResolver = $scopeResolver;
         $this->_localeResolver = $localeResolver;
         $this->_currencyFactory = $currencyFactory;
-        $this->helper = $helper;
     }
-
-    /**
-     * Modify precision for JPY
-     *
-     * @param \Magento\Framework\Locale\Format $subject      Currency Format Obj
-     * @param \Closure                         $proceed      Closure
-     * @param null|string                      $localeCode   Locale Code
-     * @param null|string                      $currencyCode Currency Code
-     *
-     * @return mixed
-     */
-//    public function aroundGetPriceFormat(
-//        Format $subject,
-//        \Closure $proceed,
-//        $localeCode = null,
-//        $currencyCode = null
-//    ) {
-//        if ($currencyCode) {
-//            $currency = $this->_currencyFactory->create()->load($currencyCode);
-//        } else {
-//            $currency = $this->_scopeResolver->getScope()->getCurrentCurrency();
-//        }
-//
-//        $result = $proceed($localeCode, $currencyCode);
-//
-//        if (in_array($currency->getCode() ,$this->helper->getIntegerCurrencies())) {
-//            $result['precision'] = '0';
-//            $result['requiredPrecision'] = '0';
-//        }
-//        return $result;
-//    }
 
     /**
      * Remove comma from price on JPY

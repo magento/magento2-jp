@@ -1,8 +1,9 @@
 <?php
 namespace MagentoJapan\Price\Model\Directory\Plugin;
 
-use Magento\Directory\Model\PriceCurrency;
+use \Magento\Directory\Model\PriceCurrency;
 use \Magento\Framework\View\Element\Context;
+use \MagentoJapan\Price\Model\Config\System;
 
 class Format
 {
@@ -15,22 +16,22 @@ class Format
     private $scopeConfig;
 
     /**
-     * @var \MagentoJapan\Price\Helper\Data
+     * @var System
      */
-    private $helper;
+    private $system;
 
 
     /**
      * Format constructor.
      * @param Context $context
-     * @param \MagentoJapan\Price\Helper\Data $helper
+     * @param System $system
      */
     public function __construct(
         Context $context,
-        \MagentoJapan\Price\Helper\Data $helper
+        System $system
     ) {
         $this->scopeConfig = $context->getScopeConfig();
-        $this->helper = $helper;
+        $this->system = $system;
     }
 
     /**
@@ -55,10 +56,10 @@ class Format
         $scope = null,
         $currency = null
     ) {
-        if (in_array($subject->getCurrency()->getCode(), $this->helper->getIntegerCurrencies())) {
+        if (in_array($subject->getCurrency()->getCode(), $this->system->getIntegerCurrencies())) {
             $precision = '0';
 
-            $method = $this->helper->getRoundMethod($scope);
+            $method = $this->system->getRoundMethod($scope);
             $amount = $method($amount);
 
             return $subject->getCurrency($scope, $currency)

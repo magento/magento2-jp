@@ -3,7 +3,7 @@ namespace MagentoJapan\Price\Test\Unit\Model\Directory\Plugin;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use \Magento\Directory\Model\PriceCurrency;
-use \MagentoJapan\Price\Helper\Data;
+use \MagentoJapan\Price\Model\Config\System;
 use \MagentoJapan\Price\Model\Directory\Plugin\PriceRound;
 use PHPUnit\Framework\TestCase;
 
@@ -26,9 +26,9 @@ class PriceRoundTest extends TestCase
     /**
      * Helper
      *
-     * @var Data|\PHPUnit_Framework_MockObject_MockObject
+     * @var System|\PHPUnit_Framework_MockObject_MockObject
      */
-    private $helper;
+    private $system;
 
     /**
      * Closure for enclose price
@@ -46,13 +46,13 @@ class PriceRoundTest extends TestCase
     {
         $objectManager = new ObjectManager($this);
 
-        $this->helper = $this->getMockBuilder('MagentoJapan\Price\Helper\Data')
+        $this->system = $this->getMockBuilder('MagentoJapan\Price\Model\Config\System')
             ->disableOriginalConstructor()
             ->getMock();
 
         $this->priceRoundPlugin = $objectManager->getObject(
             'MagentoJapan\Price\Model\Directory\Plugin\PriceRound',
-            ['helper' => $this->helper]
+            ['system' => $this->system]
         );
 
         $this->priceCurrency = $this->getMockBuilder(
@@ -71,10 +71,10 @@ class PriceRoundTest extends TestCase
      */
     public function testAroundConvertRoundRound()
     {
-        $this->helper->expects($this->atLeastOnce())
+        $this->system->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('round');
-        $this->helper->expects($this->atLeastOnce())
+        $this->system->expects($this->atLeastOnce())
             ->method('getIntegerCurrencies')->willReturn(['JPY']);
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()
@@ -107,10 +107,10 @@ class PriceRoundTest extends TestCase
      */
     public function testAroundConvertRoundCeil()
     {
-        $this->helper->expects($this->atLeastOnce())
+        $this->system->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('ceil');
-        $this->helper->expects($this->atLeastOnce())
+        $this->system->expects($this->atLeastOnce())
             ->method('getIntegerCurrencies')->willReturn(['JPY']);
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()
@@ -142,14 +142,14 @@ class PriceRoundTest extends TestCase
      */
     public function testAroundConvertRoundFloor()
     {
-        $helper = $this->helper;
+        $system = $this->system;
         $priceCurrency = $this->priceCurrency;
         $priceRound = $this->priceRoundPlugin;
         $closure = $this->closure;
-        $helper->expects($this->atLeastOnce())
+        $system->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('floor');
-        $helper->expects($this->atLeastOnce())
+        $system->expects($this->atLeastOnce())
             ->method('getIntegerCurrencies')->willReturn(['JPY']);
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()
@@ -181,14 +181,14 @@ class PriceRoundTest extends TestCase
      */
     public function testAroundRoundRound()
     {
-        $helper = $this->helper;
+        $system = $this->system;
         $priceCurrency = $this->priceCurrency;
         $priceRound = $this->priceRoundPlugin;
         $closure = $this->closure;
-        $helper->expects($this->atLeastOnce())
+        $system->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('round');
-        $helper->expects($this->atLeastOnce())
+        $system->expects($this->atLeastOnce())
             ->method('getIntegerCurrencies')->willReturn(['JPY']);
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()
@@ -212,14 +212,14 @@ class PriceRoundTest extends TestCase
      */
     public function testAroundRoundCeil()
     {
-        $helper = $this->helper;
+        $system = $this->system;
         $priceCurrency = $this->priceCurrency;
         $priceRound = $this->priceRoundPlugin;
         $closure = $this->closure;
-        $helper->expects($this->atLeastOnce())
+        $system->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('ceil');
-        $helper->expects($this->atLeastOnce())
+        $system->expects($this->atLeastOnce())
             ->method('getIntegerCurrencies')->willReturn(['JPY']);
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()
@@ -243,15 +243,15 @@ class PriceRoundTest extends TestCase
      */
     public function testAroundRoundFloor()
     {
-        $helper = $this->helper;
+        $system = $this->system;
         $priceCurrency = $this->priceCurrency;
         $priceRound = $this->priceRoundPlugin;
         $closure = $this->closure;
 
-        $helper->expects($this->atLeastOnce())
+        $system->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('floor');
-        $helper->expects($this->atLeastOnce())
+        $system->expects($this->atLeastOnce())
             ->method('getIntegerCurrencies')->willReturn(['JPY']);
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()

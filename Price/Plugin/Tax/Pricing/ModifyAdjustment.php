@@ -6,7 +6,7 @@ use \Magento\Framework\Pricing\SaleableInterface;
 use \Magento\Tax\Helper\Data as TaxHelper;
 use \Magento\Catalog\Helper\Data;
 use \Magento\Framework\Pricing\PriceCurrencyInterface;
-use \MagentoJapan\Price\Helper\Data as PriceHelper;
+use \MagentoJapan\Price\Model\Config\System;
 
 
 class ModifyAdjustment
@@ -23,11 +23,11 @@ class ModifyAdjustment
     private $catalogHelper;
 
     /**
-     * Price Helper
+     * System configuration
      *
-     * @var PriceHelper
+     * @var System
      */
-    private $priceHelper;
+    private $system;
 
     /**
      * @var PriceCurrencyInterface
@@ -37,17 +37,17 @@ class ModifyAdjustment
     /**
      * @param TaxHelper $taxHelper
      * @param Data $catalogHelper
-     * @param PriceHelper $priceHelper
+     * @param System $system
      * @param PriceCurrencyInterface $currency
      */
     public function __construct(TaxHelper $taxHelper,
                                 Data $catalogHelper,
-                                PriceHelper $priceHelper,
+                                System $system,
                                 PriceCurrencyInterface $priceCurrency
     ) {
         $this->taxHelper = $taxHelper;
         $this->catalogHelper = $catalogHelper;
-        $this->priceHelper = $priceHelper;
+        $this->system = $system;
         $this->priceCurrency = $priceCurrency;
     }
 
@@ -58,7 +58,7 @@ class ModifyAdjustment
         SaleableInterface $saleableItem,
         $context = []
     ) {
-        $method = $this->priceHelper->getRoundMethod();
+        $method = $this->system->getRoundMethod();
         $isRound = false;
         $currency = $this->priceCurrency->getCurrency();
 
@@ -91,7 +91,7 @@ class ModifyAdjustment
         SaleableInterface $saleableItem,
         $context = []
     ) {
-        $method = $this->priceHelper->getRoundMethod();
+        $method = $this->system->getRoundMethod();
         $isRound = false;
         $currency = $this->priceCurrency->getCurrency();
 

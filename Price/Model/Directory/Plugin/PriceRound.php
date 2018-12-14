@@ -1,9 +1,9 @@
 <?php
 namespace MagentoJapan\Price\Model\Directory\Plugin;
 
-use Magento\Directory\Model\PriceCurrency;
-use MagentoJapan\Price\Helper\Data;
-use Magento\Framework\App\Config\ScopeConfigInterface;
+use \Magento\Directory\Model\PriceCurrency;
+use \MagentoJapan\Price\Model\Config\System;
+use \Magento\Framework\App\Config\ScopeConfigInterface;
 
 class PriceRound
 {
@@ -16,24 +16,24 @@ class PriceRound
     private $scopeConfig;
 
     /**
-     * Helper
+     * System configuration
      *
-     * @var \MagentoJapan\Price\Helper\Data
+     * @var System
      */
-    private $helper;
+    private $system;
 
     /**
      * ModifyPrice constructor.
      *
-     * @param Data                 $helper
+     * @param System $system
      * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        Data $helper,
+        System $system,
         ScopeConfigInterface $scopeConfig
     ) {
         $this->scopeConfig = $scopeConfig;
-        $this->helper = $helper;
+        $this->system = $system;
     }
 
 
@@ -57,13 +57,13 @@ class PriceRound
         $currency = null,
         $precision = PriceCurrency::DEFAULT_PRECISION
     ) {
-        if (in_array($subject->getCurrency()->getCode(), $this->helper->getIntegerCurrencies())) {
+        if (in_array($subject->getCurrency()->getCode(), $this->system->getIntegerCurrencies())) {
             /**
              * Rounding method
              *
              * @var string $method rounding method
              */
-            $method = $this->helper->getRoundMethod($scope);
+            $method = $this->system->getRoundMethod($scope);
 
             if ($method != 'round') {
                 return $method($amount);
@@ -89,13 +89,13 @@ class PriceRound
         $precision = 2
     ) {
         $currency = $subject->getCurrency()->getCode();
-            if (in_array($currency, $this->helper->getIntegerCurrencies())) {
+            if (in_array($currency, $this->system->getIntegerCurrencies())) {
             /**
              * Rounding method
              *
              * @var string $method rounding method
              */
-            $method = $this->helper->getRoundMethod();
+            $method = $this->system->getRoundMethod();
             if ($method != 'round') {
                 return $method($amount);
             }

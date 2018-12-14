@@ -1,26 +1,26 @@
 <?php
 namespace MagentoJapan\Price\Model\Directory\Plugin;
 
-use Magento\Directory\Model\Currency;
-use MagentoJapan\Price\Helper\Data;
+use \Magento\Directory\Model\Currency;
+use \MagentoJapan\Price\Model\Config\System;
 
 class Precision
 {
     /**
-     * Helper
+     * System Configuration
      *
-     * @var \MagentoJapan\Price\Helper\Data
+     * @var System
      */
-    private $helper;
+    private $system;
 
     /**
      * Precision constructor.
-     * @param Data $helper
+     * @param System $system
      */
     public function __construct(
-        Data $helper
+        System $system
     ) {
-        $this->helper = $helper;
+        $this->system = $system;
     }
 
     /**
@@ -45,7 +45,7 @@ class Precision
         $includeContainer = true,
         $addBrackets = false
     ) {
-        if (in_array($subject->getCode(), $this->helper->getIntegerCurrencies())) {
+        if (in_array($subject->getCode(), $this->system->getIntegerCurrencies())) {
             $precision = '0';
             if (isset($options['precision'])) {
                 $options['precision'] = '0';
@@ -76,7 +76,7 @@ class Precision
     )
     {
         if ($subject->getCode() == 'JPY') {
-            $position = $this->helper->getSymbolPosition();
+            $position = $this->system->getSymbolPosition();
             $options['position'] = (int)$position;
             if($options['position'] == \Zend_Currency::RIGHT) {
                 $options['symbol'] = __('Yen');
