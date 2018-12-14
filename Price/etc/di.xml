@@ -10,9 +10,6 @@
     <type name="Magento\Framework\Locale\Format">
         <plugin name="modify_price_format" type="MagentoJapan\Price\Model\Locale\Plugin\ModifyPriceFormat" />
     </type>
-    <type name="Magento\Catalog\Block\Product\View">
-        <plugin name="fix_config_price" type="MagentoJapan\Price\Plugin\Block\Product\View"/>
-    </type> 
 
     <type name="Magento\Tax\Pricing\Adjustment">
         <plugin name="modify_round" type="MagentoJapan\Price\Plugin\Tax\Pricing\ModifyAdjustment"/>
