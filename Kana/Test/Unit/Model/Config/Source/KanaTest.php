@@ -1,13 +1,14 @@
 <?php
 namespace MagentoJapan\Kana\Test\Unit\Model\Config\Source;
-use MagentoJapan\Kana\Model\Config\Source\Kana;
 
+use MagentoJapan\Kana\Model\Config\Source\Kana;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class KanaTest
  * @package MagentoJapan\Kana\Test\Unit\Model\Config\Source
  */
-class KanaTest extends \PHPUnit_Framework_TestCase
+class KanaTest extends TestCase
 {
     /**
      * @var \MagentoJapan\Kana\Model\Config\Source\Kana
