@@ -13,14 +13,14 @@ class PriceRound
      *
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    private $scopeConfig;
 
     /**
      * Helper
      *
      * @var \MagentoJapan\Price\Helper\Data
      */
-    protected $helper;
+    private $helper;
 
     /**
      * ModifyPrice constructor.

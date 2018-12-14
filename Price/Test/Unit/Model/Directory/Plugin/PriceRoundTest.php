@@ -5,36 +5,37 @@ use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use \Magento\Directory\Model\PriceCurrency;
 use \MagentoJapan\Price\Helper\Data;
 use \MagentoJapan\Price\Model\Directory\Plugin\PriceRound;
+use PHPUnit\Framework\TestCase;
 
-class PriceRoundTest extends \PHPUnit_Framework_TestCase
+class PriceRoundTest extends TestCase
 {
     /**
      * Price Round Plugin
      *
      * @var PriceRound
      */
-    protected $priceRoundPlugin;
+    private $priceRoundPlugin;
 
     /**
      * Price Currency
      *
      * @var PriceCurrency|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $priceCurrency;
+    private $priceCurrency;
 
     /**
      * Helper
      *
      * @var Data|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $helper;
+    private $helper;
 
     /**
      * Closure for enclose price
      *
      * @var \Closure
      */
-    protected $closure;
+    private $closure;
 
     /**
      * Setup
@@ -73,11 +74,14 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
         $this->helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('round');
+        $this->helper->expects($this->atLeastOnce())
+            ->method('getIntegerCurrencies')->willReturn(['JPY']);
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()
             ->getMock();
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
+
 
         $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
@@ -106,6 +110,8 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
         $this->helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('ceil');
+        $this->helper->expects($this->atLeastOnce())
+            ->method('getIntegerCurrencies')->willReturn(['JPY']);
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()
             ->getMock();
@@ -143,6 +149,8 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
         $helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('floor');
+        $helper->expects($this->atLeastOnce())
+            ->method('getIntegerCurrencies')->willReturn(['JPY']);
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()
             ->getMock();
@@ -180,6 +188,8 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
         $helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('round');
+        $helper->expects($this->atLeastOnce())
+            ->method('getIntegerCurrencies')->willReturn(['JPY']);
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()
             ->getMock();
@@ -209,6 +219,8 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
         $helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('ceil');
+        $helper->expects($this->atLeastOnce())
+            ->method('getIntegerCurrencies')->willReturn(['JPY']);
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()
             ->getMock();
@@ -239,6 +251,8 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
         $helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('floor');
+        $helper->expects($this->atLeastOnce())
+            ->method('getIntegerCurrencies')->willReturn(['JPY']);
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()
             ->getMock();

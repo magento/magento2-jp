@@ -2,29 +2,35 @@
 namespace MagentoJapan\Price\Test\Unit\Model\Directory\Plugin;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
+use PHPUnit\Framework\TestCase;
 
-class FormatTest extends \PHPUnit_Framework_TestCase
+class FormatTest extends TestCase
 {
     /**
      * Price Format Plugin
      *
      * @var \MagentoJapan\Price\Model\Directory\Plugin\Format
      */
-    protected $formatPlugin;
+    private $formatPlugin;
 
     /**
      * Price Currency
      *
-     * @var \Magento\Directory\Model\PriceCurrency
+     * @var \Magento\Directory\Model\PriceCurrency|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $priceCurrency;
+    private $priceCurrency;
 
     /**
      * Price container closure
      *
      * @var \Closure
      */
-    protected $closure;
+    private $closure;
+
+    /**
+     * @var \MagentoJapan\Price\Helper\Data|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $helperMock;
 
     /**
      * Setup
@@ -33,9 +39,14 @@ class FormatTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
+        $this->helperMock = $this->getMockBuilder(
+            'MagentoJapan\Price\Helper\Data'
+        )->disableOriginalConstructor()->getMock();
+
         $objectManager = new ObjectManager($this);
         $this->formatPlugin = $objectManager->getObject(
-            'MagentoJapan\Price\Model\Directory\Plugin\Format'
+            'MagentoJapan\Price\Model\Directory\Plugin\Format',
+            ['helper' => $this->helperMock]
         );
 
         $this->priceCurrency = $this->getMockBuilder(
@@ -54,18 +65,20 @@ class FormatTest extends \PHPUnit_Framework_TestCase
      */
     public function testJpyAroundFormat()
     {
-        $currency = $this->getMock(
-            'Magento\Directory\Model\Currency',
-            [],
-            [],
-            '',
-            false
-        );
+        /** @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Directory\Model\Currency  $currency */
+        $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
+            ->disableOriginalConstructor()->getMock();
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
         $currency->expects($this->atLeastOnce())
             ->method('formatPrecision')
             ->willReturn('<span class="price">￥100</span>');
+        $this->helperMock->expects($this->atLeastOnce())
+            ->method('getIntegerCurrencies')->willReturn(['JPY']);
+        $this->helperMock->expects($this->atLeastOnce())
+            ->method('getRoundMethod')
+            ->willReturn('round');
+
 
         $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
@@ -90,6 +103,7 @@ class FormatTest extends \PHPUnit_Framework_TestCase
      */
     public function testNonJpyAroundFormat()
     {
+        /** @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Directory\Model\Currency  $currency */
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()
             ->getMock();
@@ -98,6 +112,9 @@ class FormatTest extends \PHPUnit_Framework_TestCase
 
         $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
+
+        $this->helperMock->expects($this->atLeastOnce())
+            ->method('getIntegerCurrencies')->willReturn(['JPY']);
 
         $this->assertNotEquals(
             '<span class="price">￥100</span>',

@@ -12,7 +12,7 @@ class Format
      *
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    private $scopeConfig;
 
     /**
      * @var \MagentoJapan\Price\Helper\Data
