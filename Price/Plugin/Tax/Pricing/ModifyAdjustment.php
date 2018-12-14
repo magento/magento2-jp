@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Price\Plugin\Tax\Pricing;
 
 use \Magento\Tax\Pricing\Adjustment;
@@ -44,7 +46,8 @@ class ModifyAdjustment
                                 Data $catalogHelper,
                                 System $system,
                                 PriceCurrencyInterface $priceCurrency
-    ) {
+    )
+    {
         $this->taxHelper = $taxHelper;
         $this->catalogHelper = $catalogHelper;
         $this->system = $system;
@@ -57,13 +60,14 @@ class ModifyAdjustment
         $amount,
         SaleableInterface $saleableItem,
         $context = []
-    ) {
+    )
+    {
         $method = $this->system->getRoundMethod();
         $isRound = false;
         $currency = $this->priceCurrency->getCurrency();
 
         if ($this->taxHelper->priceIncludesTax()) {
-            if($method != 'round' && $currency == 'JPY') {
+            if ($method != 'round' && $currency == 'JPY') {
                 $isRound = true;
             }
             $adjustedAmount = $this->catalogHelper->getTaxPrice(
@@ -90,12 +94,13 @@ class ModifyAdjustment
         $amount,
         SaleableInterface $saleableItem,
         $context = []
-    ) {
+    )
+    {
         $method = $this->system->getRoundMethod();
         $isRound = false;
         $currency = $this->priceCurrency->getCurrency();
 
-        if($method != 'round' && $currency->getCode() == 'JPY') {
+        if ($method != 'round' && $currency->getCode() == 'JPY') {
             $isRound = true;
         }
 

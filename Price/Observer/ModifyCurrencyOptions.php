@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Price\Observer;
 
 use \Magento\CurrencySymbol\Model\System\CurrencysymbolFactory;
@@ -25,7 +27,8 @@ class ModifyCurrencyOptions implements ObserverInterface
     public function __construct(
         CurrencysymbolFactory $symbolFactory,
         System $system
-    ) {
+    )
+    {
         $this->symbolFactory = $symbolFactory;
         $this->system = $system;
     }
@@ -55,8 +58,8 @@ class ModifyCurrencyOptions implements ObserverInterface
     /**
      * Get currency display options
      *
-     * @param string $baseCode        Base currency code
-     * @param array  $originalOptions Currency Options
+     * @param string $baseCode Base currency code
+     * @param array $originalOptions Currency Options
      *
      * @return array
      */

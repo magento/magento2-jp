@@ -1,4 +1,5 @@
 <?php
+
 namespace MagentoJapan\Price\Test\Unit\Model\Directory\Plugin;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
@@ -56,7 +57,7 @@ class PrecisionTest extends TestCase
     {
         /** @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Directory\Model\Currency $currency */
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
-        ->disableOriginalConstructor()->getMock();
+            ->disableOriginalConstructor()->getMock();
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
         $this->systemMock->expects($this->atLeastOnce())

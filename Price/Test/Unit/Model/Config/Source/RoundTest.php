@@ -1,4 +1,5 @@
 <?php
+
 namespace MagentoJapan\Price\Test\Unit\Model\Config\Source;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;

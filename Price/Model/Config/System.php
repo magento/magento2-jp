@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Price\Model\Config;
 
 use \Magento\Store\Model\ScopeInterface;
@@ -26,7 +28,8 @@ class System
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig
-    ) {
+    )
+    {
         $this->scopeConfig = $scopeConfig;
     }
 

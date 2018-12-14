@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Price\Model\Directory\Plugin;
 
 use \Magento\Directory\Model\PriceCurrency;
@@ -31,7 +33,8 @@ class PriceRound
     public function __construct(
         System $system,
         ScopeConfigInterface $scopeConfig
-    ) {
+    )
+    {
         $this->scopeConfig = $scopeConfig;
         $this->system = $system;
     }
@@ -40,23 +43,24 @@ class PriceRound
     /**
      * Modify rounding method for converting currency
      *
-     * @param PriceCurrency $subject   Price Currency
-     * @param \Closure      $proceed   Closure
-     * @param float         $amount    Price
-     * @param null          $scope     Configuration Scope
-     * @param null          $currency  Currency
-     * @param int           $precision Currency Precision
+     * @param PriceCurrency $subject Price Currency
+     * @param \Closure $proceed Closure
+     * @param float $amount Price
+     * @param null $scope Configuration Scope
+     * @param null $currency Currency
+     * @param int $precision Currency Precision
      *
      * @return mixed
      */
     public function aroundConvertAndRound(
-        PriceCurrency  $subject,
+        PriceCurrency $subject,
         \Closure $proceed,
         $amount,
         $scope = null,
         $currency = null,
         $precision = PriceCurrency::DEFAULT_PRECISION
-    ) {
+    )
+    {
         if (in_array($subject->getCurrency()->getCode(), $this->system->getIntegerCurrencies())) {
             /**
              * Rounding method
@@ -76,20 +80,21 @@ class PriceRound
     /**
      * Modify rounding method
      *
-     * @param PriceCurrency $subject   Price Currency
-     * @param \Closure      $proceed   Closure
-     * @param float         $amount    Price
-     * @param int           $precision Currency precision
+     * @param PriceCurrency $subject Price Currency
+     * @param \Closure $proceed Closure
+     * @param float $amount Price
+     * @param int $precision Currency precision
      *
      * @return mixed
      */
-    public function aroundRound(PriceCurrency  $subject,
-        \Closure $proceed,
-        $amount,
-        $precision = 2
-    ) {
+    public function aroundRound(PriceCurrency $subject,
+                                \Closure $proceed,
+                                $amount,
+                                $precision = 2
+    )
+    {
         $currency = $subject->getCurrency()->getCode();
-            if (in_array($currency, $this->system->getIntegerCurrencies())) {
+        if (in_array($currency, $this->system->getIntegerCurrencies())) {
             /**
              * Rounding method
              *

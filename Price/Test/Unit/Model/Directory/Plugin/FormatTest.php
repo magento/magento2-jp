@@ -1,4 +1,5 @@
 <?php
+
 namespace MagentoJapan\Price\Test\Unit\Model\Directory\Plugin;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
@@ -65,7 +66,7 @@ class FormatTest extends TestCase
      */
     public function testJpyAroundFormat()
     {
-        /** @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Directory\Model\Currency  $currency */
+        /** @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Directory\Model\Currency $currency */
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()->getMock();
         $currency->expects($this->atLeastOnce())
@@ -103,7 +104,7 @@ class FormatTest extends TestCase
      */
     public function testNonJpyAroundFormat()
     {
-        /** @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Directory\Model\Currency  $currency */
+        /** @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Directory\Model\Currency $currency */
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
             ->disableOriginalConstructor()
             ->getMock();

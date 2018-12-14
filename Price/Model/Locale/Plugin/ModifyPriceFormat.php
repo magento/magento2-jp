@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Price\Model\Locale\Plugin;
 
 use Magento\Framework\Locale\Format;
@@ -34,15 +36,16 @@ class ModifyPriceFormat
     /**
      * Constructor
      *
-     * @param ScopeResolverInterface $scopeResolver   Scope Resolver
-     * @param ResolverInterface      $localeResolver  Locale Resolver
-     * @param CurrencyFactory        $currencyFactory Currency Resolver
+     * @param ScopeResolverInterface $scopeResolver Scope Resolver
+     * @param ResolverInterface $localeResolver Locale Resolver
+     * @param CurrencyFactory $currencyFactory Currency Resolver
      */
     public function __construct(
         ScopeResolverInterface $scopeResolver,
         ResolverInterface $localeResolver,
         CurrencyFactory $currencyFactory
-    ) {
+    )
+    {
         $this->_scopeResolver = $scopeResolver;
         $this->_localeResolver = $localeResolver;
         $this->_currencyFactory = $currencyFactory;
@@ -58,18 +61,18 @@ class ModifyPriceFormat
     public function beforeGetNumber(
         Format $subject,
         $value
-    ) {
+    )
+    {
         $currency = $this->_scopeResolver->getScope()->getCurrentCurrency();
-        $locale   = $this->_localeResolver->getLocale();
+        $locale = $this->_localeResolver->getLocale();
         $currencyCode = $currency->getCode();
         $formatCode = $locale . '_' . $currencyCode;
 
-        if(!isset(self::$format[$formatCode])) {
+        if (!isset(self::$format[$formatCode])) {
             self::$format[$formatCode] = $subject->getPriceFormat($locale, $currencyCode);
         }
 
-        if(self::$format[$formatCode]['groupSymbol'] == '.')
-        {
+        if (self::$format[$formatCode]['groupSymbol'] == '.') {
             $value = preg_replace('/\./', '', $value);
             $value = preg_replace('/,/', '.', $value);
         } else {
