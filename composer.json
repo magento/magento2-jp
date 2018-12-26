@@ -1,0 +1,14 @@
+{
+  "name": "magentojapan/common",
+  "version": "1.0.0",
+  "description": "Magento Japanese localization meta package.",
+  "type": "metapackage",
+  "require": {
+    "magentojapan/kana": "*",
+    "magentojapan/region": "*",
+    "magentojapan/price": "*",
+    "magentojapan/kuromoji": "*",
+    "magentojapan/storeaddress": "*",
+    "magentojapan/zip2address": "*"
+  }
+}
