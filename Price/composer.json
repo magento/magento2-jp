@@ -1,5 +1,5 @@
 {
-    "name": "magentojapan/price",
+    "name": "magentojapan/module-price",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",

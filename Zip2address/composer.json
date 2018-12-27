@@ -1,5 +1,5 @@
 {
-  "name": "magentojapan/zip2address",
+  "name": "magentojapan/module-zip2address",
   "type": "magento2-module",
   "license": [
     "OSL-3.0",
@@ -18,11 +18,11 @@
     "php": "~7.1.3|~7.2.0",
     "magento/module-store": "*",
     "magento/module-backend": "*",
+    "magento/module-checkout": "*",
     "magento/framework": "*",
     "lib-libxml": "*"
   },
   "suggest": {
-    "magento/module-checkout": "*",
     "magento/module-customer": "*"
   },
   "autoload": {

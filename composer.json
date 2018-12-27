@@ -4,11 +4,11 @@
   "description": "Magento Japanese localization meta package.",
   "type": "metapackage",
   "require": {
-    "magentojapan/kana": "*",
-    "magentojapan/region": "*",
-    "magentojapan/price": "*",
-    "magentojapan/kuromoji": "*",
-    "magentojapan/storeaddress": "*",
-    "magentojapan/zip2address": "*"
+    "magentojapan/module-kana": "*",
+    "magentojapan/module-region": "*",
+    "magentojapan/module-price": "*",
+    "magentojapan/module-kuromoji": "*",
+    "magentojapan/module-store-address": "*",
+    "magentojapan/module-zip2address": "*"
   }
 }

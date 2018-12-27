@@ -1,5 +1,5 @@
 {
-    "name": "magentojapan/kuromoji",
+    "name": "magentojapan/module-kuromoji",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
