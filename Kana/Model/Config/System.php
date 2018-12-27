@@ -1,14 +1,10 @@
 <?php
-namespace MagentoJapan\Kana\Helper;
+namespace MagentoJapan\Kana\Model\Config;
 
-use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 
-/**
- * Class Data
- * @package MagentoJapan\Kana\Helper
- */
-class Data extends AbstractHelper
+class System
 {
     /**
      *
@@ -37,6 +33,14 @@ class Data extends AbstractHelper
      *
      */
     const CONFIG_LOCALE = 'general/locale/code';
+
+    private $scopeConfig;
+
+    public function __construct(
+        ScopeConfigInterface $scopeConfig
+    ) {
+        $this->scopeConfig = $scopeConfig;
+    }
 
     /**
      * @return mixed

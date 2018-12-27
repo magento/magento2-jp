@@ -3,19 +3,19 @@ namespace MagentoJapan\Kana\Plugin\Quote\Model\Quote;
 
 use \Magento\Quote\Model\QuoteValidator;
 use \Magento\Quote\Model\Quote;
-use \MagentoJapan\Kana\Helper\Data;
+use \MagentoJapan\Kana\Model\Config\System;
 
 class Validator
 {
     /**
-     * @var \MagentoJapan\Kana\Helper\Data
+     * @var System
      */
-    private $helper;
+    private $system;
 
     public function __construct(
-        Data $helper
+        System $system
     ) {
-        $this->helper = $helper;
+        $this->system = $system;
     }
 
     /**
@@ -27,7 +27,7 @@ class Validator
         QuoteValidator $subject,
         Quote $arguments
     ) {
-        if($this->helper->getRequireKana()) {
+        if($this->system->getRequireKana()) {
             $this->hasKana($arguments);
         }
     }

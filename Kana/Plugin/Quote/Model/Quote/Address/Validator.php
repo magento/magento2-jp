@@ -4,14 +4,14 @@ namespace MagentoJapan\Kana\Plugin\Quote\Model\Quote\Address;
 use \Magento\Quote\Model\QuoteAddressValidator;
 use \Magento\Quote\Model\Quote\Address;
 use \Magento\Customer\Model\AddressFactory;
-use \MagentoJapan\Kana\Helper\Data;
+use \MagentoJapan\Kana\Model\Config\System;
 
 class Validator
 {
     /**
-     * @var \MagentoJapan\Kana\Helper\Data
+     * @var \MagentoJapan\Kana\Model\Config\System
      */
-    private $helper;
+    private $system;
 
     /**
      * @var AddressFactory
@@ -20,14 +20,14 @@ class Validator
 
     /**
      * Validator constructor.
-     * @param Data $helper
+     * @param System $system
      * @param AddressFactory $factory
      */
     public function __construct(
-        Data $helper,
+        System $system,
         AddressFactory $factory
     ) {
-        $this->helper = $helper;
+        $this->system = $system;
         $this->factory = $factory;
     }
 
@@ -40,7 +40,7 @@ class Validator
         QuoteAddressValidator $subject,
         Address $arguments
     ) {
-        if($this->helper->getRequireKana()) {
+        if($this->system->getRequireKana()) {
             $this->checkKana($arguments);
         }
     }
