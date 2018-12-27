@@ -30,12 +30,18 @@ class AddressName
         $this->config = $config;
     }
 
+    /**
+     * Modify Order address Customer name according to JP locale requirements.
+     *
+     * @param BaseAddress $subject
+     * @param \Closure $proceed
+     * @return mixed|string
+     */
     public function aroundGetName(
         BaseAddress $subject,
         \Closure $proceed
-    )
-    {
-        if($this->localeResolver->getLocale() != 'ja_JP') {
+    ) {
+        if ($this->localeResolver->getLocale() != 'ja_JP') {
             return $proceed();
         } else {
             $name = '';

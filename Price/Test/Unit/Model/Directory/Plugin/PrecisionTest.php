@@ -6,29 +6,23 @@ use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 class PrecisionTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Precision Plugin
-     *
      * @var \MagentoJapan\Price\Model\Directory\Plugin\Precision
      */
     protected $precisionPlugin;
 
     /**
-     * Container for price text
-     *
      * @var \Closure
      */
     protected $closure;
 
     /**
-     * Setup
-     *
-     * @return void
+     * @inheritdoc
      */
     protected function setUp()
     {
         $objectManager = new ObjectManager($this);
         $this->precisionPlugin = $objectManager->getObject(
-            'MagentoJapan\Price\Model\Directory\Plugin\Precision'
+            \MagentoJapan\Price\Model\Directory\Plugin\Precision::class
         );
 
         $this->closure = function () {
@@ -44,7 +38,7 @@ class PrecisionTest extends \PHPUnit\Framework\TestCase
     public function testJpyAroundFormatPrecision()
     {
         $currency = $this->getMock(
-            'Magento\Directory\Model\Currency',
+            \Magento\Directory\Model\Currency::class,
             [],
             [],
             '',
@@ -74,7 +68,7 @@ class PrecisionTest extends \PHPUnit\Framework\TestCase
      */
     public function testNonJpyAroundFormatPrecision()
     {
-        $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
+        $currency = $this->getMockBuilder(\Magento\Directory\Model\Currency::class)
             ->disableOriginalConstructor()
             ->getMock();
         $currency->expects($this->atLeastOnce())

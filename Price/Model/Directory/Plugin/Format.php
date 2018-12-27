@@ -37,11 +37,11 @@ class Format
      *
      * @param PriceCurrency $subject
      * @param \Closure $proceed
-     * @param $amount
+     * @param float $amount
      * @param bool $includeContainer
      * @param int $precision
-     * @param null $scope
-     * @param null $currency
+     * @param string $scope
+     * @param string $currency
      * @return mixed|string
      */
     public function aroundFormat(

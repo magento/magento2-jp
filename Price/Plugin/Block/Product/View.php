@@ -40,6 +40,8 @@ class View
     }
 
     /**
+     * Format JPY currency at Product View.
+     *
      * @param OriginalView $view
      * @param \Closure $proceed
      * @return string

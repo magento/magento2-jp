@@ -5,8 +5,9 @@ use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Store\Model\ScopeInterface;
 
 /**
- * Class Data
- * @package MagentoJapan\Price\Helper
+ * To be refactored.
+ *
+ * @deprecated
  */
 class Data extends AbstractHelper
 {
@@ -24,6 +25,8 @@ class Data extends AbstractHelper
     }
 
     /**
+     * Get symbol position.
+     *
      * @return mixed
      */
     public function getSymbolPosition()
@@ -35,6 +38,8 @@ class Data extends AbstractHelper
     }
 
     /**
+     * Get list of integer currencies.
+     *
      * @return array
      */
     public function getIntegerCurrencies()

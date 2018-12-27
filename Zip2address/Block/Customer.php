@@ -2,26 +2,29 @@
 namespace MagentoJapan\Zip2address\Block;
 
 use Magento\Framework\View\Element\Template;
+use Magento\Framework\View\Element\Template\Context;
 use MagentoJapan\Zip2address\Helper\Data;
 
 /**
+ * Customer block.
+ *
  * @api
  */
 class Customer extends Template
 {
     /**
-     * @var \MagentoJapan\Zip2address\Helper\Data
+     * @var Data
      */
     private $helper;
 
     /**
-     * @param Template\Context $context
+     * @param Context $context
      * @param Data $helper
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context,
-        \MagentoJapan\Zip2address\Helper\Data $helper,
+        Context $context,
+        Data $helper,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -29,9 +32,12 @@ class Customer extends Template
     }
 
     /**
-     * @return \MagentoJapan\Zip2address\Helper\Data
+     * Get helper.
+     *
+     * @return Data
+     * @deprecated
      */
-    public function getHelper()
+    public function getHelper(): Data
     {
         return $this->helper;
     }

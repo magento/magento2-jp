@@ -2,15 +2,12 @@
 
 namespace MagentoJapan\Kana\Test\Unit\Model\Config;
 
-use \MagentoJapan\Kana\Model\Config\System;
+use MagentoJapan\Kana\Model\Config\System;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class SystemTest
- * @package MagentoJapan\Kana\Test\Unit\Model\Config
- */
 class SystemTest extends TestCase
 {
     /**
@@ -30,12 +27,13 @@ class SystemTest extends TestCase
     {
         $objectManager = new ObjectManager($this);
         $this->scopeMock =
-            $this->getMockBuilder('Magento\Framework\App\Config\ScopeConfigInterface')
+            $this->getMockBuilder(ScopeConfigInterface::class)
                 ->disableOriginalConstructor()
                 ->getMock();
-        $this->system =
-            $objectManager->getObject('\MagentoJapan\Kana\Model\Config\System',
-                ['scopeConfig' => $this->scopeMock]);
+        $this->system = $objectManager->getObject(
+            System::class,
+            ['scopeConfig' => $this->scopeMock]
+        );
     }
 
     /**
@@ -69,7 +67,6 @@ class SystemTest extends TestCase
             ['general/locale/code', 'en_US', 'en_US'],
         ];
     }
-
 
     /**
      * @param $path
@@ -112,7 +109,6 @@ class SystemTest extends TestCase
         ];
     }
 
-
     /**
      * @param $path
      * @param $expected
@@ -145,7 +141,6 @@ class SystemTest extends TestCase
             ['localize/address/hide_country', '0', '0'],
         ];
     }
-
 
     /**
      * @param $path
@@ -213,7 +208,6 @@ class SystemTest extends TestCase
         ];
     }
 
-
     /**
      * @param $path
      * @param $expected
@@ -235,7 +229,6 @@ class SystemTest extends TestCase
 
         $this->assertEquals($expected, $value);
     }
-
 
     /**
      * @return array

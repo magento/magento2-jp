@@ -20,9 +20,7 @@ class RoundTest extends \PHPUnit\Framework\TestCase
     {
         $objectManager = new ObjectManager($this);
 
-        $this->model = $objectManager->getObject(
-            'MagentoJapan\Price\Model\Config\Source\Round'
-        );
+        $this->model = $objectManager->getObject(\MagentoJapan\Price\Model\Config\Source\Round::class);
     }
 
     /**

@@ -4,12 +4,13 @@ namespace MagentoJapan\Kana\Plugin\Quote\Model\Quote\Address;
 use Magento\Quote\Model\Quote\Address\CustomAttributeList;
 
 /**
- * Class AddKanaToAttributeList
- * @package MagentoJapan\Kana\Quote\Model\Quote\Address
+ * Add Kana to attribute list.
  */
 class AddKanaToAttributeList
 {
     /**
+     * Add Kana to attribute list.
+     *
      * @param \Magento\Quote\Model\Quote\Address\CustomAttributeList $subject
      * @param array $attributes
      * @return array

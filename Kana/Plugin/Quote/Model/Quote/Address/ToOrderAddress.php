@@ -10,6 +10,8 @@ use Magento\Quote\Model\Quote\Address;
 class ToOrderAddress
 {
     /**
+     * Copy customer Kana name from Quote address to order address entity.
+     *
      * @param \Magento\Quote\Model\Quote\Address\ToOrderAddress $toOrder
      * @param \Closure $proceed
      * @param \Magento\Quote\Model\Quote\Address $address

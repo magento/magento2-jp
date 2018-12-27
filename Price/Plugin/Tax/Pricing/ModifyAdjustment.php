@@ -52,9 +52,11 @@ class ModifyAdjustment
     }
 
     /**
+     * Adjust Tax Pricing display according to JPY currency requirements.
+     *
      * @param Adjustment $subject
      * @param \Closure $proceed
-     * @param $amount
+     * @param int $amount
      * @param SaleableInterface $saleableItem
      * @param array $context
      * @return float
@@ -94,12 +96,15 @@ class ModifyAdjustment
     }
 
     /**
+     * Adjust Tax Pricing display according to JPY currency requirements.
+     *
      * @param Adjustment $subject
      * @param \Closure $proceed
-     * @param $amount
+     * @param int $amount
      * @param SaleableInterface $saleableItem
      * @param array $context
      * @return float
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function aroundApplyAdjustment(
         Adjustment $subject,
@@ -112,7 +117,7 @@ class ModifyAdjustment
         $isRound = false;
         $currency = $this->priceCurrency->getCurrency();
 
-        if($method != 'round' && $currency->getCode() == 'JPY') {
+        if ($method != 'round' && $currency->getCode() == 'JPY') {
             $isRound = true;
         }
 

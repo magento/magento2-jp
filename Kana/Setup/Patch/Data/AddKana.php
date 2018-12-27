@@ -105,6 +105,8 @@ class AddKana implements DataPatchInterface, PatchVersionInterface
     }
 
     /**
+     * Install Kana attribute to customer forms.
+     *
      * @param EavSetup $eavSetup
      */
     public function installCustomerForms(EavSetup $eavSetup)

@@ -32,6 +32,8 @@ class ModifyName
     }
 
     /**
+     * Modify full name for JP locale.
+     *
      * @param \Magento\Customer\Model\ResourceModel\Customer\Collection $subject
      * @param \Closure $proceed
      * @return \Magento\Customer\Model\ResourceModel\Customer\Collection

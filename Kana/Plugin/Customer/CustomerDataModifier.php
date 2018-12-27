@@ -33,6 +33,8 @@ class CustomerDataModifier
     }
 
     /**
+     * Modify customer full name according to JP locale requirements.
+     *
      * @param Customer $subject
      * @param \Closure $proceed
      * @return array

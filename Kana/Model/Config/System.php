@@ -59,6 +59,8 @@ class System
     }
 
     /**
+     * Get Locale.
+     *
      * @return mixed
      */
     public function getLocale()
@@ -67,6 +69,8 @@ class System
     }
 
     /**
+     * Get Element Order.
+     *
      * @return mixed
      */
     public function getElementOrder()
@@ -75,6 +79,8 @@ class System
     }
 
     /**
+     * Get "Show Country" configuration.
+     *
      * @return mixed
      */
     public function getShowCountry()
@@ -83,6 +89,8 @@ class System
     }
 
     /**
+     * Get "Require Kana" configuration.
+     *
      * @return mixed
      */
     public function getRequireKana()
@@ -91,6 +99,8 @@ class System
     }
 
     /**
+     * Get "Use Kana" configuration.
+     *
      * @return mixed
      */
     public function getUseKana()
@@ -99,6 +109,8 @@ class System
     }
 
     /**
+     * Get "Change Fields Order" configuration.
+     *
      * @return mixed
      */
     public function getChangeFieldsOrder()
@@ -107,6 +119,8 @@ class System
     }
 
     /**
+     * Get Sort Order.
+     *
      * @return mixed
      */
     public function getSortOrder()
@@ -114,9 +128,10 @@ class System
         return $this->getConfigValue(self::CONFIG_CHECKOUT_SORT);
     }
 
-
     /**
-     * @param $key
+     * Get Config value.
+     *
+     * @param string $key
      * @return mixed
      */
     public function getConfigValue($key)

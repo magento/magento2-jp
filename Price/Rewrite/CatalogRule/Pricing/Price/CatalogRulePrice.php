@@ -17,6 +17,8 @@ class CatalogRulePrice extends Original
     private $ruleResource;
 
     /**
+     * Get Rule resource.
+     *
      * @return Rule
      * @deprecated
      */

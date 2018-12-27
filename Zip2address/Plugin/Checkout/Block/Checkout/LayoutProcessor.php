@@ -24,9 +24,12 @@ class LayoutProcessor
     }
 
     /**
+     * Update checkout layout for Zip2Address.
+     *
      * @param \Magento\Checkout\Block\Checkout\LayoutProcessor $subject
      * @param array $jsLayout
      * @return array
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function afterProcess(
         \Magento\Checkout\Block\Checkout\LayoutProcessor $subject,
@@ -42,10 +45,9 @@ class LayoutProcessor
                 continue;
             }
             foreach ($elements as $key => &$billingElement) {
-                if($key == 'postcode') {
+                if ($key === 'postcode') {
                     $billingElement['component'] = 'MagentoJapan_Zip2address/js/ui/form/element/post-code';
                 }
-
             }
         }
         return $jsLayout;

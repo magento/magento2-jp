@@ -48,6 +48,8 @@ class Renderer
     }
 
     /**
+     * Format store address display for JP locale.
+     *
      * @param BaseRenderer $renderer
      * @param \Closure $proceed
      * @param DataObject $storeInfo
@@ -64,13 +66,13 @@ class Renderer
         $format = $this->scopeConfig
             ->getValue(self::CONFIG_FORMAT, ScopeInterface::SCOPE_STORE);
 
-        $this->eventManager
-            ->dispatch('store_address_format',
-                [
-                    'type' => $type,
-                    'store_info' => $storeInfo
-                ]
-            );
+        $this->eventManager->dispatch(
+            'store_address_format',
+            [
+                'type' => $type,
+                'store_info' => $storeInfo
+            ]
+        );
         $address = $this->filterManager->template(
             $format,
             ['variables' => $storeInfo->getData()]

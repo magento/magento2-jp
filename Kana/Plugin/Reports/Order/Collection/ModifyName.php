@@ -32,6 +32,8 @@ class ModifyName
     }
 
     /**
+     * Modify customers full name according to JP locale requirements.
+     *
      * @param Collection $subject
      * @param \Closure $proceed
      * @param string $alias

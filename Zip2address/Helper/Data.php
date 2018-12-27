@@ -5,6 +5,8 @@ namespace MagentoJapan\Zip2address\Helper;
 use Magento\Framework\App\Helper\AbstractHelper;
 
 /**
+ * To be removed.
+ *
  * @deprecated
  */
 class Data extends AbstractHelper

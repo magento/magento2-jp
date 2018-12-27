@@ -32,6 +32,8 @@ class Name
     }
 
     /**
+     * Format Full Name according to JP locale requirements.
+     *
      * @param \Magento\Customer\Model\Customer $subject
      * @param \Closure $proceed
      * @return string

@@ -35,6 +35,8 @@ class Name
     }
 
     /**
+     * Modify customer name according to JP locale requirements.
+     *
      * @param View $subject
      * @param \Closure $proceed
      * @param CustomerInterface $customerData

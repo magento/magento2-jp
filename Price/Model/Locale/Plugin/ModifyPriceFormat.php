@@ -56,8 +56,8 @@ class ModifyPriceFormat
      *
      * @param Format $subject
      * @param \Closure $proceed
-     * @param null $localeCode
-     * @param null $currencyCode
+     * @param string $localeCode
+     * @param string $currencyCode
      * @return mixed
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
@@ -75,7 +75,7 @@ class ModifyPriceFormat
 
         $result = $proceed($localeCode, $currencyCode);
 
-        if (in_array($currency->getCode() ,$this->helper->getIntegerCurrencies())) {
+        if (in_array($currency->getCode(), $this->helper->getIntegerCurrencies())) {
             $result['precision'] = '0';
             $result['requiredPrecision'] = '0';
         }
@@ -86,7 +86,7 @@ class ModifyPriceFormat
      * Remove comma from price on JPY.
      *
      * @param \Magento\Framework\Locale\Format $subject
-     * @param $value
+     * @param string $value
      * @return array
      */
     public function beforeGetNumber(
@@ -97,9 +97,7 @@ class ModifyPriceFormat
         $locale   = $this->_localeResolver->getLocale();
         $format = $subject->getPriceFormat($locale, $currency->getCode());
 
-
-        if($format['groupSymbol'] == '.')
-        {
+        if ($format['groupSymbol'] == '.') {
             $value = preg_replace('/\./', '', $value);
             $value = preg_replace('/,/', '.', $value);
         } else {

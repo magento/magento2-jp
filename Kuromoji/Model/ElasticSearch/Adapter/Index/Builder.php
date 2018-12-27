@@ -4,12 +4,12 @@ namespace MagentoJapan\Kuromoji\Model\ElasticSearch\Adapter\Index;
 use Magento\Elasticsearch\Model\Adapter\Index\Builder as DefaultBuilder;
 
 /**
- * ElasticSeatch adapter builder extension for Kuromoji support.
+ * ElasticSearch adapter builder extension for Kuromoji support.
  */
 class Builder extends DefaultBuilder
 {
     /**
-     * @return array
+     * @inheritdoc
      */
     protected function getTokenizer()
     {

@@ -51,6 +51,8 @@ class LayoutProcessor
     }
 
     /**
+     * Extending the Checkout layout with Kana fields.
+     *
      * @param \Magento\Checkout\Block\Checkout\LayoutProcessor $subject
      * @param array $jsLayout
      * @return array
@@ -112,7 +114,7 @@ class LayoutProcessor
             ['children']['payments-list']['children'];
 
             foreach ($payments as $_key => &$method) {
-                if(!isset($method['dataScopePrefix'])) {
+                if (!isset($method['dataScopePrefix'])) {
                     $method['dataScopePrefix'] = $_key;
                 }
                 $elements =& $method['children']['form-fields']['children'];
@@ -161,6 +163,8 @@ class LayoutProcessor
     }
 
     /**
+     * Get Customer entity.
+     *
      * @return \Magento\Customer\Api\Data\CustomerInterface|null
      */
     private function getCustomer()

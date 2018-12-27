@@ -22,7 +22,6 @@ class Validator
     private $factory;
 
     /**
-     * Validator constructor.
      * @param System $system
      * @param AddressFactory $factory
      */
@@ -35,6 +34,8 @@ class Validator
     }
 
     /**
+     * Validate Customer's name in Kana.
+     *
      * @param QuoteAddressValidator $subject
      * @param AddressInterface $arguments
      * @return void
@@ -50,6 +51,8 @@ class Validator
     }
 
     /**
+     * Validate Customer's name in Kana.
+     *
      * @param AddressInterface $address
      * @throws \Magento\Framework\Exception\ValidatorException
      */

@@ -52,24 +52,26 @@ class AddKana implements SchemaPatchInterface
         foreach ($tables as $table) {
             $columns = $connection->describeTable($installer->getTable($table));
             if (!isset($columns['customer_lastnamekana'])) {
-                $connection
-                    ->addColumn(
-                        $table,
-                        'customer_lastnamekana',
-                        [
-                            'type' => Table::TYPE_TEXT,
-                            'length' => 255,
-                            'comment' => 'Customer Lastname Kana']);
+                $connection->addColumn(
+                    $table,
+                    'customer_lastnamekana',
+                    [
+                        'type' => Table::TYPE_TEXT,
+                        'length' => 255,
+                        'comment' => 'Customer Lastname Kana'
+                    ]
+                );
             }
             if (!isset($columns['customer_firstnamekana'])) {
-                $connection
-                    ->addColumn(
-                        $table,
-                        'customer_firstnamekana',
-                        [
-                            'type' => Table::TYPE_TEXT,
-                            'length' => 255,
-                            'comment' => 'Customer Firstname Kana']);
+                $connection->addColumn(
+                    $table,
+                    'customer_firstnamekana',
+                    [
+                        'type' => Table::TYPE_TEXT,
+                        'length' => 255,
+                        'comment' => 'Customer Firstname Kana'
+                    ]
+                );
             }
         }
 
@@ -80,24 +82,26 @@ class AddKana implements SchemaPatchInterface
         foreach ($tables as $table) {
             $columns = $connection->describeTable($installer->getTable($table));
             if (!isset($columns['lastnamekana'])) {
-                $connection
-                    ->addColumn(
-                        $table,
-                        'lastnamekana',
-                        [
-                            'type' => Table::TYPE_TEXT,
-                            'length' => 255,
-                            'comment' => 'Customer Lastname Kana']);
+                $connection->addColumn(
+                    $table,
+                    'lastnamekana',
+                    [
+                        'type' => Table::TYPE_TEXT,
+                        'length' => 255,
+                        'comment' => 'Customer Lastname Kana'
+                    ]
+                );
             }
             if (!isset($columns['firstnamekana'])) {
-                $connection
-                    ->addColumn(
-                        $table,
-                        'firstnamekana',
-                        [
-                            'type' => Table::TYPE_TEXT,
-                            'length' => 255,
-                            'comment' => 'Customer Firstname Kana']);
+                $connection->addColumn(
+                    $table,
+                    'firstnamekana',
+                    [
+                        'type' => Table::TYPE_TEXT,
+                        'length' => 255,
+                        'comment' => 'Customer Firstname Kana'
+                    ]
+                );
             }
         }
     }

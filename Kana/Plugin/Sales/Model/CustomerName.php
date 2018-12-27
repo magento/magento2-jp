@@ -31,6 +31,8 @@ class CustomerName
     }
 
     /**
+     * Modify order customer name according to JP locale requirements.
+     *
      * @param BaseOrder $subject
      * @param \Closure $proceed
      * @return mixed|string

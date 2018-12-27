@@ -38,9 +38,9 @@ class PriceRound
      *
      * @param PriceCurrency $subject
      * @param \Closure $proceed
-     * @param $amount
-     * @param null $scope
-     * @param null $currency
+     * @param int $amount
+     * @param string $scope
+     * @param string $currency
      * @param int $precision
      * @return mixed
      */
@@ -68,9 +68,11 @@ class PriceRound
     }
 
     /**
+     * Modify rounding method for converting currency.
+     *
      * @param PriceCurrency $subject
      * @param \Closure $proceed
-     * @param $amount
+     * @param int $amount
      * @param int $precision
      * @return mixed
      */
@@ -80,12 +82,8 @@ class PriceRound
         $precision = 2
     ) {
         $currency = $subject->getCurrency()->getCode();
-            if (in_array($currency, $this->helper->getIntegerCurrencies())) {
-            /**
-             * Rounding method
-             *
-             * @var string $method rounding method
-             */
+        if (in_array($currency, $this->helper->getIntegerCurrencies())) {
+            /** @var string $method */
             $method = $this->helper->getRoundMethod();
             if ($method != 'round') {
                 return $method($amount);

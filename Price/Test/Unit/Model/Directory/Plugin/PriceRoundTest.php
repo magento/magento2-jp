@@ -2,9 +2,10 @@
 namespace MagentoJapan\Price\Test\Unit\Model\Directory\Plugin;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
-use \Magento\Directory\Model\PriceCurrency;
-use \MagentoJapan\Price\Helper\Data;
-use \MagentoJapan\Price\Model\Directory\Plugin\PriceRound;
+use Magento\Directory\Model\PriceCurrency;
+use MagentoJapan\Price\Helper\Data;
+use MagentoJapan\Price\Model\Directory\Plugin\PriceRound;
+use Magento\Directory\Model\Currency;
 
 class PriceRoundTest extends \PHPUnit\Framework\TestCase
 {
@@ -45,18 +46,9 @@ class PriceRoundTest extends \PHPUnit\Framework\TestCase
     {
         $objectManager = new ObjectManager($this);
 
-        $this->helper = $this->getMockBuilder('MagentoJapan\Price\Helper\Data')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->priceRoundPlugin = $objectManager->getObject(
-            'MagentoJapan\Price\Model\Directory\Plugin\PriceRound',
-            ['helper' => $this->helper]
-        );
-
-        $this->priceCurrency = $this->getMockBuilder(
-            'Magento\Directory\Model\PriceCurrency'
-        )->disableOriginalConstructor()->getMock();
+        $this->helper = $this->getMockBuilder(Data::class)->disableOriginalConstructor()->getMock();
+        $this->priceRoundPlugin = $objectManager->getObject(PriceRound::class, ['helper' => $this->helper]);
+        $this->priceCurrency = $this->getMockBuilder(PriceCurrency::class)->disableOriginalConstructor()->getMock();
 
         $this->closure = function () {
             return 100;
@@ -73,7 +65,7 @@ class PriceRoundTest extends \PHPUnit\Framework\TestCase
         $this->helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('round');
-        $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
+        $currency = $this->getMockBuilder(Currency::class)
             ->disableOriginalConstructor()
             ->getMock();
         $currency->expects($this->atLeastOnce())
@@ -106,7 +98,7 @@ class PriceRoundTest extends \PHPUnit\Framework\TestCase
         $this->helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('ceil');
-        $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
+        $currency = $this->getMockBuilder(Currency::class)
             ->disableOriginalConstructor()
             ->getMock();
         $currency->expects($this->atLeastOnce())
@@ -143,7 +135,7 @@ class PriceRoundTest extends \PHPUnit\Framework\TestCase
         $helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('floor');
-        $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
+        $currency = $this->getMockBuilder(Currency::class)
             ->disableOriginalConstructor()
             ->getMock();
         $currency->expects($this->atLeastOnce())
@@ -180,7 +172,7 @@ class PriceRoundTest extends \PHPUnit\Framework\TestCase
         $helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('round');
-        $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
+        $currency = $this->getMockBuilder(Currency::class)
             ->disableOriginalConstructor()
             ->getMock();
         $currency->expects($this->atLeastOnce())
@@ -209,7 +201,7 @@ class PriceRoundTest extends \PHPUnit\Framework\TestCase
         $helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('ceil');
-        $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
+        $currency = $this->getMockBuilder(Currency::class)
             ->disableOriginalConstructor()
             ->getMock();
         $currency->expects($this->atLeastOnce())
@@ -239,7 +231,7 @@ class PriceRoundTest extends \PHPUnit\Framework\TestCase
         $helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('floor');
-        $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
+        $currency = $this->getMockBuilder(Currency::class)
             ->disableOriginalConstructor()
             ->getMock();
         $currency->expects($this->atLeastOnce())

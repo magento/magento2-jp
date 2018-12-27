@@ -35,11 +35,11 @@ class FormatTest extends \PHPUnit\Framework\TestCase
     {
         $objectManager = new ObjectManager($this);
         $this->formatPlugin = $objectManager->getObject(
-            'MagentoJapan\Price\Model\Directory\Plugin\Format'
+            \MagentoJapan\Price\Model\Directory\Plugin\Format::class
         );
 
         $this->priceCurrency = $this->getMockBuilder(
-            'Magento\Directory\Model\PriceCurrency'
+            \Magento\Directory\Model\PriceCurrency::class
         )->disableOriginalConstructor()->getMock();
 
         $this->closure = function () {
@@ -55,7 +55,7 @@ class FormatTest extends \PHPUnit\Framework\TestCase
     public function testJpyAroundFormat()
     {
         $currency = $this->getMock(
-            'Magento\Directory\Model\Currency',
+            \Magento\Directory\Model\Currency::class,
             [],
             [],
             '',
@@ -90,7 +90,7 @@ class FormatTest extends \PHPUnit\Framework\TestCase
      */
     public function testNonJpyAroundFormat()
     {
-        $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
+        $currency = $this->getMockBuilder(\Magento\Directory\Model\Currency::class)
             ->disableOriginalConstructor()
             ->getMock();
         $currency->expects($this->atLeastOnce())

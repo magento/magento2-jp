@@ -29,7 +29,7 @@ class Precision
      *
      * @param Currency $subject
      * @param \Closure $proceed
-     * @param $price
+     * @param float $price
      * @param int $precision
      * @param array $options
      * @param bool $includeContainer
@@ -56,7 +56,8 @@ class Precision
             $precision,
             $options,
             $includeContainer,
-            $addBrackets);
+            $addBrackets
+        );
     }
 
     /**
@@ -64,7 +65,7 @@ class Precision
      *
      * @param Currency $subject
      * @param \Closure $proceed
-     * @param $price
+     * @param float $price
      * @param array $options
      * @return mixed
      */
@@ -77,7 +78,7 @@ class Precision
         if ($subject->getCode() == 'JPY') {
             $position = $this->helper->getSymbolPosition();
             $options['position'] = (int)$position;
-            if($options['position'] == \Zend_Currency::RIGHT) {
+            if ($options['position'] == \Zend_Currency::RIGHT) {
                 $options['symbol'] = __('Yen');
             }
         }
