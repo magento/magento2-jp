@@ -20,7 +20,7 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
 >
     <fieldset class="fieldset">
         <legend class="legend"><span><?= $block->escapeHtml(__('Contact Information')) ?></span></legend><br>
-        <?= $block->getBlockHtml('formkey')?>
+        <?= $block->getBlockHtml('formkey') ?>
         <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
         <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
         <?= $block->getLayout()
@@ -36,10 +36,8 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                        id="company"
                        title="<?= $block->escapeHtmlAttr(__('Company')) ?>"
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getCompany()) ?>"
-                       class="input-text <?= $block->escapeHtmlAttr($this
-                           ->helper(\Magento\Customer\Helper\Address::class)
-                           ->getAttributeValidationClass('company')
-                       ) ?>"
+                       class="input-text
+                       <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('company')) ?>"
                 >
             </div>
         </div>
@@ -50,10 +48,8 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                        name="telephone"
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getTelephone()) ?>"
                        title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
-                       class="input-text <?= $block->escapeHtmlAttr($this
-                           ->helper(\Magento\Customer\Helper\Address::class)
-                           ->getAttributeValidationClass('telephone')
-                       ) ?>"
+                       class="input-text
+                       <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('telephone')) ?>"
                        id="telephone"
                 >
             </div>
@@ -66,10 +62,8 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                        id="fax"
                        title="<?= $block->escapeHtmlAttr(__('Fax')) ?>"
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getFax()) ?>"
-                       class="input-text <?= $block->escapeHtmlAttr($this
-                           ->helper(\Magento\Customer\Helper\Address::class)
-                           ->getAttributeValidationClass('fax')
-                       ) ?>"
+                       class="input-text
+                       <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('fax')) ?>"
                 >
             </div>
         </div>
@@ -81,16 +75,16 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                    class="p-country-name"
                    name="country_id" value="<?= /* @noEscape */ $this->getConfig('general/country/default'); ?>"
                    id="country"
-                   area-required="true"
+                   aria-required="true"
             />
-        <?php else: ?>
+        <?php else : ?>
         <div class="field country required">
             <label class="label" for="country"><span><?= $block->escapeHtml(__('Country')) ?></span></label>
             <div class="control">
                 <?= $block->getCountryHtmlSelect() ?>
             </div>
         </div>
-        <?php endif;?>
+        <?php endif; ?>
         <div class="field zip required">
             <label class="label" for="zip"><span><?= $block->escapeHtml(__('Zip/Postal Code')) ?></span></label>
             <div class="control">
@@ -98,10 +92,9 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                        name="postcode"
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getPostcode()) ?>"
                        title="<?= $block->escapeHtmlAttr(__('Zip/Postal Code')) ?>"
-                       id="zip" class="input-text validate-zip-international <?= $block->escapeHtmlAttr($this
-                            ->helper(\Magento\Customer\Helper\Address::class)
-                            ->getAttributeValidationClass('postcode')
-                        ) ?>"
+                       id="zip"
+                       class="input-text validate-zip-international
+                       <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('postcode')) ?>"
                 >
             </div>
         </div>
@@ -123,9 +116,8 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                        name="region"
                        value="<?= $block->escapeHtmlAttr($block->getRegion()) ?>"
                        title="<?= $block->escapeHtmlAttr(__('State/Province')) ?>"
-                       class="input-text <?= $block->escapeHtmlAttr($this
-                           ->helper(\Magento\Customer\Helper\Address::class)
-                           ->getAttributeValidationClass('region')) ?>"
+                       class="input-text
+                       <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('region')) ?>"
                        <?= (!$block->getConfig('general/region/display_all')) ? ' disabled="disabled"' : ''; ?>
                 />
             </div>
@@ -137,9 +129,8 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                        name="city" 
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getCity()) ?>" 
                        title="<?= $block->escapeHtmlAttr(__('City')) ?>" 
-                       class="input-text <?= $block->escapeHtmlAttr($this
-                           ->helper(\Magento\Customer\Helper\Address::class)
-                           ->getAttributeValidationClass('city')) ?>" 
+                       class="input-text
+                       <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('city')) ?>"
                        id="city"
                 >
             </div>
@@ -160,15 +151,15 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                     <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
                     <?php for ($_i = 1, $_n = $addressHelper->getStreetLines(); $_i < $_n; $_i++): ?>
                         <div class="field additional">
-                            <label class="label" for="street_<?php /* @escapeNotVerified */ echo $_i+1 ?>">
+                            <label class="label" for="street_<?= $_i+1 ?>">
                                 <span><?= $block->escapeHtml(__('Street Address %1', $_i + 1)) ?></span>
                             </label>
                             <div class="control">
                                 <input type="text"
                                        name="street[]"
-                                       value="<?= $block->escapeHtmlAttr($block->getStreetLine($_i+1)) ?>"
-                                       title="<?php  echo $block->escapeHtmlAttr(__('Street Address %1', $_i + 1)) ?>"
-                                       id="street_<?php /* @escapeNotVerified */ echo $_i+1 ?>"
+                                       value="<?= $block->escapeHtmlAttr($block->getStreetLine($_i + 1)) ?>"
+                                       title="<?= $block->escapeHtmlAttr(__('Street Address %1', $_i + 1)) ?>"
+                                       id="street_<?= $_i + 1 ?>"
                                        class="input-text <?= $block->escapeHtmlAttr($_streetValidationClass) ?>"
                                 >
                             </div>
@@ -196,7 +187,7 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
         <?php endif; ?>
         <?php if ($block->isDefaultBilling()): ?>
             <div class="message info"><?= $block->escapeHtml(__("It's a default billing address.")) ?></div>
-        <?php elseif ($block->canSetAsDefaultBilling()): ?>
+        <?php elseif ($block->canSetAsDefaultBilling()) : ?>
             <div class="field choice set billing">
                 <input type="checkbox" id="primary_billing" name="default_billing" value="1" class="checkbox">
                 <label class="label" for="primary_billing">
@@ -205,20 +196,20 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                     </span>
                 </label>
             </div>
-        <?php else: ?>
+        <?php else : ?>
             <input type="hidden" name="default_billing" value="1" />
         <?php endif; ?>
 
         <?php if ($block->isDefaultShipping()): ?>
             <div class="message info"><?= $block->escapeHtml(__("It's a default shipping address.")) ?></div>
-        <?php elseif ($block->canSetAsDefaultShipping()): ?>
+        <?php elseif ($block->canSetAsDefaultShipping()) : ?>
             <div class="field choice set shipping">
                 <input type="checkbox" id="primary_shipping" name="default_shipping" value="1" class="checkbox">
                 <label class="label" for="primary_shipping">
                     <span><?= $block->escapeHtml(__('Use as my default shipping address')) ?></span>
                 </label>
             </div>
-        <?php else: ?>
+        <?php else : ?>
             <input type="hidden" name="default_shipping" value="1">
         <?php endif; ?>
     </fieldset>
@@ -245,11 +236,11 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
             "validation": {}
         },
         "#country": {
-            <?php if($this->getConfig('localize/address/hide_country')):?>
+            <?php if ($this->getConfig('localize/address/hide_country')):?>
             "jpRegionUpdater": {
-        <?php else: ?>
+        <?php else : ?>
             "regionUpdater": {
-        <?php endif;?>
+        <?php endif; ?>
                 "optionalRegionAllowed": <?= $block->getConfig('general/region/display_all') ? 'true' : 'false'; ?>,
                 "regionListId": "#region_id",
                 "regionInputId": "#region",

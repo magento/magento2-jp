@@ -25,6 +25,8 @@ class Validator
     }
 
     /**
+     * Validate Customer's name in Kana.
+     *
      * @param QuoteValidator $subject
      * @param \Magento\Quote\Model\Quote $arguments
      * @return void
@@ -40,6 +42,8 @@ class Validator
     }
 
     /**
+     * Validate Customer's name in Kana.
+     *
      * @param Quote $quote
      * @throws \Magento\Framework\Exception\ValidatorException
      */

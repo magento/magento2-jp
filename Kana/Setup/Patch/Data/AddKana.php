@@ -136,7 +136,7 @@ class AddKana implements DataPatchInterface, PatchVersionInterface
         $usedInAddressForms = ['customer_register_address','customer_address_edit', 'adminhtml_customer_address'];
 
         foreach ($attributeIds as $entity => $attrs) {
-            foreach ($attrs as $attributeCode => $attributeId) {
+            foreach ($attrs as $attributeId) {
                 if ($entity == $customer) {
                     $usedInForms = $usedInCustomerForms;
                 } else {

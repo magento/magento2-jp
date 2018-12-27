@@ -23,7 +23,6 @@
         "magento/module-quote": "*",
         "magento/module-reports": "*",
         "magento/module-directory": "*",
-        "magento/module-theme": "*",
         "magento/module-checkout": "*",
         "magento/framework": "*",
         "lib-libxml": "*"

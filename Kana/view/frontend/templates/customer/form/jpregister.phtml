@@ -56,7 +56,7 @@
 
             <div class="field country required">
                 <?php if($this->getConfig('localize/address/hide_country')):?>
-                    <input type="hidden" class="p-country-name" name="country_id" value="<?= /* @escapeNotVerified */ $this->getConfig('general/country/default');?>" id="country" area-required="true" />
+                    <input type="hidden" class="p-country-name" name="country_id" value="<?= $this->getConfig('general/country/default');?>" id="country" area-required="true" />
                 <?php else:?>
                     <label for="country" class="label"><span><?= $block->escapeHtml(__('Country')) ?></span></label>
                 <div class="control">

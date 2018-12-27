@@ -76,7 +76,8 @@ class PriceRound
      * @param int $precision
      * @return mixed
      */
-    public function aroundRoundPrice(PriceCurrency  $subject,
+    public function aroundRoundPrice(
+        PriceCurrency $subject,
         \Closure $proceed,
         $amount,
         $precision = 2
