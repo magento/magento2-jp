@@ -12,21 +12,21 @@ class FormatTest extends \PHPUnit\Framework\TestCase
      *
      * @var \MagentoJapan\Price\Model\Directory\Plugin\Format
      */
-    protected $formatPlugin;
+    private $formatPlugin;
 
     /**
      * Price Currency
      *
      * @var \Magento\Directory\Model\PriceCurrency
      */
-    protected $priceCurrency;
+    private $priceCurrency;
 
     /**
      * Price container closure
      *
      * @var \Closure
      */
-    protected $closure;
+    private $closure;
 
     /**
      * Setup
@@ -56,13 +56,8 @@ class FormatTest extends \PHPUnit\Framework\TestCase
      */
     public function testJpyAroundFormat()
     {
-        $currency = $this->getMock(
-            \Magento\Directory\Model\Currency::class,
-            [],
-            [],
-            '',
-            false
-        );
+        $currency = $this->getMockBuilder(\Magento\Directory\Model\Currency::class)->disableOriginalConstructor()
+            ->getMock();
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
         $currency->expects($this->atLeastOnce())

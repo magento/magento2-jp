@@ -10,12 +10,12 @@ class PrecisionTest extends \PHPUnit\Framework\TestCase
     /**
      * @var \MagentoJapan\Price\Model\Directory\Plugin\Precision
      */
-    protected $precisionPlugin;
+    private $precisionPlugin;
 
     /**
      * @var \Closure
      */
-    protected $closure;
+    private $closure;
 
     /**
      * @inheritdoc
@@ -39,13 +39,8 @@ class PrecisionTest extends \PHPUnit\Framework\TestCase
      */
     public function testJpyAroundFormatPrecision()
     {
-        $currency = $this->getMock(
-            \Magento\Directory\Model\Currency::class,
-            [],
-            [],
-            '',
-            false
-        );
+        $currency = $this->getMockBuilder(\Magento\Directory\Model\Currency::class)->disableOriginalConstructor()
+            ->getMock();
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
 
