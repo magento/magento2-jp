@@ -9,7 +9,7 @@ use \Magento\Framework\Locale\ResolverInterface;
  * Class DataTest
  * @package MagentoJapan\Zip2address\Test\Unit\Helper
  */
-class DataTest extends \PHPUnit_Framework_TestCase
+class DataTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Framework\Locale\ResolverInterface|\PHPUnit_Framework_MockObject_MockObject

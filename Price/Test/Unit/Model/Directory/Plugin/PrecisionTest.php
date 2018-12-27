@@ -3,7 +3,7 @@ namespace MagentoJapan\Price\Test\Unit\Model\Directory\Plugin;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 
-class PrecisionTest extends \PHPUnit_Framework_TestCase
+class PrecisionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Precision Plugin

@@ -2,7 +2,7 @@
 namespace MagentoJapan\Price\Test\Unit\Model\Config\Source;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 
-class RoundTest extends \PHPUnit_Framework_TestCase
+class RoundTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Round configuration class

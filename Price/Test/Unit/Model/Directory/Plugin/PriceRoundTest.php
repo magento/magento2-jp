@@ -6,7 +6,7 @@ use \Magento\Directory\Model\PriceCurrency;
 use \MagentoJapan\Price\Helper\Data;
 use \MagentoJapan\Price\Model\Directory\Plugin\PriceRound;
 
-class PriceRoundTest extends \PHPUnit_Framework_TestCase
+class PriceRoundTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Price Round Plugin

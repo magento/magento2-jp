@@ -9,7 +9,7 @@ use \Magento\Framework\Locale\ResolverInterface;
  * Class ConfigProviderTest
  * @package MagentoJapan\Zip2address\Test\Unit\Helper
  */
-class ConfigProviderTest extends \PHPUnit_Framework_TestCase
+class ConfigProviderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \MagentoJapan\Zip2address\Model\ConfigProvider
