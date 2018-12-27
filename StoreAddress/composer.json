@@ -5,7 +5,6 @@
     "proprietary"
   ],
   "description": "Magento2 extension for Modify Store Address.",
-  "version": "1.0.0",
   "authors":[
     {
       "name": "Hirokazu Nishi",

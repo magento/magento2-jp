@@ -15,14 +15,13 @@ class Customer extends Template
     protected $helper;
 
     /**
-     * Customer constructor.
-     * @param \MagentoJapan\Zip2address\Helper\Data $helper
-     * @param \Magento\Framework\View\Element\Template\Context $context
+     * @param Template\Context $context
+     * @param Data $helper
      * @param array $data
      */
     public function __construct(
-        \MagentoJapan\Zip2address\Helper\Data $helper,
         \Magento\Framework\View\Element\Template\Context $context,
+        \MagentoJapan\Zip2address\Helper\Data $helper,
         array $data = []
     ) {
         parent::__construct($context, $data);

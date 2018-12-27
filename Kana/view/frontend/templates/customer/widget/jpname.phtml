@@ -193,7 +193,7 @@ $kanaType = $block->getConfig('kana_type');
                        name="<?= /* @escapeNotVerified */ $block->getFieldName('firstnamekana') ?>"
                        value="<?= /* @escapeNotVerified */ $block->escapeHtml($fnameKana) ?>"
                        title="<?= /* @escapeNotVerified */ $block->getStoreLabel('firstnamekana') ?>"
-                       class="input-text <?= /* @escapeNotVerified */ $block->getAttributeValidationClass('firstnamekana') ?>" <?= $block->getFieldParams() ?>
+                       class="input-text <?= /* @escapeNotVerified */ $block->getAttributeValidationClass('firstnamekana') ?>" <?= /* @escapeNotVerified */ $block->getFieldParams() ?>
                        <?php if ($rule): ?>data-validate="{<?= /* @escapeNotVerified */ $rule; ?>}"<?php endif; ?>>
             </div>
         </div>

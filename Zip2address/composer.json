@@ -6,7 +6,6 @@
     "AFL-3.0"
   ],
   "description": "Magento2 extension for Japanese postcode address converter.",
-  "version": "1.0.0",
   "authors": [
     {
       "name": "Hirokazu Nishi",
@@ -21,6 +20,10 @@
     "magento/module-backend": "*",
     "magento/framework": "*",
     "lib-libxml": "*"
+  },
+  "suggest": {
+    "magento/module-checkout": "*",
+    "magento/module-customer": "*"
   },
   "autoload": {
     "files": [
