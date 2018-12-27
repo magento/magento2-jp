@@ -7,6 +7,9 @@ use Magento\Customer\Api\Data\CustomerInterface;
 use Magento\Customer\Helper\View;
 use Magento\Framework\Locale\ResolverInterface;
 
+/**
+ * Modify customer name according to JP locale requirements.
+ */
 class Name
 {
     /**

@@ -4,6 +4,9 @@ namespace MagentoJapan\Kana\Plugin\Quote\Model\Quote\Address;
 use Magento\Quote\Model\Quote\Address\ToOrderAddress as OrigToOrder;
 use Magento\Quote\Model\Quote\Address;
 
+/**
+ * Copy customer Kana name from Quote address to order address entity.
+ */
 class ToOrderAddress
 {
     /**

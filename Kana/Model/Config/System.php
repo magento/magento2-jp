@@ -7,35 +7,48 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 class System
 {
     /**
-     *
+     * @var string
      */
     const CONFIG_ELEMENT_ORDER = 'localize/sort/';
+
     /**
-     *
+     * @var string
      */
     const CONFIG_COUNTRY_SHOW = 'localize/address/hide_country';
+
     /**
-     *
+     * @var string
      */
     const CONFIG_REQUIRE_KANA = 'customer/address/require_kana';
 
     /**
-     *
+     * @var string
      */
     const CONFIG_USE_KANA = 'customer/address/use_kana';
+
     /**
-     *
+     * @var string
      */
     const CONFIG_FIELDS_ORDER = 'localize/address/change_fields_order';
 
-    const CONFIG_CHECKOUT_SORT = 'localize/sort/change_fields_order';
     /**
-     *
+     * @var string
+     */
+    const CONFIG_CHECKOUT_SORT = 'localize/sort/change_fields_order';
+
+    /**
+     * @var string
      */
     const CONFIG_LOCALE = 'general/locale/code';
 
+    /**
+     * @var ScopeConfigInterface
+     */
     private $scopeConfig;
 
+    /**
+     * @param ScopeConfigInterface $scopeConfig
+     */
     public function __construct(
         ScopeConfigInterface $scopeConfig
     ) {
@@ -61,7 +74,7 @@ class System
     /**
      * @return mixed
      */
-    public function getShowCounry()
+    public function getShowCountry()
     {
         return $this->getConfigValue(self::CONFIG_COUNTRY_SHOW);
     }
@@ -90,6 +103,9 @@ class System
         return $this->getConfigValue(self::CONFIG_FIELDS_ORDER);
     }
 
+    /**
+     * @return mixed
+     */
     public function getSortOrder()
     {
         return $this->getConfigValue(self::CONFIG_CHECKOUT_SORT);

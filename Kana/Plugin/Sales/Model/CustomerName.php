@@ -3,18 +3,23 @@ namespace MagentoJapan\Kana\Plugin\Sales\Model;
 
 use \Magento\Sales\Model\Order as BaseOrder;
 
+/**
+ * Modify order customer name according to JP locale requirements.
+ */
 class CustomerName
 {
-
     /**
      * @var \Magento\Framework\Locale\ResolverInterface
      */
     private $localeResolver;
 
+    /**
+     * @var \Magento\Eav\Model\Config
+     */
     private $config;
 
     /**
-     * @param ResolverInterface $localeResolver
+     * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
      * @param \Magento\Eav\Model\Config $config
      */
     public function __construct(
@@ -25,12 +30,16 @@ class CustomerName
         $this->config = $config;
     }
 
+    /**
+     * @param BaseOrder $subject
+     * @param \Closure $proceed
+     * @return mixed|string
+     */
     public function aroundGetCustomerName(
         BaseOrder $subject,
         \Closure $proceed
-    )
-    {
-        if($this->localeResolver->getLocale() != 'ja_JP') {
+    ) {
+        if ($this->localeResolver->getLocale() != 'ja_JP') {
             return $proceed();
         } else {
             if ($subject->getCustomerFirstname()) {

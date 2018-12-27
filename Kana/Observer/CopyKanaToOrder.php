@@ -4,10 +4,13 @@ namespace MagentoJapan\Kana\Observer;
 use Magento\Framework\Locale\Currency;
 use Magento\Framework\Event\ObserverInterface;
 
+/**
+ * Copy kana fields to Order entity.
+ */
 class CopyKanaToOrder implements ObserverInterface
 {
     /**
-     * Assign Kana to destination obj
+     * Assign Kana to destination object.
      *
      * @param \Magento\Framework\Event\Observer $observer
      * @return $this

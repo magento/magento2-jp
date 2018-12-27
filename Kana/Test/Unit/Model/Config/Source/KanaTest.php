@@ -16,7 +16,7 @@ class KanaTest extends TestCase
     protected $model;
 
     /**
-     *
+     * @inheritdoc
      */
     protected function setUp()
     {
@@ -24,7 +24,7 @@ class KanaTest extends TestCase
     }
 
     /**
-     *
+     * Test options array output.
      */
     public function testToOptionArray()
     {

@@ -5,6 +5,9 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Api\AbstractExtensibleObject;
 use \Magento\Framework\Api\AttributeValueFactory;
 
+/**
+ * Copy kana fields to Customer Address entity.
+ */
 class CopyKanaToCustomerAddress implements ObserverInterface
 {
     /**
@@ -12,13 +15,16 @@ class CopyKanaToCustomerAddress implements ObserverInterface
      */
     private $attributeValueFactory;
 
+    /**
+     * @param AttributeValueFactory $attributeValueFactory
+     */
     public function __construct(AttributeValueFactory $attributeValueFactory)
     {
         $this->attributeValueFactory = $attributeValueFactory;
     }
 
     /**
-     * Assign Kana to destination obj
+     * Assign Kana to destination object.
      *
      * @param \Magento\Framework\Event\Observer $observer
      * @return $this

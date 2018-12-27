@@ -4,6 +4,9 @@ namespace MagentoJapan\Kana\Plugin\Customer\Model\ResourceModel\Customer\Collect
 use Magento\Customer\Model\ResourceModel\Customer\Collection;
 use Magento\Framework\Locale\ResolverInterface;
 
+/**
+ * Modify full name to JP locale.
+ */
 class ModifyName
 {
     /**

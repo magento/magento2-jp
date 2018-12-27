@@ -5,6 +5,9 @@ use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\QuoteValidator;
 use MagentoJapan\Kana\Model\Config\System;
 
+/**
+ * Validate Customer's name in Kana.
+ */
 class Validator
 {
     /**

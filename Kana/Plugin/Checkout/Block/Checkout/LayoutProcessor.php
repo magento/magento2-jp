@@ -10,6 +10,9 @@ use MagentoJapan\Kana\Model\Config\System;
  */
 class LayoutProcessor
 {
+    /**
+     * @var string
+     */
     const CONFIG_ELEMENT_ORDER = 'localize/sort/';
 
     /**
@@ -59,7 +62,7 @@ class LayoutProcessor
     ) {
         $format = $this->system->getSortOrder();
 
-        $hideCountry = $this->system->getShowCounry();
+        $hideCountry = $this->system->getShowCountry();
         $useKana = $this->system->getUseKana();
         $requireKana = $this->system->getRequireKana();
 

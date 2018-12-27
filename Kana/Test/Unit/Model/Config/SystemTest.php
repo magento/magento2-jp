@@ -7,6 +7,10 @@ use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Magento\Store\Model\ScopeInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class SystemTest
+ * @package MagentoJapan\Kana\Test\Unit\Model\Config
+ */
 class SystemTest extends TestCase
 {
     /**
@@ -20,7 +24,7 @@ class SystemTest extends TestCase
     protected $system;
 
     /**
-     *
+     * @inheritdoc
      */
     public function setUp()
     {
@@ -126,7 +130,7 @@ class SystemTest extends TestCase
             ->method('getValue')
             ->will($this->returnValueMap($map));
 
-        $value = $this->system->getShowCounry();
+        $value = $this->system->getShowCountry();
 
         $this->assertEquals($expected, $value);
     }

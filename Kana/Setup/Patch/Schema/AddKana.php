@@ -5,10 +5,19 @@ use Magento\Framework\Setup\Patch\SchemaPatchInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\DB\Ddl\Table;
 
+/**
+ * Add Kana fields to DB schema.
+ */
 class AddKana implements SchemaPatchInterface
 {
+    /**
+     * @var SchemaSetupInterface
+     */
     private $setup;
 
+    /**
+     * @param SchemaSetupInterface $setup
+     */
     public function __construct(
         SchemaSetupInterface $setup
     ) {
@@ -23,6 +32,9 @@ class AddKana implements SchemaPatchInterface
         return [];
     }
 
+    /**
+     * @inheritdoc
+     */
     public function apply()
     {
         $installer = $this->setup;
@@ -97,5 +109,4 @@ class AddKana implements SchemaPatchInterface
     {
         return [];
     }
-
 }

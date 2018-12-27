@@ -5,6 +5,9 @@ use Magento\Customer\CustomerData\Customer;
 use Magento\Customer\Helper\Session\CurrentCustomer;
 use Magento\Customer\Helper\View;
 
+/**
+ * Modify customer full name according to JP locale requirements.
+ */
 class CustomerDataModifier
 {
     /**

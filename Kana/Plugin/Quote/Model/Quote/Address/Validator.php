@@ -6,6 +6,9 @@ use Magento\Quote\Model\QuoteAddressValidator;
 use MagentoJapan\Kana\Model\Config\System;
 use Magento\Quote\Api\Data\AddressInterface;
 
+/**
+ * Validate Customer's name in Kana.
+ */
 class Validator
 {
     /**

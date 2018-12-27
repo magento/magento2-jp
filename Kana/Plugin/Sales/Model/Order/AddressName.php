@@ -3,18 +3,23 @@ namespace MagentoJapan\Kana\Plugin\Sales\Model\Order;
 
 use \Magento\Sales\Model\Order\Address as BaseAddress;
 
+/**
+ * Modify Order address Customer name according to JP locale requirements.
+ */
 class AddressName
 {
-
     /**
      * @var \Magento\Framework\Locale\ResolverInterface
      */
     private $localeResolver;
 
+    /**
+     * @var \Magento\Eav\Model\Config
+     */
     private $config;
 
     /**
-     * @param ResolverInterface $localeResolver
+     * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
      * @param \Magento\Eav\Model\Config $config
      */
     public function __construct(

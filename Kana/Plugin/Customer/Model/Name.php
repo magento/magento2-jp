@@ -4,6 +4,9 @@ namespace MagentoJapan\Kana\Plugin\Customer\Model;
 use Magento\Customer\Model\Customer;
 use Magento\Framework\Locale\ResolverInterface;
 
+/**
+ * Format Full Name according to JP locale requirements.
+ */
 class Name
 {
     /**
@@ -11,6 +14,9 @@ class Name
      */
     private $localeResolver;
 
+    /**
+     * @var \Magento\Eav\Model\Config
+     */
     private $config;
 
     /**

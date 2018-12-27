@@ -1,10 +1,14 @@
 <?php
+
 namespace MagentoJapan\Kana\Model\Config\Source;
 
+/**
+ * Kana configuration source.
+ */
 class Kana implements \Magento\Framework\Option\ArrayInterface
 {
     /**
-     * Retrieve possible customer address types
+     * Retrieve possible customer address types.
      *
      * @return array
      */
