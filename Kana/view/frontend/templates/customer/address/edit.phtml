@@ -38,7 +38,7 @@ $displayAllRegionsConfig = $block->getConfig('general/region/display_all');
                        title="<?= $block->escapeHtmlAttr(__('Company')) ?>"
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getCompany()) ?>"
                        class="input-text
-                           <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('company')) ?>"
+                            <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('company')) ?>"
                 >
             </div>
         </div>
@@ -49,9 +49,9 @@ $displayAllRegionsConfig = $block->getConfig('general/region/display_all');
                        name="telephone"
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getTelephone()) ?>"
                        title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
-                       class="input-text
-                           <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('telephone')) ?>"
                        id="telephone"
+                       class="input-text
+                            <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('telephone')) ?>"
                 >
             </div>
         </div>
@@ -64,7 +64,7 @@ $displayAllRegionsConfig = $block->getConfig('general/region/display_all');
                        title="<?= $block->escapeHtmlAttr(__('Fax')) ?>"
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getFax()) ?>"
                        class="input-text
-                           <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('fax')) ?>"
+                            <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('fax')) ?>"
                 >
             </div>
         </div>
@@ -95,7 +95,7 @@ $displayAllRegionsConfig = $block->getConfig('general/region/display_all');
                        title="<?= $block->escapeHtmlAttr(__('Zip/Postal Code')) ?>"
                        id="zip"
                        class="input-text validate-zip-international
-                           <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('postcode')) ?>"
+                            <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('postcode')) ?>"
                 >
             </div>
         </div>
@@ -118,8 +118,8 @@ $displayAllRegionsConfig = $block->getConfig('general/region/display_all');
                        value="<?= $block->escapeHtmlAttr($block->getRegion()) ?>"
                        title="<?= $block->escapeHtmlAttr(__('State/Province')) ?>"
                        class="input-text
-                           <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('region')) ?>"
-                           <?= (!$block->getConfig('general/region/display_all')) ? ' disabled = "disabled"' : ''; ?>
+                            <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('region')) ?>"
+                            <?= (!$block->getConfig('general/region/display_all')) ? ' disabled = "disabled"' : ''; ?>
                 />
             </div>
         </div>
@@ -132,7 +132,7 @@ $displayAllRegionsConfig = $block->getConfig('general/region/display_all');
                        title="<?= $block->escapeHtmlAttr(__('City')) ?>"
                        id="city"
                        class="input-text
-                           <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('city')) ?>"
+                            <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('city')) ?>"
                 >
             </div>
         </div>
