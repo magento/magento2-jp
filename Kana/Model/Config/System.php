@@ -4,6 +4,9 @@ namespace MagentoJapan\Kana\Model\Config;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
+/**
+ * System configuration source for Kana.
+ */
 class System
 {
     /**

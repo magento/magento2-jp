@@ -70,7 +70,7 @@ jobs:
           command: |
             find mde -not -path '*/.*/*' -not -name '.*' -type f -follow -print > dev/tests/static/testsuite/Magento/Test/_files/changed_files_mde.txt
             find mde -not -path '*/.*/*' -not -name '.*' -type f -follow -print > dev/tests/static/testsuite/Magento/Test/_files/changed_files_mde.added.txt
-            for module in $(echo MDE_COMPOSER_MODULE | tr ";" "\n"); do echo "$MDE_COMPOSER_MODULE" > dev/tests/static/testsuite/Magento/Test/Integrity/_files/blacklist/composer_root_modules_mde.txt; done
+            for module in $(echo $MDE_COMPOSER_MODULE | tr ";" "\n"); do echo "$module" > dev/tests/static/testsuite/Magento/Test/Integrity/_files/blacklist/composer_root_modules_mde.txt; done
 
       - run:
           name: Static test
