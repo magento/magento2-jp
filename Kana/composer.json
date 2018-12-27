@@ -6,7 +6,6 @@
         "AFL-3.0"
     ],
     "description": "Magento2 extension for Japanese Kana.",
-    "version": "1.0.0",
     "authors":[
         {
             "name": "Hirokazu Nishi",
@@ -18,7 +17,6 @@
     "require": {
         "php": "~7.1.3|~7.2.0",
         "magento/module-store": "*",
-        "magento/module-backend": "*",
         "magento/module-customer": "*",
         "magento/module-sales": "*",
         "magento/module-eav": "*",
