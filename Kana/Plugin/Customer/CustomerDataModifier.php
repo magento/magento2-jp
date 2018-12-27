@@ -12,6 +12,9 @@ class CustomerDataModifier
      */
     private $currentCustomer;
 
+    /**
+     * @var View
+     */
     private $customerViewHelper;
 
     /**
@@ -26,8 +29,12 @@ class CustomerDataModifier
         $this->customerViewHelper = $customerViewHelper;
     }
 
-
-
+    /**
+     * @param Customer $subject
+     * @param \Closure $proceed
+     * @return array
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function aroundGetSectionData(
         Customer $subject,
         \Closure $proceed

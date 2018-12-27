@@ -1,8 +1,8 @@
 <?php
 namespace MagentoJapan\Kana\Plugin\Customer\Model;
 
-use \Magento\Customer\Model\Customer;
-use \Magento\Eav\Model\Config;
+use Magento\Customer\Model\Customer;
+use Magento\Framework\Locale\ResolverInterface;
 
 class Name
 {
@@ -18,7 +18,7 @@ class Name
      * @param \Magento\Eav\Model\Config $config
      */
     public function __construct(
-        \Magento\Framework\Locale\ResolverInterface $localeResolver,
+        ResolverInterface $localeResolver,
         \Magento\Eav\Model\Config $config
     ) {
         $this->localeResolver = $localeResolver;
@@ -29,18 +29,18 @@ class Name
      * @param \Magento\Customer\Model\Customer $subject
      * @param \Closure $proceed
      * @return string
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function aroundGetName(
         Customer $subject,
         \Closure $proceed
-    )
-    {
+    ) {
         $name = '';
 
         if ($this->config->getAttribute('customer', 'prefix')->getIsVisible() && $subject->getPrefix()) {
             $name .= $subject->getPrefix() . ' ';
         }
-        if($this->localeResolver->getLocale() != 'ja_JP') {
+        if ($this->localeResolver->getLocale() != 'ja_JP') {
             $name .= $subject->getFirstname();
         } else {
             $name .= $subject->getLastname();
@@ -48,7 +48,7 @@ class Name
         if ($this->config->getAttribute('customer', 'middlename')->getIsVisible() && $subject->getMiddlename()) {
             $name .= ' ' . $subject->getMiddlename();
         }
-        if($this->localeResolver->getLocale() != 'ja_JP') {
+        if ($this->localeResolver->getLocale() != 'ja_JP') {
             $name .= ' ' . $subject->getLastname();
         } else {
             $name .= ' ' . $subject->getFirstname();
@@ -57,6 +57,5 @@ class Name
             $name .= ' ' . $subject->getSuffix();
         }
         return $name;
-
     }
 }

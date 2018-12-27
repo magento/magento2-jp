@@ -5,22 +5,22 @@ use Magento\Catalog\Block\Product\View as OriginalView;
 
 class View
 {
-
     /**
      * @var \Magento\Framework\Json\EncoderInterface
      */
     private $jsonEncoder;
+
     /**
      * @var \Magento\Framework\Event\ManagerInterface
      */
     private $eventManager;
+
     /**
      * @var \Magento\Framework\Locale\FormatInterface
      */
     private $localeFormat;
 
     /**
-     * View constructor.
      * @param \Magento\Framework\Json\EncoderInterface $jsonEncoder
      * @param \Magento\Framework\Locale\FormatInterface $localeFormat
      * @param \Magento\Framework\Event\ManagerInterface $eventManager
@@ -33,13 +33,13 @@ class View
         $this->jsonEncoder = $jsonEncoder;
         $this->localeFormat = $localeFormat;
         $this->eventManager = $eventManager;
-
     }
 
     /**
      * @param OriginalView $view
      * @param \Closure $proceed
      * @return string
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function aroundGetJsonConfig(
         OriginalView $view,

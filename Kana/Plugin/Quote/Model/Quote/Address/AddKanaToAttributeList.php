@@ -13,11 +13,12 @@ class AddKanaToAttributeList
      * @param \Magento\Quote\Model\Quote\Address\CustomAttributeList $subject
      * @param array $attributes
      * @return array
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function afterGetAttributes(
-                                        CustomAttributeList $subject,
-                                        array $attributes)
-    {
+        CustomAttributeList $subject,
+        array $attributes
+    ) {
         $attributes['firstnamekana'] = 'firstnamekana';
         $attributes['lastnamekana'] = 'lastnamekana';
 

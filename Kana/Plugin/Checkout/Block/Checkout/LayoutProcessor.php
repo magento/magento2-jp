@@ -5,6 +5,9 @@ use Magento\Customer\Api\CustomerRepositoryInterface as CustomerRepository;
 use Magento\Customer\Model\Session;
 use MagentoJapan\Kana\Model\Config\System;
 
+/**
+ * Extending the Checkout layout with Kana fields.
+ */
 class LayoutProcessor
 {
     const CONFIG_ELEMENT_ORDER = 'localize/sort/';
@@ -29,16 +32,12 @@ class LayoutProcessor
      */
     private $system;
 
-
     /**
-     * LayoutProcessor constructor.
-     * @param \Magento\Framework\View\Element\Context $context
      * @param \Magento\Customer\Model\Session $customerSession
      * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
      * @param System $system
      */
     public function __construct(
-        \Magento\Framework\View\Element\Context $context,
         Session $customerSession,
         CustomerRepository $customerRepository,
         System $system
@@ -52,12 +51,12 @@ class LayoutProcessor
      * @param \Magento\Checkout\Block\Checkout\LayoutProcessor $subject
      * @param array $jsLayout
      * @return array
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function afterProcess(
         \Magento\Checkout\Block\Checkout\LayoutProcessor $subject,
-        array  $jsLayout
+        array $jsLayout
     ) {
-        $locale = $this->system->getLocale();
         $format = $this->system->getSortOrder();
 
         $hideCountry = $this->system->getShowCounry();
@@ -154,7 +153,6 @@ class LayoutProcessor
                     }
                 }
             }
-
         }
         return $jsLayout;
     }
@@ -175,5 +173,4 @@ class LayoutProcessor
         }
         return $this->customer;
     }
-
 }

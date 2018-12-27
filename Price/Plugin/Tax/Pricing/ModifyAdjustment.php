@@ -1,13 +1,12 @@
 <?php
 namespace MagentoJapan\Price\Plugin\Tax\Pricing;
 
-use \Magento\Tax\Pricing\Adjustment;
-use \Magento\Framework\Pricing\SaleableInterface;
-use \Magento\Tax\Helper\Data as TaxHelper;
-use \Magento\Catalog\Helper\Data;
-use \Magento\Framework\Pricing\PriceCurrencyInterface;
-use \MagentoJapan\Price\Helper\Data as PriceHelper;
-
+use Magento\Tax\Pricing\Adjustment;
+use Magento\Framework\Pricing\SaleableInterface;
+use Magento\Tax\Helper\Data as TaxHelper;
+use Magento\Catalog\Helper\Data;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
+use MagentoJapan\Price\Helper\Data as PriceHelper;
 
 class ModifyAdjustment
 {
@@ -15,7 +14,6 @@ class ModifyAdjustment
      * @var TaxHelper
      */
     private $taxHelper;
-
 
     /**
      * @var Data
@@ -38,12 +36,14 @@ class ModifyAdjustment
      * @param TaxHelper $taxHelper
      * @param Data $catalogHelper
      * @param PriceHelper $priceHelper
-     * @param PriceCurrencyInterface $currency
+     * @param PriceCurrencyInterface $priceCurrency
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function __construct(TaxHelper $taxHelper,
-                                Data $catalogHelper,
-                                PriceHelper $priceHelper,
-                                PriceCurrencyInterface $priceCurrency
+    public function __construct(
+        TaxHelper $taxHelper,
+        Data $catalogHelper,
+        PriceHelper $priceHelper,
+        PriceCurrencyInterface $priceCurrency
     ) {
         $this->taxHelper = $taxHelper;
         $this->catalogHelper = $catalogHelper;
@@ -51,6 +51,15 @@ class ModifyAdjustment
         $this->priceCurrency = $priceCurrency;
     }
 
+    /**
+     * @param Adjustment $subject
+     * @param \Closure $proceed
+     * @param $amount
+     * @param SaleableInterface $saleableItem
+     * @param array $context
+     * @return float
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function aroundExtractAdjustment(
         Adjustment $subject,
         \Closure $proceed,
@@ -84,6 +93,14 @@ class ModifyAdjustment
         return $result;
     }
 
+    /**
+     * @param Adjustment $subject
+     * @param \Closure $proceed
+     * @param $amount
+     * @param SaleableInterface $saleableItem
+     * @param array $context
+     * @return float
+     */
     public function aroundApplyAdjustment(
         Adjustment $subject,
         \Closure $proceed,

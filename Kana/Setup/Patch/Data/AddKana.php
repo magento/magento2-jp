@@ -2,7 +2,6 @@
 namespace MagentoJapan\Kana\Setup\Patch\Data;
 
 use Magento\Framework\DB\Adapter\AdapterInterface;
-use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchVersionInterface;
@@ -14,8 +13,7 @@ use Magento\Customer\Setup\CustomerSetupFactory;
 use Magento\Customer\Setup\CustomerSetup;
 
 /**
- * Class AddKana
- * @package MagentoJapan\Kana\Setup\Patch\Data
+ * Kana Data patch
  */
 class AddKana implements DataPatchInterface, PatchVersionInterface
 {
@@ -31,10 +29,7 @@ class AddKana implements DataPatchInterface, PatchVersionInterface
      */
     private $setupFactory;
 
-
     /**
-     * AddKana constructor.
-     *
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param CustomerSetupFactory $setupFactory
      */
@@ -47,7 +42,7 @@ class AddKana implements DataPatchInterface, PatchVersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function apply()
     {
@@ -83,38 +78,36 @@ class AddKana implements DataPatchInterface, PatchVersionInterface
         ];
 
         foreach ($attributes as $code => $options) {
-            $customerAttribute = $customerSetup->getAttribute(
-                CustomerMetadataInterface::ENTITY_TYPE_CUSTOMER, $code
-            );
+//            $customerAttribute = $customerSetup->getAttribute(
+//                CustomerMetadataInterface::ENTITY_TYPE_CUSTOMER, $code
+//            );
             //if(!$customerAttribute->getId()) {
-                $customerSetup->addAttribute(
-                    CustomerMetadataInterface::ENTITY_TYPE_CUSTOMER,
-                    $code,
-                    $options
-                );
+            $customerSetup->addAttribute(
+                CustomerMetadataInterface::ENTITY_TYPE_CUSTOMER,
+                $code,
+                $options
+            );
             //}
 
-            $addressAttribute = $customerSetup->getAttribute(
-                AddressMetadataInterface::ENTITY_TYPE_ADDRESS, $code
-            );
+//            $addressAttribute = $customerSetup->getAttribute(
+//                AddressMetadataInterface::ENTITY_TYPE_ADDRESS, $code
+//            );
             //if(!$addressAttribute->getId()) {
-                $customerSetup->addAttribute(
-                    AddressMetadataInterface::ENTITY_TYPE_ADDRESS,
-                    $code,
-                    $options
-                );
+            $customerSetup->addAttribute(
+                AddressMetadataInterface::ENTITY_TYPE_ADDRESS,
+                $code,
+                $options
+            );
             //}
         }
 
-        $this->installCustomerForms($customerSetup, $attributes);
-
+        $this->installCustomerForms($customerSetup);
     }
 
     /**
-     * @param CustomerSetup $eavSetup
-     * @param array $attributes
+     * @param EavSetup $eavSetup
      */
-    public function installCustomerForms(EavSetup $eavSetup, array $attributes)
+    public function installCustomerForms(EavSetup $eavSetup)
     {
         $customer = (int)$eavSetup->getEntityTypeId('customer');
         $customerAddress = (int)$eavSetup->getEntityTypeId('customer_address');
@@ -131,7 +124,7 @@ class AddKana implements DataPatchInterface, PatchVersionInterface
             [$customer, $customerAddress]
         );
         foreach ($connection->fetchAll($select) as $row) {
-            if(preg_match('/kana/', $row['attribute_code'])) {
+            if (preg_match('/kana/', $row['attribute_code'])) {
                 $attributeIds[$row['entity_type_id']][$row['attribute_code']] = $row['attribute_id'];
             }
         }
@@ -139,11 +132,10 @@ class AddKana implements DataPatchInterface, PatchVersionInterface
         $data = [];
         $usedInCustomerForms = ['customer_account_create', 'customer_account_edit', 'adminhtml_customer'];
         $usedInAddressForms = ['customer_register_address','customer_address_edit', 'adminhtml_customer_address'];
-        $usedInForms = [];
 
         foreach ($attributeIds as $entity => $attrs) {
             foreach ($attrs as $attributeCode => $attributeId) {
-                if($entity == $customer) {
+                if ($entity == $customer) {
                     $usedInForms = $usedInCustomerForms;
                 } else {
                     $usedInForms = $usedInAddressForms;
@@ -153,18 +145,18 @@ class AddKana implements DataPatchInterface, PatchVersionInterface
                     $data[] = ['form_code' => $formCode, 'attribute_id' => $attributeId];
                 }
             }
-
         }
 
         if ($data) {
             $connection->insertMultiple(
-                $this->moduleDataSetup->getTable('customer_form_attribute'), $data
+                $this->moduleDataSetup->getTable('customer_form_attribute'),
+                $data
             );
         }
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public static function getDependencies()
     {
@@ -172,7 +164,7 @@ class AddKana implements DataPatchInterface, PatchVersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public static function getVersion()
     {
@@ -180,7 +172,7 @@ class AddKana implements DataPatchInterface, PatchVersionInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getAliases()
     {

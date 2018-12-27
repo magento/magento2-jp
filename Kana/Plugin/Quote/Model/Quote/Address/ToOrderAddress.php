@@ -3,7 +3,6 @@ namespace MagentoJapan\Kana\Plugin\Quote\Model\Quote\Address;
 
 use Magento\Quote\Model\Quote\Address\ToOrderAddress as OrigToOrder;
 use Magento\Quote\Model\Quote\Address;
-use Magento\Sales\Api\Data\OrderAddressInterface;
 
 class ToOrderAddress
 {
@@ -13,13 +12,14 @@ class ToOrderAddress
      * @param \Magento\Quote\Model\Quote\Address $address
      * @param array $data
      * @return mixed
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function aroundConvert(OrigToOrder $toOrder,
-                                  \Closure $proceed,
-                                 Address $address,
-                                 array $data = []
-    )
-    {
+    public function aroundConvert(
+        OrigToOrder $toOrder,
+        \Closure $proceed,
+        Address $address,
+        array $data = []
+    ) {
         $orderAddress = $proceed($address, $data);
 
         $orderAddress->setFirstnamekana($address->getFirstnamekana());

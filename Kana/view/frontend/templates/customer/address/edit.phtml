@@ -34,7 +34,7 @@
     <fieldset class="fieldset">
         <legend class="legend"><span><?php echo $block->escapeHtml(__('Address')) ?></span></legend><br>
         <?php if($this->getConfig('localize/address/hide_country')):?>
-            <input type="hidden" class="p-country-name" name="country_id" value="<?php echo $this->getConfig('general/country/default');?>" id="country" area-required="true" />
+            <input type="hidden" class="p-country-name" name="country_id" value="<?= /* @escapeNotVerified */ $this->getConfig('general/country/default'); ?>" id="country" area-required="true" />
         <?php else:?>
         <div class="field country required">
             <label class="label" for="country"><span><?php echo $block->escapeHtml(__('Country')) ?></span></label>

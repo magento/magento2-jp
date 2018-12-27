@@ -7,25 +7,22 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class PriceRound
 {
-
     /**
      * ScopeConfig
      *
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    private $scopeConfig;
 
     /**
      * Helper
      *
      * @var \MagentoJapan\Price\Helper\Data
      */
-    protected $helper;
+    private $helper;
 
     /**
-     * ModifyPrice constructor.
-     *
-     * @param Data                 $helper
+     * @param Data $helper
      * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
@@ -36,17 +33,15 @@ class PriceRound
         $this->helper = $helper;
     }
 
-
     /**
-     * Modify rounding method for converting currency
+     * Modify rounding method for converting currency.
      *
-     * @param PriceCurrency $subject   Price Currency
-     * @param \Closure      $proceed   Closure
-     * @param float         $amount    Price
-     * @param null          $scope     Configuration Scope
-     * @param null          $currency  Currency
-     * @param int           $precision Currency Precision
-     *
+     * @param PriceCurrency $subject
+     * @param \Closure $proceed
+     * @param $amount
+     * @param null $scope
+     * @param null $currency
+     * @param int $precision
      * @return mixed
      */
     public function aroundConvertAndRound(
@@ -74,16 +69,13 @@ class PriceRound
 
 
     /**
-     * Modify rounding method
-     *
-     * @param PriceCurrency $subject   Price Currency
-     * @param \Closure      $proceed   Closure
-     * @param float         $amount    Price
-     * @param int           $precision Currency precision
-     *
+     * @param PriceCurrency $subject
+     * @param \Closure $proceed
+     * @param $amount
+     * @param int $precision
      * @return mixed
      */
-    public function aroundRound(PriceCurrency  $subject,
+    public function aroundRoundPrice(PriceCurrency  $subject,
         \Closure $proceed,
         $amount,
         $precision = 2
@@ -102,5 +94,4 @@ class PriceRound
         }
         return $proceed($amount, $precision);
     }
-
 }

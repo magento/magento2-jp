@@ -4,9 +4,11 @@ namespace MagentoJapan\Zip2address\Block;
 use Magento\Framework\View\Element\Template;
 use MagentoJapan\Zip2address\Helper\Data;
 
+/**
+ * @api
+ */
 class Customer extends Template
 {
-
     /**
      * @var \MagentoJapan\Zip2address\Helper\Data
      */
@@ -34,5 +36,4 @@ class Customer extends Template
     {
         return $this->helper;
     }
-
 }

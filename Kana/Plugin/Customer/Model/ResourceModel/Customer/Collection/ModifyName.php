@@ -2,6 +2,7 @@
 namespace MagentoJapan\Kana\Plugin\Customer\Model\ResourceModel\Customer\Collection;
 
 use Magento\Customer\Model\ResourceModel\Customer\Collection;
+use Magento\Framework\Locale\ResolverInterface;
 
 class ModifyName
 {
@@ -15,13 +16,12 @@ class ModifyName
      */
     private $fieldsetConfig;
 
-
     /**
      * @param ResolverInterface $localeResolver
      * @param \Magento\Framework\DataObject\Copy\Config $fieldsetConfig
      */
     public function __construct(
-        \Magento\Framework\Locale\ResolverInterface $localeResolver,
+        ResolverInterface $localeResolver,
         \Magento\Framework\DataObject\Copy\Config $fieldsetConfig
     ) {
         $this->localeResolver = $localeResolver;
@@ -32,11 +32,12 @@ class ModifyName
      * @param \Magento\Customer\Model\ResourceModel\Customer\Collection $subject
      * @param \Closure $proceed
      * @return \Magento\Customer\Model\ResourceModel\Customer\Collection
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function aroundAddNameToSelect(Collection $subject,
-                                          \Closure $proceed
-    )
-    {
+    public function aroundAddNameToSelect(
+        Collection $subject,
+        \Closure $proceed
+    ) {
         $fields = [];
         $customerAccount = $this->fieldsetConfig->getFieldset('customer_account');
         foreach ($customerAccount as $code => $field) {
@@ -54,7 +55,7 @@ class ModifyName
                 '\'\''
             );
         }
-        if($this->localeResolver->getLocale() != 'ja_JP') {
+        if ($this->localeResolver->getLocale() != 'ja_JP') {
             $concatenate[] = 'LTRIM(RTRIM({{firstname}}))';
         } else {
             $concatenate[] = 'LTRIM(RTRIM({{lastname}}))';
@@ -68,7 +69,7 @@ class ModifyName
                 '\'\''
             );
         }
-        if($this->localeResolver->getLocale() != 'ja_JP') {
+        if ($this->localeResolver->getLocale() != 'ja_JP') {
             $concatenate[] = 'LTRIM(RTRIM({{lastname}}))';
         } else {
             $concatenate[] = 'LTRIM(RTRIM({{firstname}}))';

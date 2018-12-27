@@ -1,9 +1,9 @@
 <?php
 namespace MagentoJapan\Kana\Plugin\Quote\Model\Quote;
 
-use \Magento\Quote\Model\QuoteValidator;
-use \Magento\Quote\Model\Quote;
-use \MagentoJapan\Kana\Model\Config\System;
+use Magento\Quote\Model\Quote;
+use Magento\Quote\Model\QuoteValidator;
+use MagentoJapan\Kana\Model\Config\System;
 
 class Validator
 {
@@ -12,6 +12,9 @@ class Validator
      */
     private $system;
 
+    /**
+     * @param System $system
+     */
     public function __construct(
         System $system
     ) {
@@ -21,29 +24,31 @@ class Validator
     /**
      * @param QuoteValidator $subject
      * @param \Magento\Quote\Model\Quote $arguments
-     * @return bool
+     * @return void
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function beforeValidate(
+    public function beforeValidateBeforeSubmit(
         QuoteValidator $subject,
         Quote $arguments
     ) {
-        if($this->system->getRequireKana()) {
+        if ($this->system->getRequireKana()) {
             $this->hasKana($arguments);
         }
     }
 
-
+    /**
+     * @param Quote $quote
+     * @throws \Magento\Framework\Exception\ValidatorException
+     */
     private function hasKana(Quote $quote)
     {
-        if(!$quote->getFirstnamekana())
-        {
+        if (!$quote->getFirstnamekana()) {
             throw new \Magento\Framework\Exception\ValidatorException(
                 __("Firstname kana is required field. Your address doesn't have it.")
             );
         }
 
-        if(!$quote->getLastnamekana())
-        {
+        if (!$quote->getLastnamekana()) {
             throw new \Magento\Framework\Exception\ValidatorException(
                 __("Lastname kana is required field. Your address doesn't have it.")
             );
