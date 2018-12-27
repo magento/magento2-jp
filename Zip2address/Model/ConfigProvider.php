@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Zip2address\Model;
 
 use Magento\Checkout\Model\ConfigProviderInterface;

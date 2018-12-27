@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\StoreAddress\Plugin\Store\Model\Address;
 
 use Magento\Store\Model\Address\Renderer as BaseRenderer;

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Kana\Observer\Adminhtml;
 
 use Magento\Framework\Locale\Currency;

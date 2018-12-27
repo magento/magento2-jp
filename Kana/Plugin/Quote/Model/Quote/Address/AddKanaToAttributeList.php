@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Kana\Plugin\Quote\Model\Quote\Address;
 
 use Magento\Quote\Model\Quote\Address\CustomAttributeList;

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Kana\Plugin\Customer\Model\ResourceModel\Customer\Collection;
 
 use Magento\Customer\Model\ResourceModel\Customer\Collection;

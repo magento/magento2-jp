@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Kana\Plugin\Checkout\Block\Checkout;
 
 use Magento\Customer\Api\CustomerRepositoryInterface as CustomerRepository;

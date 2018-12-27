@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Kana\Setup\Patch\Data;
 
 use Magento\Framework\DB\Adapter\AdapterInterface;

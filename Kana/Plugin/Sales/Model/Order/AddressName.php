@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Kana\Plugin\Sales\Model\Order;
 
 use \Magento\Sales\Model\Order\Address as BaseAddress;

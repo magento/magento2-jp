@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Zip2address\Test\Unit\Model;
 
 use MagentoJapan\Zip2address\Helper\Data;
