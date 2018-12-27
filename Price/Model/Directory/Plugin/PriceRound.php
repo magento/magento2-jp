@@ -1,22 +1,22 @@
 <?php
+
 namespace MagentoJapan\Price\Model\Directory\Plugin;
 
 use Magento\Directory\Model\PriceCurrency;
 use MagentoJapan\Price\Helper\Data;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
+/**
+ * Modify rounding method for converting currency.
+ */
 class PriceRound
 {
     /**
-     * ScopeConfig
-     *
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
     private $scopeConfig;
 
     /**
-     * Helper
-     *
      * @var \MagentoJapan\Price\Helper\Data
      */
     private $helper;
@@ -66,7 +66,6 @@ class PriceRound
         }
         return $proceed($amount, $scope, $currency, $precision);
     }
-
 
     /**
      * @param PriceCurrency $subject

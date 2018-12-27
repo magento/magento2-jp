@@ -8,6 +8,9 @@ use Magento\Framework\DataObject;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
+/**
+ * Format store address display for JP locale.
+ */
 class Renderer
 {
     /**

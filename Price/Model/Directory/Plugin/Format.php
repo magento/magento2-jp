@@ -1,15 +1,16 @@
 <?php
+
 namespace MagentoJapan\Price\Model\Directory\Plugin;
 
 use Magento\Directory\Model\PriceCurrency;
-use \Magento\Framework\View\Element\Context;
+use Magento\Framework\View\Element\Context;
 
+/**
+ * Modify currency format.
+ */
 class Format
 {
-
     /**
-     * Scope Config
-     *
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
     protected $scopeConfig;
@@ -19,9 +20,7 @@ class Format
      */
     private $helper;
 
-
     /**
-     * Format constructor.
      * @param Context $context
      * @param \MagentoJapan\Price\Helper\Data $helper
      */
@@ -34,17 +33,16 @@ class Format
     }
 
     /**
-     * Modify Currency Format
+     * Modify currency format.
      *
-     * @param PriceCurrency $subject          Price Currency Object
-     * @param \Closure      $proceed          Closure
-     * @param float         $amount           Price Amount
-     * @param bool          $includeContainer Include Container Flag
-     * @param int           $precision        Precision digits
-     * @param null          $scope            Data scope
-     * @param null          $currency         Currency Code
-     *
-     * @return mixed
+     * @param PriceCurrency $subject
+     * @param \Closure $proceed
+     * @param $amount
+     * @param bool $includeContainer
+     * @param int $precision
+     * @param null $scope
+     * @param null $currency
+     * @return mixed|string
      */
     public function aroundFormat(
         PriceCurrency  $subject,

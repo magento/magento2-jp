@@ -8,6 +8,9 @@ use Magento\Catalog\Helper\Data;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 use MagentoJapan\Price\Helper\Data as PriceHelper;
 
+/**
+ * Adjust Tax Pricing display according to JPY currency requirements.
+ */
 class ModifyAdjustment
 {
     /**
@@ -21,8 +24,6 @@ class ModifyAdjustment
     private $catalogHelper;
 
     /**
-     * Price Helper
-     *
      * @var PriceHelper
      */
     private $priceHelper;
@@ -37,7 +38,6 @@ class ModifyAdjustment
      * @param Data $catalogHelper
      * @param PriceHelper $priceHelper
      * @param PriceCurrencyInterface $priceCurrency
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function __construct(
         TaxHelper $taxHelper,

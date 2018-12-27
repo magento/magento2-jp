@@ -1,24 +1,26 @@
 <?php
 namespace MagentoJapan\Price\Observer;
 
-use \Magento\CurrencySymbol\Model\System\CurrencysymbolFactory;
+use Magento\CurrencySymbol\Model\System\CurrencysymbolFactory;
 use Magento\Framework\Event\ObserverInterface;
 use MagentoJapan\Price\Helper\Data;
 
+/**
+ * Modify currency options display.
+ */
 class ModifyCurrencyOptions implements ObserverInterface
 {
     /**
-     * Currency symbol factory
-     *
      * @var CurrencysymbolFactory
      */
-    protected $symbolFactory;
+    private $symbolFactory;
 
+    /**
+     * @var Data
+     */
     private $helper;
 
     /**
-     * Constructor
-     *
      * @param CurrencysymbolFactory $symbolFactory Currency Symbol Factory
      * @param Data $helper
      */
@@ -31,10 +33,9 @@ class ModifyCurrencyOptions implements ObserverInterface
     }
 
     /**
-     * Generate options for currency displaying with custom currency symbol
+     * Generate options for currency displaying with custom currency symbol.
      *
      * @param \Magento\Framework\Event\Observer $observer Observer
-     *
      * @return $this
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
@@ -53,11 +54,10 @@ class ModifyCurrencyOptions implements ObserverInterface
     }
 
     /**
-     * Get currency display options
+     * Get currency display options.
      *
-     * @param string $baseCode        Base currency code
-     * @param array  $originalOptions Currency Options
-     *
+     * @param $baseCode
+     * @param $originalOptions
      * @return array
      */
     protected function getCurrencyOptions($baseCode, $originalOptions)

@@ -12,7 +12,7 @@ class Customer extends Template
     /**
      * @var \MagentoJapan\Zip2address\Helper\Data
      */
-    protected $helper;
+    private $helper;
 
     /**
      * @param Template\Context $context

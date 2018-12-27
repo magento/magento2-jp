@@ -4,16 +4,19 @@ namespace MagentoJapan\Zip2address\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
 
+/**
+ * @deprecated
+ */
 class Data extends AbstractHelper
 {
     /**
      * @var \Magento\Framework\Locale\ResolverInterface
      */
-    protected $localeResolver;
+    private $localeResolver;
 
     /**
      * @param \Magento\Framework\App\Helper\Context $context
-     * @param \Magento\Store\Model\StoreManagerInterface $localeResolver
+     * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
      */
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,

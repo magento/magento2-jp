@@ -1,20 +1,21 @@
 <?php
+
 namespace MagentoJapan\Price\Model\Directory\Plugin;
 
 use Magento\Directory\Model\Currency;
 use MagentoJapan\Price\Helper\Data;
 
+/**
+ * Modify price precision for JPY.
+ */
 class Precision
 {
     /**
-     * Helper
-     *
      * @var \MagentoJapan\Price\Helper\Data
      */
     private $helper;
 
     /**
-     * Precision constructor.
      * @param Data $helper
      */
     public function __construct(
@@ -24,16 +25,15 @@ class Precision
     }
 
     /**
-     * Modify price precision for JPY
+     * Modify price precision for JPY.
      *
-     * @param Currency $subject          Currency Object
-     * @param \Closure $proceed          Closure
-     * @param float    $price            Price
-     * @param int      $precision        Currency Precision
-     * @param array    $options          Currency options array
-     * @param bool     $includeContainer Include container flag
-     * @param bool     $addBrackets      Add brackets flag
-     *
+     * @param Currency $subject
+     * @param \Closure $proceed
+     * @param $price
+     * @param int $precision
+     * @param array $options
+     * @param bool $includeContainer
+     * @param bool $addBrackets
      * @return mixed
      */
     public function aroundFormatPrecision(
@@ -60,7 +60,7 @@ class Precision
     }
 
     /**
-     * Modify Currency Position
+     * Modify Currency Position.
      *
      * @param Currency $subject
      * @param \Closure $proceed
@@ -73,8 +73,7 @@ class Precision
         \Closure $proceed,
         $price,
         $options = []
-    )
-    {
+    ) {
         if ($subject->getCode() == 'JPY') {
             $position = $this->helper->getSymbolPosition();
             $options['position'] = (int)$position;
@@ -88,5 +87,4 @@ class Precision
             $options
         );
     }
-
 }

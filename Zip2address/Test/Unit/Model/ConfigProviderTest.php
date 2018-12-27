@@ -1,9 +1,8 @@
 <?php
 namespace MagentoJapan\Zip2address\Test\Unit\Model;
 
-use \MagentoJapan\Zip2address\Helper\Data;
-use \MagentoJapan\Zip2address\Model\ConfigProvider;
-use \Magento\Framework\Locale\ResolverInterface;
+use MagentoJapan\Zip2address\Helper\Data;
+use MagentoJapan\Zip2address\Model\ConfigProvider;
 
 /**
  * Class ConfigProviderTest
@@ -21,7 +20,7 @@ class ConfigProviderTest extends \PHPUnit\Framework\TestCase
     private $helperMock;
 
     /**
-     * setup
+     * @inheritdoc
      */
     protected function setUp()
     {
@@ -32,12 +31,9 @@ class ConfigProviderTest extends \PHPUnit\Framework\TestCase
         $this->configProvider = new ConfigProvider(
             $this->helperMock
         );
-
     }
 
     /**
-     * @covers MagentoJapan\Zip2address\Helper\Data::getCurrentLocale
-     *
      * @dataProvider localeDataProvider
      */
     public function testGetConfig($locale, $expected)
@@ -70,5 +66,4 @@ class ConfigProviderTest extends \PHPUnit\Framework\TestCase
             ]
         ];
     }
-
 }

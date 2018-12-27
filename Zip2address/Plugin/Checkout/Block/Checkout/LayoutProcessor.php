@@ -4,6 +4,9 @@ namespace MagentoJapan\Zip2address\Plugin\Checkout\Block\Checkout;
 
 use MagentoJapan\Zip2address\Helper\Data;
 
+/**
+ * Update checkout layout for Zip2Address.
+ */
 class LayoutProcessor
 {
     /**
@@ -13,7 +16,6 @@ class LayoutProcessor
 
     /**
      * @param Data $helper
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function __construct(
         Data $helper
@@ -30,7 +32,6 @@ class LayoutProcessor
         \Magento\Checkout\Block\Checkout\LayoutProcessor $subject,
         array $jsLayout
     ) {
-
         $payments =& $jsLayout['components']['checkout']['children']
         ['steps']['children']['billing-step']['children']['payment']
         ['children']['payments-list']['children'];

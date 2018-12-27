@@ -1,11 +1,14 @@
 <?php
 namespace MagentoJapan\Price\Rewrite\CatalogRule\Pricing\Price;
 
-use \Magento\CatalogRule\Pricing\Price\CatalogRulePrice as Original;
+use Magento\CatalogRule\Pricing\Price\CatalogRulePrice as Original;
 use Magento\CatalogRule\Model\ResourceModel\RuleFactory;
 use Magento\CatalogRule\Model\ResourceModel\Rule;
 use Magento\Framework\App\ObjectManager;
 
+/**
+ * Catalog price rules JPY currently formatting.
+ */
 class CatalogRulePrice extends Original
 {
     /**

@@ -1,4 +1,5 @@
 <?php
+
 namespace MagentoJapan\Price\Model\Locale\Plugin;
 
 use Magento\Framework\Locale\Format;
@@ -7,25 +8,22 @@ use Magento\Framework\Locale\ResolverInterface;
 use Magento\Directory\Model\CurrencyFactory;
 use MagentoJapan\Price\Helper\Data;
 
+/**
+ * Modify JPY price formatting.
+ */
 class ModifyPriceFormat
 {
     /**
-     * Scope Resolver
-     *
      * @var ScopeResolverInterface
      */
     private $_scopeResolver;
 
     /**
-     * Locale Resolver
-     *
      * @var ResolverInterface
      */
     private $_localeResolver;
 
     /**
-     * Currency Factory
-     *
      * @var CurrencyFactory
      */
     private $_currencyFactory;
@@ -55,7 +53,6 @@ class ModifyPriceFormat
 
     /**
      * Modify precision for JPY.
-     *
      *
      * @param Format $subject
      * @param \Closure $proceed

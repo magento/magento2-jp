@@ -1,8 +1,12 @@
 <?php
+
 namespace MagentoJapan\Price\Plugin\Block\Product;
 
 use Magento\Catalog\Block\Product\View as OriginalView;
 
+/**
+ * Format JPY currency at Product View.
+ */
 class View
 {
     /**
@@ -44,7 +48,7 @@ class View
     public function aroundGetJsonConfig(
         OriginalView $view,
         \Closure $proceed
-    ){
+    ) {
         /* @var $product \Magento\Catalog\Model\Product */
         $product = $view->getProduct();
         if (!$view->hasOptions()) {

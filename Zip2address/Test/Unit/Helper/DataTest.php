@@ -25,7 +25,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
     private $helper;
 
     /**
-     * setup
+     * @inheritdoc
      */
     protected function setUp()
     {
@@ -41,12 +41,9 @@ class DataTest extends \PHPUnit\Framework\TestCase
             $this->contextMock,
             $this->localeMock
         );
-
     }
 
     /**
-     * @covers MagentoJapan\Zip2address\Helper\Data::getCurrentLocale
-     *
      * @dataProvider localeDataProvider
      */
     public function testGetCurrentLocale($locale, $expected)
@@ -75,5 +72,4 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ]
         ];
     }
-
 }

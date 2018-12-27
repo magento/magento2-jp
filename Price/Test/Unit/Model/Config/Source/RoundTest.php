@@ -1,20 +1,20 @@
 <?php
+
 namespace MagentoJapan\Price\Test\Unit\Model\Config\Source;
+
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 
 class RoundTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Round configuration class
+     * Round configuration class.
      *
      * @var \MagentoJapan\Price\Model\Config\Source\Round
      */
     protected $model;
 
     /**
-     * Setup
-     *
-     * @return void
+     * @inheritdoc
      */
     protected function setUp()
     {

@@ -1,6 +1,9 @@
 <?php
 namespace MagentoJapan\Price\Model\Config\Source;
 
+/**
+ * Rounding configuration.
+ */
 class Round implements \Magento\Framework\Option\ArrayInterface
 {
     /**

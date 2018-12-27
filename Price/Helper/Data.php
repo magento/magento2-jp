@@ -4,6 +4,10 @@ namespace MagentoJapan\Price\Helper;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Store\Model\ScopeInterface;
 
+/**
+ * Class Data
+ * @package MagentoJapan\Price\Helper
+ */
 class Data extends AbstractHelper
 {
     /**
@@ -19,6 +23,9 @@ class Data extends AbstractHelper
         );
     }
 
+    /**
+     * @return mixed
+     */
     public function getSymbolPosition()
     {
         return $this->scopeConfig->getValue(
@@ -27,6 +34,9 @@ class Data extends AbstractHelper
         );
     }
 
+    /**
+     * @return array
+     */
     public function getIntegerCurrencies()
     {
         return [
