@@ -49,7 +49,6 @@ class View
         OriginalView $view,
         \Closure $proceed
     ) {
-        /* @var $product \Magento\Catalog\Model\Product */
         $product = $view->getProduct();
         if (!$view->hasOptions()) {
             $config = [

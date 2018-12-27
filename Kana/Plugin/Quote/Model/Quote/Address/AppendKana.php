@@ -1,16 +1,12 @@
 <?php
 namespace MagentoJapan\Kana\Plugin\Quote\Model\Quote\Address;
 
-use Magento\Quote\Model\Quote\Address\CustomAttributeList;
-
 /**
  * Class AppendKana
  * @package MagentoJapan\Kana\Quote\Model\Quote\Address
  */
 class AppendKana
 {
-
-
     /**
      * @param \Magento\Quote\Model\Quote\Address $subject
      * @param $attributes
@@ -24,7 +20,5 @@ class AppendKana
                 $subject->setData($code, $data->getValue());
             }
         }
-
-
     }
 }
