@@ -11,6 +11,7 @@ $addressHelper = $this->helper(\Magento\Customer\Helper\Address::class);
 
 /** @var \Magento\Directory\Helper\Data $directoryHelper */
 $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
+$displayAllRegionsConfig = $block->getConfig('general/region/display_all');
 ?>
 <form class="form-address-edit"
       action="<?= $block->escapeUrl($block->getSaveUrl()) ?>"
@@ -37,7 +38,7 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                        title="<?= $block->escapeHtmlAttr(__('Company')) ?>"
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getCompany()) ?>"
                        class="input-text
-                       <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('company')) ?>"
+                           <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('company')) ?>"
                 >
             </div>
         </div>
@@ -49,7 +50,7 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getTelephone()) ?>"
                        title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
                        class="input-text
-                       <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('telephone')) ?>"
+                           <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('telephone')) ?>"
                        id="telephone"
                 >
             </div>
@@ -63,7 +64,7 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                        title="<?= $block->escapeHtmlAttr(__('Fax')) ?>"
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getFax()) ?>"
                        class="input-text
-                       <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('fax')) ?>"
+                           <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('fax')) ?>"
                 >
             </div>
         </div>
@@ -94,7 +95,7 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                        title="<?= $block->escapeHtmlAttr(__('Zip/Postal Code')) ?>"
                        id="zip"
                        class="input-text validate-zip-international
-                       <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('postcode')) ?>"
+                           <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('postcode')) ?>"
                 >
             </div>
         </div>
@@ -117,8 +118,8 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                        value="<?= $block->escapeHtmlAttr($block->getRegion()) ?>"
                        title="<?= $block->escapeHtmlAttr(__('State/Province')) ?>"
                        class="input-text
-                       <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('region')) ?>"
-                       <?= (!$block->getConfig('general/region/display_all')) ? ' disabled="disabled"' : ''; ?>
+                           <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('region')) ?>"
+                           <?= (!$block->getConfig('general/region/display_all')) ? ' disabled = "disabled"' : ''; ?>
                 />
             </div>
         </div>
@@ -128,10 +129,10 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                 <input type="text" 
                        name="city" 
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getCity()) ?>" 
-                       title="<?= $block->escapeHtmlAttr(__('City')) ?>" 
-                       class="input-text
-                       <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('city')) ?>"
+                       title="<?= $block->escapeHtmlAttr(__('City')) ?>"
                        id="city"
+                       class="input-text
+                           <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('city')) ?>"
                 >
             </div>
         </div>
@@ -149,17 +150,17 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                 />
                 <div class="nested">
                     <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
-                    <?php for ($_i = 1, $_n = $addressHelper->getStreetLines(); $_i < $_n; $_i++): ?>
+                    <?php for ($i = 1, $n = $addressHelper->getStreetLines(); $i < $n; $i++) : ?>
                         <div class="field additional">
-                            <label class="label" for="street_<?= $_i+1 ?>">
-                                <span><?= $block->escapeHtml(__('Street Address %1', $_i + 1)) ?></span>
+                            <label class="label" for="street_<?= /* @noEscape */ $i + 1 ?>">
+                                <span><?= $block->escapeHtml(__('Street Address %1', $i + 1)) ?></span>
                             </label>
                             <div class="control">
                                 <input type="text"
                                        name="street[]"
-                                       value="<?= $block->escapeHtmlAttr($block->getStreetLine($_i + 1)) ?>"
-                                       title="<?= $block->escapeHtmlAttr(__('Street Address %1', $_i + 1)) ?>"
-                                       id="street_<?= $_i + 1 ?>"
+                                       value="<?= $block->escapeHtmlAttr($block->getStreetLine($i + 1)) ?>"
+                                       title="<?= $block->escapeHtmlAttr(__('Street Address %1', $i + 1)) ?>"
+                                       id="street_<?= /* @noEscape */ $i + 1 ?>"
                                        class="input-text <?= $block->escapeHtmlAttr($_streetValidationClass) ?>"
                                 >
                             </div>
@@ -177,15 +178,14 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
                            name="vat_id"
                            value="<?= $block->escapeHtmlAttr($block->getAddress()->getVatId()) ?>"
                            title="<?= $block->escapeHtmlAttr(__('VAT Number')) ?>"
-                           class="input-text <?= $block->escapeHtmlAttr(
-                                   $addressHelper->getAttributeValidationClass('vat_id')
-                           ) ?>"
                            id="vat_id"
+                           class="input-text
+                               <?= $block->escapeHtmlAttr($addressHelper->getAttributeValidationClass('vat_id')) ?>"
                     >
                 </div>
             </div>
         <?php endif; ?>
-        <?php if ($block->isDefaultBilling()): ?>
+        <?php if ($block->isDefaultBilling()) : ?>
             <div class="message info"><?= $block->escapeHtml(__("It's a default billing address.")) ?></div>
         <?php elseif ($block->canSetAsDefaultBilling()) : ?>
             <div class="field choice set billing">
@@ -200,7 +200,7 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
             <input type="hidden" name="default_billing" value="1" />
         <?php endif; ?>
 
-        <?php if ($block->isDefaultShipping()): ?>
+        <?php if ($block->isDefaultShipping()) : ?>
             <div class="message info"><?= $block->escapeHtml(__("It's a default shipping address.")) ?></div>
         <?php elseif ($block->canSetAsDefaultShipping()) : ?>
             <div class="field choice set shipping">
@@ -224,7 +224,7 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
             </button>
         </div>
         <div class="secondary">
-            <a class="action back"href="<?= $block->escapeUrl($block->getBackUrl()) ?>">
+            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>">
                 <span><?= $block->escapeHtml(__('Go back')) ?></span>
             </a>
         </div>
@@ -236,12 +236,12 @@ $directoryHelper = $this->helper(\Magento\Directory\Helper\Data::class);
             "validation": {}
         },
         "#country": {
-            <?php if ($this->getConfig('localize/address/hide_country')):?>
+            <?php if ($this->getConfig('localize/address/hide_country')) :?>
             "jpRegionUpdater": {
-        <?php else : ?>
+            <?php else : ?>
             "regionUpdater": {
-        <?php endif; ?>
-                "optionalRegionAllowed": <?= $block->getConfig('general/region/display_all') ? 'true' : 'false'; ?>,
+            <?php endif; ?>
+                "optionalRegionAllowed": <?= /* @noEscape */ $displayAllRegionsConfig ? 'true' : 'false'; ?>,
                 "regionListId": "#region_id",
                 "regionInputId": "#region",
                 "postcodeId": "#zip",
