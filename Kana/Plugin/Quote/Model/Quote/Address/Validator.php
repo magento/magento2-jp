@@ -1,11 +1,16 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Kana\Plugin\Quote\Model\Quote\Address;
 
-use \Magento\Quote\Model\QuoteAddressValidator;
-use \Magento\Quote\Model\Quote\Address;
-use \Magento\Customer\Model\AddressFactory;
-use \MagentoJapan\Kana\Model\Config\System;
+use Magento\Customer\Model\AddressFactory;
+use Magento\Quote\Model\QuoteAddressValidator;
+use MagentoJapan\Kana\Model\Config\System;
+use Magento\Quote\Api\Data\AddressInterface;
 
+/**
+ * Validate Customer's name in Kana.
+ */
 class Validator
 {
     /**
@@ -19,7 +24,6 @@ class Validator
     private $factory;
 
     /**
-     * Validator constructor.
      * @param System $system
      * @param AddressFactory $factory
      */
@@ -32,58 +36,59 @@ class Validator
     }
 
     /**
+     * Validate Customer's name in Kana.
+     *
      * @param QuoteAddressValidator $subject
-     * @param \Magento\Quote\Model\Quote\Address $arguments
-     * @return bool
+     * @param AddressInterface $arguments
+     * @return void
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function beforeValidate(
         QuoteAddressValidator $subject,
-        Address $arguments
+        AddressInterface $arguments
     ) {
-        if($this->system->getRequireKana()) {
+        if ($this->system->getRequireKana()) {
             $this->checkKana($arguments);
         }
     }
 
-
     /**
-     * @param Address $address
+     * Validate Customer's name in Kana.
+     *
+     * @param AddressInterface $address
      * @throws \Magento\Framework\Exception\ValidatorException
      */
-    private function checkKana(Address $address)
+    private function checkKana(AddressInterface $address)
     {
         $customerAddress = null;
         $fkana = null;
         $lkana = null;
 
-        if(!$address->getQuoteId()) {
+        if (!$address->getQuoteId()) {
             return;
         }
 
-        if($addressId = $address->getCustomerAddressId()) {
+        if ($addressId = $address->getCustomerAddressId()) {
             $customerAddress = $this->factory->create()->load($addressId);
 
-            if($fkana = $customerAddress->getFirstnamekana()) {
+            if ($fkana = $customerAddress->getFirstnamekana()) {
                 $address->setFirstnamekana($fkana);
             }
-            if($lkana = $customerAddress->getLastnamekana()) {
+            if ($lkana = $customerAddress->getLastnamekana()) {
                 $address->setLastnamekana($lkana);
             }
         }
 
-        if($fkana && !$address->getFirstnamekana())
-        {
+        if ($fkana && !$address->getFirstnamekana()) {
             throw new \Magento\Framework\Exception\ValidatorException(
                 __("Firstname kana is required field. Your address doesn't have it.")
             );
         }
 
-        if($lkana && !$address->getLastnamekana())
-        {
+        if ($lkana && !$address->getLastnamekana()) {
             throw new \Magento\Framework\Exception\ValidatorException(
                 __("Lastname kana is required field. Your address doesn't have it.")
             );
         }
     }
-
 }

@@ -1,15 +1,24 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Zip2address\Model;
 
-use \Magento\Checkout\Model\ConfigProviderInterface;
-use \MagentoJapan\Zip2address\Helper\Data;
+use Magento\Checkout\Model\ConfigProviderInterface;
+use MagentoJapan\Zip2address\Helper\Data;
 
+/**
+ * Configuration provider for Zip2Address in checkout.
+ */
 class ConfigProvider implements ConfigProviderInterface
 {
-
+    /**
+     * @var Data
+     */
     private $helper;
 
-
+    /**
+     * @param Data $helper
+     */
     public function __construct(
         Data $helper
     ) {
@@ -17,7 +26,7 @@ class ConfigProvider implements ConfigProviderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getConfig()
     {
@@ -27,6 +36,4 @@ class ConfigProvider implements ConfigProviderInterface
 
         return $config;
     }
-
-
 }

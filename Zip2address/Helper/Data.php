@@ -1,20 +1,25 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Zip2address\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
 
+/**
+ * To be removed.
+ *
+ * @deprecated
+ */
 class Data extends AbstractHelper
 {
-    
     /**
      * @var \Magento\Framework\Locale\ResolverInterface
      */
-    protected $localeResolver;
-
+    private $localeResolver;
 
     /**
      * @param \Magento\Framework\App\Helper\Context $context
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
      */
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
@@ -25,12 +30,13 @@ class Data extends AbstractHelper
     }
 
     /**
-     * return current locale code
+     * Return current locale code.
+     *
+     * @return string
      */
     public function getCurrentLocale()
     {
-        if($this->localeResolver->getLocale() == 'ja_JP')
-        {
+        if ($this->localeResolver->getLocale() == 'ja_JP') {
             return 'ja';
         }
 

@@ -1,10 +1,16 @@
 <?php
+declare(strict_types=1);
+
+
 namespace MagentoJapan\Kana\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Api\AbstractExtensibleObject;
-use \Magento\Framework\Api\AttributeValueFactory;
+use Magento\Framework\Api\AttributeValueFactory;
 
+/**
+ * Copy kana fields to Customer entity.
+ */
 class CopyKanaToCustomer implements ObserverInterface
 {
     /**
@@ -12,13 +18,16 @@ class CopyKanaToCustomer implements ObserverInterface
      */
     private $attributeValueFactory;
 
+    /**
+     * @param AttributeValueFactory $attributeValueFactory
+     */
     public function __construct(AttributeValueFactory $attributeValueFactory)
     {
         $this->attributeValueFactory = $attributeValueFactory;
     }
 
     /**
-     * Assign Kana to destination obj
+     * Assign Kana to destination object.
      *
      * @param \Magento\Framework\Event\Observer $observer
      * @return $this
@@ -38,11 +47,13 @@ class CopyKanaToCustomer implements ObserverInterface
 
         $key = AbstractExtensibleObject::CUSTOM_ATTRIBUTES_KEY;
 
-        $target->setData($key,
+        $target->setData(
+            $key,
             [
                 'firstnamekana' => $fKana,
                 'lastnamekana' => $lKana
-            ]);
+            ]
+        );
 
         return $this;
     }

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Zip2address\Test\Unit\Helper;
 
 use \Magento\Framework\App\Helper\Context;
@@ -9,7 +11,7 @@ use \Magento\Framework\Locale\ResolverInterface;
  * Class DataTest
  * @package MagentoJapan\Zip2address\Test\Unit\Helper
  */
-class DataTest extends \PHPUnit_Framework_TestCase
+class DataTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Framework\Locale\ResolverInterface|\PHPUnit_Framework_MockObject_MockObject
@@ -25,7 +27,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
     private $helper;
 
     /**
-     * setup
+     * @inheritdoc
      */
     protected function setUp()
     {
@@ -41,12 +43,9 @@ class DataTest extends \PHPUnit_Framework_TestCase
             $this->contextMock,
             $this->localeMock
         );
-
     }
 
     /**
-     * @covers MagentoJapan\Zip2address\Helper\Data::getCurrentLocale
-     *
      * @dataProvider localeDataProvider
      */
     public function testGetCurrentLocale($locale, $expected)
@@ -75,5 +74,4 @@ class DataTest extends \PHPUnit_Framework_TestCase
             ]
         ];
     }
-
 }
