@@ -112,8 +112,6 @@ class LayoutProcessor
     private function processShipping(&$shippingElements)
     {
         $hideCountry = $this->system->getShowCountry();
-        $useKana = $this->system->getUseKana();
-        $requireKana = $this->system->getRequireKana();
 
         foreach ($shippingElements as $key => &$shippingElement) {
             if ($key === 'region_id') {
@@ -132,12 +130,7 @@ class LayoutProcessor
                 if (is_object($attribute)) {
                     $shippingElement['value'] = $attribute->getValue();
                 }
-                if ($useKana != '1') {
-                    $shippingElement['visible'] = false;
-                }
-                if ($useKana && $requireKana) {
-                    $shippingElement['validation']['required-entry'] = true;
-                }
+                $this->processKanaFieldsVisibility($shippingElement);
             }
         }
     }
@@ -166,14 +159,15 @@ class LayoutProcessor
     }
 
     /**
+     * Process each payment method billing address in the layout.
+     *
      * @param string $billingElementKey
      * @param array $billingElement
      */
     private function processBillingElement(string $billingElementKey, array &$billingElement)
     {
         $hideCountry = $this->system->getShowCountry();
-        $useKana = $this->system->getUseKana();
-        $requireKana = $this->system->getRequireKana();
+
 
         if ($billingElementKey === 'region_id') {
             $billingElementKey = 'region';
@@ -191,12 +185,25 @@ class LayoutProcessor
             if (is_object($attribute)) {
                 $billingElement['value'] = $attribute->getValue();
             }
-            if ($useKana != '1') {
-                $billingElement['visible'] = false;
-            }
-            if ($useKana && $requireKana) {
-                $billingElement['validation']['required-entry'] = true;
-            }
+            $this->processKanaFieldsVisibility($billingElement);
+        }
+    }
+
+    /**
+     * Process Kana fields visibility configuration.
+     *
+     * @param array $element
+     */
+    private function processKanaFieldsVisibility(array &$element)
+    {
+        $useKana = $this->system->getUseKana();
+        $requireKana = $this->system->getRequireKana();
+
+        if ($useKana != '1') {
+            $element['visible'] = false;
+        }
+        if ($useKana && $requireKana) {
+            $element['validation']['required-entry'] = true;
         }
     }
 }
