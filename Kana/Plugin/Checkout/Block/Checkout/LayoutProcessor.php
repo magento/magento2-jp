@@ -93,14 +93,13 @@ class LayoutProcessor
     private function getCustomer()
     {
         if (!$this->customer) {
-            $_session = $this->customerSession;
-            if ($_session->isLoggedIn()) {
-                $this->customer = $this->customerRepository
-                    ->getById($_session->getCustomerId());
-            } else {
+            $session = $this->customerSession;
+            if (!$session->isLoggedIn()) {
                 return null;
             }
+            $this->customer = $this->customerRepository->getById($session->getCustomerId());
         }
+
         return $this->customer;
     }
 
@@ -128,26 +127,16 @@ class LayoutProcessor
                 $shippingElement['visible'] = false;
             }
 
-            if (in_array($key, ['firstnamekana', 'lastnamekana'])) {
-                if ($this->getCustomer()) {
-                    $attribute = $this->getCustomer()
-                        ->getCustomAttribute($key);
-                    if (is_object($attribute)) {
-                        $shippingElement['value'] = $attribute->getValue();
-                        if ($useKana != '1') {
-                            $shippingElement['visible'] = false;
-                        }
-                        if ($useKana && $requireKana) {
-                            $shippingElement['validation']['required-entry'] = true;
-                        }
-                    }
-                } else {
-                    if ($useKana != '1') {
-                        $shippingElement['visible'] = false;
-                    }
-                    if ($useKana && $requireKana) {
-                        $shippingElement['validation']['required-entry'] = true;
-                    }
+            if (in_array($key, ['firstnamekana', 'lastnamekana']) && $this->getCustomer()) {
+                $attribute = $this->getCustomer()->getCustomAttribute($key);
+                if (is_object($attribute)) {
+                    $shippingElement['value'] = $attribute->getValue();
+                }
+                if ($useKana != '1') {
+                    $shippingElement['visible'] = false;
+                }
+                if ($useKana && $requireKana) {
+                    $shippingElement['validation']['required-entry'] = true;
                 }
             }
         }
@@ -174,38 +163,28 @@ class LayoutProcessor
                 $elements = [];
                 continue;
             }
-            foreach ($elements as $key => &$billingElement) {
-                if ($key == 'region_id') {
-                    $key = 'region';
+            foreach ($elements as $billingElementKey => &$billingElement) {
+                if ($billingElementKey === 'region_id') {
+                    $billingElementKey = 'region';
                 }
-                $path = self::CONFIG_ELEMENT_ORDER . $key;
+                $path = self::CONFIG_ELEMENT_ORDER . $billingElementKey;
                 $config = $this->system->getConfigValue($path);
                 $billingElement['sortOrder'] = $config;
 
-                if ($key == 'country_id' && $hideCountry) {
+                if ($billingElementKey === 'country_id' && $hideCountry) {
                     $billingElement['visible'] = false;
                 }
 
-                if (in_array($key, ['firstnamekana', 'lastnamekana'])) {
-                    if ($this->getCustomer()) {
-                        $attribute = $this->getCustomer()
-                            ->getCustomAttribute($key);
-                        if (is_object($attribute)) {
-                            $billingElement['value'] = $attribute->getValue();
-                            if ($useKana != '1') {
-                                $billingElement['visible'] = false;
-                            }
-                            if ($useKana && $requireKana) {
-                                $billingElement['validation']['required-entry'] = true;
-                            }
-                        }
-                    } else {
-                        if ($useKana != '1') {
-                            $billingElement['visible'] = false;
-                        }
-                        if ($useKana && $requireKana) {
-                            $billingElement['validation']['required-entry'] = true;
-                        }
+                if (in_array($billingElementKey, ['firstnamekana', 'lastnamekana']) && $this->getCustomer()) {
+                    $attribute = $this->getCustomer()->getCustomAttribute($billingElementKey);
+                    if (is_object($attribute)) {
+                        $billingElement['value'] = $attribute->getValue();
+                    }
+                    if ($useKana != '1') {
+                        $billingElement['visible'] = false;
+                    }
+                    if ($useKana && $requireKana) {
+                        $billingElement['validation']['required-entry'] = true;
                     }
                 }
             }
