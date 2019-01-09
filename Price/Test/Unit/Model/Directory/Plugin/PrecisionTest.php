@@ -22,10 +22,13 @@ class PrecisionTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp()
     {
-        $objectManager = new ObjectManager($this);
-        $this->precisionPlugin = $objectManager->getObject(
-            \MagentoJapan\Price\Model\Directory\Plugin\Precision::class
-        );
+        $priceHelperMock = $this->getMockBuilder(\MagentoJapan\Price\Helper\Data::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $priceHelperMock->expects($this->any())->method('getIntegerCurrencies')->willReturn(['JPY']);
+        $priceHelperMock->expects($this->any())->method('getRoundMethod')->willReturn('round');
+
+        $this->precisionPlugin = new \MagentoJapan\Price\Model\Directory\Plugin\Precision($priceHelperMock);
 
         $this->closure = function () {
             return '<span class="price">￥100</span>';

@@ -35,9 +35,16 @@ class FormatTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp()
     {
+        $priceHelperMock = $this->getMockBuilder(\MagentoJapan\Price\Helper\Data::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $priceHelperMock->expects($this->any())->method('getIntegerCurrencies')->willReturn(['JPY']);
+        $priceHelperMock->expects($this->any())->method('getRoundMethod')->willReturn('round');
+
         $objectManager = new ObjectManager($this);
         $this->formatPlugin = $objectManager->getObject(
-            \MagentoJapan\Price\Model\Directory\Plugin\Format::class
+            \MagentoJapan\Price\Model\Directory\Plugin\Format::class,
+            ['helper' => $priceHelperMock]
         );
 
         $this->priceCurrency = $this->getMockBuilder(

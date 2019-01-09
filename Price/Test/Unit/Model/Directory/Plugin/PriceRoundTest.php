@@ -49,6 +49,9 @@ class PriceRoundTest extends \PHPUnit\Framework\TestCase
         $objectManager = new ObjectManager($this);
 
         $this->helper = $this->getMockBuilder(Data::class)->disableOriginalConstructor()->getMock();
+        $this->helper->expects($this->atLeastOnce())
+            ->method('getIntegerCurrencies')
+            ->willReturn(['JPY']);
         $this->priceRoundPlugin = $objectManager->getObject(PriceRound::class, ['helper' => $this->helper]);
         $this->priceCurrency = $this->getMockBuilder(PriceCurrency::class)->disableOriginalConstructor()->getMock();
 
@@ -157,94 +160,6 @@ class PriceRoundTest extends \PHPUnit\Framework\TestCase
                 'JPY',
                 2
             )
-        );
-    }
-
-    /**
-     * Test for aroundRoundRound (round)
-     *
-     * @return void
-     */
-    public function testAroundRoundRound()
-    {
-        $helper = $this->helper;
-        $priceCurrency = $this->priceCurrency;
-        $priceRound = $this->priceRoundPlugin;
-        $closure = $this->closure;
-        $helper->expects($this->atLeastOnce())
-            ->method('getRoundMethod')
-            ->willReturn('round');
-        $currency = $this->getMockBuilder(Currency::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $currency->expects($this->atLeastOnce())
-            ->method('getCode')->willReturn('JPY');
-
-        $priceCurrency->expects($this->atLeastOnce())
-            ->method('getCurrency')->willReturn($currency);
-
-        $this->assertEquals(
-            100,
-            $priceRound->aroundRound($priceCurrency, $closure, 100.49, 'USD', 2)
-        );
-    }
-
-    /**
-     * Test for aroundRoundRound (ceil)
-     *
-     * @return void
-     */
-    public function testAroundRoundCeil()
-    {
-        $helper = $this->helper;
-        $priceCurrency = $this->priceCurrency;
-        $priceRound = $this->priceRoundPlugin;
-        $closure = $this->closure;
-        $helper->expects($this->atLeastOnce())
-            ->method('getRoundMethod')
-            ->willReturn('ceil');
-        $currency = $this->getMockBuilder(Currency::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $currency->expects($this->atLeastOnce())
-            ->method('getCode')->willReturn('JPY');
-
-        $priceCurrency->expects($this->atLeastOnce())
-            ->method('getCurrency')->willReturn($currency);
-
-        $this->assertEquals(
-            101,
-            $priceRound->aroundRound($priceCurrency, $closure, 100.49, 'USD', 2)
-        );
-    }
-
-    /**
-     * Test for aroundRoundRound (floor)
-     *
-     * @return void
-     */
-    public function testAroundRoundFloor()
-    {
-        $helper = $this->helper;
-        $priceCurrency = $this->priceCurrency;
-        $priceRound = $this->priceRoundPlugin;
-        $closure = $this->closure;
-
-        $helper->expects($this->atLeastOnce())
-            ->method('getRoundMethod')
-            ->willReturn('floor');
-        $currency = $this->getMockBuilder(Currency::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $currency->expects($this->atLeastOnce())
-            ->method('getCode')->willReturn('JPY');
-
-        $priceCurrency->expects($this->atLeastOnce())
-            ->method('getCurrency')->willReturn($currency);
-
-        $this->assertEquals(
-            100,
-            $priceRound->aroundRound($priceCurrency, $closure, 100.49, 'USD', 2)
         );
     }
 }
