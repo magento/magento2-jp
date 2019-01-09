@@ -56,7 +56,7 @@ jobs:
 
       - run:
           name: Unit Test
-          command: ./vendor/phpunit/phpunit/phpunit -c dev/tests/unit -d memory_limit=2G
+          command: ./vendor/phpunit/phpunit/phpunit -c dev/tests/unit
 
   static_test:
     <<: *defaults
@@ -76,7 +76,7 @@ jobs:
 
       - run:
           name: Static Test
-          command: ./vendor/phpunit/phpunit/phpunit -c dev/tests/static -d memory_limit=2G
+          command: ./vendor/phpunit/phpunit/phpunit -c dev/tests/static
 
 workflows:
   version: 2
