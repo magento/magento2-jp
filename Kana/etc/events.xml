@@ -7,6 +7,6 @@
         <observer name="kana_copy_fields_from_order_to_customer" instance="MagentoJapan\Kana\Observer\CopyKanaToCustomer" />
     </event>
     <event name="core_copy_fieldset_order_address_to_customer_address">
-        <observer name="kana_copy_fields_from_order_to_customer_address" instance="MagentoJapan\Kana\Observer\CopyKanaToCustomerAddress" />
+        <observer name="kana_copy_fields_from_order_to_customer_address" instance="MagentoJapan\Kana\Observer\CopyKanaToCustomer" />
     </event>
 </config>

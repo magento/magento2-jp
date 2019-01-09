@@ -168,7 +168,6 @@ class LayoutProcessor
     {
         $hideCountry = $this->system->getShowCountry();
 
-
         if ($billingElementKey === 'region_id') {
             $billingElementKey = 'region';
         }
