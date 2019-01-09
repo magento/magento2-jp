@@ -145,15 +145,11 @@ class LayoutProcessor
     /**
      * Process Billing address Kana names.
      *
-     * @param $payments
+     * @param array $payments
      * @return void
      */
     private function processBilling(&$payments)
     {
-        $hideCountry = $this->system->getShowCountry();
-        $useKana = $this->system->getUseKana();
-        $requireKana = $this->system->getRequireKana();
-
         foreach ($payments as $key => &$method) {
             if (!isset($method['dataScopePrefix'])) {
                 $method['dataScopePrefix'] = $key;
@@ -164,29 +160,42 @@ class LayoutProcessor
                 continue;
             }
             foreach ($elements as $billingElementKey => &$billingElement) {
-                if ($billingElementKey === 'region_id') {
-                    $billingElementKey = 'region';
-                }
-                $path = self::CONFIG_ELEMENT_ORDER . $billingElementKey;
-                $config = $this->system->getConfigValue($path);
-                $billingElement['sortOrder'] = $config;
+                $this->processBillingElement($billingElementKey, $billingElement);
+            }
+        }
+    }
 
-                if ($billingElementKey === 'country_id' && $hideCountry) {
-                    $billingElement['visible'] = false;
-                }
+    /**
+     * @param string $billingElementKey
+     * @param array $billingElement
+     */
+    private function processBillingElement(string $billingElementKey, array &$billingElement)
+    {
+        $hideCountry = $this->system->getShowCountry();
+        $useKana = $this->system->getUseKana();
+        $requireKana = $this->system->getRequireKana();
 
-                if (in_array($billingElementKey, ['firstnamekana', 'lastnamekana']) && $this->getCustomer()) {
-                    $attribute = $this->getCustomer()->getCustomAttribute($billingElementKey);
-                    if (is_object($attribute)) {
-                        $billingElement['value'] = $attribute->getValue();
-                    }
-                    if ($useKana != '1') {
-                        $billingElement['visible'] = false;
-                    }
-                    if ($useKana && $requireKana) {
-                        $billingElement['validation']['required-entry'] = true;
-                    }
-                }
+        if ($billingElementKey === 'region_id') {
+            $billingElementKey = 'region';
+        }
+        $path = self::CONFIG_ELEMENT_ORDER . $billingElementKey;
+        $config = $this->system->getConfigValue($path);
+        $billingElement['sortOrder'] = $config;
+
+        if ($billingElementKey === 'country_id' && $hideCountry) {
+            $billingElement['visible'] = false;
+        }
+
+        if (in_array($billingElementKey, ['firstnamekana', 'lastnamekana']) && $this->getCustomer()) {
+            $attribute = $this->getCustomer()->getCustomAttribute($billingElementKey);
+            if (is_object($attribute)) {
+                $billingElement['value'] = $attribute->getValue();
+            }
+            if ($useKana != '1') {
+                $billingElement['visible'] = false;
+            }
+            if ($useKana && $requireKana) {
+                $billingElement['validation']['required-entry'] = true;
             }
         }
     }
