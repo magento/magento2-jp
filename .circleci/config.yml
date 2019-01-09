@@ -66,14 +66,16 @@ jobs:
           at: .
 
       - run:
-          name: Prepare file list
+          name: Setup tests
           command: |
             find mde -not -path '*/.*/*' -not -name '.*' -type f -follow -print > dev/tests/static/testsuite/Magento/Test/_files/changed_files_mde.txt
             find mde -not -path '*/.*/*' -not -name '.*' -type f -follow -print > dev/tests/static/testsuite/Magento/Test/_files/changed_files_mde.added.txt
             for module in $(echo $MDE_COMPOSER_MODULE | tr ";" "\n"); do echo "$module" >> dev/tests/static/testsuite/Magento/Test/Integrity/_files/blacklist/composer_root_modules_mde.txt; done
+            cp vendor/autoload.php .
+            sed -i 's/\/composer/\/vendor\/composer/' autoload.php
 
       - run:
-          name: Static test
+          name: Static Test
           command: ./vendor/phpunit/phpunit/phpunit -c dev/tests/static -d memory_limit=2G
 
 workflows:
