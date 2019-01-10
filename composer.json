@@ -9,6 +9,7 @@
     "magentojapan/module-price": "*",
     "magentojapan/module-kuromoji": "*",
     "magentojapan/module-store-address": "*",
-    "magentojapan/module-zip2address": "*"
+    "magentojapan/module-zip2address": "*",
+    "magentojapan/module-pdf": "*"
   }
 }
