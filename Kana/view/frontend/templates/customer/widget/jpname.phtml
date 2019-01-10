@@ -147,8 +147,8 @@ $kanaType = $block->getConfig('kana_type');
         <?php endif;?>
         <?php $rule = join(',', $rule);?>
         <div class="field name lastname <?php if($requireKana):?>required<?php endif;?>">
-            <label class="label"  for="<?= $block->getFieldId('lastnamekana') ?>">
-                <span><?= $block->getStoreLabel('lastnamekana') ?></span>
+            <label class="label"  for="<?= /* @escapeNotVerified */ $block->getFieldId('lastnamekana') ?>">
+                <span><?= /* @escapeNotVerified */ $block->getStoreLabel('lastnamekana') ?></span>
             </label>
 
             <?php $attrLnameKana = $block->getObject()->getCustomAttribute('lastnamekana');?>
@@ -164,17 +164,17 @@ $kanaType = $block->getConfig('kana_type');
             <?php endif; ?>
 
             <div class="control">
-                <input type="text" id="<?= $block->getFieldId('lastnamekana') ?>"
-                       name="<?= $block->getFieldName('lastnamekana') ?>"
-                       value="<?php echo $block->escapeHtml($lnameKana) ?>"
-                       title="<?= $block->getStoreLabel('lastnamekana') ?>"
-                       class="input-text <?php echo $block->getAttributeValidationClass('lastnamekana') ?>" <?= $block->getFieldParams() ?>
-                       <?php if ($rule): ?>data-validate="{<?= $rule; ?>}"<?php endif; ?>>
+                <input type="text" id="<?= /* @escapeNotVerified */ $block->getFieldId('lastnamekana') ?>"
+                       name="<?= /* @escapeNotVerified */ $block->getFieldName('lastnamekana') ?>"
+                       value="<?= /* @escapeNotVerified */ $block->escapeHtml($lnameKana) ?>"
+                       title="<?= /* @escapeNotVerified */ $block->getStoreLabel('lastnamekana') ?>"
+                       class="input-text <?= /* @escapeNotVerified */ $block->getAttributeValidationClass('lastnamekana') ?>" <?= /* @escapeNotVerified */ $block->getFieldParams() ?>
+                       <?php if ($rule): ?>data-validate="{<?= /* @escapeNotVerified */ $rule; ?>}"<?php endif; ?>>
             </div>
         </div>
         <div class="field name firstname <?php if($requireKana):?>required<?php endif;?>">
-            <label class="label" for="<?= $block->getFieldId('firstnamekana') ?>">
-                <span><?= $block->getStoreLabel('firstnamekana') ?></span>
+            <label class="label" for="<?= /* @escapeNotVerified */ $block->getFieldId('firstnamekana') ?>">
+                <span><?= /* @escapeNotVerified */ $block->getStoreLabel('firstnamekana') ?></span>
             </label>
 
             <?php $attrFnameKana = $block->getObject()->getCustomAttribute('firstnamekana');?>
@@ -189,12 +189,12 @@ $kanaType = $block->getConfig('kana_type');
                 <?php endif;?>
             <?php endif; ?>
             <div class="control">
-                <input type="text" id="<?= $block->getFieldId('firstnamekana') ?>"
-                       name="<?= $block->getFieldName('firstnamekana') ?>"
-                       value="<?php echo $block->escapeHtml($fnameKana) ?>"
-                       title="<?= $block->getStoreLabel('firstnamekana') ?>"
-                       class="input-text <?= $block->getAttributeValidationClass('firstnamekana') ?>" <?= $block->getFieldParams() ?>
-                       <?php if ($rule): ?>data-validate="{<?= $rule; ?>}"<?php endif; ?>>
+                <input type="text" id="<?= /* @escapeNotVerified */ $block->getFieldId('firstnamekana') ?>"
+                       name="<?= /* @escapeNotVerified */ $block->getFieldName('firstnamekana') ?>"
+                       value="<?= /* @escapeNotVerified */ $block->escapeHtml($fnameKana) ?>"
+                       title="<?= /* @escapeNotVerified */ $block->getStoreLabel('firstnamekana') ?>"
+                       class="input-text <?= /* @escapeNotVerified */ $block->getAttributeValidationClass('firstnamekana') ?>" <?= /* @escapeNotVerified */ $block->getFieldParams() ?>
+                       <?php if ($rule): ?>data-validate="{<?= /* @escapeNotVerified */ $rule; ?>}"<?php endif; ?>>
             </div>
         </div>
     <?php endif;?>

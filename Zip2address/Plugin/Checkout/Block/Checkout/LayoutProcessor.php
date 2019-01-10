@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 
 namespace MagentoJapan\Zip2address\Plugin\Checkout\Block\Checkout;
 
@@ -9,6 +11,7 @@ use Magento\Framework\Locale\ResolverInterface;
  */
 class LayoutProcessor
 {
+
     /**
      * @var ResolverInterface
      */
@@ -23,6 +26,8 @@ class LayoutProcessor
     }
 
     /**
+     * Update checkout layout for Zip2Address.
+     *
      * @param \Magento\Checkout\Block\Checkout\LayoutProcessor $subject
      * @param array $jsLayout
      * @return array

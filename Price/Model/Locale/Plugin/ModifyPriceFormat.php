@@ -1,32 +1,32 @@
 <?php
+declare(strict_types=1);
+
+
 namespace MagentoJapan\Price\Model\Locale\Plugin;
 
 use Magento\Framework\Locale\Format;
-use \Magento\Framework\App\ScopeResolverInterface;
-use \Magento\Framework\Locale\ResolverInterface;
-use \Magento\Directory\Model\CurrencyFactory;
+use Magento\Framework\App\ScopeResolverInterface;
+use Magento\Framework\Locale\ResolverInterface;
+use Magento\Directory\Model\CurrencyFactory;
 use MagentoJapan\Price\Helper\Data;
 
+/**
+ * Modify JPY price formatting.
+ */
 class ModifyPriceFormat
 {
     /**
-     * Scope Resolver
-     *
-     * @var \Magento\Framework\App\ScopeResolverInterface
+     * @var ScopeResolverInterface
      */
     private $_scopeResolver;
 
     /**
-     * Locale Resolver
-     *
-     * @var \Magento\Framework\Locale\ResolverInterface
+     * @var ResolverInterface
      */
     private $_localeResolver;
 
     /**
-     * Currency Factory
-     *
-     * @var \Magento\Directory\Model\CurrencyFactory
+     * @var CurrencyFactory
      */
     private $_currencyFactory;
 
@@ -36,12 +36,10 @@ class ModifyPriceFormat
     private $helper;
 
     /**
-     * Constructor
-     *
-     * @param ScopeResolverInterface $scopeResolver   Scope Resolver
-     * @param ResolverInterface      $localeResolver  Locale Resolver
-     * @param CurrencyFactory        $currencyFactory Currency Resolver
-     * @param Data                                    $helper  Helper
+     * @param ScopeResolverInterface $scopeResolver
+     * @param ResolverInterface $localeResolver
+     * @param CurrencyFactory $currencyFactory
+     * @param Data $helper
      */
     public function __construct(
         ScopeResolverInterface $scopeResolver,
@@ -56,14 +54,14 @@ class ModifyPriceFormat
     }
 
     /**
-     * Modify precision for JPY
+     * Modify precision for JPY.
      *
-     * @param \Magento\Framework\Locale\Format $subject      Currency Format Obj
-     * @param \Closure                         $proceed      Closure
-     * @param null|string                      $localeCode   Locale Code
-     * @param null|string                      $currencyCode Currency Code
-     *
+     * @param Format $subject
+     * @param \Closure $proceed
+     * @param string $localeCode
+     * @param string $currencyCode
      * @return mixed
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function aroundGetPriceFormat(
         Format $subject,
@@ -79,7 +77,7 @@ class ModifyPriceFormat
 
         $result = $proceed($localeCode, $currencyCode);
 
-        if (in_array($currency->getCode() ,$this->helper->getIntegerCurrencies())) {
+        if (in_array($currency->getCode(), $this->helper->getIntegerCurrencies())) {
             $result['precision'] = '0';
             $result['requiredPrecision'] = '0';
         }
@@ -87,10 +85,10 @@ class ModifyPriceFormat
     }
 
     /**
-     * Remove comma from price on JPY
+     * Remove comma from price on JPY.
      *
      * @param \Magento\Framework\Locale\Format $subject
-     * @param $value
+     * @param string $value
      * @return array
      */
     public function beforeGetNumber(
@@ -101,9 +99,7 @@ class ModifyPriceFormat
         $locale   = $this->_localeResolver->getLocale();
         $format = $subject->getPriceFormat($locale, $currency->getCode());
 
-
-        if($format['groupSymbol'] == '.')
-        {
+        if ($format['groupSymbol'] == '.') {
             $value = preg_replace('/\./', '', $value);
             $value = preg_replace('/,/', '.', $value);
         } else {

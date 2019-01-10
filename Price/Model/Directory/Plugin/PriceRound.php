@@ -1,31 +1,30 @@
 <?php
+declare(strict_types=1);
+
+
 namespace MagentoJapan\Price\Model\Directory\Plugin;
 
 use Magento\Directory\Model\PriceCurrency;
 use MagentoJapan\Price\Helper\Data;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
+/**
+ * Modify rounding method for converting currency.
+ */
 class PriceRound
 {
-
     /**
-     * ScopeConfig
-     *
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    private $scopeConfig;
 
     /**
-     * Helper
-     *
      * @var \MagentoJapan\Price\Helper\Data
      */
-    protected $helper;
+    private $helper;
 
     /**
-     * ModifyPrice constructor.
-     *
-     * @param Data                 $helper
+     * @param Data $helper
      * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
@@ -36,17 +35,15 @@ class PriceRound
         $this->helper = $helper;
     }
 
-
     /**
-     * Modify rounding method for converting currency
+     * Modify rounding method for converting currency.
      *
-     * @param PriceCurrency $subject   Price Currency
-     * @param \Closure      $proceed   Closure
-     * @param float         $amount    Price
-     * @param null          $scope     Configuration Scope
-     * @param null          $currency  Currency
-     * @param int           $precision Currency Precision
-     *
+     * @param PriceCurrency $subject
+     * @param \Closure $proceed
+     * @param int $amount
+     * @param string $scope
+     * @param string $currency
+     * @param int $precision
      * @return mixed
      */
     public function aroundConvertAndRound(
@@ -72,29 +69,24 @@ class PriceRound
         return $proceed($amount, $scope, $currency, $precision);
     }
 
-
     /**
-     * Modify rounding method
+     * Modify rounding method for converting currency.
      *
-     * @param PriceCurrency $subject   Price Currency
-     * @param \Closure      $proceed   Closure
-     * @param float         $amount    Price
-     * @param int           $precision Currency precision
-     *
+     * @param PriceCurrency $subject
+     * @param \Closure $proceed
+     * @param int $amount
+     * @param int $precision
      * @return mixed
      */
-    public function aroundRound(PriceCurrency  $subject,
+    public function aroundRoundPrice(
+        PriceCurrency $subject,
         \Closure $proceed,
         $amount,
         $precision = 2
     ) {
         $currency = $subject->getCurrency()->getCode();
-            if (in_array($currency, $this->helper->getIntegerCurrencies())) {
-            /**
-             * Rounding method
-             *
-             * @var string $method rounding method
-             */
+        if (in_array($currency, $this->helper->getIntegerCurrencies())) {
+            /** @var string $method */
             $method = $this->helper->getRoundMethod();
             if ($method != 'round') {
                 return $method($amount);
@@ -102,5 +94,4 @@ class PriceRound
         }
         return $proceed($amount, $precision);
     }
-
 }

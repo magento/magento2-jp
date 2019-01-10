@@ -1,20 +1,23 @@
 <?php
+declare(strict_types=1);
+
+
 namespace MagentoJapan\Price\Model\Directory\Plugin;
 
 use Magento\Directory\Model\Currency;
 use MagentoJapan\Price\Helper\Data;
 
+/**
+ * Modify price precision for JPY.
+ */
 class Precision
 {
     /**
-     * Helper
-     *
      * @var \MagentoJapan\Price\Helper\Data
      */
     private $helper;
 
     /**
-     * Precision constructor.
      * @param Data $helper
      */
     public function __construct(
@@ -24,16 +27,15 @@ class Precision
     }
 
     /**
-     * Modify price precision for JPY
+     * Modify price precision for JPY.
      *
-     * @param Currency $subject          Currency Object
-     * @param \Closure $proceed          Closure
-     * @param float    $price            Price
-     * @param int      $precision        Currency Precision
-     * @param array    $options          Currency options array
-     * @param bool     $includeContainer Include container flag
-     * @param bool     $addBrackets      Add brackets flag
-     *
+     * @param Currency $subject
+     * @param \Closure $proceed
+     * @param float $price
+     * @param int $precision
+     * @param array $options
+     * @param bool $includeContainer
+     * @param bool $addBrackets
      * @return mixed
      */
     public function aroundFormatPrecision(
@@ -56,15 +58,16 @@ class Precision
             $precision,
             $options,
             $includeContainer,
-            $addBrackets);
+            $addBrackets
+        );
     }
 
     /**
-     * Modify Currency Position
+     * Modify Currency Position.
      *
      * @param Currency $subject
      * @param \Closure $proceed
-     * @param $price
+     * @param float $price
      * @param array $options
      * @return mixed
      */
@@ -73,12 +76,11 @@ class Precision
         \Closure $proceed,
         $price,
         $options = []
-    )
-    {
+    ) {
         if ($subject->getCode() == 'JPY') {
             $position = $this->helper->getSymbolPosition();
             $options['position'] = (int)$position;
-            if($options['position'] == \Zend_Currency::RIGHT) {
+            if ($options['position'] == \Zend_Currency::RIGHT) {
                 $options['symbol'] = __('Yen');
             }
         }
@@ -88,5 +90,4 @@ class Precision
             $options
         );
     }
-
 }

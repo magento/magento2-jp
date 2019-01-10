@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\StoreAddress\Plugin\Store\Model\Address;
 
 use Magento\Store\Model\Address\Renderer as BaseRenderer;
@@ -6,13 +8,15 @@ use Magento\Framework\Filter\FilterManager;
 use Magento\Framework\Event\ManagerInterface as EventManager;
 use Magento\Framework\DataObject;
 use Magento\Store\Model\ScopeInterface;
-use \Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 
+/**
+ * Format store address display for JP locale.
+ */
 class Renderer
 {
-
     /**
-     *
+     * @var string
      */
     const CONFIG_FORMAT = 'general/store_information/format';
     /**
@@ -31,8 +35,6 @@ class Renderer
     private $scopeConfig;
 
     /**
-     * Constructor
-     *
      * @param EventManager $eventManager
      * @param FilterManager $filterManager
      * @param ScopeConfigInterface $scopeConfig
@@ -47,13 +49,15 @@ class Renderer
         $this->scopeConfig = $scopeConfig;
     }
 
-
     /**
+     * Format store address display for JP locale.
+     *
      * @param BaseRenderer $renderer
      * @param \Closure $proceed
      * @param DataObject $storeInfo
      * @param string $type
      * @return string
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function aroundFormat(
         BaseRenderer $renderer,
@@ -64,12 +68,13 @@ class Renderer
         $format = $this->scopeConfig
             ->getValue(self::CONFIG_FORMAT, ScopeInterface::SCOPE_STORE);
 
-        $this->eventManager
-            ->dispatch('store_address_format',
-                        [
-                            'type' => $type,
-                            'store_info' => $storeInfo
-                        ]);
+        $this->eventManager->dispatch(
+            'store_address_format',
+            [
+                'type' => $type,
+                'store_info' => $storeInfo
+            ]
+        );
         $address = $this->filterManager->template(
             $format,
             ['variables' => $storeInfo->getData()]

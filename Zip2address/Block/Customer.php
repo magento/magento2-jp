@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Zip2address\Block;
 
 use Magento\Framework\View\Element\Template;
@@ -7,6 +9,8 @@ use Magento\Framework\View\Element\Template\Context;
 
 /**
  * Customer zip validation block.
+ *
+ * @api
  */
 class Customer extends Template
 {
@@ -16,7 +20,6 @@ class Customer extends Template
     private $localeResolver;
 
     /**
-     * Customer constructor.
      * @param ResolverInterface $localeResolver
      * @param Context $context
      * @param array $data
@@ -31,6 +34,8 @@ class Customer extends Template
     }
 
     /**
+     * Get locale.
+     *
      * @return string
      */
     public function getCurrentLocale(): string

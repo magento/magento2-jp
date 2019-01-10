@@ -1,50 +1,50 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Price\Model\Directory\Plugin;
 
 use Magento\Directory\Model\PriceCurrency;
-use \Magento\Framework\View\Element\Context;
+use Magento\Framework\View\Element\Context;
+use MagentoJapan\Price\Helper\Data;
 
+/**
+ * Modify currency format.
+ */
 class Format
 {
-
     /**
-     * Scope Config
-     *
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    private $scopeConfig;
 
     /**
-     * @var \MagentoJapan\Price\Helper\Data
+     * @var Data
      */
     private $helper;
 
-
     /**
-     * Format constructor.
      * @param Context $context
-     * @param \MagentoJapan\Price\Helper\Data $helper
+     * @param Data $helper
      */
     public function __construct(
         Context $context,
-        \MagentoJapan\Price\Helper\Data $helper
+        Data $helper
     ) {
         $this->scopeConfig = $context->getScopeConfig();
         $this->helper = $helper;
     }
 
     /**
-     * Modify Currency Format
+     * Modify currency format.
      *
-     * @param PriceCurrency $subject          Price Currency Object
-     * @param \Closure      $proceed          Closure
-     * @param float         $amount           Price Amount
-     * @param bool          $includeContainer Include Container Flag
-     * @param int           $precision        Precision digits
-     * @param null          $scope            Data scope
-     * @param null          $currency         Currency Code
-     *
-     * @return mixed
+     * @param PriceCurrency $subject
+     * @param \Closure $proceed
+     * @param float $amount
+     * @param bool $includeContainer
+     * @param int $precision
+     * @param string $scope
+     * @param string $currency
+     * @return mixed|string
      */
     public function aroundFormat(
         PriceCurrency  $subject,
