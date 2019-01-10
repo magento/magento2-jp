@@ -1,9 +1,14 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Kana\Observer\Adminhtml;
 
 use Magento\Framework\Locale\Currency;
 use Magento\Framework\Event\ObserverInterface;
 
+/**
+ * Copy kana fields to Customer entity.
+ */
 class CopyKanaToCustomer implements ObserverInterface
 {
     /**

@@ -1,12 +1,11 @@
 {
-    "name": "magentojapan/price",
+    "name": "magentojapan/module-price",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
     ],
     "description": "Magento2 extension for Price.",
-    "version": "1.0.0",
     "authors":[
         {
             "name": "Hirokazu Nishi",
@@ -18,7 +17,11 @@
     "require": {
         "php": "~7.1.3|~7.2.0",
         "magento/module-store": "*",
-        "magento/module-backend": "*",
+        "magento/module-catalog-rule": "*",
+        "magento/module-directory": "*",
+        "magento/module-catalog": "*",
+        "magento/module-tax": "*",
+        "magento/module-currency-symbol": "*",
         "magento/framework": "*",
         "lib-libxml": "*"
     },

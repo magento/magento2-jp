@@ -1,11 +1,16 @@
 <?php
-namespace MagentoJapan\Kana\Test\Unit\Helper;
+declare(strict_types=1);
 
-use \MagentoJapan\Kana\Helper\Data;
+
+namespace MagentoJapan\Kana\Test\Unit\Model\Config;
+
+use MagentoJapan\Kana\Model\Config\System;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use PHPUnit\Framework\TestCase;
 
-class DataTest extends \PHPUnit_Framework_TestCase
+class SystemTest extends TestCase
 {
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface|\PHPUnit_Framework_MockObject_MockObject
@@ -13,29 +18,24 @@ class DataTest extends \PHPUnit_Framework_TestCase
     protected $scopeMock;
 
     /**
-     * @var \MagentoJapan\Kana\Helper\Data|\PHPUnit_Framework_MockObject_MockObject
+     * @var \MagentoJapan\Kana\Model\Config\System|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $helper;
+    protected $system;
 
     /**
-     *
+     * @inheritdoc
      */
     public function setUp()
     {
         $objectManager = new ObjectManager($this);
         $this->scopeMock =
-            $this->getMockBuilder('Magento\Framework\App\Config\ScopeConfigInterface')
+            $this->getMockBuilder(ScopeConfigInterface::class)
                 ->disableOriginalConstructor()
                 ->getMock();
-        $contextMock = $this->getMockBuilder('Magento\Framework\App\Helper\Context')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $contextMock->expects($this->any())
-            ->method('getScopeConfig')
-            ->willReturn($this->scopeMock);
-        $this->helper =
-            $objectManager->getObject('MagentoJapan\Kana\Helper\Data',
-                ['context'=>$contextMock]);
+        $this->system = $objectManager->getObject(
+            System::class,
+            ['scopeConfig' => $this->scopeMock]
+        );
     }
 
     /**
@@ -55,8 +55,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
             ->method('getValue')
             ->will($this->returnValueMap($map));
 
-        $value = $this->helper->getLocale();
-
+        $value = $this->system->getLocale();
         $this->assertEquals($expected, $value);
     }
 
@@ -67,10 +66,9 @@ class DataTest extends \PHPUnit_Framework_TestCase
     {
         return [
             ['general/locale/code', 'ja_JP', 'ja_JP'],
-            ['general/locale/code','en_US', 'en_US'],
+            ['general/locale/code', 'en_US', 'en_US'],
         ];
     }
-
 
     /**
      * @param $path
@@ -89,7 +87,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
             ->method('getValue')
             ->will($this->returnValueMap($map));
 
-        $value = $this->helper->getElementOrder();
+        $value = $this->system->getElementOrder();
 
         $this->assertEquals($expected, $value);
     }
@@ -113,7 +111,6 @@ class DataTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-
     /**
      * @param $path
      * @param $expected
@@ -131,7 +128,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
             ->method('getValue')
             ->will($this->returnValueMap($map));
 
-        $value = $this->helper->getShowCounry();
+        $value = $this->system->getShowCountry();
 
         $this->assertEquals($expected, $value);
     }
@@ -146,7 +143,6 @@ class DataTest extends \PHPUnit_Framework_TestCase
             ['localize/address/hide_country', '0', '0'],
         ];
     }
-
 
     /**
      * @param $path
@@ -165,7 +161,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
             ->method('getValue')
             ->will($this->returnValueMap($map));
 
-        $value = $this->helper->getRequireKana();
+        $value = $this->system->getRequireKana();
 
         $this->assertEquals($expected, $value);
     }
@@ -198,7 +194,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
             ->method('getValue')
             ->will($this->returnValueMap($map));
 
-        $value = $this->helper->getUseKana();
+        $value = $this->system->getUseKana();
 
         $this->assertEquals($expected, $value);
     }
@@ -213,7 +209,6 @@ class DataTest extends \PHPUnit_Framework_TestCase
             ['customer/address/use_kana', '0', '0'],
         ];
     }
-
 
     /**
      * @param $path
@@ -232,11 +227,10 @@ class DataTest extends \PHPUnit_Framework_TestCase
             ->method('getValue')
             ->will($this->returnValueMap($map));
 
-        $value = $this->helper->getChangeFieldsOrder();
+        $value = $this->system->getChangeFieldsOrder();
 
         $this->assertEquals($expected, $value);
     }
-
 
     /**
      * @return array

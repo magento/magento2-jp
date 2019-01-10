@@ -1,44 +1,68 @@
 <?php
-namespace MagentoJapan\Kana\Helper;
+declare(strict_types=1);
 
-use Magento\Framework\App\Helper\AbstractHelper;
+namespace MagentoJapan\Kana\Model\Config;
+
 use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 
 /**
- * Class Data
- * @package MagentoJapan\Kana\Helper
+ * System configuration source for Kana.
  */
-class Data extends AbstractHelper
+class System
 {
     /**
-     *
+     * @var string
      */
     const CONFIG_ELEMENT_ORDER = 'localize/sort/';
+
     /**
-     *
+     * @var string
      */
     const CONFIG_COUNTRY_SHOW = 'localize/address/hide_country';
+
     /**
-     *
+     * @var string
      */
     const CONFIG_REQUIRE_KANA = 'customer/address/require_kana';
 
     /**
-     *
+     * @var string
      */
     const CONFIG_USE_KANA = 'customer/address/use_kana';
+
     /**
-     *
+     * @var string
      */
     const CONFIG_FIELDS_ORDER = 'localize/address/change_fields_order';
 
-    const CONFIG_CHECKOUT_SORT = 'localize/sort/change_fields_order';
     /**
-     *
+     * @var string
+     */
+    const CONFIG_CHECKOUT_SORT = 'localize/sort/change_fields_order';
+
+    /**
+     * @var string
      */
     const CONFIG_LOCALE = 'general/locale/code';
 
     /**
+     * @var ScopeConfigInterface
+     */
+    private $scopeConfig;
+
+    /**
+     * @param ScopeConfigInterface $scopeConfig
+     */
+    public function __construct(
+        ScopeConfigInterface $scopeConfig
+    ) {
+        $this->scopeConfig = $scopeConfig;
+    }
+
+    /**
+     * Get Locale.
+     *
      * @return mixed
      */
     public function getLocale()
@@ -47,6 +71,8 @@ class Data extends AbstractHelper
     }
 
     /**
+     * Get Element Order.
+     *
      * @return mixed
      */
     public function getElementOrder()
@@ -55,14 +81,18 @@ class Data extends AbstractHelper
     }
 
     /**
+     * Get "Show Country" configuration.
+     *
      * @return mixed
      */
-    public function getShowCounry()
+    public function getShowCountry()
     {
         return $this->getConfigValue(self::CONFIG_COUNTRY_SHOW);
     }
 
     /**
+     * Get "Require Kana" configuration.
+     *
      * @return mixed
      */
     public function getRequireKana()
@@ -71,6 +101,8 @@ class Data extends AbstractHelper
     }
 
     /**
+     * Get "Use Kana" configuration.
+     *
      * @return mixed
      */
     public function getUseKana()
@@ -79,6 +111,8 @@ class Data extends AbstractHelper
     }
 
     /**
+     * Get "Change Fields Order" configuration.
+     *
      * @return mixed
      */
     public function getChangeFieldsOrder()
@@ -86,14 +120,20 @@ class Data extends AbstractHelper
         return $this->getConfigValue(self::CONFIG_FIELDS_ORDER);
     }
 
+    /**
+     * Get Sort Order.
+     *
+     * @return mixed
+     */
     public function getSortOrder()
     {
         return $this->getConfigValue(self::CONFIG_CHECKOUT_SORT);
     }
 
-
     /**
-     * @param $key
+     * Get Config value.
+     *
+     * @param string $key
      * @return mixed
      */
     public function getConfigValue($key)
