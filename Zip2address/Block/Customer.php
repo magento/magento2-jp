@@ -20,13 +20,13 @@ class Customer extends Template
     private $localeResolver;
 
     /**
-     * @param ResolverInterface $localeResolver
      * @param Context $context
+     * @param ResolverInterface $localeResolver
      * @param array $data
      */
     public function __construct(
-        ResolverInterface $localeResolver,
         Context $context,
+        ResolverInterface $localeResolver,
         array $data = []
     ) {
         parent::__construct($context, $data);
