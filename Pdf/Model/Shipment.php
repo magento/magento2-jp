@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Pdf\Model;
 
 use Magento\Sales\Model\Order\Pdf\Shipment as BaseShipment;
@@ -7,12 +9,10 @@ use MagentoJapan\Pdf\ModelConfig\Service;
 
 class Shipment extends BaseShipment
 {
-
     /**
      * @var Service
      */
     protected $service;
-
 
     /**
      * ShipmentJp constructor.

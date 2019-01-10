@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Pdf\Plugin;
 
 use MagentoJapan\Pdf\ModelConfig\Service;

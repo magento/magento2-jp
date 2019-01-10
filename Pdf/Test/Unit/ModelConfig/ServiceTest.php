@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Pdf\Test\Unit\ModelConfig;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;

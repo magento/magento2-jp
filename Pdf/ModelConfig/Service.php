@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Pdf\ModelConfig;
 
 use Magento\Store\Model\ScopeInterface;
