@@ -4,25 +4,25 @@ declare(strict_types=1);
 
 namespace MagentoJapan\Zip2address\Plugin\Checkout\Block\Checkout;
 
-use MagentoJapan\Zip2address\Helper\Data;
+use Magento\Framework\Locale\ResolverInterface;
 
 /**
- * Update checkout layout for Zip2Address.
+ * Checkout plugin for Zip to address resolution
  */
 class LayoutProcessor
 {
-    /**
-     * @var \MagentoJapan\Zip2address\Helper\Data
-     */
-    private $helper;
 
     /**
-     * @param Data $helper
+     * @var ResolverInterface
      */
-    public function __construct(
-        Data $helper
-    ) {
-        $this->helper = $helper;
+    private $localeResolver;
+
+    /**
+     * @param ResolverInterface $localeResolver
+     */
+    public function __construct(ResolverInterface $localeResolver)
+    {
+        $this->localeResolver = $localeResolver;
     }
 
     /**
@@ -46,12 +46,14 @@ class LayoutProcessor
             if (!is_array($elements)) {
                 continue;
             }
+
             foreach ($elements as $key => &$billingElement) {
                 if ($key === 'postcode') {
                     $billingElement['component'] = 'MagentoJapan_Zip2address/js/ui/form/element/post-code';
                 }
             }
         }
+
         return $jsLayout;
     }
 }

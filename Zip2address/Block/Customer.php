@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace MagentoJapan\Zip2address\Block;
 
 use Magento\Framework\View\Element\Template;
-use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\Locale\ResolverInterface;
+use Magento\Framework\View\Element\Template\Context;
 
 /**
- * Customer block.
+ * Customer zip validation block.
  *
  * @api
  */
@@ -38,12 +38,8 @@ class Customer extends Template
      *
      * @return string
      */
-    public function getLocale(): string
+    public function getCurrentLocale(): string
     {
-        if ($this->localeResolver->getLocale() == 'ja_JP') {
-            return 'ja';
-        }
-
-        return 'en';
+        return $this->localeResolver->getLocale();
     }
 }

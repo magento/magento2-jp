@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var \MagentoJapan\Zip2address\Block\Customer $block
+ */
 ?>
 <script type="text/x-magento-init">
     {
@@ -7,7 +10,7 @@
                 "region" : "#region_id",
                 "city" : "#city",
                 "street" : "#street_1",
-                "lang" : "<?= $this->escapeHtml($this->getHelper()->getCurrentLocale())?>"
+                "lang" : "<?= $block->escapeHtml($block->getCurrentLocale()) ?>"
             }
         }
     }

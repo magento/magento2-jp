@@ -4,25 +4,24 @@ declare(strict_types=1);
 namespace MagentoJapan\Zip2address\Model;
 
 use Magento\Checkout\Model\ConfigProviderInterface;
-use MagentoJapan\Zip2address\Helper\Data;
+use Magento\Framework\Locale\ResolverInterface;
 
 /**
- * Configuration provider for Zip2Address in checkout.
+ * Locale configuration provider
  */
 class ConfigProvider implements ConfigProviderInterface
 {
     /**
-     * @var Data
+     * @var ResolverInterface
      */
-    private $helper;
+    private $localeResolver;
 
     /**
-     * @param Data $helper
+     * @param ResolverInterface $localeResolver
      */
-    public function __construct(
-        Data $helper
-    ) {
-        $this->helper = $helper;
+    public function __construct(ResolverInterface $localeResolver)
+    {
+        $this->localeResolver = $localeResolver;
     }
 
     /**
@@ -31,8 +30,7 @@ class ConfigProvider implements ConfigProviderInterface
     public function getConfig()
     {
         $config = [];
-
-        $config['zip2address']['lang'] = $this->helper->getCurrentLocale();
+        $config['zip2address']['lang'] = $this->localeResolver->getLocale();
 
         return $config;
     }

@@ -3,45 +3,46 @@ declare(strict_types=1);
 
 namespace MagentoJapan\Zip2address\Test\Unit\Model;
 
-use MagentoJapan\Zip2address\Helper\Data;
 use MagentoJapan\Zip2address\Model\ConfigProvider;
+use Magento\Framework\Locale\ResolverInterface;
 
 /**
  * Class ConfigProviderTest
- * @package MagentoJapan\Zip2address\Test\Unit\Helper
  */
 class ConfigProviderTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var \MagentoJapan\Zip2address\Model\ConfigProvider
+     * @var ConfigProvider
      */
     private $configProvider;
+
     /**
-     * @var \MagentoJapan\Zip2address\Helper\Data|\PHPUnit_Framework_MockObject_MockObject
+     * @var ResolverInterface|\PHPUnit_Framework_MockObject_MockObject
      */
-    private $helperMock;
+    private $localeResolver;
 
     /**
      * @inheritdoc
      */
     protected function setUp()
     {
-        $this->helperMock = $this->getMockBuilder(Data::class)
+        $this->localeResolver = $this->getMockBuilder(ResolverInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
-
         $this->configProvider = new ConfigProvider(
-            $this->helperMock
+            $this->localeResolver
         );
     }
 
     /**
+     * @param $locale string
+     * @param $expected string
      * @dataProvider localeDataProvider
      */
     public function testGetConfig($locale, $expected)
     {
-        $this->helperMock->expects(self::once())
-            ->method('getCurrentLocale')
+        $this->localeResolver->expects($this->once())
+            ->method('getLocale')
             ->willReturn($locale);
 
         $result = $this->configProvider->getConfig();
@@ -51,19 +52,21 @@ class ConfigProviderTest extends \PHPUnit\Framework\TestCase
     /**
      * @return array
      */
-    public function localeDataProvider()
+    public function localeDataProvider(): array
     {
         return [
             [
-                'ja',
-                ['zip2address' =>
-                    ['lang' => 'ja']
-                ]
-            ],
-            [
-                'en',
-                ['zip2address' =>
-                    ['lang' => 'en']
+                'ja_JP',
+                [
+                    'zip2address' => [
+                        'lang' => 'ja_JP'
+                    ]
+                ],
+                'en_US',
+                [
+                    'zip2address' => [
+                        'lang' => 'en_US'
+                    ]
                 ]
             ]
         ];
