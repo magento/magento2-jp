@@ -1,13 +1,12 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Kana\Test\Unit\Model\Config\Source;
+
 use MagentoJapan\Kana\Model\Config\Source\Kana;
+use PHPUnit\Framework\TestCase;
 
-
-/**
- * Class KanaTest
- * @package MagentoJapan\Kana\Test\Unit\Model\Config\Source
- */
-class KanaTest extends \PHPUnit_Framework_TestCase
+class KanaTest extends TestCase
 {
     /**
      * @var \MagentoJapan\Kana\Model\Config\Source\Kana
@@ -15,7 +14,7 @@ class KanaTest extends \PHPUnit_Framework_TestCase
     protected $model;
 
     /**
-     *
+     * @inheritdoc
      */
     protected function setUp()
     {
@@ -23,7 +22,7 @@ class KanaTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
+     * Test options array output.
      */
     public function testToOptionArray()
     {

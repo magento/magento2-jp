@@ -1,28 +1,27 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Price\Test\Unit\Model\Config\Source;
+
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 
-class RoundTest extends \PHPUnit_Framework_TestCase
+class RoundTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Round configuration class
+     * Round configuration class.
      *
      * @var \MagentoJapan\Price\Model\Config\Source\Round
      */
     protected $model;
 
     /**
-     * Setup
-     *
-     * @return void
+     * @inheritdoc
      */
     protected function setUp()
     {
         $objectManager = new ObjectManager($this);
 
-        $this->model = $objectManager->getObject(
-            'MagentoJapan\Price\Model\Config\Source\Round'
-        );
+        $this->model = $objectManager->getObject(\MagentoJapan\Price\Model\Config\Source\Round::class);
     }
 
     /**

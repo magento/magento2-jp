@@ -1,7 +1,11 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Price\Model\Config\Source;
 
-
+/**
+ * Position configuration.
+ */
 class Position implements \Magento\Framework\Option\ArrayInterface
 {
     /**

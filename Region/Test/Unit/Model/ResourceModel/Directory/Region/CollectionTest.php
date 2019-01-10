@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Region\Test\Unit\Model\ResourceModel\Directory\Region;
 
 use MagentoJapan\Region\Model\ResourceModel\Directory\Region\Collection;
@@ -12,35 +14,40 @@ use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\DataObject;
 use Psr\Log\LoggerInterface;
 
-class CollectionTest extends \PHPUnit_Framework_TestCase
+/**
+ * Test sort order of Regions for ja_JP locale.
+ */
+class CollectionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Region collection
      *
      * @var Collection
      */
-    protected $collection;
+    private $collection;
 
     /**
      * Locale resolver
      *
      * @var ResolverInterface|\PHPUnit_Framework_MockObject_MockObject
      */
-    protected $localeResolverMock;
+    private $localeResolverMock;
 
     /**
-     * Setup
-     *
-     * @return void
+     * @inheritdoc
      */
     protected function setUp()
     {
-        $entityFactoryMock = $this->getMock(EntityFactory::class, [], [], '', false);
-        $loggerMock = $this->getMock(LoggerInterface::class);
-        $fetchStrategyMock = $this->getMock(FetchStrategyInterface::class);
-        $eventManagerMock = $this->getMock(ManagerInterface::class);
-        $this->localeResolverMock = $this->getMock(ResolverInterface::class);
-        $connectionMock = $this->getMock(Mysql::class, [], [], '', false);
+        $entityFactoryMock = $this->getMockBuilder(EntityFactory::class)->disableOriginalConstructor()->getMock();
+        $loggerMock = $this->getMockBuilder(LoggerInterface::class)->disableOriginalConstructor()->getMock();
+        $fetchStrategyMock = $this->getMockBuilder(FetchStrategyInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $eventManagerMock = $this->getMockBuilder(ManagerInterface::class)->disableOriginalConstructor()->getMock();
+        $this->localeResolverMock = $this->getMockBuilder(ResolverInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $connectionMock = $this->getMockBuilder(Mysql::class)->disableOriginalConstructor()->getMock();
         $resourceMock = $this->getMockForAbstractClass(
             AbstractDb::class,
             [],
@@ -51,7 +58,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             ['getConnection', 'getMainTable', 'getTable', '__wakeup']
         );
 
-        $selectMock = $this->getMock(Select::class, [], [], '', false);
+        $selectMock = $this->getMockBuilder(Select::class)->disableOriginalConstructor()->getMock();
         $connectionMock->expects($this->any())
             ->method('select')
             ->will($this->returnValue($selectMock));

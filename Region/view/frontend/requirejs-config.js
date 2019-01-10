@@ -1,7 +1,7 @@
 var config = {
     map: {
         '*': {
-            exRegionUpdater:          'MagentoJapan_Region/js/ex-region-updater'
+            jpRegionUpdater: 'MagentoJapan_Region/js/ex-region-updater'
         }
     }
 };

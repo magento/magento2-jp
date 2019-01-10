@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Object/etc/fieldset.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:DataObject/etc/fieldset.xsd">
     <scope id="global">
         <fieldset id="customer_account">
             <field name="firstnamekana">
@@ -68,6 +68,5 @@
                 <aspect name="to_quote_address"/>
             </field>
         </fieldset>
-
     </scope>
 </config>
