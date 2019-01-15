@@ -3,9 +3,13 @@ declare(strict_types=1);
 
 namespace MagentoJapan\Pdf\ModelConfig;
 
+use Magento\Framework\Component\ComponentRegistrar;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
+/**
+ * JP PDF font configuration service.
+ */
 class Service
 {
     /**
@@ -23,58 +27,59 @@ class Service
     private $dir;
 
     /**
-     * @var \Magento\Framework\Module\Dir\Reader
-     */
-    private $dirReader;
-
-    /**
      * @var ScopeConfigInterface
      */
     private $scopeConfig;
 
     /**
-     * Constructor.
-     *
-     * @param \Magento\Framework\Module\Dir\Reader $dirReader
+     * @var ComponentRegistrar
+     */
+    private $componentRegistrar;
+
+    /**
      * @param ScopeConfigInterface $scopeConfig
+     * @param ComponentRegistrar $componentRegistrar
      */
     public function __construct(
-        \Magento\Framework\Module\Dir\Reader $dirReader,
-        ScopeConfigInterface $scopeConfig
-    )
-    {
-        $this->dirReader = $dirReader;
+        ScopeConfigInterface $scopeConfig,
+        ComponentRegistrar $componentRegistrar
+    ) {
         $this->scopeConfig = $scopeConfig;
+        $this->componentRegistrar = $componentRegistrar;
     }
 
     /**
+     * Check if JP font override is enabled.
+     *
      * @param $store
      * @return mixed
      */
     public function getJapaneseFontIsActive($store = ScopeInterface::SCOPE_STORE)
     {
-        return $this->scopeConfig->
-        getValue('magentojapan_pdf/font/active', $store);
+        return $this->scopeConfig->getValue('magentojapan_pdf/font/active', $store);
     }
 
     /**
+     * Get configured JP font name.
+     *
      * @param $store
      * @return mixed
      */
     public function getJapaneseFont($store = ScopeInterface::SCOPE_STORE)
     {
-
-        return $this->getAbsoluteFontDir() . $this->scopeConfig->
-            getValue('magentojapan_pdf/font/fontname', $store);
+        return $this->getAbsoluteFontDir() . $this->scopeConfig->getValue('magentojapan_pdf/font/fontname', $store);
     }
 
     /**
+     * Get absolute directory for JP fonts inside the module.
+     *
      * @return string
      */
-    private function getAbsoluteFontDir()
+    private function getAbsoluteFontDir(): string
     {
-        if(!$this->dir) {
-            $this->dir = $this->dirReader->getModuleDir('', 'MagentoJapan_Pdf') . '/' . self::FONT_DIR;
+        if (!$this->dir) {
+            $modulePath = $this->componentRegistrar->getPath(ComponentRegistrar::MODULE, 'MagentoJapan_Pdf');
+            $this->dir = $modulePath . DIRECTORY_SEPARATOR . self::FONT_DIR;
         }
 
         return $this->dir;
