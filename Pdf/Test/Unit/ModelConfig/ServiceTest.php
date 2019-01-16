@@ -4,60 +4,42 @@ declare(strict_types=1);
 namespace MagentoJapan\Pdf\Test\Unit\ModelConfig;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
+use MagentoJapan\Pdf\ModelConfig\Service;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * JP Fonts service test.
+ */
 class ServiceTest extends TestCase
 {
     /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface|\PHPUnit_Framework_MockObject_MockObject
-     */
-    private $scopeMock;
-    /**
-     * @var \MagentoJapan\Pdf\ModelConfig\Service|\PHPUnit_Framework_MockObject_MockObject
+     * @var Service
      */
     private $service;
 
     /**
-     *
+     * @inheritdoc
      */
     protected function setUp()
     {
         $objectManager = new ObjectManager($this);
-        $this->scopeMock =
-            $this->getMockBuilder('Magento\Framework\App\Config\ScopeConfigInterface')
-                ->disableOriginalConstructor()
-                ->getMock();
-        $contextMock = $this->getMockBuilder('Magento\Framework\App\Helper\Context')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $contextMock->expects($this->any())
-            ->method('getScopeConfig')
-            ->willReturn($this->scopeMock);
-        $this->service =
-            $objectManager->getObject('MagentoJapan\Pdf\ModelConfig\Service',
-                ['context'=>$contextMock]);
+        $this->service = $objectManager->getObject(
+            Service::class,
+            [
+                'fontOverrides' => [
+                    'en-font.ttf' => 'jp-font.ttf'
+                ]
+            ]
+        );
     }
 
     /**
-     *
+     * @return void
      */
-    public function testGetJapaneseFontIsActive()
+    public function testGetJapaneseFontPath()
     {
-        $this->scopeMock->expects($this->once())
-            ->method('getValue')
-            ->willReturn('1');
-        $this->assertEquals($this->service->getJapaneseFontIsActive(), '1');
-    }
+        $path = $this->service->getJapaneseFontPath('en-font.ttf');
 
-    /**
-     *
-     */
-    public function testGetJapaneseFont()
-    {
-        $this->scopeMock->expects($this->once())
-            ->method('getValue')
-            ->willReturn('ipag.ttf');
-        $this->assertEquals($this->service->getJapaneseFont(),
-            'ipag.ttf');
+        $this->assertEquals(DIRECTORY_SEPARATOR . Service::FONT_DIR . "jp-font.ttf", $path);
     }
 }

@@ -15,10 +15,12 @@
   ],
   "require": {
     "php": "~7.1.3|~7.2.0",
-    "magento/module-sales": "*",
     "magento/framework": "*",
     "lib-libxml": "*",
     "ext-mbstring": "*"
+  },
+  "suggest": {
+    "magento/module-sales": "*"
   },
   "autoload": {
     "files": [
