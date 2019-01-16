@@ -41,7 +41,10 @@ class Read extends BaseRead
     /**
      * Override path resolution for build-in fonts with JP fonts when needed.
      *
-     * {@inheritdoc}
+     * @param null $path
+     * @param null $scheme
+     * @return string
+     * @throws \Magento\Framework\Exception\ValidatorException
      */
     public function getAbsolutePath($path = null, $scheme = null)
     {
