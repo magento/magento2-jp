@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace MagentoJapan\Pdf\ModelConfig;
 
 use Magento\Framework\Component\ComponentRegistrar;
-use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
 /**
@@ -16,10 +15,6 @@ class Service
      * font file path
      */
     const FONT_DIR = 'lib/fonts/';
-
-    const XML_IS_ACTIVE_PATH = 'magentojapan_pdf/font/active';
-
-    const XML_FONT_NAME_PATH = 'magentojapan_pdf/font/fontname';
 
     /**
      * @var string
@@ -37,37 +32,44 @@ class Service
     private $componentRegistrar;
 
     /**
+     * @var array
+     */
+    private $fontOverrides = [];
+
+    /**
      * @param ScopeConfigInterface $scopeConfig
      * @param ComponentRegistrar $componentRegistrar
+     * @param array $fontOverrides
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
-        ComponentRegistrar $componentRegistrar
+        ComponentRegistrar $componentRegistrar,
+        array $fontOverrides = []
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->componentRegistrar = $componentRegistrar;
+        $this->fontOverrides = $fontOverrides;
     }
 
     /**
-     * Check if JP font override is enabled.
+     * Get JP font file path.
      *
-     * @param $store
-     * @return mixed
+     * @param string $fontName
+     * @return string
      */
-    public function getJapaneseFontIsActive($store = ScopeInterface::SCOPE_STORE)
+    public function getJapaneseFontPath(string $fontName): string
     {
-        return $this->scopeConfig->getValue('magentojapan_pdf/font/active', $store);
+        return $this->getAbsoluteFontDir() . $this->fontOverrides[$fontName];
     }
 
     /**
-     * Get configured JP font name.
+     * Get a list of JP fonts overriding Core fonts.
      *
-     * @param $store
-     * @return mixed
+     * @return array
      */
-    public function getJapaneseFont($store = ScopeInterface::SCOPE_STORE)
+    public function getFontsToOverride(): array
     {
-        return $this->getAbsoluteFontDir() . $this->scopeConfig->getValue('magentojapan_pdf/font/fontname', $store);
+        return array_keys($this->fontOverrides);
     }
 
     /**

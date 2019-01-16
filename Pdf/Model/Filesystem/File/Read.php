@@ -21,15 +21,6 @@ class Read extends BaseRead
     private $jpFontService;
 
     /**
-     * @var array
-     */
-    private $overrideFonts = [
-        'lib/internal/GnuFreeFont/FreeSerif.ttf',
-        'lib/internal/GnuFreeFont/FreeSerifBold.ttf',
-        'lib/internal/GnuFreeFont/FreeSerifItalic.ttf'
-    ];
-
-    /**
      * @param ReadFactory $fileFactory
      * @param DriverInterface $driver
      * @param string $path
@@ -54,8 +45,8 @@ class Read extends BaseRead
      */
     public function getAbsolutePath($path = null, $scheme = null)
     {
-        if (in_array($path, $this->overrideFonts) && $this->jpFontService->getJapaneseFontIsActive()) {
-            $path = $this->jpFontService->getJapaneseFont();
+        if (is_string($path) && in_array($path, $this->jpFontService->getFontsToOverride())) {
+            $path = $this->jpFontService->getJapaneseFontPath($path);
         }
 
         return parent::getAbsolutePath($path, $scheme);
