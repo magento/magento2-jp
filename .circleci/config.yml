@@ -6,7 +6,7 @@ defaults: &defaults
     CORE_GIT_REPOSITORY: magento/magento2
     CORE_GIT_BRANCH: 2.3-develop
   docker:
-    - image: ishakhsuvarov/mde-testing:latest
+    - image: ishakhsuvarov/mde-testing:preview
 
 version: 2
 
@@ -58,6 +58,20 @@ jobs:
           name: Unit Test
           command: ./vendor/phpunit/phpunit/phpunit -c dev/tests/unit
 
+  js_test:
+    <<: *defaults
+    steps:
+
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: JS Static Test
+          command: |
+            cp package.json.sample package.json
+            npm install
+            grunt static
+
   static_test:
     <<: *defaults
     steps:
@@ -83,9 +97,6 @@ workflows:
   build-test:
     jobs:
       - build
-      - unit_test:
-          requires:
-            - build
-      - static_test:
+      - js_test:
           requires:
             - build
