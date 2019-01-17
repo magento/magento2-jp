@@ -45,9 +45,9 @@ define([
                 return false;
             }
 
-            for (pattern in patterns) {
+            patterns.forEach(function (pattern) {
                 if (!patterns.hasOwnProperty(pattern)) {
-                    continue;
+                    return;
                 }
 
                 this.validatedPostCodeExample.push(patterns[pattern].example);
@@ -76,7 +76,7 @@ define([
                         fullScreenLoader.stopLoader();
                     });
                 }
-            }
+            });
 
             this._super();
         },

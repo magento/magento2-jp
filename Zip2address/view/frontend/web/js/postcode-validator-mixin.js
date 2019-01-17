@@ -25,7 +25,6 @@ define([
                     code1 = postCode.replace(/^([0-9]{3}).*/, '$1'),
                     code2 = postCode.replace(/.*([0-9]{4})$/, '$1'),
                     regex,
-                    pattern,
                     regionIdSelector;
 
                 this.validatedPostCodeExample = [];
@@ -34,9 +33,9 @@ define([
                     return false;
                 }
 
-                for (pattern in patterns) {
+                patterns.forEach(function (pattern) {
                     if (!patterns.hasOwnProperty(pattern)) {
-                        continue;
+                        return;
                     }
 
                     this.validatedPostCodeExample.push(patterns[pattern].example);
@@ -64,10 +63,8 @@ define([
                         }).always(function () {
                             fullScreenLoader.stopLoader();
                         });
-
-                        return true;
                     }
-                }
+                });
             }
         });
     };

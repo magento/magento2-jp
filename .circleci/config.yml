@@ -105,3 +105,9 @@ workflows:
       - js_test:
           requires:
             - build
+      - unit_test:
+          requires:
+            - build
+      - static_test:
+          requires:
+            - build

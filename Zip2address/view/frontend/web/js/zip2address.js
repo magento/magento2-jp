@@ -14,7 +14,7 @@ define([
         },
 
         /**
-         * @inheritDoc
+         * @override
          */
         _search: function (event) {
             var postcode = event.target.value,
