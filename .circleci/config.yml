@@ -66,12 +66,16 @@ jobs:
           at: .
 
       - run:
-          name: JS Static Test
+          name: Prepare JS Static testing infrastructure
           command: |
             cp package.json.sample package.json
             cp Gruntfile.js.sample Gruntfile.js
             npm install
-            grunt static
+            echo "mde/**/*.js" >> dev/tests/static/testsuite/Magento/Test/Js/_files/whitelist/magento.txt
+
+      - run:
+          name: JS Static Test
+          command: grunt static
 
   static_test:
     <<: *defaults
