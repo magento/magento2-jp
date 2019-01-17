@@ -69,6 +69,7 @@ jobs:
           name: JS Static Test
           command: |
             cp package.json.sample package.json
+            cp Gruntfile.js.sample Gruntfile.js
             npm install
             grunt static
 
