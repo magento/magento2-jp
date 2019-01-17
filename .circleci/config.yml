@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/magento
   environment:
-    MDE_COMPOSER_MODULE: magentojapan/common;magentojapan/module-kana;magentojapan/module-kuromoji;magentojapan/module-price;magentojapan/module-region;magentojapan/module-store-address;magentojapan/module-zip2address
+    MDE_COMPOSER_MODULE: magentojapan/common;magentojapan/module-kana;magentojapan/module-kuromoji;magentojapan/module-price;magentojapan/module-region;magentojapan/module-store-address;magentojapan/module-zip2address;magentojapan/module-pdf
     MDE_COMPOSER_METAPACKAGE: magentojapan/common
     CORE_GIT_REPOSITORY: magento/magento2
     CORE_GIT_BRANCH: 2.3-develop
