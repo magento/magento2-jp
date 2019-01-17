@@ -2,7 +2,7 @@ var config = {
     map: {
         '*': {
             zip2address: 'MagentoJapan_Zip2address/js/zip2address',
-            zip2addresspostcode:'MagentoJapan_Zip2address/js/ui/form/element/post-code'
+            zip2addresspostcode: 'MagentoJapan_Zip2address/js/ui/form/element/post-code'
         }
     },
     config: {

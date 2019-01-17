@@ -1,7 +1,7 @@
 var config = {
     map: {
         '*': {
-            'Magento_Checkout/js/model/new-customer-address':'MagentoJapan_Kana/js/checkout/model/new-customer-address'
+            'Magento_Checkout/js/model/new-customer-address': 'MagentoJapan_Kana/js/checkout/model/new-customer-address'
         }
     },
     config: {
