@@ -11,6 +11,13 @@ define([
     return function (validate) {
         return wrapper.wrap(validate, {
             validatedPostCodeExample: [],
+
+            /**
+             * Validate and populate missing address fields based on entered JP postcode.
+             *
+             * @param {String} postCode
+             * @param {String} countryId
+             */
             validate: function (postCode, countryId) {
                 var patterns = window.checkoutConfig.postCodes[countryId],
                     lang = window.checkoutConfig.zip2address.lang === 'ja_JP' ? 'ja' : 'en',
@@ -39,14 +46,16 @@ define([
                         fullScreenLoader.startLoader();
 
                         $.getJSON(
-                            endpoint + '/' + code1 +'/' + code2 + '.json',
-                            {cache: false}
+                            endpoint + '/' + code1 + '/' + code2 + '.json',
+                            {
+                                cache: false
+                            }
                         ).done(function (data) {
                             regionIdSelector = $('select[name="region_id"]');
                             regionIdSelector[0][data.data[0].prefcode].selected = true;
                             regionIdSelector.trigger('change');
-                            $('input[name="city"]').val(data.data[0][lang]['address1']).trigger('change');
-                            $('input[name="street[0]"]').val(data.data[0][lang]['address2']).trigger('change');
+                            $('input[name="city"]').val(data.data[0][lang].address1).trigger('change');
+                            $('input[name="street[0]"]').val(data.data[0][lang].address2).trigger('change');
 
                         }).fail(function () {
                             alert({
