@@ -6,7 +6,7 @@ defaults: &defaults
     CORE_GIT_REPOSITORY: magento/magento2
     CORE_GIT_BRANCH: 2.3-develop
   docker:
-    - image: ishakhsuvarov/mde-testing:preview
+    - image: ishakhsuvarov/mde-testing:node-latest
 
 version: 2
 
