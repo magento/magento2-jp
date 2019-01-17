@@ -6,7 +6,7 @@ defaults: &defaults
     CORE_GIT_REPOSITORY: magento/magento2
     CORE_GIT_BRANCH: 2.3-develop
   docker:
-    - image: ishakhsuvarov/mde-testing:latest
+    - image: ishakhsuvarov/mde-testing:node-latest
 
 version: 2
 
@@ -58,6 +58,25 @@ jobs:
           name: Unit Test
           command: ./vendor/phpunit/phpunit/phpunit -c dev/tests/unit
 
+  js_test:
+    <<: *defaults
+    steps:
+
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: Prepare JS Static testing infrastructure
+          command: |
+            cp package.json.sample package.json
+            cp Gruntfile.js.sample Gruntfile.js
+            npm install
+            echo "mde/**/*.js" >> dev/tests/static/testsuite/Magento/Test/Js/_files/whitelist/magento.txt
+
+      - run:
+          name: JS Static Test
+          command: grunt static
+
   static_test:
     <<: *defaults
     steps:
@@ -83,6 +102,9 @@ workflows:
   build-test:
     jobs:
       - build
+      - js_test:
+          requires:
+            - build
       - unit_test:
           requires:
             - build

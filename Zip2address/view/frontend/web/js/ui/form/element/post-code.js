@@ -32,44 +32,50 @@ define([
                 city = registry.get(this.parentName + '.' + 'city'),
                 street = registry.get(this.parentName + '.' + 'street.0'),
                 endpoint = 'https://madefor.github.io/postal-code-api/api/v1',
-                code1 = postCode.replace(/^([0-9]{3}).*/, "$1"),
-                code2 = postCode.replace(/.*([0-9]{4})$/, "$1"),
+                code1 = postCode.replace(/^([0-9]{3}).*/, '$1'),
+                code2 = postCode.replace(/.*([0-9]{4})$/, '$1'),
                 lang = window.checkoutConfig.zip2address.lang === 'ja_JP' ? 'ja' : 'en',
                 regionSelector = $('#' + region),
-                pattern,
                 regex;
 
             this.validatedPostCodeExample = [];
 
-            if (!utils.isEmpty(postCode) && !utils.isEmpty(patterns)) {
-                for (pattern in patterns) {
-                    if (patterns.hasOwnProperty(pattern)) {
-                        this.validatedPostCodeExample.push(patterns[pattern]['example']);
-                        regex = new RegExp(patterns[pattern]['pattern']);
-                        if (regex.test(postCode) && countryId === 'JP') {
-                            fullScreenLoader.startLoader();
-                            $.getJSON(
-                                endpoint + '/' + code1 +'/' + code2 + '.json',
-                                {cache: false}
-                            ).done(function (data) {
-                                if (regionSelector[0]) {
-                                    $(regionSelector)[0][data.data[0].prefcode].selected = true;
-                                    regionObj.value($('#'+ region)[0][data.data[0].prefcode].value);
-                                }
-
-                                city.value(data.data[0][lang]['address1']);
-                                street.value(data.data[0][lang]['address2']);
-                            }).fail(function () {
-                                alert({
-                                    content: $t('Provided Zip/Postal Code seems to be invalid.')
-                                });
-                            }).always(function () {
-                                fullScreenLoader.stopLoader();
-                            });
-                        }
-                    }
-                }
+            if (!utils.isEmpty(postCode) || !utils.isEmpty(patterns)) {
+                return false;
             }
+
+            patterns.forEach(function (pattern) {
+                if (!patterns.hasOwnProperty(pattern)) {
+                    return;
+                }
+
+                this.validatedPostCodeExample.push(patterns[pattern].example);
+                regex = new RegExp(patterns[pattern].pattern);
+
+                if (regex.test(postCode) && countryId === 'JP') {
+                    fullScreenLoader.startLoader();
+                    $.getJSON(
+                        endpoint + '/' + code1 + '/' + code2 + '.json',
+                        {
+                            cache: false
+                        }
+                    ).done(function (data) {
+                        if (regionSelector[0]) {
+                            $(regionSelector)[0][data.data[0].prefcode].selected = true;
+                            regionObj.value($('#' + region)[0][data.data[0].prefcode].value);
+                        }
+
+                        city.value(data.data[0][lang].address1);
+                        street.value(data.data[0][lang].address2);
+                    }).fail(function () {
+                        alert({
+                            content: $t('Provided Zip/Postal Code seems to be invalid.')
+                        });
+                    }).always(function () {
+                        fullScreenLoader.stopLoader();
+                    });
+                }
+            });
 
             this._super();
         },
