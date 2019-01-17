@@ -36,7 +36,6 @@ define([
                 code2 = postCode.replace(/.*([0-9]{4})$/, '$1'),
                 lang = window.checkoutConfig.zip2address.lang === 'ja_JP' ? 'ja' : 'en',
                 regionSelector = $('#' + region),
-                pattern,
                 regex;
 
             this.validatedPostCodeExample = [];
