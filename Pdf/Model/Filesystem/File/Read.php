@@ -5,10 +5,10 @@ namespace MagentoJapan\Pdf\Model\Filesystem\File;
 
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Filesystem\Directory\PathValidatorInterface;
-use MagentoJapan\Pdf\ModelConfig\Service;
 use Magento\Framework\Filesystem\DriverInterface;
 use Magento\Framework\Filesystem\File\ReadFactory;
 use Magento\Framework\Filesystem\Directory\Read as BaseRead;
+use MagentoJapan\Pdf\ModelConfig\Service;
 
 /**
  * Override path resolution for the Magento's built-in PDF fonts based on module configuration.
@@ -41,8 +41,8 @@ class Read extends BaseRead
     /**
      * Override path resolution for build-in fonts with JP fonts when needed.
      *
-     * @param null $path
-     * @param null $scheme
+     * @param string $path
+     * @param string $scheme
      * @return string
      * @throws \Magento\Framework\Exception\ValidatorException
      */

@@ -40,6 +40,14 @@ class ServiceTest extends TestCase
     {
         $path = $this->service->getJapaneseFontPath('en-font.ttf');
 
-        $this->assertEquals(DIRECTORY_SEPARATOR . Service::FONT_DIR . "jp-font.ttf", $path);
+        $this->assertEquals(DIRECTORY_SEPARATOR . Service::FONT_DIR . 'jp-font.ttf', $path);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetFontsToOverride()
+    {
+        $this->assertSame(['en-font.ttf'], $this->service->getFontsToOverride());
     }
 }
