@@ -1,14 +1,12 @@
 <?php
 declare(strict_types=1);
 
-
 namespace MagentoJapan\Price\Model\Locale\Plugin;
 
 use Magento\Framework\Locale\Format;
-use Magento\Framework\App\ScopeResolverInterface;
-use Magento\Framework\Locale\ResolverInterface;
-use Magento\Directory\Model\CurrencyFactory;
-use MagentoJapan\Price\Helper\Data;
+use \Magento\Framework\App\ScopeResolverInterface;
+use \Magento\Framework\Locale\ResolverInterface;
+use \Magento\Directory\Model\CurrencyFactory;
 
 /**
  * Modify JPY price formatting.
@@ -30,58 +28,22 @@ class ModifyPriceFormat
      */
     private $_currencyFactory;
 
-    /**
-     * @var Data
-     */
-    private $helper;
+    private static $format;
 
     /**
-     * @param ScopeResolverInterface $scopeResolver
-     * @param ResolverInterface $localeResolver
-     * @param CurrencyFactory $currencyFactory
-     * @param Data $helper
+     * @param ScopeResolverInterface $scopeResolver Scope Resolver
+     * @param ResolverInterface $localeResolver Locale Resolver
+     * @param CurrencyFactory $currencyFactory Currency Resolver
      */
     public function __construct(
         ScopeResolverInterface $scopeResolver,
         ResolverInterface $localeResolver,
-        CurrencyFactory $currencyFactory,
-        Data $helper
+        CurrencyFactory $currencyFactory
     ) {
         $this->_scopeResolver = $scopeResolver;
         $this->_localeResolver = $localeResolver;
         $this->_currencyFactory = $currencyFactory;
-        $this->helper = $helper;
-    }
 
-    /**
-     * Modify precision for JPY.
-     *
-     * @param Format $subject
-     * @param \Closure $proceed
-     * @param string $localeCode
-     * @param string $currencyCode
-     * @return mixed
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function aroundGetPriceFormat(
-        Format $subject,
-        \Closure $proceed,
-        $localeCode = null,
-        $currencyCode = null
-    ) {
-        if ($currencyCode) {
-            $currency = $this->_currencyFactory->create()->load($currencyCode);
-        } else {
-            $currency = $this->_scopeResolver->getScope()->getCurrentCurrency();
-        }
-
-        $result = $proceed($localeCode, $currencyCode);
-
-        if (in_array($currency->getCode(), $this->helper->getIntegerCurrencies())) {
-            $result['precision'] = '0';
-            $result['requiredPrecision'] = '0';
-        }
-        return $result;
     }
 
     /**
@@ -96,10 +58,15 @@ class ModifyPriceFormat
         $value
     ) {
         $currency = $this->_scopeResolver->getScope()->getCurrentCurrency();
-        $locale   = $this->_localeResolver->getLocale();
-        $format = $subject->getPriceFormat($locale, $currency->getCode());
+        $locale = $this->_localeResolver->getLocale();
+        $currencyCode = $currency->getCode();
+        $formatCode = $locale . '_' . $currencyCode;
 
-        if ($format['groupSymbol'] == '.') {
+        if (!isset(self::$format[$formatCode])) {
+            self::$format[$formatCode] = $subject->getPriceFormat($locale, $currencyCode);
+        }
+
+        if (self::$format[$formatCode]['groupSymbol'] == '.') {
             $value = preg_replace('/\./', '', $value);
             $value = preg_replace('/,/', '.', $value);
         } else {

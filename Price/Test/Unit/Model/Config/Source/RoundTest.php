@@ -4,8 +4,9 @@ declare(strict_types=1);
 namespace MagentoJapan\Price\Test\Unit\Model\Config\Source;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
+use PHPUnit\Framework\TestCase;
 
-class RoundTest extends \PHPUnit\Framework\TestCase
+class RoundTest extends TestCase
 {
     /**
      * Round configuration class.

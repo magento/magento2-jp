@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace MagentoJapan\Price\Model\Directory\Plugin;
 
-use Magento\Directory\Model\PriceCurrency;
-use Magento\Framework\View\Element\Context;
-use MagentoJapan\Price\Helper\Data;
+use \Magento\Directory\Model\PriceCurrency;
+use \Magento\Framework\View\Element\Context;
+use \MagentoJapan\Price\Model\Config\System;
 
 /**
  * Modify currency format.
@@ -18,36 +18,36 @@ class Format
     private $scopeConfig;
 
     /**
-     * @var Data
+     * @var System
      */
-    private $helper;
+    private $system;
 
     /**
      * @param Context $context
-     * @param Data $helper
+     * @param System $system
      */
     public function __construct(
         Context $context,
-        Data $helper
+        System $system
     ) {
         $this->scopeConfig = $context->getScopeConfig();
-        $this->helper = $helper;
+        $this->system = $system;
     }
 
     /**
      * Modify currency format.
      *
-     * @param PriceCurrency $subject
-     * @param \Closure $proceed
-     * @param float $amount
-     * @param bool $includeContainer
-     * @param int $precision
-     * @param string $scope
-     * @param string $currency
+     * @param PriceCurrency $subject Price Currency Object
+     * @param \Closure $proceed Closure
+     * @param float $amount Price Amount
+     * @param bool $includeContainer Include Container Flag
+     * @param int $precision Precision digits
+     * @param string $scope Data scope
+     * @param string $currency Currency Code
      * @return mixed|string
      */
     public function aroundFormat(
-        PriceCurrency  $subject,
+        PriceCurrency $subject,
         \Closure $proceed,
         $amount,
         $includeContainer = true,
@@ -55,10 +55,10 @@ class Format
         $scope = null,
         $currency = null
     ) {
-        if (in_array($subject->getCurrency()->getCode(), $this->helper->getIntegerCurrencies())) {
+        if (in_array($subject->getCurrency()->getCode(), $this->system->getIntegerCurrencies())) {
             $precision = '0';
 
-            $method = $this->helper->getRoundMethod($scope);
+            $method = $this->system->getRoundMethod($scope);
             $amount = $method($amount);
 
             return $subject->getCurrency($scope, $currency)
