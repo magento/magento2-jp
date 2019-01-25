@@ -7,37 +7,37 @@ use \Magento\CurrencySymbol\Model\System\CurrencysymbolFactory;
 use \Magento\Framework\Event\ObserverInterface;
 use \MagentoJapan\Price\Model\Config\System;
 
+/**
+ * Modify currency options display.
+ */
 class ModifyCurrencyOptions implements ObserverInterface
 {
     /**
-     * Currency symbol factory
-     *
      * @var CurrencysymbolFactory
      */
-    protected $symbolFactory;
+    private $symbolFactory;
 
+    /**
+     * @var System
+     */
     private $system;
 
     /**
-     * Constructor
-     *
      * @param CurrencysymbolFactory $symbolFactory Currency Symbol Factory
      * @param System $system
      */
     public function __construct(
         CurrencysymbolFactory $symbolFactory,
         System $system
-    )
-    {
+    ) {
         $this->symbolFactory = $symbolFactory;
         $this->system = $system;
     }
 
     /**
-     * Generate options for currency displaying with custom currency symbol
+     * Generate options for currency displaying with custom currency symbol.
      *
      * @param \Magento\Framework\Event\Observer $observer Observer
-     *
      * @return $this
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
@@ -56,11 +56,11 @@ class ModifyCurrencyOptions implements ObserverInterface
     }
 
     /**
-     * Get currency display options
+     * Get currency display options.
      *
      * @param string $baseCode Base currency code
      * @param array $originalOptions Currency Options
-     *
+     * @param array $originalOptions
      * @return array
      */
     protected function getCurrencyOptions($baseCode, $originalOptions)

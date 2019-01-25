@@ -8,34 +8,29 @@ use \Magento\Framework\App\ScopeResolverInterface;
 use \Magento\Framework\Locale\ResolverInterface;
 use \Magento\Directory\Model\CurrencyFactory;
 
+/**
+ * Modify JPY price formatting.
+ */
 class ModifyPriceFormat
 {
     /**
-     * Scope Resolver
-     *
-     * @var \Magento\Framework\App\ScopeResolverInterface
+     * @var ScopeResolverInterface
      */
     private $_scopeResolver;
 
     /**
-     * Locale Resolver
-     *
-     * @var \Magento\Framework\Locale\ResolverInterface
+     * @var ResolverInterface
      */
     private $_localeResolver;
 
     /**
-     * Currency Factory
-     *
-     * @var \Magento\Directory\Model\CurrencyFactory
+     * @var CurrencyFactory
      */
     private $_currencyFactory;
 
     private static $format;
 
     /**
-     * Constructor
-     *
      * @param ScopeResolverInterface $scopeResolver Scope Resolver
      * @param ResolverInterface $localeResolver Locale Resolver
      * @param CurrencyFactory $currencyFactory Currency Resolver
@@ -44,25 +39,24 @@ class ModifyPriceFormat
         ScopeResolverInterface $scopeResolver,
         ResolverInterface $localeResolver,
         CurrencyFactory $currencyFactory
-    )
-    {
+    ) {
         $this->_scopeResolver = $scopeResolver;
         $this->_localeResolver = $localeResolver;
         $this->_currencyFactory = $currencyFactory;
+
     }
 
     /**
-     * Remove comma from price on JPY
+     * Remove comma from price on JPY.
      *
      * @param \Magento\Framework\Locale\Format $subject
-     * @param $value
+     * @param string $value
      * @return array
      */
     public function beforeGetNumber(
         Format $subject,
         $value
-    )
-    {
+    ) {
         $currency = $this->_scopeResolver->getScope()->getCurrentCurrency();
         $locale = $this->_localeResolver->getLocale();
         $currencyCode = $currency->getCode();

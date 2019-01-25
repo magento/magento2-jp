@@ -6,28 +6,29 @@ namespace MagentoJapan\Price\Model\Directory\Plugin;
 use \Magento\Directory\Model\Currency;
 use \MagentoJapan\Price\Model\Config\System;
 
+/**
+ * Modify price precision for JPY.
+ */
 class Precision
 {
     /**
-     * System Configuration
+     * System Configuration.
      *
      * @var System
      */
     private $system;
 
     /**
-     * Precision constructor.
      * @param System $system
      */
     public function __construct(
         System $system
-    )
-    {
+    ) {
         $this->system = $system;
     }
 
     /**
-     * Modify price precision for JPY
+     * Modify price precision for JPY.
      *
      * @param Currency $subject Currency Object
      * @param \Closure $proceed Closure
@@ -36,7 +37,6 @@ class Precision
      * @param array $options Currency options array
      * @param bool $includeContainer Include container flag
      * @param bool $addBrackets Add brackets flag
-     *
      * @return mixed
      */
     public function aroundFormatPrecision(
@@ -47,8 +47,7 @@ class Precision
         $options = [],
         $includeContainer = true,
         $addBrackets = false
-    )
-    {
+    ) {
         if (in_array($subject->getCode(), $this->system->getIntegerCurrencies())) {
             $precision = '0';
             if (isset($options['precision'])) {
@@ -60,15 +59,16 @@ class Precision
             $precision,
             $options,
             $includeContainer,
-            $addBrackets);
+            $addBrackets
+        );
     }
 
     /**
-     * Modify Currency Position
+     * Modify Currency Position.
      *
      * @param Currency $subject
      * @param \Closure $proceed
-     * @param $price
+     * @param float $price
      * @param array $options
      * @return mixed
      */
@@ -77,8 +77,7 @@ class Precision
         \Closure $proceed,
         $price,
         $options = []
-    )
-    {
+    ) {
         if ($subject->getCode() == 'JPY') {
             $position = $this->system->getSymbolPosition();
             $options['position'] = (int)$position;
@@ -92,5 +91,4 @@ class Precision
             $options
         );
     }
-
 }

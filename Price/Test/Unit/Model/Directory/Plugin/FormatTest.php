@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace MagentoJapan\Price\Test\Unit\Model\Directory\Plugin;
 
@@ -40,18 +41,18 @@ class FormatTest extends TestCase
      */
     protected function setUp()
     {
-        $this->systemMock = $this->getMockBuilder(
-            'MagentoJapan\Price\Model\Config\System'
-        )->disableOriginalConstructor()->getMock();
+        $this->systemMock = $this->getMockBuilder(\MagentoJapan\Price\Model\Config\System::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $objectManager = new ObjectManager($this);
         $this->formatPlugin = $objectManager->getObject(
-            'MagentoJapan\Price\Model\Directory\Plugin\Format',
+            \MagentoJapan\Price\Model\Directory\Plugin\Format::class,
             ['system' => $this->systemMock]
         );
 
         $this->priceCurrency = $this->getMockBuilder(
-            'Magento\Directory\Model\PriceCurrency'
+            \Magento\Directory\Model\PriceCurrency::class
         )->disableOriginalConstructor()->getMock();
 
         $this->closure = function () {
@@ -67,7 +68,7 @@ class FormatTest extends TestCase
     public function testJpyAroundFormat()
     {
         /** @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Directory\Model\Currency $currency */
-        $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
+        $currency = $this->getMockBuilder(\Magento\Directory\Model\Currency::class)
             ->disableOriginalConstructor()->getMock();
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
@@ -79,7 +80,6 @@ class FormatTest extends TestCase
         $this->systemMock->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('round');
-
 
         $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
@@ -105,7 +105,7 @@ class FormatTest extends TestCase
     public function testNonJpyAroundFormat()
     {
         /** @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Directory\Model\Currency $currency */
-        $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
+        $currency = $this->getMockBuilder(\Magento\Directory\Model\Currency::class)
             ->disableOriginalConstructor()
             ->getMock();
         $currency->expects($this->atLeastOnce())

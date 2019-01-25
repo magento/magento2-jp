@@ -10,14 +10,15 @@ use \Magento\Catalog\Helper\Data;
 use \Magento\Framework\Pricing\PriceCurrencyInterface;
 use \MagentoJapan\Price\Model\Config\System;
 
-
+/**
+ * Adjust Tax Pricing display according to JPY currency requirements.
+ */
 class ModifyAdjustment
 {
     /**
      * @var TaxHelper
      */
     private $taxHelper;
-
 
     /**
      * @var Data
@@ -40,20 +41,31 @@ class ModifyAdjustment
      * @param TaxHelper $taxHelper
      * @param Data $catalogHelper
      * @param System $system
-     * @param PriceCurrencyInterface $currency
+     * @param PriceCurrencyInterface $priceCurrency
      */
-    public function __construct(TaxHelper $taxHelper,
-                                Data $catalogHelper,
-                                System $system,
-                                PriceCurrencyInterface $priceCurrency
-    )
-    {
+    public function __construct(
+        TaxHelper $taxHelper,
+        Data $catalogHelper,
+        System $system,
+        PriceCurrencyInterface $priceCurrency
+    ) {
         $this->taxHelper = $taxHelper;
         $this->catalogHelper = $catalogHelper;
         $this->system = $system;
         $this->priceCurrency = $priceCurrency;
     }
 
+    /**
+     * Adjust Tax Pricing display according to JPY currency requirements.
+     *
+     * @param Adjustment $subject
+     * @param \Closure $proceed
+     * @param int $amount
+     * @param SaleableInterface $saleableItem
+     * @param array $context
+     * @return float
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function aroundExtractAdjustment(
         Adjustment $subject,
         \Closure $proceed,
@@ -67,7 +79,7 @@ class ModifyAdjustment
         $currency = $this->priceCurrency->getCurrency();
 
         if ($this->taxHelper->priceIncludesTax()) {
-            if ($method != 'round' && $currency == 'JPY') {
+            if ($method !== 'round' && $currency === 'JPY') {
                 $isRound = true;
             }
             $adjustedAmount = $this->catalogHelper->getTaxPrice(
@@ -88,14 +100,24 @@ class ModifyAdjustment
         return $result;
     }
 
+    /**
+     * Adjust Tax Pricing display according to JPY currency requirements.
+     *
+     * @param Adjustment $subject
+     * @param \Closure $proceed
+     * @param int $amount
+     * @param SaleableInterface $saleableItem
+     * @param array $context
+     * @return float
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function aroundApplyAdjustment(
         Adjustment $subject,
         \Closure $proceed,
         $amount,
         SaleableInterface $saleableItem,
         $context = []
-    )
-    {
+    ) {
         $method = $this->system->getRoundMethod();
         $isRound = false;
         $currency = $this->priceCurrency->getCurrency();
