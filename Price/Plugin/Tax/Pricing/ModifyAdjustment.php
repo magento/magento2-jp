@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace MagentoJapan\Price\Plugin\Tax\Pricing;
 
-use Magento\Tax\Pricing\Adjustment;
-use Magento\Framework\Pricing\SaleableInterface;
-use Magento\Tax\Helper\Data as TaxHelper;
-use Magento\Catalog\Helper\Data;
-use Magento\Framework\Pricing\PriceCurrencyInterface;
-use MagentoJapan\Price\Helper\Data as PriceHelper;
+use \Magento\Tax\Pricing\Adjustment;
+use \Magento\Framework\Pricing\SaleableInterface;
+use \Magento\Tax\Helper\Data as TaxHelper;
+use \Magento\Catalog\Helper\Data;
+use \Magento\Framework\Pricing\PriceCurrencyInterface;
+use \MagentoJapan\Price\Model\Config\System;
 
 /**
  * Adjust Tax Pricing display according to JPY currency requirements.
@@ -26,9 +26,11 @@ class ModifyAdjustment
     private $catalogHelper;
 
     /**
-     * @var PriceHelper
+     * System configuration
+     *
+     * @var System
      */
-    private $priceHelper;
+    private $system;
 
     /**
      * @var PriceCurrencyInterface
@@ -38,18 +40,18 @@ class ModifyAdjustment
     /**
      * @param TaxHelper $taxHelper
      * @param Data $catalogHelper
-     * @param PriceHelper $priceHelper
+     * @param System $system
      * @param PriceCurrencyInterface $priceCurrency
      */
     public function __construct(
         TaxHelper $taxHelper,
         Data $catalogHelper,
-        PriceHelper $priceHelper,
+        System $system,
         PriceCurrencyInterface $priceCurrency
     ) {
         $this->taxHelper = $taxHelper;
         $this->catalogHelper = $catalogHelper;
-        $this->priceHelper = $priceHelper;
+        $this->system = $system;
         $this->priceCurrency = $priceCurrency;
     }
 
@@ -70,8 +72,9 @@ class ModifyAdjustment
         $amount,
         SaleableInterface $saleableItem,
         $context = []
-    ) {
-        $method = $this->priceHelper->getRoundMethod();
+    )
+    {
+        $method = $this->system->getRoundMethod();
         $isRound = false;
         $currency = $this->priceCurrency->getCurrency();
 
@@ -115,7 +118,7 @@ class ModifyAdjustment
         SaleableInterface $saleableItem,
         $context = []
     ) {
-        $method = $this->priceHelper->getRoundMethod();
+        $method = $this->system->getRoundMethod();
         $isRound = false;
         $currency = $this->priceCurrency->getCurrency();
 

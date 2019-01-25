@@ -1,11 +1,10 @@
 <?php
 declare(strict_types=1);
 
-
 namespace MagentoJapan\Price\Model\Directory\Plugin;
 
-use Magento\Directory\Model\Currency;
-use MagentoJapan\Price\Helper\Data;
+use \Magento\Directory\Model\Currency;
+use \MagentoJapan\Price\Model\Config\System;
 
 /**
  * Modify price precision for JPY.
@@ -13,33 +12,35 @@ use MagentoJapan\Price\Helper\Data;
 class Precision
 {
     /**
-     * @var \MagentoJapan\Price\Helper\Data
+     * System Configuration.
+     *
+     * @var System
      */
-    private $helper;
+    private $system;
 
     /**
-     * @param Data $helper
+     * @param System $system
      */
     public function __construct(
-        Data $helper
+        System $system
     ) {
-        $this->helper = $helper;
+        $this->system = $system;
     }
 
     /**
      * Modify price precision for JPY.
      *
-     * @param Currency $subject
-     * @param \Closure $proceed
-     * @param float $price
-     * @param int $precision
-     * @param array $options
-     * @param bool $includeContainer
-     * @param bool $addBrackets
+     * @param Currency $subject Currency Object
+     * @param \Closure $proceed Closure
+     * @param float $price Price
+     * @param int $precision Currency Precision
+     * @param array $options Currency options array
+     * @param bool $includeContainer Include container flag
+     * @param bool $addBrackets Add brackets flag
      * @return mixed
      */
     public function aroundFormatPrecision(
-        Currency  $subject,
+        Currency $subject,
         \Closure $proceed,
         $price,
         $precision = 2,
@@ -47,7 +48,7 @@ class Precision
         $includeContainer = true,
         $addBrackets = false
     ) {
-        if (in_array($subject->getCode(), $this->helper->getIntegerCurrencies())) {
+        if (in_array($subject->getCode(), $this->system->getIntegerCurrencies())) {
             $precision = '0';
             if (isset($options['precision'])) {
                 $options['precision'] = '0';
@@ -72,13 +73,13 @@ class Precision
      * @return mixed
      */
     public function aroundFormatTxt(
-        Currency  $subject,
+        Currency $subject,
         \Closure $proceed,
         $price,
         $options = []
     ) {
         if ($subject->getCode() == 'JPY') {
-            $position = $this->helper->getSymbolPosition();
+            $position = $this->system->getSymbolPosition();
             $options['position'] = (int)$position;
             if ($options['position'] == \Zend_Currency::RIGHT) {
                 $options['symbol'] = __('Yen');

@@ -1,18 +1,38 @@
 <?php
 declare(strict_types=1);
 
-namespace MagentoJapan\Price\Helper;
+namespace MagentoJapan\Price\Model\Config;
 
-use Magento\Framework\App\Helper\AbstractHelper;
-use Magento\Store\Model\ScopeInterface;
+use \Magento\Store\Model\ScopeInterface;
+use \Magento\Framework\App\Config\ScopeConfigInterface;
 
-/**
- * To be refactored.
- *
- * @deprecated
- */
-class Data extends AbstractHelper
+class System
 {
+    /**
+     *
+     */
+    const CONFIG_ROUND_METHOD = 'tax/calculation/round';
+    /**
+     *
+     */
+    const CONFIG_SYMBOL_POSITION = 'price/symbol/position';
+
+    /**
+     * @var ScopeConfigInterface
+     */
+    private $scopeConfig;
+
+    /**
+     * System constructor.
+     * @param ScopeConfigInterface $scopeConfig
+     */
+    public function __construct(
+        ScopeConfigInterface $scopeConfig
+    )
+    {
+        $this->scopeConfig = $scopeConfig;
+    }
+
     /**
      * Get rounding method value
      *
@@ -21,27 +41,23 @@ class Data extends AbstractHelper
     public function getRoundMethod()
     {
         return $this->scopeConfig->getValue(
-            'tax/calculation/round',
+            self::CONFIG_ROUND_METHOD,
             ScopeInterface::SCOPE_STORE
         );
     }
 
     /**
-     * Get symbol position.
-     *
      * @return mixed
      */
     public function getSymbolPosition()
     {
         return $this->scopeConfig->getValue(
-            'price/symbol/position',
+            self::CONFIG_SYMBOL_POSITION,
             ScopeInterface::SCOPE_STORE
         );
     }
 
     /**
-     * Get list of integer currencies.
-     *
      * @return array
      */
     public function getIntegerCurrencies()

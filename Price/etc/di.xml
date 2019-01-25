@@ -1,20 +1,23 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Directory\Model\Currency">
-        <plugin name="modify_precision" type="MagentoJapan\Price\Model\Directory\Plugin\Precision" />
+        <plugin name="modify_precision"
+                type="MagentoJapan\Price\Model\Directory\Plugin\Precision"/>
     </type>
     <type name="Magento\Directory\Model\PriceCurrency">
-        <plugin name="modify_format" type="MagentoJapan\Price\Model\Directory\Plugin\Format" />
-        <plugin name="modify_round" type="MagentoJapan\Price\Model\Directory\Plugin\PriceRound" />
+        <plugin name="modify_format"
+                type="MagentoJapan\Price\Model\Directory\Plugin\Format"/>
+        <plugin name="modify_round"
+                type="MagentoJapan\Price\Model\Directory\Plugin\PriceRound"/>
     </type>
     <type name="Magento\Framework\Locale\Format">
-        <plugin name="modify_price_format" type="MagentoJapan\Price\Model\Locale\Plugin\ModifyPriceFormat" />
+        <plugin name="modify_price_format"
+                type="MagentoJapan\Price\Model\Locale\Plugin\ModifyPriceFormat"/>
     </type>
-    <type name="Magento\Catalog\Block\Product\View">
-        <plugin name="fix_config_price" type="MagentoJapan\Price\Plugin\Block\Product\View"/>
-    </type> 
 
     <type name="Magento\Tax\Pricing\Adjustment">
-        <plugin name="modify_round" type="MagentoJapan\Price\Plugin\Tax\Pricing\ModifyAdjustment"/>
+        <plugin name="modify_round"
+                type="MagentoJapan\Price\Plugin\Tax\Pricing\ModifyAdjustment"/>
     </type>
 </config>
