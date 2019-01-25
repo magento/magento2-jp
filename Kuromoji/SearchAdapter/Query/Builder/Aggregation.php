@@ -1,23 +1,22 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Kuromoji\SearchAdapter\Query\Builder;
 
 use Magento\Framework\Search\Request\BucketInterface;
-use Magento\Framework\Search\RequestInterface;
-use Magento\Elasticsearch\Model\Adapter\FieldMapperInterface;
 use Magento\Elasticsearch\SearchAdapter\Query\Builder\Aggregation as BaseAggregation;
+
 /**
- * @api
- * @since 100.1.0
+ * Build aggregation query for bucket.
  */
 class Aggregation extends BaseAggregation
 {
     /**
-     * Build aggregation query for bucket
+     * Build aggregation query for bucket.
      *
      * @param array $searchQuery
      * @param BucketInterface $bucket
      * @return array
-     * @since 100.1.0
      */
     protected function buildBucket(
         array $searchQuery,

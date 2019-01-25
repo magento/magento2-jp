@@ -1,10 +1,15 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Kana\Plugin\Customer;
 
 use Magento\Customer\CustomerData\Customer;
 use Magento\Customer\Helper\Session\CurrentCustomer;
 use Magento\Customer\Helper\View;
 
+/**
+ * Modify customer full name according to JP locale requirements.
+ */
 class CustomerDataModifier
 {
     /**
@@ -12,6 +17,9 @@ class CustomerDataModifier
      */
     private $currentCustomer;
 
+    /**
+     * @var View
+     */
     private $customerViewHelper;
 
     /**
@@ -26,8 +34,14 @@ class CustomerDataModifier
         $this->customerViewHelper = $customerViewHelper;
     }
 
-
-
+    /**
+     * Modify customer full name according to JP locale requirements.
+     *
+     * @param Customer $subject
+     * @param \Closure $proceed
+     * @return array
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function aroundGetSectionData(
         Customer $subject,
         \Closure $proceed

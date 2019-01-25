@@ -1,0 +1,113 @@
+defaults: &defaults
+  working_directory: ~/magento
+  environment:
+    MDE_COMPOSER_MODULE: magentojapan/common;magentojapan/module-kana;magentojapan/module-kuromoji;magentojapan/module-price;magentojapan/module-region;magentojapan/module-store-address;magentojapan/module-zip2address;magentojapan/module-pdf
+    MDE_COMPOSER_METAPACKAGE: magentojapan/common
+    CORE_GIT_REPOSITORY: magento/magento2
+    CORE_GIT_BRANCH: 2.3-develop
+  docker:
+    - image: ishakhsuvarov/mde-testing:node-latest
+
+version: 2
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - run:
+          name: Cloning Magento 2.3-develop
+          command: git clone https://github.com/$CORE_GIT_REPOSITORY.git --depth 1 --single-branch --branch $CORE_GIT_BRANCH .
+
+      - checkout:
+          path: mde
+
+      - restore_cache:
+          keys:
+            - magento-dependencies-{{ checksum "composer.lock" }}-v1
+
+      - run:
+          name: Installing dependencies
+          command: composer install -n
+
+      - save_cache:
+          key: magento-dependencies-{{ checksum "composer.lock" }}-v1
+          paths:
+            - "vendor"
+
+      - run:
+          name: Installing MDE
+          command: |
+            composer config minimum-stability dev
+            composer config repositories.metapackage path "./*"
+            composer config repositories.modules path "./*/*/"
+            composer require $MDE_COMPOSER_METAPACKAGE
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  unit_test:
+    <<: *defaults
+    steps:
+
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: Unit Test
+          command: ./vendor/phpunit/phpunit/phpunit -c dev/tests/unit
+
+  js_test:
+    <<: *defaults
+    steps:
+
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: Prepare JS Static testing infrastructure
+          command: |
+            cp package.json.sample package.json
+            cp Gruntfile.js.sample Gruntfile.js
+            npm install
+            echo "mde/**/*.js" >> dev/tests/static/testsuite/Magento/Test/Js/_files/whitelist/magento.txt
+
+      - run:
+          name: JS Static Test
+          command: grunt static
+
+  static_test:
+    <<: *defaults
+    steps:
+
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: Setup tests
+          command: |
+            find mde -not -path '*/.*/*' -not -name '.*' -type f -follow -print > dev/tests/static/testsuite/Magento/Test/_files/changed_files_mde.txt
+            find mde -not -path '*/.*/*' -not -name '.*' -type f -follow -print > dev/tests/static/testsuite/Magento/Test/_files/changed_files_mde.added.txt
+            for module in $(echo $MDE_COMPOSER_MODULE | tr ";" "\n"); do echo "$module" >> dev/tests/static/testsuite/Magento/Test/Integrity/_files/blacklist/composer_root_modules_mde.txt; done
+            cp vendor/autoload.php .
+            sed -i 's/\/composer/\/vendor\/composer/' autoload.php
+
+      - run:
+          name: Static Test
+          command: ./vendor/phpunit/phpunit/phpunit -c dev/tests/static
+
+workflows:
+  version: 2
+  build-test:
+    jobs:
+      - build
+      - js_test:
+          requires:
+            - build
+      - unit_test:
+          requires:
+            - build
+      - static_test:
+          requires:
+            - build

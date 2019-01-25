@@ -1,16 +1,24 @@
 <?php
+declare(strict_types=1);
+
 namespace MagentoJapan\Kana\Plugin\Reports\Order\Collection;
 
-use \Magento\Reports\Model\ResourceModel\Order\Collection;
-use \Magento\Framework\Locale\ResolverInterface;
+use Magento\Reports\Model\ResourceModel\Order\Collection;
+use Magento\Framework\Locale\ResolverInterface;
 
+/**
+ * Modify customers full name according to JP locale requirements.
+ */
 class ModifyName
 {
     /**
-     * @var \Magento\Framework\Locale\ResolverInterface
+     * @var ResolverInterface
      */
     private $localeResolver;
 
+    /**
+     * @var \Magento\Eav\Model\Config
+     */
     private $config;
 
     /**
@@ -18,19 +26,27 @@ class ModifyName
      * @param \Magento\Eav\Model\Config $config
      */
     public function __construct(
-        \Magento\Framework\Locale\ResolverInterface $localeResolver,
+        ResolverInterface $localeResolver,
         \Magento\Eav\Model\Config $config
     ) {
         $this->localeResolver = $localeResolver;
         $this->config = $config;
     }
 
+    /**
+     * Modify customers full name according to JP locale requirements.
+     *
+     * @param Collection $subject
+     * @param \Closure $proceed
+     * @param string $alias
+     * @return Collection|mixed
+     */
     public function aroundJoinCustomerName(
         Collection $subject,
         \Closure $proceed,
         $alias = 'name'
     ) {
-        if($this->localeResolver->getLocale() != 'ja_JP') {
+        if ($this->localeResolver->getLocale() != 'ja_JP') {
             return $proceed($alias);
         } else {
             $fields = ['main_table.customer_lastname', 'main_table.customer_firstname'];
@@ -38,7 +54,5 @@ class ModifyName
             $subject->getSelect()->columns([$alias => $fieldConcat]);
             return $subject;
         }
-
-
     }
 }
