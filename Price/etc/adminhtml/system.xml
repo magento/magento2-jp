@@ -11,8 +11,7 @@
                 <field id="round" translate="label" type="select" sortOrder="1"
                        showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Tax Rounding Method</label>
-                    <source_model>MagentoJapan\Price\Model\Config\Source\Round
-                    </source_model>
+                    <source_model>MagentoJapan\Price\Model\Config\Source\Round</source_model>
                 </field>
             </group>
         </section>
@@ -28,9 +27,7 @@
                        sortOrder="1" showInDefault="1" showInWebsite="1"
                        showInStore="1">
                     <label>Position</label>
-                    <source_model>
-                        MagentoJapan\Price\Model\Config\Source\Position
-                    </source_model>
+                    <source_model>MagentoJapan\Price\Model\Config\Source\Position</source_model>
                     <config_path>price/symbol/position</config_path>
                 </field>
             </group>

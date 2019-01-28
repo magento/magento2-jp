@@ -6,14 +6,18 @@ namespace MagentoJapan\Price\Model\Config;
 use \Magento\Store\Model\ScopeInterface;
 use \Magento\Framework\App\Config\ScopeConfigInterface;
 
+/**
+ * System configuration of currencies handling.
+ */
 class System
 {
     /**
-     *
+     * Describes what round method should be used for currencies
      */
     const CONFIG_ROUND_METHOD = 'tax/calculation/round';
+
     /**
-     *
+     * Describes currency symbol position;
      */
     const CONFIG_SYMBOL_POSITION = 'price/symbol/position';
 
@@ -28,8 +32,7 @@ class System
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig
-    )
-    {
+    ) {
         $this->scopeConfig = $scopeConfig;
     }
 
@@ -47,6 +50,8 @@ class System
     }
 
     /**
+     * Get position of currency symbol.
+     *
      * @return mixed
      */
     public function getSymbolPosition()
@@ -58,6 +63,8 @@ class System
     }
 
     /**
+     * Get list of currencies without subunits.
+     *
      * @return array
      */
     public function getIntegerCurrencies()

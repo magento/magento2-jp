@@ -5,18 +5,12 @@ namespace MagentoJapan\Price\Model\Directory\Plugin;
 
 use \Magento\Directory\Model\PriceCurrency;
 use \MagentoJapan\Price\Model\Config\System;
-use \Magento\Framework\App\Config\ScopeConfigInterface;
 
 /**
  * Modify rounding method for converting currency.
  */
 class PriceRound
 {
-    /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
-     */
-    private $scopeConfig;
-
     /**
      * System configuration
      *
@@ -26,13 +20,10 @@ class PriceRound
 
     /**
      * @param System $system
-     * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        System $system,
-        ScopeConfigInterface $scopeConfig
+        System $system
     ) {
-        $this->scopeConfig = $scopeConfig;
         $this->system = $system;
     }
 
@@ -76,14 +67,12 @@ class PriceRound
      * @param PriceCurrency $subject Price Currency
      * @param \Closure $proceed Closure
      * @param float $amount Price
-     * @param int $precision Currency precision
      * @return mixed
      */
     public function aroundRound(
         PriceCurrency $subject,
         \Closure $proceed,
-        $amount,
-        $precision = 2
+        $amount
     ) {
         $currency = $subject->getCurrency()->getCode();
         if (in_array($currency, $this->system->getIntegerCurrencies())) {
@@ -97,6 +86,6 @@ class PriceRound
                 return $method($amount);
             }
         }
-        return $proceed($amount, $precision);
+        return $proceed($amount);
     }
 }

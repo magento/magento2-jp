@@ -43,7 +43,6 @@ class ModifyPriceFormat
         $this->_scopeResolver = $scopeResolver;
         $this->_localeResolver = $localeResolver;
         $this->_currencyFactory = $currencyFactory;
-
     }
 
     /**
