@@ -1,0 +1,30 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<if args="visible()">
+    〒<text args="address().postcode"/><br/>
+    <text args="address().region"/><text args="address().city"/><text args="_.values(address().street)[0]"/>
+    <text args="_.values(address().street)[1]"/><text args="_.values(address().street)[2]"/></br>
+    <text args="address().prefix"/> <text args="address().lastname"/> <text args="address().middlename"/>
+    <text args="address().firstname"/> <text args="address().suffix"/>
+    <text if="address().getNamekana()" args="'(' + address().getNamekana() + ')'"/><br/>
+    <a if="address().telephone" attr="'href': 'tel:' + address().telephone" text="address().telephone"></a><br/>
+
+    <if args="_.isArray(address().customAttributes)">
+        <each args="data: address().customAttributes, as: 'attribute'">
+            <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
+                <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+            </if>
+        </each>
+    </if>
+    <ifnot args="_.isArray(address().customAttributes)">
+        <each args="data: Object.values(address().customAttributes), as: 'attribute'">
+            <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
+                <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+            </if>
+        </each>
+    </ifnot>
+</if>

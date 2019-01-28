@@ -1,24 +1,34 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 declare(strict_types=1);
 
 namespace MagentoJapan\Kana\Model\Config\Source;
 
+use Magento\Framework\Data\OptionSourceInterface;
+
 /**
- * Kana configuration source.
+ * Options for kana usage.
  */
-class Kana implements \Magento\Framework\Option\ArrayInterface
+class Kana implements OptionSourceInterface
 {
+    const TYPE_KATAKANA = 1;
+    const TYPE_HIRAGANA = 2;
+    const TYPE_ANY = 3;
+
     /**
-     * Retrieve possible customer address types.
+     * List possible kana input types
      *
      * @return array
      */
     public function toOptionArray()
     {
         return [
-            '1' => __('Only Katakana'),
-            '2' => __('Only Hiragana'),
-            '0' => __('Both')
+            self::TYPE_KATAKANA => __('Only Katakana'),
+            self::TYPE_HIRAGANA => __('Only Hiragana'),
+            self::TYPE_ANY => __('Both')
         ];
     }
 }

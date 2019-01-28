@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Customer\Model\Customer">
+        <plugin name="jpname" type="MagentoJapan\Address\Plugin\Customer\Model\Name" sortOrder="100"/>
+    </type>
+    <type name="Magento\Customer\Helper\View">
+        <plugin name="jpname" type="MagentoJapan\Address\Plugin\Customer\Helper\Name" sortOrder="100"/>
+    </type>
+    <type name="Magento\Customer\Model\ResourceModel\Customer\Collection">
+        <plugin name="jpname" type="MagentoJapan\Address\Plugin\Customer\Model\ResourceModel\Customer\Collection\Name" sortOrder="100"/>
+    </type>
+    <type name="Magento\Reports\Model\ResourceModel\Order\Collection">
+        <plugin name="jpname" type="MagentoJapan\Address\Plugin\Reports\Order\Collection\Name"/>
+    </type>
+    <type name="Magento\Sales\Model\Order">
+        <plugin name="jpname" type="MagentoJapan\Address\Plugin\Sales\Model\Order\CustomerName"/>
+    </type>
+    <type name="Magento\Sales\Model\Order\Address">
+        <plugin name="jpname" type="MagentoJapan\Address\Plugin\Sales\Model\Order\Address\Name"/>
+    </type>
+
+    <type name="MagentoJapan\Address\Plugin\Reports\Order\Collection\Name">
+        <arguments>
+            <argument name="nameSqlExpression" xsi:type="object">ReportCustomerNameAggregator</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="CustomerNameExpression" type="MagentoJapan\Address\Model\Db\Sql\ConditionalConcatExpression">
+        <arguments>
+            <argument name="parts" xsi:type="array">
+                <item name="prefix" xsi:type="array">
+                    <item name="columnName" xsi:type="string">e.prefix</item>
+                </item>
+                <item name="prefixSeparator" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}</item>
+                    <item name="ifColumnName" xsi:type="string">e.prefix</item>
+                </item>
+                <item name="lastname" xsi:type="array">
+                    <item name="columnName" xsi:type="string">e.lastname</item>
+                </item>
+                <item name="middlenameSeparator" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}</item>
+                    <item name="ifColumnName" xsi:type="string">e.middlename</item>
+                </item>
+                <item name="middlename" xsi:type="array">
+                    <item name="columnName" xsi:type="string">e.middlename</item>
+                </item>
+                <item name="firstnameSeparator" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}</item>
+                    <item name="ifColumnName" xsi:type="string">e.firstname</item>
+                </item>
+                <item name="firstname" xsi:type="array">
+                    <item name="columnName" xsi:type="string">e.firstname</item>
+                </item>
+                <item name="suffixSeparator" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}</item>
+                    <item name="ifColumnName" xsi:type="string">e.suffix</item>
+                </item>
+                <item name="suffix" xsi:type="array">
+                    <item name="columnName" xsi:type="string">e.suffix</item>
+                </item>
+                <item name="kanaOpen" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}(</item>
+                    <item name="ifExpr" xsi:type="string">e.lastnamekana != '' or e.firstnamekana != ''</item>
+                </item>
+                <item name="lastnamekana" xsi:type="array">
+                    <item name="columnName" xsi:type="string">e.lastnamekana</item>
+                </item>
+                <item name="firstnamekanaSeparator" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}</item>
+                    <item name="ifColumnName" xsi:type="string">e.firstnamekana</item>
+                </item>
+                <item name="firstnamekana" xsi:type="array">
+                    <item name="columnName" xsi:type="string">e.firstnamekana</item>
+                </item>
+                <item name="kanaClose" xsi:type="array">
+                    <item name="static" xsi:type="string">)</item>
+                    <item name="ifExpr" xsi:type="string">e.lastnamekana != '' or e.firstnamekana != ''</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CustomerNameAggregator" type="MagentoJapan\Address\Model\Db\Sql\ConditionalConcatExpression">
+        <arguments>
+            <argument name="parts" xsi:type="array">
+                <item name="lastname" xsi:type="array">
+                    <item name="columnName" xsi:type="string">sales_order.customer_lastname</item>
+                </item>
+                <item name="firstnameSeparator" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}</item>
+                    <item name="ifColumnName" xsi:type="string">sales_order.customer_firstname</item>
+                </item>
+                <item name="firstname" xsi:type="array">
+                    <item name="columnName" xsi:type="string">sales_order.customer_firstname</item>
+                </item>
+                <item name="kanaOpen" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}(</item>
+                    <item name="ifExpr" xsi:type="string">sales_order.customer_lastnamekana != '' or sales_order.customer_firstnamekana != ''</item>
+                </item>
+                <item name="lastnamekana" xsi:type="array">
+                    <item name="columnName" xsi:type="string">sales_order.customer_lastnamekana</item>
+                </item>
+                <item name="firstnamekanaSeparator" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}</item>
+                    <item name="ifColumnName" xsi:type="string">sales_order.customer_firstnamekana</item>
+                </item>
+                <item name="firstnamekana" xsi:type="array">
+                    <item name="columnName" xsi:type="string">sales_order.customer_firstnamekana</item>
+                </item>
+                <item name="kanaClose" xsi:type="array">
+                    <item name="static" xsi:type="string">)</item>
+                    <item name="ifExpr" xsi:type="string">sales_order.customer_lastnamekana != '' or sales_order.customer_firstnamekana != ''</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ReportCustomerNameAggregator" type="MagentoJapan\Address\Model\Db\Sql\ConditionalConcatExpression">
+        <arguments>
+            <argument name="parts" xsi:type="array">
+                <item name="lastname" xsi:type="array">
+                    <item name="columnName" xsi:type="string">main_table.customer_lastname</item>
+                </item>
+                <item name="firstnameSeparator" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}</item>
+                    <item name="ifColumnName" xsi:type="string">main_table.customer_firstname</item>
+                </item>
+                <item name="firstname" xsi:type="array">
+                    <item name="columnName" xsi:type="string">main_table.customer_firstname</item>
+                </item>
+                <item name="kanaOpen" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}(</item>
+                    <item name="ifExpr" xsi:type="string">main_table.customer_lastnamekana != '' or main_table.customer_firstnamekana != ''</item>
+                </item>
+                <item name="lastnamekana" xsi:type="array">
+                    <item name="columnName" xsi:type="string">main_table.customer_lastnamekana</item>
+                </item>
+                <item name="firstnamekanaSeparator" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}</item>
+                    <item name="ifColumnName" xsi:type="string">main_table.customer_firstnamekana</item>
+                </item>
+                <item name="firstnamekana" xsi:type="array">
+                    <item name="columnName" xsi:type="string">main_table.customer_firstnamekana</item>
+                </item>
+                <item name="kanaClose" xsi:type="array">
+                    <item name="static" xsi:type="string">)</item>
+                    <item name="ifExpr" xsi:type="string">main_table.customer_lastnamekana != '' or main_table.customer_firstnamekana != ''</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ShippingNameAggregator" type="MagentoJapan\Address\Model\Db\Sql\ConditionalConcatExpression">
+        <arguments>
+            <argument name="parts" xsi:type="array">
+                <item name="lastname" xsi:type="array">
+                    <item name="columnName" xsi:type="string">sales_shipping_address.lastname</item>
+                </item>
+                <item name="firstnameSeparator" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}</item>
+                    <item name="ifColumnName" xsi:type="string">sales_shipping_address.firstname</item>
+                </item>
+                <item name="firstname" xsi:type="array">
+                    <item name="columnName" xsi:type="string">sales_shipping_address.firstname</item>
+                </item>
+                <item name="kanaOpen" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}(</item>
+                    <item name="ifExpr" xsi:type="string">sales_shipping_address.lastnamekana != '' or sales_shipping_address.firstnamekana != ''</item>
+                </item>
+                <item name="lastnamekana" xsi:type="array">
+                    <item name="columnName" xsi:type="string">sales_shipping_address.lastnamekana</item>
+                </item>
+                <item name="firstnamekanaSeparator" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}</item>
+                    <item name="ifColumnName" xsi:type="string">sales_shipping_address.firstnamekana</item>
+                </item>
+                <item name="firstnamekana" xsi:type="array">
+                    <item name="columnName" xsi:type="string">sales_shipping_address.firstnamekana</item>
+                </item>
+                <item name="kanaClose" xsi:type="array">
+                    <item name="static" xsi:type="string">)</item>
+                    <item name="ifExpr" xsi:type="string">sales_shipping_address.lastnamekana != '' or sales_shipping_address.firstnamekana != ''</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="BillingNameAggregator" type="MagentoJapan\Address\Model\Db\Sql\ConditionalConcatExpression">
+        <arguments>
+            <argument name="parts" xsi:type="array">
+                <item name="lastname" xsi:type="array">
+                    <item name="columnName" xsi:type="string">sales_billing_address.lastname</item>
+                </item>
+                <item name="firstnameSeparator" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}</item>
+                    <item name="ifColumnName" xsi:type="string">sales_billing_address.firstname</item>
+                </item>
+                <item name="firstname" xsi:type="array">
+                    <item name="columnName" xsi:type="string">sales_billing_address.firstname</item>
+                </item>
+                <item name="kanaOpen" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}(</item>
+                    <item name="ifExpr" xsi:type="string">sales_billing_address.lastnamekana != '' or sales_billing_address.firstnamekana != ''</item>
+                </item>
+                <item name="lastnamekana" xsi:type="array">
+                    <item name="columnName" xsi:type="string">sales_billing_address.lastnamekana</item>
+                </item>
+                <item name="firstnamekanaSeparator" xsi:type="array">
+                    <item name="static" xsi:type="string">{space}</item>
+                    <item name="ifColumnName" xsi:type="string">sales_billing_address.firstnamekana</item>
+                </item>
+                <item name="firstnamekana" xsi:type="array">
+                    <item name="columnName" xsi:type="string">sales_billing_address.firstnamekana</item>
+                </item>
+                <item name="kanaClose" xsi:type="array">
+                    <item name="static" xsi:type="string">)</item>
+                    <item name="ifExpr" xsi:type="string">sales_billing_address.lastnamekana != '' or sales_billing_address.firstnamekana != ''</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

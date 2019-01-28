@@ -1,157 +1,57 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="CustomerNameHandler" type="jpCustomerNameHandler" />
-    <preference for="CustomerNameAggregator" type="jpCustomerNameAggregator" />
-    <preference for="ShippingNameAggregator" type="jpShippingNameAggregator" />
-    <preference for="BillingNameAggregator" type="jpBillingNameAggregator" />
-
-    <type name="Magento\Customer\Model\ResourceModel\Customer\Collection">
-        <plugin name="modify_name_for_collection" type="MagentoJapan\Kana\Plugin\Customer\Model\ResourceModel\Customer\Collection\ModifyName" />
+    <preference for="Magento\Framework\DataObject\Copy" type="MagentoJapan\Kana\Model\DataObject\Copy"/>
+    <type name="Magento\Framework\Data\Form">
+        <plugin name="setExtensionValues" type="MagentoJapan\Kana\Plugin\Framework\Data\ExtensionAttributesValues"/>
     </type>
 
-    <type name="Magento\Customer\Model\Customer">
-        <plugin name="modify_name" type="MagentoJapan\Kana\Plugin\Customer\Model\Name" sortOrder="100"/>
+    <type name="Magento\Customer\Model\Metadata\CustomerMetadata">
+        <plugin name="kanaAttributesInjection" type="MagentoJapan\Kana\Plugin\Customer\Model\Metadata\KanaAttributesInjection"/>
     </type>
-
-    <type name="Magento\Sales\Model\Order">
-        <plugin name="modify_name" type="MagentoJapan\Kana\Plugin\Sales\Model\CustomerName" sortOrder="100"/>
+    <type name="Magento\Customer\Model\Metadata\AddressMetadata">
+        <plugin name="kanaAttributesInjection" type="MagentoJapan\Kana\Plugin\Customer\Model\Metadata\KanaAttributesInjection"/>
     </type>
-
-    <type name="Magento\Sales\Model\Order\Address">
-        <plugin name="modify_name" type="MagentoJapan\Kana\Plugin\Sales\Model\Order\AddressName" sortOrder="100"/>
-    </type>
-
-    <type name="Magento\Customer\Helper\View">
-        <plugin name="modify_name" type="MagentoJapan\Kana\Plugin\Helper\Name" sortOrder="100" />
-    </type>
-
-    <type name="Magento\Quote\Model\Quote\Address\ToOrderAddress">
-        <plugin name="assign_kana" type="MagentoJapan\Kana\Plugin\Quote\Model\Quote\Address\ToOrderAddress" sortOrder="100"/>
-    </type>
-
-    <type name="Magento\Quote\Model\Quote\Address\CustomAttributeList">
-        <plugin name="assign_kana" type="MagentoJapan\Kana\Plugin\Quote\Model\Quote\Address\AddKanaToAttributeList" sortOrder="100"/>
+    <type name="Magento\Customer\Model\Delegation\Storage">
+        <plugin name="kanaAttributesNormalization" type="MagentoJapan\Kana\Plugin\Customer\Model\Delegation\NewOperationNormalization"/>
     </type>
     <type name="Magento\Quote\Model\Quote\Address">
-        <plugin name="assign_kana" type="MagentoJapan\Kana\Plugin\Quote\Model\Quote\Address\AppendKana" sortOrder="100"/>
+        <plugin name="exportKana" type="MagentoJapan\Kana\Plugin\Quote\Model\Quote\ExportAddressKana"/>
+    </type>
+    <type name="Magento\Customer\Block\Address\Renderer\RendererInterface">
+        <plugin name="exportKana" type="MagentoJapan\Kana\Plugin\Customer\Block\Address\KanaAttributesRenderer"/>
     </type>
 
-    <type name="Magento\Customer\CustomerData\Customer">
-        <plugin name="assign_lname" type="MagentoJapan\Kana\Plugin\Customer\CustomerDataModifier" sortOrder="100"/>
-    </type>
-
-    <type name="Magento\Reports\Model\ResourceModel\Order\Collection">
-        <plugin name="modify_name" type="MagentoJapan\Kana\Plugin\Reports\Order\Collection\ModifyName" sortOrder="100"/>
-    </type>
-
-    <type name="Magento\Quote\Model\QuoteAddressValidator">
-        <plugin name="validate_kana" type="MagentoJapan\Kana\Plugin\Quote\Model\Quote\Address\Validator" sortOrder="100"/>
-    </type>
-
-    <type name="Magento\Quote\Model\QuoteValidator">
-        <plugin name="validate_kana" type="MagentoJapan\Kana\Plugin\Quote\Model\Quote\Validator" sortOrder="100"/>
-    </type>
-
-    <type name="Magento\Eav\Model\Entity\Setup\PropertyMapper\Composite">
+    <virtualType name="CustomerNameKanaHandler" type="Magento\Framework\Indexer\Handler\ConcatHandler">
         <arguments>
-            <argument name="propertyMappers" xsi:type="array">
-                <item name="kana" xsi:type="string">Magento\Customer\Model\ResourceModel\Setup\PropertyMapper</item>
-            </argument>
-        </arguments>
-    </type>
-
-    <virtualType name="jpCustomerNameHandler" type="Magento\Framework\Indexer\Handler\ConcatHandler">
-        <arguments>
-            <argument name="concatExpression" xsi:type="object">jpCustomerNameExpression</argument>
+            <argument name="concatExpression" xsi:type="object">CustomerNameKanaExpression</argument>
         </arguments>
     </virtualType>
 
-    <virtualType name="CustomerKanaHandler" type="Magento\Framework\Indexer\Handler\ConcatHandler">
+    <virtualType name="CustomerNameKanaExpression" type="Magento\Framework\DB\Sql\ConcatExpression">
         <arguments>
-            <argument name="concatExpression" xsi:type="object">CustomerKanaExpression</argument>
-        </arguments>
-    </virtualType>
-
-    <virtualType name="jpCustomerNameExpression" type="Magento\Framework\DB\Sql\ConcatExpression">
-        <arguments>
+            <argument name="tableName" xsi:type="string">e</argument>
             <argument name="columns" xsi:type="array">
                 <item name="prefix" xsi:type="array">
                     <item name="tableAlias" xsi:type="string">e</item>
                     <item name="columnName" xsi:type="string">prefix</item>
                 </item>
-                <item name="lastname" xsi:type="array">
+                <item name="lastnamekana" xsi:type="array">
                     <item name="tableAlias" xsi:type="string">e</item>
-                    <item name="columnName" xsi:type="string">lastname</item>
+                    <item name="columnName" xsi:type="string">lastnamekana</item>
                 </item>
-                <item name="middlename" xsi:type="array">
+                <item name="firstnamekana" xsi:type="array">
                     <item name="tableAlias" xsi:type="string">e</item>
-                    <item name="columnName" xsi:type="string">middlename</item>
-                </item>
-                <item name="firstname" xsi:type="array">
-                    <item name="tableAlias" xsi:type="string">e</item>
-                    <item name="columnName" xsi:type="string">firstname</item>
+                    <item name="columnName" xsi:type="string">firstnamekana</item>
                 </item>
                 <item name="suffix" xsi:type="array">
                     <item name="tableAlias" xsi:type="string">e</item>
                     <item name="columnName" xsi:type="string">suffix</item>
-                </item>
-            </argument>
-        </arguments>
-    </virtualType>
-
-    <virtualType name="CustomerKanaExpression" type="Magento\Framework\DB\Sql\ConcatExpression">
-        <arguments>
-            <argument name="columns" xsi:type="array">
-                <item name="lastnamekana" xsi:type="array">
-                    <item name="tableAlias" xsi:type="string">at_lastnamekana</item>
-                    <item name="columnName" xsi:type="string">value</item>
-                </item>
-                <item name="firstnamekana" xsi:type="array">
-                    <item name="tableAlias" xsi:type="string">at_firstnamekana</item>
-                    <item name="columnName" xsi:type="string">value</item>
-                </item>
-            </argument>
-        </arguments>
-    </virtualType>
-
-    <virtualType name="jpCustomerNameAggregator" type="Magento\Framework\DB\Sql\ConcatExpression">
-        <arguments>
-            <argument name="columns" xsi:type="array">
-                <item name="customer_lastname" xsi:type="array">
-                    <item name="tableAlias" xsi:type="string">sales_order</item>
-                    <item name="columnName" xsi:type="string">customer_lastname</item>
-                </item>
-                <item name="customer_firstname" xsi:type="array">
-                    <item name="tableAlias" xsi:type="string">sales_order</item>
-                    <item name="columnName" xsi:type="string">customer_firstname</item>
-                </item>
-            </argument>
-        </arguments>
-    </virtualType>
-    <virtualType name="jpShippingNameAggregator" type="Magento\Framework\DB\Sql\ConcatExpression">
-        <arguments>
-            <argument name="columns" xsi:type="array">
-                <item name="lastname" xsi:type="array">
-                    <item name="tableAlias" xsi:type="string">sales_shipping_address</item>
-                    <item name="columnName" xsi:type="string">lastname</item>
-                </item>
-                <item name="firstname" xsi:type="array">
-                    <item name="tableAlias" xsi:type="string">sales_shipping_address</item>
-                    <item name="columnName" xsi:type="string">firstname</item>
-                </item>
-            </argument>
-        </arguments>
-    </virtualType>
-    <virtualType name="jpBillingNameAggregator" type="Magento\Framework\DB\Sql\ConcatExpression">
-        <arguments>
-            <argument name="columns" xsi:type="array">
-                <item name="lastname" xsi:type="array">
-                    <item name="tableAlias" xsi:type="string">sales_billing_address</item>
-                    <item name="columnName" xsi:type="string">lastname</item>
-                </item>
-                <item name="firstname" xsi:type="array">
-                    <item name="tableAlias" xsi:type="string">sales_billing_address</item>
-                    <item name="columnName" xsi:type="string">firstname</item>
                 </item>
             </argument>
         </arguments>

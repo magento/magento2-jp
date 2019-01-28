@@ -5,6 +5,7 @@
   "type": "metapackage",
   "require": {
     "magentojapan/module-kana": "*",
+    "magentojapan/module-address": "*",
     "magentojapan/module-region": "*",
     "magentojapan/module-price": "*",
     "magentojapan/module-kuromoji": "*",
