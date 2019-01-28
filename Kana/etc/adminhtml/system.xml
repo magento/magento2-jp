@@ -1,17 +1,22 @@
 <?xml version="1.0"?>
-
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="localize" translate="label" sortOrder="999">
-            <label>Japanese Localize</label>
+        <tab id="localize" translate="label" sortOrder="101">
+            <label>Japanese Localization</label>
         </tab>
-        <section id="localize" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="contacts" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
-            <label>Name &amp; Address configuration</label>
+            <label>Name and Address</label>
             <tab>localize</tab>
             <resource>MagentoJapan_Localize::config_format</resource>
             <group id="kana" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Kana configuration</label>
+                <label>Kana Configuration</label>
                 <field id="use_kana" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Use Kana</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -31,100 +36,6 @@
                     <config_path>customer/address/kana_type</config_path>
                     <depends>
                         <field id="use_kana">1</field>
-                    </depends>
-                </field>
-            </group>
-            <group id="address" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Address format option</label>
-                <field id="show_address" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Show address on customer registration form</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-                <field id="hide_country" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Hide country field</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-                <field id="change_fields_order" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Use Japanese style for address fields</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-            </group>
-            <group id="sort" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Checkout address fields sort order</label>
-                <field id="change_fields_order" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Customize checkout fields sort order</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-                <field id="lastname" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Last Name</label>
-                    <depends>
-                        <field id="change_fields_order">1</field>
-                    </depends>
-                </field>
-                <field id="firstname" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>First Name</label>
-                    <depends>
-                        <field id="change_fields_order">1</field>
-                    </depends>
-                </field>
-                <field id="lastnamekana" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Last name kana</label>
-                    <depends>
-                        <field id="change_fields_order">1</field>
-                    </depends>
-                </field>
-                <field id="firstnamekana" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>First name kana</label>
-                    <depends>
-                        <field id="change_fields_order">1</field>
-                    </depends>
-                </field>
-                <field id="country_id" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Country</label>
-                    <depends>
-                        <field id="change_fields_order">1</field>
-                    </depends>
-                </field>
-                <field id="region" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Region/State</label>
-                    <depends>
-                        <field id="change_fields_order">1</field>
-                    </depends>
-                </field>
-                <field id="city" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>City</label>
-                    <depends>
-                        <field id="change_fields_order">1</field>
-                    </depends>
-                </field>
-                <field id="street" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Address</label>
-                    <depends>
-                        <field id="change_fields_order">1</field>
-                    </depends>
-                </field>
-                <field id="postcode" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Zip/Post Code</label>
-                    <depends>
-                        <field id="change_fields_order">1</field>
-                    </depends>
-                </field>
-                <field id="telephone" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Telephone</label>
-                    <depends>
-                        <field id="change_fields_order">1</field>
-                    </depends>
-                </field>
-                <field id="fax" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Fax</label>
-                    <depends>
-                        <field id="change_fields_order">1</field>
-                    </depends>
-                </field>
-                <field id="company" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Company</label>
-                    <depends>
-                        <field id="change_fields_order">1</field>
                     </depends>
                 </field>
             </group>

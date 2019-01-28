@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="localize" translate="label" sortOrder="101">
+            <label>Japanese Localization</label>
+        </tab>
+        <section id="contacts" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Name and Address</label>
+            <tab>localize</tab>
+            <resource>MagentoJapan_Localize::config_format</resource>
+            <group id="address" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Address Input Options</label>
+                <field id="show_address" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Address on Customer Registration Form</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>customer/address/require_to_register</config_path>
+                </field>
+                <field id="default_country" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Country</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <config_path>general/country/default</config_path>
+                </field>
+                <field id="hide_country" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Hide Country Field</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>customer/address/hide_country</config_path>
+                </field>
+            </group>
+            <group id="address_templates" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Address Templates</label>
+                <field id="text" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Text</label>
+                    <config_path>customer/address_templates/text</config_path>
+                </field>
+                <field id="oneline" translate="label" type="textarea" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Text One Line</label>
+                    <config_path>customer/address_templates/oneline</config_path>
+                </field>
+                <field id="html" translate="label" type="textarea" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>HTML</label>
+                    <config_path>customer/address_templates/html</config_path>
+                </field>
+                <field id="pdf" translate="label" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>PDF</label>
+                    <config_path>customer/address_templates/pdf</config_path>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

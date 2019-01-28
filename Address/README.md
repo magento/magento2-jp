@@ -1,0 +1,1 @@
+This module changes fields order at customer and address forms and full customer name address formats to correspond with Japan traditions.

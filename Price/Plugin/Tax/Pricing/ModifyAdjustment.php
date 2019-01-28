@@ -72,8 +72,7 @@ class ModifyAdjustment
         $amount,
         SaleableInterface $saleableItem,
         $context = []
-    )
-    {
+    ) {
         $method = $this->system->getRoundMethod();
         $isRound = false;
         $currency = $this->priceCurrency->getCurrency();

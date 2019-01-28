@@ -60,7 +60,6 @@ class ModifyCurrencyOptions implements ObserverInterface
      *
      * @param string $baseCode Base currency code
      * @param array $originalOptions Currency Options
-     * @param array $originalOptions
      * @return array
      */
     protected function getCurrencyOptions($baseCode, $originalOptions)

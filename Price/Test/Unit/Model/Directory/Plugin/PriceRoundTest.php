@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace MagentoJapan\Price\Test\Unit\Model\Directory\Plugin;
 
-use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
+use Magento\Directory\Model\Currency;
 use Magento\Directory\Model\PriceCurrency;
 use MagentoJapan\Price\Model\Config\System;
 use MagentoJapan\Price\Model\Directory\Plugin\PriceRound;
@@ -46,16 +46,11 @@ class PriceRoundTest extends TestCase
      */
     protected function setUp()
     {
-        $objectManager = new ObjectManager($this);
-
         $this->system = $this->getMockBuilder(System::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->priceRoundPlugin = $objectManager->getObject(
-            PriceRound::class,
-            ['system' => $this->system]
-        );
+        $this->priceRoundPlugin = new PriceRound($this->system);
 
         $this->priceCurrency = $this->getMockBuilder(
             PriceCurrency::class
@@ -84,7 +79,6 @@ class PriceRoundTest extends TestCase
             ->getMock();
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
-
 
         $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);

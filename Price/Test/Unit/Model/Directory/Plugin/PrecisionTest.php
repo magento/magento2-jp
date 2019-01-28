@@ -59,7 +59,6 @@ class PrecisionTest extends TestCase
         $this->systemMock->expects($this->atLeastOnce())
             ->method('getIntegerCurrencies')->willReturn(['JPY']);
 
-
         $this->assertEquals(
             '<span class="price">￥100</span>',
             $this->precisionPlugin

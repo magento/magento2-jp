@@ -1,29 +1,26 @@
 <?xml version="1.0"?>
-
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:DataObject/etc/fieldset.xsd">
     <scope id="global">
         <fieldset id="customer_account">
             <field name="firstnamekana">
-                <aspect name="create" />
-                <aspect name="update" />
-                <aspect name="name" />
                 <aspect name="to_quote" targetField="customer_firstnamekana"/>
-                <aspect name="to_order" targetField="customer_firstnamekana"/>
             </field>
             <field name="lastnamekana">
-                <aspect name="create" />
-                <aspect name="update" />
-                <aspect name="name" />
                 <aspect name="to_quote" targetField="customer_lastnamekana"/>
-                <aspect name="to_order" targetField="customer_lastnamekana"/>
             </field>
         </fieldset>
         <fieldset id="customer_address">
             <field name="firstnamekana">
-                <aspect name="to_quote_address" targetField="firstnamekana"/>
+                <aspect name="to_quote_address"/>
             </field>
             <field name="lastnamekana">
-                <aspect name="to_quote_address" targetField="lastnamekana"/>
+                <aspect name="to_quote_address"/>
             </field>
         </fieldset>
         <fieldset id="order_address">
@@ -36,6 +33,7 @@
                 <aspect name="to_customer_address" />
             </field>
         </fieldset>
+
         <fieldset id="sales_convert_quote">
             <field name="customer_firstnamekana">
                 <aspect name="to_order"/>
@@ -46,26 +44,37 @@
         </fieldset>
         <fieldset id="sales_convert_quote_address">
             <field name="firstnamekana">
+                <aspect name="to_order" targetField="customer_firstnamekana" />
                 <aspect name="to_order_address" />
             </field>
             <field name="lastnamekana">
+                <aspect name="to_order" targetField="customer_lastnamekana" />
                 <aspect name="to_order_address" />
             </field>
         </fieldset>
-        <fieldset id="sales_convert_order">
+
+        <fieldset id="sales_copy_order">
             <field name="customer_firstnamekana">
-                <aspect name="to_quote"/>
+                <aspect name="to_edit"/>
             </field>
             <field name="customer_lastnamekana">
-                <aspect name="to_quote"/>
+                <aspect name="to_edit"/>
             </field>
         </fieldset>
-        <fieldset id="sales_convert_order_address">
+        <fieldset id="sales_copy_order_shipping_address">
             <field name="firstnamekana">
-                <aspect name="to_quote_address"/>
+                <aspect name="to_order" targetField="customer_firstnamekana" />
             </field>
             <field name="lastnamekana">
-                <aspect name="to_quote_address"/>
+                <aspect name="to_order" targetField="customer_lastnamekana" />
+            </field>
+        </fieldset>
+        <fieldset id="sales_copy_order_billing_address">
+            <field name="firstnamekana">
+                <aspect name="to_order" targetField="customer_firstnamekana" />
+            </field>
+            <field name="lastnamekana">
+                <aspect name="to_order" targetField="customer_lastnamekana" />
             </field>
         </fieldset>
     </scope>

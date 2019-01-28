@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="customer">
+        <field name="entity_id" sortOrder="10"/>
+        <field name="created_in" sortOrder="20"/>
+        <field name="default_billing" sortOrder="30"/>
+        <field name="default_shipping" sortOrder="40"/>
+        <field name="website_id" sortOrder="50"/>
+        <container name="container_group" sortOrder="60"/>
+        <field name="prefix" sortOrder="70"/>
+        <field name="firstname" sortOrder="80"/>
+        <field name="middlename" sortOrder="90"/>
+        <field name="lastname" sortOrder="100"/>
+        <field name="suffix" sortOrder="110"/>
+        <field name="lastnamekana" sortOrder="120"/>
+        <field name="firstnamekana" sortOrder="130"/>
+        <field name="email" sortOrder="140"/>
+        <field name="dob" sortOrder="150"/>
+        <field name="taxvat" sortOrder="160"/>
+        <field name="gender" sortOrder="170"/>
+        <field name="sendemail_store_id" sortOrder="180"/>
+    </fieldset>
+    <fieldset name="address">
+        <field name="parent_id" sortOrder="10"/>
+        <field name="prefix" sortOrder="20"/>
+        <field name="lastname" sortOrder="30"/>
+        <field name="middlename" sortOrder="40"/>
+        <field name="firstname" sortOrder="50"/>
+        <field name="suffix" sortOrder="60"/>
+        <field name="lastnamekana" sortOrder="70"/>
+        <field name="firstnamekana" sortOrder="80"/>
+        <field name="country_id" sortOrder="90"/>
+        <field name="postcode" sortOrder="100"/>
+        <field name="region" sortOrder="110"/>
+        <field name="region_id" sortOrder="120"/>
+        <field name="city" sortOrder="130"/>
+        <field name="telephone" sortOrder="140"/>
+        <field name="fax" sortOrder="150"/>
+        <field name="vat_id" sortOrder="160"/>
+        <field name="company" sortOrder="170"/>
+        <field name="default_billing" sortOrder="180"/>
+        <field name="default_shipping" sortOrder="190"/>
+    </fieldset>
+</form>

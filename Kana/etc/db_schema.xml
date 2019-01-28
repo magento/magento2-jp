@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="customer_entity">
+        <column name="firstnamekana" xsi:type="varchar" length="255" comment="Firstname Kana"/>
+        <column name="lastnamekana" xsi:type="varchar" length="255" comment="Lastname Kana"/>
+    </table>
+    <table name="customer_address_entity">
+        <column name="firstnamekana" xsi:type="varchar" length="255" comment="Firstname Kana"/>
+        <column name="lastnamekana" xsi:type="varchar" length="255" comment="Lastname Kana"/>
+    </table>
+
+    <table name="quote">
+        <column name="customer_firstnamekana" xsi:type="varchar" length="255" comment="Customer Firstname Kana"/>
+        <column name="customer_lastnamekana" xsi:type="varchar" length="255" comment="Customer Lastname Kana"/>
+    </table>
+    <table name="quote_address">
+        <column name="firstnamekana" xsi:type="varchar" length="255" comment="Customer Firstname Kana"/>
+        <column name="lastnamekana" xsi:type="varchar" length="255" comment="Customer Lastname Kana"/>
+    </table>
+
+    <table name="sales_order">
+        <column name="customer_firstnamekana" xsi:type="varchar" length="255" comment="Customer Firstname Kana"/>
+        <column name="customer_lastnamekana" xsi:type="varchar" length="255" comment="Customer Lastname Kana"/>
+    </table>
+    <table name="sales_order_address">
+        <column name="firstnamekana" xsi:type="varchar" length="255" comment="Customer Firstname Kana"/>
+        <column name="lastnamekana" xsi:type="varchar" length="255" comment="Customer Lastname Kana"/>
+    </table>
+</schema>

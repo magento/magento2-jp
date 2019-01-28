@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <general>
+            <country>
+                <default>JP</default>
+            </country>
+        </general>
+        <customer>
+            <address>
+                <require_to_register>1</require_to_register>
+                <hide_country>1</hide_country>
+            </address>
+            <address_templates>
+                <text><![CDATA[{{depend postcode}}〒{{var postcode}}{{/depend}}
+{{depend region}}{{var region}}{{/depend}}{{depend city}}{{var city}}{{/depend}}{{depend street1}}{{var street1}} {{/depend}}{{depend street2}}{{var street2}}{{/depend}}{{depend street3}}{{var street3}}{{/depend}}
+{{depend prefix}}{{var prefix}} {{/depend}}{{var lastname}} {{depend middlename}}{{var middlename}} {{/depend}}{{var firstname}}{{depend suffix}} {{var suffix}}{{/depend}}{{depend lastnamekana}} ({{var lastnamekana}} {{var firstnamekana}}){{/depend}}
+{{depend telephone}}T: {{var telephone}}{{/depend}}
+{{depend fax}}F: {{var fax}}{{/depend}}
+]]></text>
+                <oneline><![CDATA[{{depend postcode}}〒{{var postcode}} {{/depend}}{{depend region}}{{var region}}{{/depend}}{{var city}}{{depend city}}{{/depend}}{{depend street1}}{{var street1}} {{/depend}}{{depend street2}}{{var street2}}{{/depend}}{{depend street3}}{{var street3}}{{/depend}} {{depend prefix}}{{var prefix}} {{/depend}}{{var lastname}} {{depend middlename}}{{var middlename}} {{/depend}}{{var firstname}}{{depend suffix}} {{var suffix}}{{/depend}}{{depend lastnamekana}} ({{var lastnamekana}} {{var firstnamekana}}){{/depend}}]]></oneline>
+                <html><![CDATA[{{depend postcode}}〒{{var postcode}}{{/depend}}<br />
+{{depend region}}{{var region}}{{/depend}}{{depend city}}{{var city}}{{/depend}}{{depend street1}}{{var street1}} {{/depend}}{{depend street2}}{{var street2}}{{/depend}}{{depend street3}}{{var street3}}{{/depend}}<br />
+{{depend prefix}}{{var prefix}} {{/depend}}{{var lastname}} {{depend middlename}}{{var middlename}} {{/depend}}{{var firstname}}{{depend suffix}} {{var suffix}}{{/depend}}{{depend lastnamekana}} ({{var lastnamekana}} {{var firstnamekana}}){{/depend}}
+{{depend telephone}}<br />T: {{var telephone}}{{/depend}}
+{{depend fax}}<br />F: {{var fax}}{{/depend}}<br />]]></html>
+                <pdf><![CDATA[{{depend postcode}}〒{{var postcode}}{{/depend}}|
+{{depend region}}{{var region}}{{/depend}}{{depend city}}{{var city}}{{/depend}}{{depend street1}}{{var street1}}{{/depend}}{{depend street2}}{{var street2}} {{/depend}}{{depend street3}}{{var street3}}{{/depend}}|
+{{depend prefix}}{{var prefix}} {{/depend}}{{var lastname}} {{depend middlename}}{{var middlename}} {{/depend}}{{var firstname}}{{depend suffix}} {{var suffix}}{{/depend}}{{depend lastnamekana}} ({{var lastnamekana}} {{var firstnamekana}}){{/depend}}
+{{depend telephone}}|T: {{var telephone}}{{/depend}}
+{{depend fax}}|F: {{var fax}}{{/depend}}|]]></pdf>
+            </address_templates>
+        </customer>
+    </default>
+</config>
