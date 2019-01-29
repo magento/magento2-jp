@@ -1,9 +1,15 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 declare(strict_types=1);
 
 namespace MagentoJapan\Pdf\Model\Filesystem\Directory;
 
 use MagentoJapan\Pdf\Model\Filesystem\File\Read;
+use MagentoJapan\Pdf\Model\Filesystem\FontFilesRewriter;
+use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Filesystem\DriverPool;
 use Magento\Framework\Filesystem\Directory\PathValidator;
 use Magento\Framework\Filesystem\File\ReadFactory as FileReadFactory;
@@ -40,7 +46,8 @@ class ReadFactory extends BaseDirectoryReadFactory
             $factory,
             $driver,
             $path,
-            new PathValidator($driver)
+            new PathValidator($driver),
+            ObjectManager::getInstance()->get(FontFilesRewriter::class)
         );
     }
 }
