@@ -67,7 +67,9 @@ class FontFilesRewriter
         $defaultFont = $this->fontConfig->getDefaultFont();
         $activeFont = $this->fontConfig->getActiveFont();
         if ($activeFont === $defaultFont) {
-            return function ($path) { return $path; };
+            return function ($path) {
+                return $path;
+            };
         }
 
         $map = [

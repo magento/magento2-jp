@@ -15,15 +15,18 @@
     ],
     "require": {
         "php": "~7.1.3|~7.2.0",
-        "magento/framework": "*",
-        "magentojapan/module-pdf": "*"
+        "magento/framework": "*"
     },
     "suggest": {
-        "magento/module-sales": "*"
+        "magento/module-sales": "*",
+        "magentojapan/module-pdf": "*"
     },
     "autoload": {
         "files": [
             "registration.php"
-        ]
+        ],
+        "psr-4": {
+            "MagentoJapan\\IpaFonts\\": ""
+        }
     }
 }
