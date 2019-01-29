@@ -15,9 +15,11 @@
     </type>
     <virtualType name="SourceHanSansJapaneseFont" type="MagentoJapan\Pdf\Model\Font">
         <arguments>
-            <argument name="name" xsi:type="string" translatable="true">Source Han Sans Japanese</argument>
-            <argument name="regular" xsi:type="object">SourceHanSansJapaneseRegular</argument>
-            <argument name="bold" xsi:type="object">SourceHanSansJapaneseBold</argument>
+            <argument name="data" xsi:type="array">
+                <item name="name" xsi:type="string" translatable="true">Source Han Sans Japanese</item>
+                <item name="regular" xsi:type="object">SourceHanSansJapaneseRegular</item>
+                <item name="bold" xsi:type="object">SourceHanSansJapaneseBold</item>
+            </argument>
         </arguments>
     </virtualType>
     <virtualType name="SourceHanSansJapaneseRegular" type="MagentoJapan\Pdf\Model\FontFile">

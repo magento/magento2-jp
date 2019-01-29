@@ -19,8 +19,10 @@
 
     <virtualType name="IpaGothic" type="MagentoJapan\Pdf\Model\Font">
         <arguments>
-            <argument name="name" xsi:type="string" translatable="true">IPA Gothic</argument>
-            <argument name="regular" xsi:type="object">IpaGothicRegular</argument>
+            <argument name="data" xsi:type="array">
+                <item name="name" xsi:type="string" translatable="true">IPA Gothic</item>
+                <item name="regular" xsi:type="object">IpaGothicRegular</item>
+            </argument>
         </arguments>
     </virtualType>
     <virtualType name="IpaGothicRegular" type="MagentoJapan\Pdf\Model\FontFile">
@@ -31,8 +33,10 @@
 
     <virtualType name="IpaPGothic" type="MagentoJapan\Pdf\Model\Font">
         <arguments>
-            <argument name="name" xsi:type="string" translatable="true">IPA P Gothic</argument>
-            <argument name="regular" xsi:type="object">IpaPGothicRegular</argument>
+            <argument name="data" xsi:type="array">
+                <item name="name" xsi:type="string" translatable="true">IPA P Gothic</item>
+                <item name="regular" xsi:type="object">IpaPGothicRegular</item>
+            </argument>
         </arguments>
     </virtualType>
     <virtualType name="IpaPGothicRegular" type="MagentoJapan\Pdf\Model\FontFile">
@@ -43,8 +47,10 @@
 
     <virtualType name="IpaMincho" type="MagentoJapan\Pdf\Model\Font">
         <arguments>
-            <argument name="name" xsi:type="string" translatable="true">IPA Mincho</argument>
-            <argument name="regular" xsi:type="object">IpaMinchoRegular</argument>
+            <argument name="data" xsi:type="array">
+                <item name="name" xsi:type="string" translatable="true">IPA Mincho</item>
+                <item name="regular" xsi:type="object">IpaMinchoRegular</item>
+            </argument>
         </arguments>
     </virtualType>
     <virtualType name="IpaMinchoRegular" type="MagentoJapan\Pdf\Model\FontFile">
@@ -55,8 +61,10 @@
 
     <virtualType name="IpaPMincho" type="MagentoJapan\Pdf\Model\Font">
         <arguments>
-            <argument name="name" xsi:type="string" translatable="true">IPA P Mincho</argument>
-            <argument name="regular" xsi:type="object">IpaPMinchoRegular</argument>
+            <argument name="data" xsi:type="array">
+                <item name="name" xsi:type="string" translatable="true">IPA P Mincho</item>
+                <item name="regular" xsi:type="object">IpaPMinchoRegular</item>
+            </argument>
         </arguments>
     </virtualType>
     <virtualType name="IpaPMinchoRegular" type="MagentoJapan\Pdf\Model\FontFile">

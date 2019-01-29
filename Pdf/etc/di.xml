@@ -29,10 +29,12 @@
 
     <virtualType name="DefaultFont" type="MagentoJapan\Pdf\Model\Font">
         <arguments>
-            <argument name="name" xsi:type="string" translatable="true">Default (Free Serif Fonts)</argument>
-            <argument name="regular" xsi:type="object">FreeSerifRegular</argument>
-            <argument name="bold" xsi:type="object">FreeSerifBold</argument>
-            <argument name="italic" xsi:type="object">FreeSerifItalic</argument>
+            <argument name="data" xsi:type="array">
+                <item name="name" xsi:type="string" translatable="true">Default (Free Serif Fonts)</item>
+                <item name="regular" xsi:type="object">FreeSerifRegular</item>
+                <item name="bold" xsi:type="object">FreeSerifBold</item>
+                <item name="italic" xsi:type="object">FreeSerifItalic</item>
+            </argument>
         </arguments>
     </virtualType>
     <virtualType name="FreeSerifRegular" type="MagentoJapan\Pdf\Model\FontFile">

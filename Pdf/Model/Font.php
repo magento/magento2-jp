@@ -33,21 +33,29 @@ class Font
     private $italic;
 
     /**
-     * @param string $name
-     * @param FontFile $regular
-     * @param FontFile|null $bold
-     * @param FontFile|null $italic
+     * @param array $data
      */
     public function __construct(
-        string $name,
-        FontFile $regular,
-        ?FontFile $bold = null,
-        ?FontFile $italic = null
+        array $data
     ) {
-        $this->name = $name;
-        $this->regular = $regular;
-        $this->bold = $bold;
-        $this->italic = $italic;
+        if (!isset($data['name'])) {
+            throw new \InvalidArgumentException('Font declaration must contain "name" attribute.');
+        }
+        if (!isset($data['regular'])) {
+            throw new \InvalidArgumentException('Font declaration must contain "regular" attribute.');
+        }
+        foreach (['regular', 'bold', 'italic'] as $fontFile) {
+            if (isset($data[$fontFile]) && !$data[$fontFile] instanceof FontFile) {
+                throw new \InvalidArgumentException(
+                    sprintf('Attribute "%s" should declare instance of "%s"', $fontFile, FontFile::class)
+                );
+            }
+        }
+
+        $this->name = $data['name'];
+        $this->regular = $data['regular'];
+        $this->bold = $data['bold'] ?? null;
+        $this->italic = $data['bold'] ?? null;
     }
 
     /**
