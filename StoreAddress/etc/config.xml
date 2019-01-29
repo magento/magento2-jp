@@ -1,10 +1,28 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <general>
-            <store_information>
-                <format><![CDATA[{{var name}}<br/>{{var postcode}}<br/>{{var country}}<br/>{{var region}}{{var city}}<br/>{{var street_line1}}<br/>{{depend street_line2}}{{var street_line2}}<br/>{{/depend}}]]></format>
-            </store_information>
+            <store_address_template>
+                <text><![CDATA[{{depend name}}{{var name}}{{/depend}}{{depend postcode}}
+〒{{var postcode}}{{/depend}}
+{{depend region}}{{var region}}{{/depend}}{{depend city}}{{var city}}{{/depend}}{{depend street_line1}}{{var street_line1}}{{/depend}}{{depend street_line2}} {{var street_line1}}{{/depend}}{{depend telephone}}
+T: {{var telephone}}{{/depend}}]]></text>
+                <oneline><![CDATA[{{depend name}}{{var name} {{/depend}}{{address_format}}]]></oneline>
+                <html><![CDATA[{{depend name}}{{var name}}<br/>{{/depend}}
+{{depend postcode}}〒{{var postcode}}<br/>{{/depend}}
+{{depend region}}{{var region}}{{/depend}}{{depend city}}{{var city}}{{/depend}}{{depend street_line1}}{{var street_line1}}{{/depend}}{{depend street_line2}} {{var street_line1}}{{/depend}}
+{{depend telephone}}<br/>T: {{var telephone}}{{/depend}}]]></html>
+                <pdf><![CDATA[{{depend name}}{{var name}}|{{/depend}}
+{{depend postcode}}〒{{var postcode}}|{{/depend}}
+{{depend region}}{{var region}}{{/depend}}{{depend city}}{{var city}}{{/depend}}{{depend street_line1}}{{var street_line1}}{{/depend}}{{depend street_line2}} {{var street_line1}}{{/depend}}
+{{depend telephone}}|T: {{var telephone}}{{/depend}}]]></pdf>
+            </store_address_template>
         </general>
     </default>
 </config>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MagentoJapan\Pdf\Model\FontProvider">
+        <arguments>
+            <argument name="fonts" xsi:type="array">
+                <item name="source_han_sans_japanese" xsi:type="object">SourceHanSansJapaneseFont</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="SourceHanSansJapaneseFont" type="MagentoJapan\Pdf\Model\Font">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="name" xsi:type="string" translatable="true">Source Han Sans Japanese</item>
+                <item name="regular" xsi:type="object">SourceHanSansJapaneseRegular</item>
+                <item name="bold" xsi:type="object">SourceHanSansJapaneseBold</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SourceHanSansJapaneseRegular" type="MagentoJapan\Pdf\Model\FontFile">
+        <arguments>
+            <argument name="path" xsi:type="string">MagentoJapan_SourceHanSansJapanese::SourceHanSansJP-Regular.ttf</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SourceHanSansJapaneseBold" type="MagentoJapan\Pdf\Model\FontFile">
+        <arguments>
+            <argument name="path" xsi:type="string">MagentoJapan_SourceHanSansJapanese::SourceHanSansJP-Bold.ttf</argument>
+        </arguments>
+    </virtualType>
+</config>

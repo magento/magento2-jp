@@ -1,33 +1,32 @@
 {
-  "name": "magentojapan/module-pdf",
-  "type": "magento2-module",
-  "license": [
-    "OSL-3.0"
-  ],
-  "description": "Magento2 extension for Japanese Pdf Font.",
-  "authors":[
-    {
-      "name": "Hirokazu Nishi",
-      "email": "nishi@veriteworks.co.jp",
-      "homepage": "https://veriteworks.co.jp/",
-      "role": "developer"
-    }
-  ],
-  "require": {
-    "php": "~7.1.3|~7.2.0",
-    "magento/framework": "*",
-    "lib-libxml": "*",
-    "ext-mbstring": "*"
-  },
-  "suggest": {
-    "magento/module-sales": "*"
-  },
-  "autoload": {
-    "files": [
-      "registration.php"
+    "name": "magentojapan/module-pdf",
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
     ],
-    "psr-4": {
-      "MagentoJapan\\Pdf\\": ""
+    "description": "Magento2 extension for Japanese Pdf Fonts.",
+    "authors":[
+        {
+            "name": "Hirokazu Nishi",
+            "email": "nishi@veriteworks.co.jp",
+            "homepage": "https://veriteworks.co.jp/",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": "~7.1.3|~7.2.0",
+        "magento/framework": "*"
+    },
+    "suggest": {
+        "magento/module-sales": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MagentoJapan\\Pdf\\": ""
+        }
     }
-  }
 }

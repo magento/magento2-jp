@@ -1,10 +1,31 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="general">
-            <group id="store_information" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" translate="label">
-                <field id="format" type="textarea" translate="label" sortOrder="99" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Format</label>
+        <tab id="localize" translate="label" sortOrder="101">
+            <label>Japanese Localization</label>
+        </tab>
+        <section id="contacts" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Name and Address</label>
+            <tab>localize</tab>
+            <resource>MagentoJapan_Localize::config_format</resource>
+            <group id="store_address_template" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Store Information Templates</label>
+                <field id="text" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Text</label>
+                    <config_path>general/store_address_template/text</config_path>
+                </field>
+                <field id="oneline" translate="label" type="textarea" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Text One Line</label>
+                    <config_path>general/store_address_template/oneline</config_path>
+                </field>
+                <field id="html" translate="label" type="textarea" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>HTML</label>
+                    <config_path>general/store_address_template/html</config_path>
+                </field>
+                <field id="pdf" translate="label" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>PDF</label>
+                    <config_path>general/store_address_template/pdf</config_path>
                 </field>
             </group>
         </section>

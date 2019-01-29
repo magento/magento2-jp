@@ -24,7 +24,8 @@
         "magento/module-reports": "*"
     },
     "suggest": {
-        "magentojapan/module-kana": "*"
+        "magentojapan/module-kana": "*",
+        "magentojapan/module-region": "*"
     },
     "autoload": {
         "files": [

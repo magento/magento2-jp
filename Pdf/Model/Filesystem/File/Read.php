@@ -1,14 +1,18 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 declare(strict_types=1);
 
 namespace MagentoJapan\Pdf\Model\Filesystem\File;
 
-use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Filesystem\Directory\PathValidatorInterface;
 use Magento\Framework\Filesystem\DriverInterface;
 use Magento\Framework\Filesystem\File\ReadFactory;
 use Magento\Framework\Filesystem\Directory\Read as BaseRead;
-use MagentoJapan\Pdf\ModelConfig\Service;
+use MagentoJapan\Pdf\Model\Config\Service;
+use MagentoJapan\Pdf\Model\Filesystem\FontFilesRewriter;
 
 /**
  * Override path resolution for the Magento's built-in PDF fonts based on module configuration.
@@ -16,26 +20,26 @@ use MagentoJapan\Pdf\ModelConfig\Service;
 class Read extends BaseRead
 {
     /**
-     * @var Service
+     * @var FontFilesRewriter
      */
-    private $jpFontService;
+    private $filesRewriter;
 
     /**
      * @param ReadFactory $fileFactory
      * @param DriverInterface $driver
      * @param string $path
      * @param PathValidatorInterface $pathValidator
-     * @param Service $jpFontService
+     * @param FontFilesRewriter $filesRewriter
      */
     public function __construct(
         ReadFactory $fileFactory,
         DriverInterface $driver,
         string $path,
-        ?PathValidatorInterface $pathValidator = null,
-        ?Service $jpFontService = null
+        PathValidatorInterface $pathValidator,
+        FontFilesRewriter $filesRewriter
     ) {
-        $this->jpFontService = $jpFontService ?? ObjectManager::getInstance()->get(Service::class);
         parent::__construct($fileFactory, $driver, $path, $pathValidator);
+        $this->filesRewriter = $filesRewriter;
     }
 
     /**
@@ -48,10 +52,7 @@ class Read extends BaseRead
      */
     public function getAbsolutePath($path = null, $scheme = null)
     {
-        if (is_string($path) && in_array($path, $this->jpFontService->getFontsToOverride())) {
-            $path = $this->jpFontService->getJapaneseFontPath($path);
-        }
-
+        $path = $this->filesRewriter->rewrite($path);
         return parent::getAbsolutePath($path, $scheme);
     }
 }

@@ -1,4 +1,8 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 declare(strict_types=1);
 
 namespace MagentoJapan\Region\Setup\Patch\Data;
@@ -7,15 +11,12 @@ use Magento\Framework\DB\Adapter\AdapterInterface;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Framework\Setup\Patch\PatchVersionInterface;
 use Magento\Directory\Helper\Data;
-use Magento\Directory\Model\ResourceModel\Region\CollectionFactory;
-use Magento\Directory\Model\ResourceModel\Region\Collection;
 
 /**
  * Japan Regions information.
  */
-class AddDataForJapan implements DataPatchInterface, PatchVersionInterface
+class AddDataForJapan implements DataPatchInterface
 {
     /**
      * @var ModuleDataSetupInterface
@@ -33,26 +34,18 @@ class AddDataForJapan implements DataPatchInterface, PatchVersionInterface
     private $data;
 
     /**
-     * @var CollectionFactory
-     */
-    private $collectionFactory;
-
-    /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param Data $data
-     * @param CollectionFactory $collectionFactory
      * @param ResourceConnection $resourceConnection
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         Data $data,
-        CollectionFactory $collectionFactory,
         ResourceConnection $resourceConnection
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->data = $data;
         $this->resourceConnection = $resourceConnection;
-        $this->collectionFactory = $collectionFactory;
     }
 
     /**
@@ -60,10 +53,6 @@ class AddDataForJapan implements DataPatchInterface, PatchVersionInterface
      */
     public function apply()
     {
-        if ($this->checkExistingJpRegions()) {
-            return;
-        }
-
         /** @var AdapterInterface $adapter */
         $adapter = $this->moduleDataSetup->getConnection();
         $regionTable = $this->resourceConnection->getTableName('directory_country_region');
@@ -110,24 +99,6 @@ class AddDataForJapan implements DataPatchInterface, PatchVersionInterface
                 'path=?' => Data::XML_PATH_STATES_REQUIRED
             ]
         );
-    }
-
-    /**
-     * Check existing JP regions.
-     *
-     * @return bool
-     */
-    private function checkExistingJpRegions(): bool
-    {
-        /** @var Collection $collection */
-        $collection = $this->collectionFactory->create();
-        $count = $collection->addCountryFilter('JP')->count();
-
-        if ($count > 0) {
-            return true;
-        }
-
-        return false;
     }
 
     /**
@@ -194,14 +165,6 @@ class AddDataForJapan implements DataPatchInterface, PatchVersionInterface
     public static function getDependencies()
     {
         return [];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public static function getVersion()
-    {
-        return '1.0.0';
     }
 
     /**
