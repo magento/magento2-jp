@@ -1,4 +1,8 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 declare(strict_types=1);
 
 namespace MagentoJapan\StoreAddress\Plugin\Store\Model\Address;
@@ -7,18 +11,15 @@ use Magento\Store\Model\Address\Renderer as BaseRenderer;
 use Magento\Framework\Filter\FilterManager;
 use Magento\Framework\Event\ManagerInterface as EventManager;
 use Magento\Framework\DataObject;
-use Magento\Store\Model\ScopeInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface;
+use MagentoJapan\StoreAddress\Model\Config\StoreAddressConfig;
 
 /**
- * Format store address display for JP locale.
+ * Format store address based on admin configuration.
+ *
+ * This functional should be moved from plugin to Magento core eventually.
  */
 class Renderer
 {
-    /**
-     * @var string
-     */
-    const CONFIG_FORMAT = 'general/store_information/format';
     /**
      * @var EventManager
      */
@@ -30,23 +31,23 @@ class Renderer
     private $filterManager;
 
     /**
-     * @var ScopeConfigInterface
+     * @var StoreAddressConfig
      */
-    private $scopeConfig;
+    private $config;
 
     /**
      * @param EventManager $eventManager
      * @param FilterManager $filterManager
-     * @param ScopeConfigInterface $scopeConfig
+     * @param StoreAddressConfig $config
      */
     public function __construct(
         EventManager $eventManager,
         FilterManager $filterManager,
-        ScopeConfigInterface $scopeConfig
+        StoreAddressConfig $config
     ) {
         $this->eventManager = $eventManager;
         $this->filterManager = $filterManager;
-        $this->scopeConfig = $scopeConfig;
+        $this->config = $config;
     }
 
     /**
@@ -65,9 +66,6 @@ class Renderer
         DataObject $storeInfo,
         $type = 'html'
     ) {
-        $format = $this->scopeConfig
-            ->getValue(self::CONFIG_FORMAT, ScopeInterface::SCOPE_STORE);
-
         $this->eventManager->dispatch(
             'store_address_format',
             [
@@ -76,7 +74,7 @@ class Renderer
             ]
         );
         $address = $this->filterManager->template(
-            $format,
+            $this->config->getAddressTemplate($type),
             ['variables' => $storeInfo->getData()]
         );
 
