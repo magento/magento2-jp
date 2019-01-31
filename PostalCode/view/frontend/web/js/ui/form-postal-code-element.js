@@ -82,17 +82,17 @@ define([
              * Update other address fields by provided postal code
              */
             updateRelatedAddressComponents: function () {
-                var postCodeComponent = this,
-                    addressComponentName = postCodeComponent.parentName,
+                var postalCodeComponent = this,
+                    addressComponentName = postalCodeComponent.parentName,
                     countryComponent = registry.get(addressComponentName + '.' + 'country_id');
 
                 if (countryComponent.value() !== 'JP') {
-                    postCodeComponent.warn(null);
+                    postalCodeComponent.warn(null);
                     return;
                 }
 
                 fullScreenLoader.startLoader();
-                loadPostalCodeData(postCodeComponent.value()).then(
+                loadPostalCodeData(postalCodeComponent.value()).then(
                     function (data) {
                         var regionSelectComponent = registry.get(addressComponentName + '.' + 'region_id'),
                             regionTextComponent = registry.get(addressComponentName + '.' + 'region_id_input'),
@@ -105,11 +105,11 @@ define([
                         updateStreet(street1Component, data.street1 || '');
                         updateStreet(street2Component, data.street2 || '');
 
-                        postCodeComponent.warn(null);
+                        postalCodeComponent.warn(null);
                         fullScreenLoader.stopLoader();
                     },
                     function (reason) {
-                        postCodeComponent.warn(
+                        postalCodeComponent.warn(
                             reason +
                             ' ' +
                             $t('If you believe it is the right one you can ignore this notice.')

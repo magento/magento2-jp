@@ -70,7 +70,7 @@ define([
         }
     };
 
-    $.widget('MagentoJapan_Postcode.addressUpdater', {
+    $.widget('MagentoJapan_PostalCode.addressUpdater', {
         /**
          * @private
          */
@@ -101,5 +101,5 @@ define([
         }
     });
 
-    return $.MagentoJapan_Postcode.addressUpdater;
+    return $.MagentoJapan_PostalCode.addressUpdater;
 });

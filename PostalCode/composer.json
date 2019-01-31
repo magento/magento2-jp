@@ -1,11 +1,11 @@
 {
-    "name": "magentojapan/module-postcode",
+    "name": "magentojapan/module-postal-code",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
     ],
-    "description": "Magento2 extension for Japanese postcode processing.",
+    "description": "Magento2 extension for Japanese postal codes processing.",
     "authors":[
         {
             "name": "Hirokazu Nishi",
