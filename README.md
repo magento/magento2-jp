@@ -92,19 +92,19 @@ We recommend not to fork https://github.com/magento/magento2-l10n and use a fork
 ### MVP
 
 **M**inimum **V**iable **P**roduct targeted to support Magento Open Source 2.3.x (with sample data) single store with `ja_JP` locale and `JPY` currency with following features:
-- [ ] [#33](https://github.com/magento/magento2-jp/issues/33) Full translations to Japanese
+- [X] [#33](https://github.com/magento/magento2-jp/issues/33) Full translations to Japanese (phrases downloaded from [Crowdin](https://crowdin.com/project/magento-2/ja) and packaged in [Phrases](./Phrases) component)
 - [ ] [#34](https://github.com/magento/magento2-jp/issues/34) Valid rounding of JPY currency
-- [ ] [#35](https://github.com/magento/magento2-jp/issues/35) Katakana for names
-- [ ] [#36](https://github.com/magento/magento2-jp/issues/36) Valid names format for storefront and admin (Lastname Firstname PolitnessSuffix)
-- [ ] [#37](https://github.com/magento/magento2-jp/issues/37) Perfectures (regions) listed in order from North to South
-- [ ] [#38](https://github.com/magento/magento2-jp/issues/38) Autocomplete of address fields based on ZIP code
-- [ ] [#39](https://github.com/magento/magento2-jp/issues/39) Possibility to configure store address from Admin Panel
-- [ ] [#40](https://github.com/magento/magento2-jp/issues/40) Valid configuration of ElasticSearch index (Kuromoji)
-- [ ] [#41](https://github.com/magento/magento2-jp/issues/41) Possibility to generate PDF files with Japanese multibyte characters
-- [ ] [#30](https://github.com/magento/magento2-jp/issues/30) Install with single composer dependency (e.g. `magentojapan/common`)
+- [x] [#35](https://github.com/magento/magento2-jp/issues/35) Kana for names (implemented in [Kana](./Kana) module)
+- [x] [#36](https://github.com/magento/magento2-jp/issues/36) Valid names format for storefront and admin (Lastname Firstname PolitnessSuffix) (implemented in [Address](./Address) module)
+- [x] [#37](https://github.com/magento/magento2-jp/issues/37) Perfectures (regions) listed in order from North to South (implemented in [Region](./Region) module)
+- [x] [#38](https://github.com/magento/magento2-jp/issues/38) Autocomplete of address fields based on ZIP code (implemented in [PostalCode](/.PostalCode) module)
+- [x] [#39](https://github.com/magento/magento2-jp/issues/39) Possibility to configure store address from Admin Panel (implemented in [StoreAddress](./StoreAddress) module)
+- [x] [#40](https://github.com/magento/magento2-jp/issues/40) Valid configuration of ElasticSearch index (Kuromoji) (implemented in [Kuromoji](./Kuromoji) module)
+- [x] [#41](https://github.com/magento/magento2-jp/issues/41) Possibility to generate PDF files with Japanese multibyte characters (possibility to configure used font implemented in [Pdf](./Pdf) module; [SourceHanSansJapanese](./SourceHanSansJapanese) and [IpaFonts](./IpaFonts) provides fonts with Japanese characters support).
+- [ ] [#30](https://github.com/magento/magento2-jp/issues/30) Install with single composer dependency (e.g. `magentojapan/common`) ([composer.json](./composer.json) file contains metapackage; probably will be converted in separate module to reduce effort on CI/CD infrastructure modification)
 
 MVP optional features:
-- [ ] [#42](https://github.com/magento/magento2-jp/issues/42) Preset of configuration options (locale, currency, measurement units, etc.) applied during installation
+- [x] [#42](https://github.com/magento/magento2-jp/issues/42) Preset of configuration options (locale, currency, measurement units, etc.) applied during installation (implemented in [DefaultConfig](./DefaultConfig) module)
 - [ ] [#43](https://github.com/magento/magento2-jp/issues/43) Cache on delivery as payment method (consider possibility to us [MSP CacheOnDelivery module](https://github.com/it4mage/CashOnDelivery))
 - [ ] [#44](https://github.com/magento/magento2-jp/issues/44) Possibility to specify delivery time
 - [ ] Payment Methods (GMO Payment Gateway, Veritrans, Sony Payment Service)
