@@ -14,7 +14,8 @@
         "magento/module-backend": "*",
         "magento/module-store": "*",
         "magento/module-dictionary": "*",
-        "magento/module-customer": "*"
+        "magento/module-customer": "*",
+        "magento/module-user": "*"
     },
     "autoload": {
         "files": [
