@@ -8,7 +8,8 @@
     "description": "Magento2 default configuration for Japanese merchants.",
     "require": {
         "php": "~7.1.3|~7.2.0",
-        "magento/framework": "*"
+        "magento/framework": "*",
+        "magento/module-user": "*"
     },
     "suggest": {
         "magento/module-backend": "*",
