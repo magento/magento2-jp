@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <general>
+            <country>
+                <default>JP</default>
+                <allow>JP</allow>
+                <destinations>JP</destinations>
+            </country>
+            <locale>
+                <timezone>Asia/Tokyo</timezone>
+                <code>ja_JP</code>
+                <weight_unit>kgs</weight_unit>
+                <weekend>0</weekend><!-- First day of a week is Sunday -->
+            </locale>
+            <store_information>
+                <country_id>JP</country_id>
+            </store_information>
+        </general>
+        <currency>
+            <options>
+                <base>JPY</base>
+                <default>JPY</default>
+                <allow>JPY</allow>
+            </options>
+        </currency>
+        <customer>
+            <create_account>
+                <vat_frontend_visibility>0</vat_frontend_visibility>
+            </create_account>
+            <address>
+                <street_lines>2</street_lines>
+                <prefix_show>0</prefix_show>
+                <middlename_show>0</middlename_show>
+                <suffix_show>0</suffix_show>
+                <dob_show>0</dob_show>
+                <taxvat_show>0</taxvat_show>
+                <gender_show>0</gender_show>
+                <telephone_show>req</telephone_show>
+                <fax_show>0</fax_show>
+                <company_show>0</company_show>
+            </address>
+        </customer>
+    </default>
+</config>

@@ -13,9 +13,11 @@
             </country>
         </general>
         <customer>
+            <create_account>
+                <request_address>1</request_address>
+            </create_account>
             <address>
-                <require_to_register>1</require_to_register>
-                <hide_country>1</hide_country>
+                <country_show>0</country_show>
             </address>
             <address_templates>
                 <text><![CDATA[{{depend postcode}}〒{{var postcode}}{{/depend}}
