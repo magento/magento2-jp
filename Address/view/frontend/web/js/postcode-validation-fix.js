@@ -8,6 +8,8 @@ define([
     'uiRegistry',
     'mage/translate'
 ], function (postcodeValidator, registry, $t) {
+    'use strict';
+
     return function (target) {
 
         /**

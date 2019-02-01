@@ -17,60 +17,64 @@ define([
      * @param {jQuery} regionNameElement
      * @param {String} region
      */
-    var updateRegion = function(regionIdElement, regionNameElement, region) {
-        if (regionIdElement.is(':visible')) {
-            regionIdElement.val(
-                regionIdElement.find('option:contains("' + region + '")').filter(function (_, option) {
-                    return $(option).text() === region;
-                }).val()
-            );
-        } else {
-            regionNameElement.val(region)
-        }
-    };
+    var updateRegion = function (regionIdElement, regionNameElement, region) {
+            if (regionIdElement.is(':visible')) {
+                regionIdElement.val(
+                    regionIdElement.find('option:contains("' + region + '")').filter(function (_, option) {
+                        return $(option).text() === region;
+                    }).val()
+                );
+            } else {
+                regionNameElement.val(region);
+            }
+        },
 
-    /**
-     * Update street element value.
-     *
-     * If street element contains more extended value it preserved.
-     *
-     * @param {jQuery} element
-     * @param {String} newValue
-     */
-    var updateStreet = function (element, newValue) {
-        if (element.val().indexOf(newValue) === 0) {
-            return;
-        }
-        element.val(newValue);
-    };
+        /**
+         * Update street element value.
+         *
+         * If street element contains more extended value it preserved.
+         *
+         * @param {jQuery} element
+         * @param {String} newValue
+         */
+        updateStreet = function (element, newValue) {
+            if (element.val().indexOf(newValue) === 0) {
+                return;
+            }
+            element.val(newValue);
+        },
 
-    /**
-     * Render message associated with element
-     *
-     * @param {jQuery} element
-     * @param {String} message
-     */
-    var renderAlertMessage = function (element, message) {
-        var messageContainer;
+        /**
+         * Render message associated with element
+         *
+         * @param {jQuery} element
+         * @param {String} message
+         */
+        renderAlertMessage = function (element, message) {
+            var messageContainer;
 
-        messageContainer = element.next();
+            messageContainer = element.next();
 
-        if (!messageContainer.length || !messageContainer.is('div[role="alert"]')) {
-            messageContainer = $('<div role="alert" class="message warning" style="display:none"><span></span></div>');
-            messageContainer.insertAfter(element);
-        }
+            if (!messageContainer.length || !messageContainer.is('div[role="alert"]')) {
+                messageContainer = $(
+                    '<div role="alert" class="message warning" style="display:none">' +
+                    '<span></span>' +
+                    '</div>'
+                );
+                messageContainer.insertAfter(element);
+            }
 
-        if (!message) {
-            messageContainer.hide();
-        } else {
-            messageContainer.children(':first').text(
-                message + ' ' + $t('If you believe it is the right one you can ignore this notice.')
-            );
-            messageContainer.show();
-        }
-    };
+            if (!message) {
+                messageContainer.hide();
+            } else {
+                messageContainer.children(':first').text(
+                    message + ' ' + $t('If you believe it is the right one you can ignore this notice.')
+                );
+                messageContainer.show();
+            }
+        };
 
-    $.widget('MagentoJapan_PostalCode.addressUpdater', {
+    $.widget('magentoJapanPostalCode.addressUpdater', {
         /**
          * @private
          */
@@ -101,5 +105,5 @@ define([
         }
     });
 
-    return $.MagentoJapan_PostalCode.addressUpdater;
+    return $.magentoJapanPostalCode.addressUpdater;
 });

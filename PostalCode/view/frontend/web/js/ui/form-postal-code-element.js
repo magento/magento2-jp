@@ -11,6 +11,7 @@ define([
     'mage/translate',
     'underscore'
 ], function (postalCodeDataProvider, fullScreenLoader, validator, registry, $t, _) {
+    'use strict';
 
     /**
      * Update address region value.
@@ -20,30 +21,31 @@ define([
      * @param {String} newValue
      */
     var updateRegion = function (regionSelectComponent, regionTextComponent, newValue) {
-        if (regionSelectComponent.visible()) {
-            newValue = _.find(regionSelectComponent.options(), function (option) {
-                return option.title === newValue || option.label === newValue;
-            });
-            regionSelectComponent.value(newValue ? newValue.value : '');
-        } else {
-            regionTextComponent.value(newValue);
-        }
-    };
+            if (regionSelectComponent.visible()) {
+                newValue = _.find(regionSelectComponent.options(), function (option) {
+                    return option.title === newValue || option.label === newValue;
+                });
+                regionSelectComponent.value(newValue ? newValue.value : '');
+            } else {
+                regionTextComponent.value(newValue);
+            }
+        },
 
-    /**
-     * Update street value.
-     *
-     * If old value contains more extended value then new value not applied.
-     *
-     * @param {uiElement} component
-     * @param {String} newValue
-     */
-    var updateStreet = function (component, newValue) {
-        if (component.value().indexOf(newValue) === 0) {
-            return;
-        }
-        component.value(newValue);
-    };
+        /**
+         * Update street value.
+         *
+         * If old value contains more extended value then new value not applied.
+         *
+         * @param {uiElement} component
+         * @param {String} newValue
+         */
+        updateStreet = function (component, newValue) {
+            if (component.value().indexOf(newValue) === 0) {
+
+                return;
+            }
+            component.value(newValue);
+        };
 
     return function (target) {
         var loadPostalCodeData = postalCodeDataProvider(document.documentElement.lang || 'ja');
@@ -63,11 +65,12 @@ define([
 
                 if (!element.initialUpdateHandled) {
                     element.initialUpdateHandled = true;
+
                     return;
                 }
 
                 if (element.scheduledHandler) {
-                    clearTimeout(element.scheduledHandler)
+                    clearTimeout(element.scheduledHandler);
                 }
 
                 element.warn(null); // clean previous validation and data loading warnings
@@ -88,6 +91,7 @@ define([
 
                 if (countryComponent.value() !== 'JP') {
                     postalCodeComponent.warn(null);
+
                     return;
                 }
 
@@ -119,5 +123,5 @@ define([
                 );
             }
         });
-    }
+    };
 });
