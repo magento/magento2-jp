@@ -34,7 +34,7 @@ class CustomerRegistrationConfig
      */
     public function isAddressRequired(): bool
     {
-        $configValue = $this->config->getValue('customer/address/require_to_register');
+        $configValue = $this->config->getValue('customer/address/country_show');
         return (bool)$configValue;
     }
 }

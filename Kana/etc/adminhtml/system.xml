@@ -7,16 +7,9 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="localize" translate="label" sortOrder="101">
-            <label>Japanese Localization</label>
-        </tab>
-        <section id="contacts" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-            <class>separator-top</class>
-            <label>Name and Address</label>
-            <tab>localize</tab>
-            <resource>MagentoJapan_Localize::config_format</resource>
-            <group id="kana" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Kana Configuration</label>
+        <section id="customer">
+            <group id="kana" translate="label" type="text" sortOrder="41" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Name Kana Options</label>
                 <field id="use_kana" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Use Kana</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>

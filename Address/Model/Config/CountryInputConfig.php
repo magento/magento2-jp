@@ -35,6 +35,6 @@ class CountryInputConfig
     public function isVisibleAtStorefront(): bool
     {
         $configValue = $this->config->getValue('customer/address/hide_country');
-        return !$configValue;
+        return (bool)$configValue;
     }
 }

@@ -1,16 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="localize" translate="label" sortOrder="101">
-            <label>Japanese Localization</label>
-        </tab>
-        <section id="contacts" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-            <class>separator-top</class>
-            <label>Name and Address</label>
-            <tab>localize</tab>
-            <resource>MagentoJapan_Localize::config_format</resource>
-            <group id="store_address_template" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Store Information Templates</label>
+        <section id="general">
+            <group id="store_address_template" translate="label" type="text" sortOrder="101" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Store Address Template</label>
                 <field id="text" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Text</label>
                     <config_path>general/store_address_template/text</config_path>
