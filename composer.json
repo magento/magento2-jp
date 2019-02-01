@@ -10,7 +10,7 @@
         "magentojapan/module-price": "*",
         "magentojapan/module-kuromoji": "*",
         "magentojapan/module-store-address": "*",
-        "magentojapan/module-zip2address": "*",
+        "magentojapan/module-postal-code": "*",
         "magentojapan/module-pdf": "*",
         "magentojapan/module-source-han-sans-japanese": "*",
         "magentojapan/module-ipa-fonts": "*"

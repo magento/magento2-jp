@@ -101,7 +101,7 @@ class KanaFormViewModel implements ArgumentInterface
         if ($customer instanceof CustomAttributesDataInterface) {
             $customAttribute = $customer->getCustomAttribute($kanaAttributeCode);
             if ($customAttribute instanceof AttributeInterface) {
-                return $customAttribute->getValue();
+                return (string)$customAttribute->getValue();
             }
             return (string)$customAttribute;
         }
