@@ -4,6 +4,7 @@
     "description": "Magento Japanese localization meta package.",
     "type": "metapackage",
     "require": {
+        "magento/language-ja_jp": "*",
         "magentojapan/module-default-config": "*",
         "magentojapan/module-kana": "*",
         "magentojapan/module-address": "*",
