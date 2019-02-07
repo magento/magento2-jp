@@ -93,7 +93,7 @@ We recommend not to fork https://github.com/magento/magento2-l10n and use a fork
 
 **M**inimum **V**iable **P**roduct targeted to support Magento Open Source 2.3.x (with sample data) single store with `ja_JP` locale and `JPY` currency with following features:
 - [X] [#33](https://github.com/magento/magento2-jp/issues/33) Full translations to Japanese (phrases downloaded from [Crowdin](https://crowdin.com/project/magento-2/ja) and packaged in [Phrases](./Phrases) component)
-- [ ] [#34](https://github.com/magento/magento2-jp/issues/34) Valid rounding of JPY currency
+- [x] [#34](https://github.com/magento/magento2-jp/issues/34) Valid rounding of JPY currency (implemented in [CurrencyPrecision](./CurrencyPrecision) and [YenFormatting](./YenFormatting) modules)
 - [x] [#35](https://github.com/magento/magento2-jp/issues/35) Kana for names (implemented in [Kana](./Kana) module)
 - [x] [#36](https://github.com/magento/magento2-jp/issues/36) Valid names format for storefront and admin (Lastname Firstname PolitnessSuffix) (implemented in [Address](./Address) module)
 - [x] [#37](https://github.com/magento/magento2-jp/issues/37) Perfectures (regions) listed in order from North to South (implemented in [Region](./Region) module)
