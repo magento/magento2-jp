@@ -10,6 +10,7 @@
         "magentojapan/module-address": "*",
         "magentojapan/module-region": "*",
         "magentojapan/module-currency-precision": "*",
+        "magentojapan/module-yen-formatting": "*",
         "magentojapan/module-kuromoji": "*",
         "magentojapan/module-store-address": "*",
         "magentojapan/module-postal-code": "*",
