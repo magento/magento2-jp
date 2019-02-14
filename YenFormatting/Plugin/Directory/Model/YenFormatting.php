@@ -10,7 +10,9 @@ namespace MagentoJapan\YenFormatting\Plugin\Directory\Model;
 use Magento\Directory\Model\Currency;
 use MagentoJapan\YenFormatting\Model\CurrencyFormatOptionModifiers;
 
-
+/**
+ * Apply Japanese Yen formatting for currency.
+ */
 class YenFormatting
 {
     /**
