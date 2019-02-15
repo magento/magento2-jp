@@ -38,8 +38,7 @@ jobs:
           name: Installing MDE
           command: |
             composer config minimum-stability dev
-            composer config repositories.metapackage path "./*"
-            composer config repositories.modules path "./*/*/"
+            composer config repositories.modules path "./mde/*/"
             composer require $MDE_COMPOSER_METAPACKAGE
 
       - persist_to_workspace:
@@ -92,6 +91,10 @@ jobs:
             for module in $(echo $MDE_COMPOSER_MODULE | tr ";" "\n"); do echo "$module" >> dev/tests/static/testsuite/Magento/Test/Integrity/_files/blacklist/composer_root_modules_mde.txt; done
             cp vendor/autoload.php .
             sed -i 's/\/composer/\/vendor\/composer/' autoload.php
+
+      - run:
+          name: Patch composer validation to allow MDE vendor
+          command: sed -i.bak 's/\^magento/\^(?:magento|magento-community)/g' dev/tests/static/testsuite/Magento/Test/Integrity/ComposerTest.php
 
       - run:
           name: Static Test
