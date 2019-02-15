@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Block\Onepage">
+        <arguments>
+            <argument name="layoutProcessors" xsi:type="array">
+                <item name="countryFieldVisibility" xsi:type="object">MagentoCommunity\JapaneseAddress\Block\Checkout\CountryFieldVisibility</item>
+                <item name="jpBillingAddressComponent" xsi:type="object">MagentoCommunity\JapaneseAddress\Block\Checkout\BillingAddressComponent</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Customer\Block\Form\Register">
+        <plugin name="address" type="MagentoCommunity\JapaneseAddress\Plugin\Customer\Block\Form\RegisterWithAddress"/>
+        <plugin name="addressFromQuote" type="MagentoCommunity\JapaneseAddress\Plugin\Customer\Block\Form\RegisterWithQuoteAddress"/>
+        <plugin name="countryVisibility" type="MagentoCommunity\JapaneseAddress\Plugin\Customer\Block\Form\CountryFieldVisibility"/>
+    </type>
+    <type name="Magento\Customer\Block\Address\Edit">
+        <plugin name="countryVisibility" type="MagentoCommunity\JapaneseAddress\Plugin\Customer\Block\Form\CountryFieldVisibility"/>
+    </type>
+</config>

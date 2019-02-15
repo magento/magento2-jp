@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoJapan\Kuromoji\SearchAdapter\Query\Builder;
+namespace MagentoCommunity\Kuromoji\SearchAdapter\Query\Builder;
 
 use Magento\Framework\Search\Request\BucketInterface;
 use Magento\Elasticsearch\SearchAdapter\Query\Builder\Aggregation as BaseAggregation;
