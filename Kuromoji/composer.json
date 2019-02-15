@@ -1,5 +1,5 @@
 {
-    "name": "magentojapan/module-kuromoji",
+    "name": "magento-community/module-kuromoji",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -25,7 +25,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "MagentoJapan\\Kuromoji\\": ""
+            "MagentoCommunity\\Kuromoji\\": ""
         }
     }
 }

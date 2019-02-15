@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="customer">
+            <group id="kana" translate="label" type="text" sortOrder="41" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Name Kana Options</label>
+                <field id="use_kana" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Kana</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>customer/address/use_kana</config_path>
+                </field>
+                <field id="require_kana" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Require Kana on frontend</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>customer/address/require_kana</config_path>
+                    <depends>
+                        <field id="use_kana">1</field>
+                    </depends>
+                </field>
+                <field id="kana_type" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Acceptable Kana character type on frontend</label>
+                    <source_model>MagentoCommunity\JapaneseName\Model\Config\Source\Kana</source_model>
+                    <config_path>customer/address/kana_type</config_path>
+                    <depends>
+                        <field id="use_kana">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

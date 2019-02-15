@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoJapan\CurrencyPrecision\Model\Config;
+namespace MagentoCommunity\CurrencyPrecision\Model\Config;
 
 use \Magento\Store\Model\ScopeInterface;
 use \Magento\Framework\App\Config\ScopeConfigInterface;

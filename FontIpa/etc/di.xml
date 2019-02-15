@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MagentoCommunity\ConfigurablePdfFont\Model\FontProvider">
+        <arguments>
+            <argument name="fonts" xsi:type="array">
+                <item name="ipa_gothic" xsi:type="object">IpaGothic</item>
+                <item name="ipa_p_gothic" xsi:type="object">IpaPGothic</item>
+                <item name="ipa_mincho" xsi:type="object">IpaMincho</item>
+                <item name="ipa_p_mincho" xsi:type="object">IpaPMincho</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="IpaGothic" type="MagentoCommunity\ConfigurablePdfFont\Model\Font">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="name" xsi:type="string" translatable="true">IPA Gothic</item>
+                <item name="regular" xsi:type="object">IpaGothicRegular</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="IpaGothicRegular" type="MagentoCommunity\ConfigurablePdfFont\Model\FontFile">
+        <arguments>
+            <argument name="path" xsi:type="string">MagentoCommunity_FontIpa::ipag.ttf</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="IpaPGothic" type="MagentoCommunity\ConfigurablePdfFont\Model\Font">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="name" xsi:type="string" translatable="true">IPA P Gothic</item>
+                <item name="regular" xsi:type="object">IpaPGothicRegular</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="IpaPGothicRegular" type="MagentoCommunity\ConfigurablePdfFont\Model\FontFile">
+        <arguments>
+            <argument name="path" xsi:type="string">MagentoCommunity_FontIpa::ipagp.ttf</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="IpaMincho" type="MagentoCommunity\ConfigurablePdfFont\Model\Font">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="name" xsi:type="string" translatable="true">IPA Mincho</item>
+                <item name="regular" xsi:type="object">IpaMinchoRegular</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="IpaMinchoRegular" type="MagentoCommunity\ConfigurablePdfFont\Model\FontFile">
+        <arguments>
+            <argument name="path" xsi:type="string">MagentoCommunity_FontIpa::ipam.ttf</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="IpaPMincho" type="MagentoCommunity\ConfigurablePdfFont\Model\Font">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="name" xsi:type="string" translatable="true">IPA P Mincho</item>
+                <item name="regular" xsi:type="object">IpaPMinchoRegular</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="IpaPMinchoRegular" type="MagentoCommunity\ConfigurablePdfFont\Model\FontFile">
+        <arguments>
+            <argument name="path" xsi:type="string">MagentoCommunity_FontIpa::ipamp.ttf</argument>
+        </arguments>
+    </virtualType>
+</config>
