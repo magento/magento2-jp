@@ -5,12 +5,12 @@
  */
 -->
 <div if="isAddressDetailsVisible() && currentBillingAddress()" class="billing-address-details">
-    〒<text args="currentBillingAddress().postcode"/><br/>
-    <text args="currentBillingAddress().region"/><text args="currentBillingAddress().city"/><text args="_.values(currentBillingAddress().street)[0]"/>
-    <text args="_.values(currentBillingAddress().street)[1]"/><text args="_.values(currentBillingAddress().street)[2]"/></br>
     <text args="currentBillingAddress().prefix"/> <text args="currentBillingAddress().lastname"/> <text args="currentBillingAddress().middlename"/>
     <text args="currentBillingAddress().firstname"/> <text args="currentBillingAddress().suffix"/>
     <text if="currentBillingAddress().getNamekana()" args="'(' + currentBillingAddress().getNamekana() + ')'"/><br/>
+    〒<text args="currentBillingAddress().postcode"/><br/>
+    <text args="currentBillingAddress().region"/><text args="currentBillingAddress().city"/><text args="_.values(currentBillingAddress().street)[0]"/>
+    <text args="_.values(currentBillingAddress().street)[1]"/><text args="_.values(currentBillingAddress().street)[2]"/></br>
     <a if="currentBillingAddress().telephone" attr="'href': 'tel:' + currentBillingAddress().telephone" text="currentBillingAddress().telephone"></a><br/>
 
     <if args="_.isArray(currentBillingAddress().customAttributes)">
