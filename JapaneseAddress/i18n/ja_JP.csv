@@ -28,5 +28,5 @@
 "Provided Zip/Postal Code seems to be invalid.","ご入力された郵便番号は正しくないようです。"
 " Example: "," 正しい郵便番号の例: "
 "If you believe it is the right one you can ignore this notice.","ご入力された内容が正しい場合は、このメッセージを無視してください。"
-"Show Address on Customer Registration Form","Show Address on Customer Registration Form"
-"Show Country","Show Country"
+"Show Address on Customer Registration Form","会員登録フォームに住所を表示する"
+"Show Country","国を表示"
