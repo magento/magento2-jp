@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/magento
   environment:
-    MDE_COMPOSER_MODULE: magento-community/japan-common;magento-community/language-ja_jp;magento-community/module-japanese-default-config;magento-community/module-japanese-address;magento-community/module-japanese-name;magento-community/module-kuromoji;magento-community/module-currency-precision;magento-community/module-japanese-yen-formatting;magento-community/module-japanese-region;magento-community/module-japanese-store-address;magento-community/module-japanese-postal-code;magento-community/module-configurable-pdf-font;magento-community/font-source-han-sans-japanese;magento-community/font-ipa
+    MDE_COMPOSER_MODULE: magento-community/japan-common;magento-community/language-ja_jp;magento-community/module-japanese-default-config;magento-community/module-japanese-default-cms-pages;magento-community/module-japanese-address;magento-community/module-japanese-name;magento-community/module-kuromoji;magento-community/module-currency-precision;magento-community/module-japanese-yen-formatting;magento-community/module-japanese-region;magento-community/module-japanese-store-address;magento-community/module-japanese-postal-code;magento-community/module-configurable-pdf-font;magento-community/font-source-han-sans-japanese;magento-community/font-ipa
     MDE_COMPOSER_METAPACKAGE: magento-community/japan-common
     CORE_GIT_REPOSITORY: magento/magento2
     CORE_GIT_BRANCH: 2.3-develop
