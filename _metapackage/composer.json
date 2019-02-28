@@ -10,6 +10,7 @@
         "magento-community/font-source-han-sans-japanese": "*",
         "magento-community/font-ipa": "*",
         "magento-community/module-japanese-default-config": "*",
+        "magento-community/module-japanese-default-cms-pages": "*",
         "magento-community/module-japanese-name": "*",
         "magento-community/module-japanese-address": "*",
         "magento-community/module-japanese-region": "*",

@@ -1,0 +1,1 @@
+Module updates content of default Magento CMS pages with Japanese translation.
