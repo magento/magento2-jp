@@ -9,6 +9,7 @@
     <system>
         <section id="sales_pdf">
             <group id="general" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Font</label>
                 <field id="font" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Font</label>
                     <source_model>MagentoCommunity\ConfigurablePdfFont\Model\Config\Source\Font</source_model>
