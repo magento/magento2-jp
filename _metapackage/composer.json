@@ -17,6 +17,7 @@
         "magento-community/module-japanese-postal-code": "*",
         "magento-community/module-japanese-yen-formatting": "*",
         "magento-community/module-japanese-store-address": "*",
+        "magento-community/module-japanese-url-rewrite": "*",
         "magento-community/module-kuromoji": "*"
     }
 }
