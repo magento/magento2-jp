@@ -6,13 +6,13 @@
 var config = {
     map: {
         '*': {
-            postalCodeDataProvider: 'MagentoCommunity_JapanesePostalCode/js/service/madefor-postal-code-api'
+            postalCodeDataProvider: 'Magento_JapanesePostalCode/js/service/madefor-postal-code-api'
         }
     },
     config: {
         mixins: {
             'Magento_Ui/js/form/element/post-code': {
-                'MagentoCommunity_JapanesePostalCode/js/ui/form-postal-code-element': true
+                'Magento_JapanesePostalCode/js/ui/form-postal-code-element': true
             }
         }
     }

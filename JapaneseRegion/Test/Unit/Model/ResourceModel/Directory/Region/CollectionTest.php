@@ -5,9 +5,9 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseRegion\Test\Unit\Model\ResourceModel\Directory\Region;
+namespace Magento\JapaneseRegion\Test\Unit\Model\ResourceModel\Directory\Region;
 
-use MagentoCommunity\JapaneseRegion\Model\ResourceModel\Directory\Region\Collection;
+use Magento\JapaneseRegion\Model\ResourceModel\Directory\Region\Collection;
 use Magento\Framework\DB\Adapter\Pdo\Mysql;
 use Magento\Framework\DB\Select;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;

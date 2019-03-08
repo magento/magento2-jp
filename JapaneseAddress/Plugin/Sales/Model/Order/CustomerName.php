@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseAddress\Plugin\Sales\Model\Order;
+namespace Magento\JapaneseAddress\Plugin\Sales\Model\Order;
 
 use Magento\Sales\Model\Order;
 use Magento\Framework\Locale\ResolverInterface;

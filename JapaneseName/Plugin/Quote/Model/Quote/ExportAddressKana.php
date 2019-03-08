@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseName\Plugin\Quote\Model\Quote;
+namespace Magento\JapaneseName\Plugin\Quote\Model\Quote;
 
 use Magento\Customer\Api\Data\AddressInterface as CustomerAddress;
 use Magento\Quote\Model\Quote\Address as QuoteAddress;

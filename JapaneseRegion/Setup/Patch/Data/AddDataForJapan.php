@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseRegion\Setup\Patch\Data;
+namespace Magento\JapaneseRegion\Setup\Patch\Data;
 
 use Magento\Framework\DB\Adapter\AdapterInterface;
 use Magento\Framework\App\ResourceConnection;

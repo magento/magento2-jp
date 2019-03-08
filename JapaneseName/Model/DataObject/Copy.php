@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseName\Model\DataObject;
+namespace Magento\JapaneseName\Model\DataObject;
 
 /**
  * Behavior of this class should be moved to Magento\Framework\DataObject\Copy eventually.

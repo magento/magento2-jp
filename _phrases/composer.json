@@ -1,5 +1,5 @@
 {
-    "name": "magento-community/language-ja_jp",
+    "name": "magento/language-ja_jp-community",
     "type": "magento2-language",
     "description": "Japan (Japanese) language",
     "license": [

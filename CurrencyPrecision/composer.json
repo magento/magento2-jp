@@ -1,5 +1,5 @@
 {
-    "name": "magento-community/module-currency-precision",
+    "name": "magento/module-currency-precision",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "php": "~7.1.3|~7.2.0",
+        "php": "~7.1.3||~7.2.0",
         "magento/framework": "*",
         "magento/module-store": "*",
         "magento/module-directory": "*"
@@ -25,7 +25,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "MagentoCommunity\\CurrencyPrecision\\": ""
+            "Magento\\CurrencyPrecision\\": ""
         }
     }
 }

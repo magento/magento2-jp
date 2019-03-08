@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseName\Plugin\Customer\Block\Widget;
+namespace Magento\JapaneseName\Plugin\Customer\Block\Widget;
 
 use Magento\Customer\Block\Widget\Name as Subject;
 
@@ -25,7 +25,7 @@ class Name
     public function beforeSetTemplate(Subject $subject, string $template)
     {
         if ($template === 'Magento_Customer::widget/name.phtml') {
-            return ['MagentoCommunity_JapaneseName::customer/widget/name.phtml'];
+            return ['Magento_JapaneseName::customer/widget/name.phtml'];
         }
         return [$template];
     }

@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseAddress\Plugin\Customer\Helper;
+namespace Magento\JapaneseAddress\Plugin\Customer\Helper;
 
 use Magento\Customer\Helper\View;
 use Magento\Customer\Api\CustomerMetadataInterface;

@@ -6,7 +6,7 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="MagentoCommunity\ConfigurablePdfFont\Model\FontProvider">
+    <type name="Magento\ConfigurablePdfFont\Model\FontProvider">
         <arguments>
             <argument name="fonts" xsi:type="array">
                 <item name="ipa_gothic" xsi:type="object">IpaGothic</item>
@@ -17,7 +17,7 @@
         </arguments>
     </type>
 
-    <virtualType name="IpaGothic" type="MagentoCommunity\ConfigurablePdfFont\Model\Font">
+    <virtualType name="IpaGothic" type="Magento\ConfigurablePdfFont\Model\Font">
         <arguments>
             <argument name="data" xsi:type="array">
                 <item name="name" xsi:type="string" translatable="true">IPA Gothic</item>
@@ -25,13 +25,13 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="IpaGothicRegular" type="MagentoCommunity\ConfigurablePdfFont\Model\FontFile">
+    <virtualType name="IpaGothicRegular" type="Magento\ConfigurablePdfFont\Model\FontFile">
         <arguments>
-            <argument name="path" xsi:type="string">MagentoCommunity_FontIpa::ipag.ttf</argument>
+            <argument name="path" xsi:type="string">Magento_FontIpa::ipag.ttf</argument>
         </arguments>
     </virtualType>
 
-    <virtualType name="IpaPGothic" type="MagentoCommunity\ConfigurablePdfFont\Model\Font">
+    <virtualType name="IpaPGothic" type="Magento\ConfigurablePdfFont\Model\Font">
         <arguments>
             <argument name="data" xsi:type="array">
                 <item name="name" xsi:type="string" translatable="true">IPA P Gothic</item>
@@ -39,13 +39,13 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="IpaPGothicRegular" type="MagentoCommunity\ConfigurablePdfFont\Model\FontFile">
+    <virtualType name="IpaPGothicRegular" type="Magento\ConfigurablePdfFont\Model\FontFile">
         <arguments>
-            <argument name="path" xsi:type="string">MagentoCommunity_FontIpa::ipagp.ttf</argument>
+            <argument name="path" xsi:type="string">Magento_FontIpa::ipagp.ttf</argument>
         </arguments>
     </virtualType>
 
-    <virtualType name="IpaMincho" type="MagentoCommunity\ConfigurablePdfFont\Model\Font">
+    <virtualType name="IpaMincho" type="Magento\ConfigurablePdfFont\Model\Font">
         <arguments>
             <argument name="data" xsi:type="array">
                 <item name="name" xsi:type="string" translatable="true">IPA Mincho</item>
@@ -53,13 +53,13 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="IpaMinchoRegular" type="MagentoCommunity\ConfigurablePdfFont\Model\FontFile">
+    <virtualType name="IpaMinchoRegular" type="Magento\ConfigurablePdfFont\Model\FontFile">
         <arguments>
-            <argument name="path" xsi:type="string">MagentoCommunity_FontIpa::ipam.ttf</argument>
+            <argument name="path" xsi:type="string">Magento_FontIpa::ipam.ttf</argument>
         </arguments>
     </virtualType>
 
-    <virtualType name="IpaPMincho" type="MagentoCommunity\ConfigurablePdfFont\Model\Font">
+    <virtualType name="IpaPMincho" type="Magento\ConfigurablePdfFont\Model\Font">
         <arguments>
             <argument name="data" xsi:type="array">
                 <item name="name" xsi:type="string" translatable="true">IPA P Mincho</item>
@@ -67,9 +67,9 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="IpaPMinchoRegular" type="MagentoCommunity\ConfigurablePdfFont\Model\FontFile">
+    <virtualType name="IpaPMinchoRegular" type="Magento\ConfigurablePdfFont\Model\FontFile">
         <arguments>
-            <argument name="path" xsi:type="string">MagentoCommunity_FontIpa::ipamp.ttf</argument>
+            <argument name="path" xsi:type="string">Magento_FontIpa::ipamp.ttf</argument>
         </arguments>
     </virtualType>
 </config>

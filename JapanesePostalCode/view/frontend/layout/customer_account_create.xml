@@ -8,7 +8,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <block class="Magento\Framework\View\Element\Template" name="postal-code-address-updater" template="MagentoCommunity_JapanesePostalCode::address_updater_widget_binding.phtml" after="-"/>
+            <block class="Magento\Framework\View\Element\Template" name="postal-code-address-updater" template="Magento_JapanesePostalCode::address_updater_widget_binding.phtml" after="-"/>
         </referenceContainer>
     </body>
 </page>
