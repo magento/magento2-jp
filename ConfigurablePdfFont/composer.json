@@ -1,5 +1,5 @@
 {
-    "name": "magento-community/module-configurable-pdf-font",
+    "name": "magento/module-configurable-pdf-font",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -7,7 +7,7 @@
     ],
     "description": "Magento2 extension for Japanese Pdf Fonts.",
     "require": {
-        "php": "~7.1.3|~7.2.0",
+        "php": "~7.1.3||~7.2.0",
         "magento/framework": "*"
     },
     "suggest": {
@@ -18,7 +18,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "MagentoCommunity\\ConfigurablePdfFont\\": ""
+            "Magento\\ConfigurablePdfFont\\": ""
         }
     }
 }

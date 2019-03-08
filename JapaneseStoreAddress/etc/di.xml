@@ -7,6 +7,6 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Store\Model\Address\Renderer">
-        <plugin name="modify_format" type="MagentoCommunity\JapaneseStoreAddress\Plugin\Store\Model\Address\Renderer" sortOrder="100"/>
+        <plugin name="modify_format" type="Magento\JapaneseStoreAddress\Plugin\Store\Model\Address\Renderer" sortOrder="100"/>
     </type>
 </config>

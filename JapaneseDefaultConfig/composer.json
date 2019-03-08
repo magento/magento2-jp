@@ -1,5 +1,5 @@
 {
-    "name": "magento-community/module-japanese-default-config",
+    "name": "magento/module-japanese-default-config",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -7,7 +7,7 @@
     ],
     "description": "Magento2 default configuration for Japanese merchants.",
     "require": {
-        "php": "~7.1.3|~7.2.0",
+        "php": "~7.1.3||~7.2.0",
         "magento/framework": "*"
     },
     "suggest": {
@@ -22,7 +22,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "MagentoCommunity\\JapaneseDefaultConfig\\": ""
+            "Magento\\JapaneseDefaultConfig\\": ""
         }
     }
 }

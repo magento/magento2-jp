@@ -5,10 +5,10 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseAddress\Plugin\Customer\Block\Form;
+namespace Magento\JapaneseAddress\Plugin\Customer\Block\Form;
 
 use Magento\Customer\Block\Form\Register;
-use MagentoCommunity\JapaneseAddress\Model\Config\CustomerRegistrationConfig;
+use Magento\JapaneseAddress\Model\Config\CustomerRegistrationConfig;
 
 /**
  * Use configuration to display address at registration form.

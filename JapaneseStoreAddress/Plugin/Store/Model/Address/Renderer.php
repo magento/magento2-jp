@@ -5,13 +5,13 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseStoreAddress\Plugin\Store\Model\Address;
+namespace Magento\JapaneseStoreAddress\Plugin\Store\Model\Address;
 
 use Magento\Store\Model\Address\Renderer as BaseRenderer;
 use Magento\Framework\Filter\FilterManager;
 use Magento\Framework\Event\ManagerInterface as EventManager;
 use Magento\Framework\DataObject;
-use MagentoCommunity\JapaneseStoreAddress\Model\Config\StoreAddressConfig;
+use Magento\JapaneseStoreAddress\Model\Config\StoreAddressConfig;
 
 /**
  * Format store address based on admin configuration.

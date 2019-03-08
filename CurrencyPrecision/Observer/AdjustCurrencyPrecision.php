@@ -5,11 +5,11 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\CurrencyPrecision\Observer;
+namespace Magento\CurrencyPrecision\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Event\Observer;
-use MagentoCommunity\CurrencyPrecision\Model\CurrencyRounding;
+use Magento\CurrencyPrecision\Model\CurrencyRounding;
 
 /**
  * Adjust default currency options used during currency instantiation to specify correct precision.

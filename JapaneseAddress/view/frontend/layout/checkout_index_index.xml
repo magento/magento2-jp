@@ -24,12 +24,12 @@
                                                                 <item name="rendererTemplates" xsi:type="array">
                                                                     <item name="customer-address" xsi:type="array">
                                                                         <item name="config" xsi:type="array">
-                                                                            <item name="template" xsi:type="string">MagentoCommunity_JapaneseAddress/checkout/shipping-address/address-renderer/jp</item>
+                                                                            <item name="template" xsi:type="string">Magento_JapaneseAddress/checkout/shipping-address/address-renderer/jp</item>
                                                                         </item>
                                                                     </item>
                                                                     <item name="new-customer-address" xsi:type="array">
                                                                         <item name="config" xsi:type="array">
-                                                                            <item name="template" xsi:type="string">MagentoCommunity_JapaneseAddress/checkout/shipping-address/address-renderer/jp</item>
+                                                                            <item name="template" xsi:type="string">Magento_JapaneseAddress/checkout/shipping-address/address-renderer/jp</item>
                                                                         </item>
                                                                     </item>
                                                                 </item>
@@ -50,12 +50,12 @@
                                                         <item name="rendererTemplates" xsi:type="array">
                                                             <item name="customer-address" xsi:type="array">
                                                                 <item name="config" xsi:type="array">
-                                                                    <item name="template" xsi:type="string">MagentoCommunity_JapaneseAddress/checkout/shipping-information/address-renderer/jp</item>
+                                                                    <item name="template" xsi:type="string">Magento_JapaneseAddress/checkout/shipping-information/address-renderer/jp</item>
                                                                 </item>
                                                             </item>
                                                             <item name="new-customer-address" xsi:type="array">
                                                                 <item name="config" xsi:type="array">
-                                                                    <item name="template" xsi:type="string">MagentoCommunity_JapaneseAddress/checkout/shipping-information/address-renderer/jp</item>
+                                                                    <item name="template" xsi:type="string">Magento_JapaneseAddress/checkout/shipping-information/address-renderer/jp</item>
                                                                 </item>
                                                             </item>
                                                         </item>

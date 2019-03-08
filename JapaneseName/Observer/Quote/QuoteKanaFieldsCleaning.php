@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseName\Observer\Quote;
+namespace Magento\JapaneseName\Observer\Quote;
 
 use Magento\Framework\DataObject;
 use Magento\Quote\Api\Data\CartInterface;

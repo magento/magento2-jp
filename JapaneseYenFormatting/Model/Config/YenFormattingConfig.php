@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseYenFormatting\Model\Config;
+namespace Magento\JapaneseYenFormatting\Model\Config;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 

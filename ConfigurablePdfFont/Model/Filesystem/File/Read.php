@@ -5,14 +5,14 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\ConfigurablePdfFont\Model\Filesystem\File;
+namespace Magento\ConfigurablePdfFont\Model\Filesystem\File;
 
 use Magento\Framework\Filesystem\Directory\PathValidatorInterface;
 use Magento\Framework\Filesystem\DriverInterface;
 use Magento\Framework\Filesystem\File\ReadFactory;
 use Magento\Framework\Filesystem\Directory\Read as BaseRead;
-use MagentoCommunity\ConfigurablePdfFont\Model\Config\Service;
-use MagentoCommunity\ConfigurablePdfFont\Model\Filesystem\FontFilesRewriter;
+use Magento\ConfigurablePdfFont\Model\Config\Service;
+use Magento\ConfigurablePdfFont\Model\Filesystem\FontFilesRewriter;
 
 /**
  * Override path resolution for the Magento's built-in PDF fonts based on module configuration.

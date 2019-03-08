@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseAddress\Plugin\Customer\Block\Form;
+namespace Magento\JapaneseAddress\Plugin\Customer\Block\Form;
 
 use Magento\Customer\Block\Form\Register;
 use Magento\Framework\DataObject;

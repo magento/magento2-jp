@@ -7,19 +7,19 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <virtualType name="MagentoCommunity\ConfigurablePdfFont\Model\Filesystem" type="Magento\Framework\Filesystem">
+    <virtualType name="Magento\ConfigurablePdfFont\Model\Filesystem" type="Magento\Framework\Filesystem">
         <arguments>
-            <argument name="readFactory" xsi:type="object">\MagentoCommunity\ConfigurablePdfFont\Model\Filesystem\Directory\ReadFactory</argument>
+            <argument name="readFactory" xsi:type="object">\Magento\ConfigurablePdfFont\Model\Filesystem\Directory\ReadFactory</argument>
         </arguments>
     </virtualType>
 
     <type name="Magento\Sales\Model\Order\Pdf\AbstractPdf">
         <arguments>
-            <argument name="filesystem" xsi:type="object">MagentoCommunity\ConfigurablePdfFont\Model\Filesystem</argument>
+            <argument name="filesystem" xsi:type="object">Magento\ConfigurablePdfFont\Model\Filesystem</argument>
         </arguments>
     </type>
     
-    <type name="MagentoCommunity\ConfigurablePdfFont\Model\FontProvider">
+    <type name="Magento\ConfigurablePdfFont\Model\FontProvider">
         <arguments>
             <argument name="fonts" xsi:type="array">
                 <item name="default" xsi:type="object">DefaultFont</item>
@@ -27,7 +27,7 @@
         </arguments>
     </type>
 
-    <virtualType name="DefaultFont" type="MagentoCommunity\ConfigurablePdfFont\Model\Font">
+    <virtualType name="DefaultFont" type="Magento\ConfigurablePdfFont\Model\Font">
         <arguments>
             <argument name="data" xsi:type="array">
                 <item name="name" xsi:type="string" translatable="true">Default (Free Serif Fonts)</item>
@@ -37,17 +37,17 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="FreeSerifRegular" type="MagentoCommunity\ConfigurablePdfFont\Model\FontFile">
+    <virtualType name="FreeSerifRegular" type="Magento\ConfigurablePdfFont\Model\FontFile">
         <arguments>
             <argument name="path" xsi:type="string">lib/internal/GnuFreeFont/FreeSerif.ttf</argument>
         </arguments>
     </virtualType>
-    <virtualType name="FreeSerifBold" type="MagentoCommunity\ConfigurablePdfFont\Model\FontFile">
+    <virtualType name="FreeSerifBold" type="Magento\ConfigurablePdfFont\Model\FontFile">
         <arguments>
             <argument name="path" xsi:type="string">lib/internal/GnuFreeFont/FreeSerifBold.ttf</argument>
         </arguments>
     </virtualType>
-    <virtualType name="FreeSerifItalic" type="MagentoCommunity\ConfigurablePdfFont\Model\FontFile">
+    <virtualType name="FreeSerifItalic" type="Magento\ConfigurablePdfFont\Model\FontFile">
         <arguments>
             <argument name="path" xsi:type="string">lib/internal/GnuFreeFont/FreeSerifItalic.ttf</argument>
         </arguments>

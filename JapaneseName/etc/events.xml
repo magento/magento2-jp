@@ -7,51 +7,51 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="sales_quote_load_after">
-        <observer name="kana_fields_loader" instance="MagentoCommunity\JapaneseName\Observer\Quote\QuoteKanaFieldsLoader" />
+        <observer name="kana_fields_loader" instance="Magento\JapaneseName\Observer\Quote\QuoteKanaFieldsLoader" />
     </event>
     <event name="sales_quote_save_before">
-        <observer name="kana_fields_saver" instance="MagentoCommunity\JapaneseName\Observer\Quote\QuoteKanaFieldsSaver" />
+        <observer name="kana_fields_saver" instance="Magento\JapaneseName\Observer\Quote\QuoteKanaFieldsSaver" />
     </event>
     <event name="sales_quote_save_after">
-        <observer name="kana_fields_cleaning" instance="MagentoCommunity\JapaneseName\Observer\Quote\QuoteKanaFieldsCleaning" />
+        <observer name="kana_fields_cleaning" instance="Magento\JapaneseName\Observer\Quote\QuoteKanaFieldsCleaning" />
     </event>
 
     <event name="sales_quote_address_load_after">
-        <observer name="kana_fields_loader" instance="MagentoCommunity\JapaneseName\Observer\Quote\QuoteAddressKanaFieldsLoader" />
+        <observer name="kana_fields_loader" instance="Magento\JapaneseName\Observer\Quote\QuoteAddressKanaFieldsLoader" />
     </event>
     <event name="sales_quote_address_collection_load_after">
-        <observer name="kana_fields_loader" instance="MagentoCommunity\JapaneseName\Observer\Quote\QuoteAddressKanaFieldsLoader" />
+        <observer name="kana_fields_loader" instance="Magento\JapaneseName\Observer\Quote\QuoteAddressKanaFieldsLoader" />
     </event>
     <event name="sales_quote_address_save_before">
-        <observer name="kana_fields_saver" instance="MagentoCommunity\JapaneseName\Observer\Quote\QuoteAddressKanaFieldsSaver" />
+        <observer name="kana_fields_saver" instance="Magento\JapaneseName\Observer\Quote\QuoteAddressKanaFieldsSaver" />
     </event>
     <event name="sales_quote_address_save_after">
-        <observer name="kana_fields_cleaning" instance="MagentoCommunity\JapaneseName\Observer\Quote\QuoteAddressKanaFieldsCleaning" />
+        <observer name="kana_fields_cleaning" instance="Magento\JapaneseName\Observer\Quote\QuoteAddressKanaFieldsCleaning" />
     </event>
 
     <event name="sales_order_load_after">
-        <observer name="kana_fields_loader" instance="MagentoCommunity\JapaneseName\Observer\Sales\OrderKanaFieldsLoader" />
+        <observer name="kana_fields_loader" instance="Magento\JapaneseName\Observer\Sales\OrderKanaFieldsLoader" />
     </event>
     <event name="sales_order_collection_load_after">
-        <observer name="kana_fields_loader" instance="MagentoCommunity\JapaneseName\Observer\Sales\OrderKanaFieldsLoader" />
+        <observer name="kana_fields_loader" instance="Magento\JapaneseName\Observer\Sales\OrderKanaFieldsLoader" />
     </event>
     <event name="sales_order_save_before">
-        <observer name="kana_fields_saver" instance="MagentoCommunity\JapaneseName\Observer\Sales\OrderKanaFieldsSaver" />
+        <observer name="kana_fields_saver" instance="Magento\JapaneseName\Observer\Sales\OrderKanaFieldsSaver" />
     </event>
     <event name="sales_order_save_after">
-        <observer name="kana_fields_cleaning" instance="MagentoCommunity\JapaneseName\Observer\Sales\OrderKanaFieldsCleaning" />
+        <observer name="kana_fields_cleaning" instance="Magento\JapaneseName\Observer\Sales\OrderKanaFieldsCleaning" />
     </event>
 
     <event name="sales_order_address_load_after">
-        <observer name="kana_fields_loader" instance="MagentoCommunity\JapaneseName\Observer\Sales\OrderAddressKanaFieldsLoader" />
+        <observer name="kana_fields_loader" instance="Magento\JapaneseName\Observer\Sales\OrderAddressKanaFieldsLoader" />
     </event>
     <event name="sales_order_address_collection_load_after">
-        <observer name="kana_fields_loader" instance="MagentoCommunity\JapaneseName\Observer\Sales\OrderAddressKanaFieldsLoader" />
+        <observer name="kana_fields_loader" instance="Magento\JapaneseName\Observer\Sales\OrderAddressKanaFieldsLoader" />
     </event>
     <event name="sales_order_address_save_before">
-        <observer name="kana_fields_saver" instance="MagentoCommunity\JapaneseName\Observer\Sales\OrderAddressKanaFieldsSaver" />
+        <observer name="kana_fields_saver" instance="Magento\JapaneseName\Observer\Sales\OrderAddressKanaFieldsSaver" />
     </event>
     <event name="sales_order_address_save_after">
-        <observer name="kana_fields_cleaning" instance="\MagentoCommunity\JapaneseName\Observer\Sales\OrderAddressKanaFieldsCleaning" />
+        <observer name="kana_fields_cleaning" instance="\Magento\JapaneseName\Observer\Sales\OrderAddressKanaFieldsCleaning" />
     </event>
 </config>

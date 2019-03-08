@@ -1,8 +1,8 @@
 defaults: &defaults
   working_directory: ~/magento
   environment:
-    MDE_COMPOSER_MODULE: magento-community/japan-common;magento-community/language-ja_jp;magento-community/module-japanese-default-config;magento-community/module-japanese-default-cms-pages;magento-community/module-japanese-address;magento-community/module-japanese-name;magento-community/module-kuromoji;magento-community/module-currency-precision;magento-community/module-japanese-yen-formatting;magento-community/module-japanese-region;magento-community/module-japanese-store-address;magento-community/module-japanese-postal-code;magento-community/module-japanese-url-rewrite;magento-community/module-configurable-pdf-font;magento-community/font-source-han-sans-japanese;magento-community/font-ipa
-    MDE_COMPOSER_METAPACKAGE: magento-community/japan-common
+    MDE_COMPOSER_MODULE: magento/japan-common;magento/language-ja_jp;magento/module-japanese-default-config;magento/module-japanese-default-cms-pages;magento/module-japanese-address;magento/module-japanese-name;magento/module-kuromoji;magento/module-currency-precision;magento/module-japanese-yen-formatting;magento/module-japanese-region;magento/module-japanese-store-address;magento/module-japanese-postal-code;magento/module-japanese-url-rewrite;magento/module-configurable-pdf-font;magento/module-font-source-han-sans-japanese;magento/module-font-ipa
+    MDE_COMPOSER_METAPACKAGE: magento/japan-common
     CORE_GIT_REPOSITORY: magento/magento2
     CORE_GIT_BRANCH: 2.3-develop
   docker:
@@ -93,8 +93,8 @@ jobs:
             sed -i 's/\/composer/\/vendor\/composer/' autoload.php
 
       - run:
-          name: Patch composer validation to allow MDE vendor
-          command: sed -i.bak 's/\^magento/\^(?:magento|magento-community)/g' dev/tests/static/testsuite/Magento/Test/Integrity/ComposerTest.php
+          name: Patch composer validation to allow extended language package names
+          command: sed -i.bak 's/\$\//\//g' dev/tests/static/testsuite/Magento/Test/Integrity/ComposerTest.php
 
       - run:
           name: Static Test

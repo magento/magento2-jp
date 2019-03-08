@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseAddress\Block\Checkout;
+namespace Magento\JapaneseAddress\Block\Checkout;
 
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 
@@ -49,7 +49,7 @@ class BillingAddressComponent implements LayoutProcessorInterface
                 $component['config'] = array_merge(
                     isset($component['config']) ? $component['config'] : [],
                     [
-                        'template' => 'MagentoCommunity_JapaneseAddress/checkout/billing-address'
+                        'template' => 'Magento_JapaneseAddress/checkout/billing-address'
                     ]
                 );
             } else {

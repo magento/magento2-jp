@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseYenFormatting\Model\Config\Source;
+namespace Magento\JapaneseYenFormatting\Model\Config\Source;
 
 use Magento\Framework\Option\ArrayInterface;
 
