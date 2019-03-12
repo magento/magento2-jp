@@ -45,8 +45,9 @@ Development installation of Magento Japanese modules requires several simple add
     ```sh
     # discover projects that consists from single Composer package/modules
     composer config repositories.extRoot '{"type":"path","url":"ext/*/*","options":{"symlink":true}}'
+    
     # discover projects that constains multiple Composer packages/modules
-    composer config repositories.extRoot '{"type":"path","url":"ext/*/*","options":{"symlink":true}}'
+    composer config repositories.extPackage '{"type":"path","url":"ext/*/*/*","options":{"symlink":true}}'
     ```
 4. Configure Composer to use development versions of packages:
     ```sh
