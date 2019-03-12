@@ -3,7 +3,7 @@
     "description": "Magento Japanese localization meta package.",
     "type": "metapackage",
     "require": {
-        "magento/language-ja_jp-community": "*",
+        "magento/language-ja_jp": "*",
         "magento/module-currency-precision": "*",
         "magento/module-configurable-pdf-font": "*",
         "magento/module-font-source-han-sans-japanese": "*",
