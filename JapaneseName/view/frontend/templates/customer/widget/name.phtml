@@ -79,7 +79,7 @@ $kana = $block->getData('kana');
                        name="<?= $block->escapeHtmlAttr($block->getFieldName('middlename')) ?>"
                        value="<?= $block->escapeHtmlAttr($block->getObject()->getMiddlename()) ?>"
                        title="<?= $block->escapeHtmlAttr($block->getStoreLabel('middlename')) ?>"
-                       class="input-text <?= $block->escapeHtmlAttr($block->getAttributeValidationClass('middlename')) ?>" <?= $isMiddlenameRequired ? ' data-validate="{required:true}"' : '' ?>>
+                       class="input-text <?= $block->escapeHtmlAttr($block->getAttributeValidationClass('middlename')) ?>" <?= /* @noEscape */ $isMiddlenameRequired ? ' data-validate="{required:true}"' : '' ?>>
             </div>
         </div>
     <?php endif; ?>
