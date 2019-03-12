@@ -11,102 +11,73 @@ Any Magento Community member are welcome to join to the project.
 
 **Slack:** [#japanese-localization](https://magentocommeng.slack.com/messages/CB3DG6HFH)
 
-**Release strategy:** Modules from this repository will be available as separate extensions to Magento 2 with possibility to install them with Composer metapackage. All development targeted to Magento 2.3 and will be compatible with all further Magento releases.
+**Release strategy:** Modules from this repository will be available as separate extensions to Magento 2 with possibility to install them with Composer metapackage `magento/japan-common`. Metapackage of the project will ba also available at Magento Marketplace after initial release.
 
-If implementing some feature requires changes in Magento 2 core these changes should be delivered with pull request to [magento/magento2-l10n](https://github.com/magento/magento2-l10n) and will be merged as soon as all tests are green and approved by reviewer. Contribution to [magento/magento2](https://github.com/magento/magento2) is also acceptable but in this case pull request will be processed in general queue.
+All development targeted to Magento 2.3 and will be compatible with all further Magento releases.
 
 **Committing changes:** It is highly encouraged for this project to create feature branches inside this repo. Any contributor should be able to do that.
 
-**Companion project:** Repository [magento/magento2-l10n](https://github.com/magento/magento2-l10n) should be used to deliver fixes to Magento core required by this project.
 
 ## Installation from Git
 
-To install Magento with Japanese modules please follow next steps:
+For development purpose Magento Japanese modules as well as Magento Open Source should be installed from Git. Magento Commerce, Magento B2B and Magento Sample Data modules also may be installed locally and should not conflict.
 
-1. Clone this repository outside from Magento Open Source directory
+Magento Japanese repository contains only extensions that are part of the project and not contains whole clone of Magento Open Source. This approach is called Magento Developed Extensions (MDE) and introduced to increase Magento modularity.
 
-```
-git clone git@github.com:magento/magento2-jp.git
-cd magento2-jp
-```
+Development installation of Magento Japanese modules requires several simple addition steps to set up of Magento Open Source development environment:
 
-2. Optionally, switch to feature branch
-```
-git checkout -b <local_branch> origin/<feature_branch>
-```
+1. Switch to Magento root folder:
+    ```sh
+    cd <magento root folder>
+    ```
 
-3. Clone main Magento 2 repository https://github.com/magento/magento2
+2. Create folder where all MDE extensions will be placed:
+    ```sh
+    mkdir ext
+    ```
+    To exclude this folder from Git add it to local ignore list:
+    ```sh
+    echo ext >> ./.git/info/exclude
+    ```
+    Now you still be able to modify source code of Magento Open Source and contribute to GitHub. All MDE (as well as any 3rd party module) may be cloned from GitHub or any other Git repository to `ext` folder. 
 
-```
-cd ../
-git clone git@github.com:magento/magento2.git
-cd magento2
-```
+3. Configure Composer to discover packages from `ext` folder:
+    ```sh
+    # discover projects that consists from single Composer package/modules
+    composer config repositories.extRoot '{"type":"path","url":"ext/*/*","options":{"symlink":true}}'
+    # discover projects that constains multiple Composer packages/modules
+    composer config repositories.extRoot '{"type":"path","url":"ext/*/*","options":{"symlink":true}}'
+    ```
+4. Configure Composer to use development versions of packages:
+    ```sh
+    composer config minimum-stability dev
+    ```
+5. Clone source code of Magento Japanese project:
+    ```sh
+    git clone git clone git@github.com:magento/magento2-jp.git ext/magento/magento2-jp
+    ```
+    We highly recommend to use `<vendor>/<project>` folders inside `ext` folder to avoid naming conflicts.   
+6. Add Magento Japanese project to your Magento installation:
+    ```sh
+    composer require magento/japan-common:@dev
+    ```
+7. To avoid unintentional commit of modified `composer.json` and `composer.lock` files skip them:
+    ```sh
+    git update-index --skip-worktree composer.json
+    git update-index --skip-worktree composer.lock
+    ```
+    If in future you would like to contribute changes to these files you may revert this operation by:
+    ```sh
+    git update-index --no-skip-worktree composer.json
+    git update-index --no-skip-worktree composer.lock
+    ```
 
-4. Add repository with localization core improvements https://github.com/magento/magento2-l10n as remote repository and fetch data
-```
-git remote add l10n git@github.com:magento/magento2-l10n.git
-git fetch l10n
-```
-Optionally, checkout local branch from l10n repository
+Now Magento Japanese modules are visible to your development Magento instance and you may modify, pull or push source code from `ext/magento/magento2-jp` folder. 
 
-```
-git checkout -b <local_branch> l10n/<feature_branch>
-```
+To complete installation process you should install or upgrade Magento to enabled added modules.
+If you use CLI for Magento installation you may now skip locale, timezone and currency options as they will be provided by [JapaneseDefaultConfig](JapaneseDefaultConfig) module:
+```sh
+php bin/magento setup:install --admin-firstname=Admin --admin-lastname=Admin --admin-user=admin --admin-email=admin@local.me --admin-password=123123q --base-url="http://<dev host>/" --base-url-secure="https://<dev host>" --use-secure=1 --use-secure-admin=1 --backend-frontname=admin --db-host=localhost --db-name=<db name> --db-user=<db user> --db-password=<db password> --use-rewrites=1
+```    
 
-5. Link Magento 2 Japanese modules to Magento 2 Open Source
 
-```
-ln -s ../../../magento2-jp ./app/code/MagentoJapan
-```
-
-You may need to change file paths to match your setup
-
-7. Add `app/code/MagentoJapan` to local ignore list in Magento Open Source repository
-```
-echo "app/code/MagentoJapan" >> ./.git/info/exclude
-```
-
-8. Now you have Magento Open Source code with Magento Japan modules ready to be installed as described at [DevDocs](https://devdocs.magento.com/guides/v2.2/install-gde/install/web/install-web-sample-data-clone.html#samp-data-perms).
-
-If you already have Magento installed you need enable Japanese modules and upgrade your installation:
-```
-php bin/magento module:enable --all
-php bin/magento setup:upgrade
-```
-
-## Contribution
-
-To participate in the project and contribute you need to create local installation as described in section above.
-
-We encourage to contribute to https://github.com/magento/magento2-jp and https://github.com/magento/magento2-l10n by pushing your local changes to feature branch. Once feature or bugfix is completed or you would like to start communication on it please create pull requests from a feature branch to `2.3-develop` branch.
-
-If you don't have permissions to push new branch in https://github.com/magento/magento2-jp or https://github.com/magento/magento2-l10n please contact Magento Community Engineering representative Volodymyr Kublytskyi by email vkublytskyi@magento.com or by private message in Magento Community Engineering Slack.
-
-Optionally, you may fork https://github.com/magento/magento2-jp repository and create pull requests from it.
-
-We recommend not to fork https://github.com/magento/magento2-l10n and use a fork of main Magento Open Source repository (https://github.com/magento/magento2) instead.
-
-## Goals
-
-### MVP
-
-**M**inimum **V**iable **P**roduct targeted to support Magento Open Source 2.3.x (with sample data) single store with `ja_JP` locale and `JPY` currency with following features:
-- [X] [#33](https://github.com/magento/magento2-jp/issues/33) Full translations to Japanese (phrases downloaded from [Crowdin](https://crowdin.com/project/magento-2/ja) and packaged in [Phrases](./Phrases) component)
-- [x] [#34](https://github.com/magento/magento2-jp/issues/34) Valid rounding of JPY currency (implemented in [CurrencyPrecision](./CurrencyPrecision) and [YenFormatting](./YenFormatting) modules)
-- [x] [#35](https://github.com/magento/magento2-jp/issues/35) Kana for names (implemented in [Kana](./Kana) module)
-- [x] [#36](https://github.com/magento/magento2-jp/issues/36) Valid names format for storefront and admin (Lastname Firstname PolitnessSuffix) (implemented in [Address](./Address) module)
-- [x] [#37](https://github.com/magento/magento2-jp/issues/37) Perfectures (regions) listed in order from North to South (implemented in [Region](./Region) module)
-- [x] [#38](https://github.com/magento/magento2-jp/issues/38) Autocomplete of address fields based on ZIP code (implemented in [PostalCode](/.PostalCode) module)
-- [x] [#39](https://github.com/magento/magento2-jp/issues/39) Possibility to configure store address from Admin Panel (implemented in [StoreAddress](./StoreAddress) module)
-- [x] [#40](https://github.com/magento/magento2-jp/issues/40) Valid configuration of ElasticSearch index (Kuromoji) (implemented in [Kuromoji](./Kuromoji) module)
-- [x] [#41](https://github.com/magento/magento2-jp/issues/41) Possibility to generate PDF files with Japanese multibyte characters (possibility to configure used font implemented in [Pdf](./Pdf) module; [SourceHanSansJapanese](./SourceHanSansJapanese) and [IpaFonts](./IpaFonts) provides fonts with Japanese characters support).
-- [ ] [#30](https://github.com/magento/magento2-jp/issues/30) Install with single composer dependency (e.g. `magentojapan/common`) ([composer.json](./composer.json) file contains metapackage; probably will be converted in separate module to reduce effort on CI/CD infrastructure modification)
-
-MVP optional features:
-- [x] [#42](https://github.com/magento/magento2-jp/issues/42) Preset of configuration options (locale, currency, measurement units, etc.) applied during installation (implemented in [DefaultConfig](./DefaultConfig) module)
-- [ ] [#43](https://github.com/magento/magento2-jp/issues/43) Cache on delivery as payment method (consider possibility to us [MSP CacheOnDelivery module](https://github.com/it4mage/CashOnDelivery))
-- [ ] [#44](https://github.com/magento/magento2-jp/issues/44) Possibility to specify delivery time
-- [ ] Payment Methods (GMO Payment Gateway, Veritrans, Sony Payment Service)
-- [ ] Support of main delivery companies (Yamato, Sagawa)
-- [ ] Valid date format in admin
