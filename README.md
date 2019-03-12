@@ -67,7 +67,7 @@ Development installation of Magento Japanese modules requires several simple add
     git update-index --skip-worktree composer.json
     git update-index --skip-worktree composer.lock
     ```
-    If in future you would like to contribute changes to these files you may revert this operation by:
+    If in future you would like to contribute changes to these files you may unskip files:
     ```sh
     git update-index --no-skip-worktree composer.json
     git update-index --no-skip-worktree composer.lock
