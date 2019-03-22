@@ -11,7 +11,7 @@
             <group id="options">
                 <field id="rounding_mode" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Currency Rounding Method</label>
-                    <source_model>Magento\CurrencyPrecision\Model\Config\Source\RoundingMode</source_model>
+                    <source_model>CommunityEngineering\CurrencyPrecision\Model\Config\Source\RoundingMode</source_model>
                     <config_path>currency/options/rounding_mode</config_path>
                 </field>
             </group>

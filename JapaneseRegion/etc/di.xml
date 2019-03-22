@@ -6,5 +6,5 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Magento\Directory\Model\ResourceModel\Region\Collection" type="Magento\JapaneseRegion\Model\ResourceModel\Directory\Region\Collection"/>
+    <preference for="Magento\Directory\Model\ResourceModel\Region\Collection" type="CommunityEngineering\JapaneseRegion\Model\ResourceModel\Directory\Region\Collection"/>
 </config>

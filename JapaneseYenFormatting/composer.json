@@ -1,5 +1,5 @@
 {
-    "name": "magento/module-japanese-yen-formatting",
+    "name": "community-engineering/module-japanese-yen-formatting",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -24,7 +24,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Magento\\JapaneseYenFormatting\\": ""
+            "CommunityEngineering\\JapaneseYenFormatting\\": ""
         }
     }
 }

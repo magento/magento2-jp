@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\JapaneseName\Plugin\Customer\Block\Address;
+namespace CommunityEngineering\JapaneseName\Plugin\Customer\Block\Address;
 
 use Magento\Customer\Block\Address\Renderer\RendererInterface;
 

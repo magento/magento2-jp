@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\JapaneseAddress\Model\Config;
+namespace CommunityEngineering\JapaneseAddress\Model\Config;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 

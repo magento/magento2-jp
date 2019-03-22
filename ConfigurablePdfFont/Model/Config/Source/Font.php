@@ -5,10 +5,10 @@
  */
 declare(strict_types=1);
 
-namespace Magento\ConfigurablePdfFont\Model\Config\Source;
+namespace CommunityEngineering\ConfigurablePdfFont\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
-use Magento\ConfigurablePdfFont\Model\FontProvider;
+use CommunityEngineering\ConfigurablePdfFont\Model\FontProvider;
 
 /**
  * List of available fonts.

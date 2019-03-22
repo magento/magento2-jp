@@ -1,5 +1,5 @@
 {
-    "name": "magento/module-japanese-default-config",
+    "name": "community-engineering/module-japanese-default-config",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -22,7 +22,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Magento\\JapaneseDefaultConfig\\": ""
+            "CommunityEngineering\\JapaneseDefaultConfig\\": ""
         }
     }
 }

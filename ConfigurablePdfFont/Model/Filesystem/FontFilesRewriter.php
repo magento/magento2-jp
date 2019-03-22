@@ -5,10 +5,10 @@
  */
 declare(strict_types=1);
 
-namespace Magento\ConfigurablePdfFont\Model\Filesystem;
+namespace CommunityEngineering\ConfigurablePdfFont\Model\Filesystem;
 
 use Magento\Framework\Component\ComponentRegistrar;
-use Magento\ConfigurablePdfFont\Model\Config\FontConfig;
+use CommunityEngineering\ConfigurablePdfFont\Model\Config\FontConfig;
 
 /**
  * Rewrite PDF font file paths.

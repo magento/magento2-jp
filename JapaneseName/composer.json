@@ -1,5 +1,5 @@
 {
-    "name": "magento/module-japanese-name",
+    "name": "community-engineering/module-japanese-name",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -28,7 +28,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Magento\\JapaneseName\\": ""
+            "CommunityEngineering\\JapaneseName\\": ""
         }
     }
 }

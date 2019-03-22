@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\JapaneseDefaultCmsPages\Setup\Patch\Data;
+namespace CommunityEngineering\JapaneseDefaultCmsPages\Setup\Patch\Data;
 
 use Magento\Cms\Model\PageFactory;
 use Magento\Framework\Component\ComponentRegistrar;
@@ -140,7 +140,7 @@ class DefaultPagesTranslations implements DataPatchInterface
     private function getPageContentTranslationLocation(string $pageIdentifier) :? Phrase
     {
         $phrase = __(
-            'magento://Magento_JapaneseDefaultCmsPages::i18n/en_US/%1.html',
+            'magento://CommunityEngineering_JapaneseDefaultCmsPages::i18n/en_US/%1.html',
             [$pageIdentifier]
         );
 

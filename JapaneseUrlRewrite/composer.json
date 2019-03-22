@@ -1,5 +1,5 @@
 {
-    "name": "magento/module-japanese-url-rewrite",
+    "name": "community-engineering/module-japanese-url-rewrite",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -19,7 +19,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Magento\\JapaneseUrlRewrite\\": ""
+            "CommunityEngineering\\JapaneseUrlRewrite\\": ""
         }
     }
 }

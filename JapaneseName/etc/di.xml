@@ -6,25 +6,25 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Magento\Framework\DataObject\Copy" type="Magento\JapaneseName\Model\DataObject\Copy"/>
+    <preference for="Magento\Framework\DataObject\Copy" type="CommunityEngineering\JapaneseName\Model\DataObject\Copy"/>
     <type name="Magento\Framework\Data\Form">
-        <plugin name="setExtensionValues" type="Magento\JapaneseName\Plugin\Framework\Data\ExtensionAttributesValues"/>
+        <plugin name="setExtensionValues" type="CommunityEngineering\JapaneseName\Plugin\Framework\Data\ExtensionAttributesValues"/>
     </type>
 
     <type name="Magento\Customer\Model\Metadata\CustomerMetadata">
-        <plugin name="kanaAttributesInjection" type="Magento\JapaneseName\Plugin\Customer\Model\Metadata\KanaAttributesInjection"/>
+        <plugin name="kanaAttributesInjection" type="CommunityEngineering\JapaneseName\Plugin\Customer\Model\Metadata\KanaAttributesInjection"/>
     </type>
     <type name="Magento\Customer\Model\Metadata\AddressMetadata">
-        <plugin name="kanaAttributesInjection" type="Magento\JapaneseName\Plugin\Customer\Model\Metadata\KanaAttributesInjection"/>
+        <plugin name="kanaAttributesInjection" type="CommunityEngineering\JapaneseName\Plugin\Customer\Model\Metadata\KanaAttributesInjection"/>
     </type>
     <type name="Magento\Customer\Model\Delegation\Storage">
-        <plugin name="kanaAttributesNormalization" type="Magento\JapaneseName\Plugin\Customer\Model\Delegation\NewOperationNormalization"/>
+        <plugin name="kanaAttributesNormalization" type="CommunityEngineering\JapaneseName\Plugin\Customer\Model\Delegation\NewOperationNormalization"/>
     </type>
     <type name="Magento\Quote\Model\Quote\Address">
-        <plugin name="exportKana" type="Magento\JapaneseName\Plugin\Quote\Model\Quote\ExportAddressKana"/>
+        <plugin name="exportKana" type="CommunityEngineering\JapaneseName\Plugin\Quote\Model\Quote\ExportAddressKana"/>
     </type>
     <type name="Magento\Customer\Block\Address\Renderer\RendererInterface">
-        <plugin name="exportKana" type="Magento\JapaneseName\Plugin\Customer\Block\Address\KanaAttributesRenderer"/>
+        <plugin name="exportKana" type="CommunityEngineering\JapaneseName\Plugin\Customer\Block\Address\KanaAttributesRenderer"/>
     </type>
 
     <virtualType name="CustomerNameKanaHandler" type="Magento\Framework\Indexer\Handler\ConcatHandler">

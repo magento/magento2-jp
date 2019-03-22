@@ -7,7 +7,7 @@ var config = {
     config: {
         mixins: {
             'Magento_Ui/js/form/components/collection/item': {
-                'Magento_JapaneseAddress/js/address-preview': true
+                'CommunityEngineering_JapaneseAddress/js/address-preview': true
             }
         }
     }

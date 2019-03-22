@@ -5,10 +5,10 @@
  */
 declare(strict_types=1);
 
-namespace Magento\ConfigurablePdfFont\Model\Filesystem\Directory;
+namespace CommunityEngineering\ConfigurablePdfFont\Model\Filesystem\Directory;
 
-use Magento\ConfigurablePdfFont\Model\Filesystem\File\Read;
-use Magento\ConfigurablePdfFont\Model\Filesystem\FontFilesRewriter;
+use CommunityEngineering\ConfigurablePdfFont\Model\Filesystem\File\Read;
+use CommunityEngineering\ConfigurablePdfFont\Model\Filesystem\FontFilesRewriter;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Filesystem\DriverPool;
 use Magento\Framework\Filesystem\Directory\PathValidator;

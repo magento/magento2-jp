@@ -5,10 +5,10 @@
  */
 declare(strict_types=1);
 
-namespace Magento\JapaneseAddress\Block\Checkout;
+namespace CommunityEngineering\JapaneseAddress\Block\Checkout;
 
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
-use Magento\JapaneseAddress\Model\Config\CountryInputConfig;
+use CommunityEngineering\JapaneseAddress\Model\Config\CountryInputConfig;
 
 /**
  * Visibility of country field at checkout page should be controlled by admin.

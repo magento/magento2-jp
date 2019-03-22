@@ -1,5 +1,5 @@
 {
-    "name": "magento/module-japanese-region",
+    "name": "community-engineering/module-japanese-region",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -28,7 +28,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Magento\\JapaneseRegion\\": ""
+            "CommunityEngineering\\JapaneseRegion\\": ""
         }
     }
 }

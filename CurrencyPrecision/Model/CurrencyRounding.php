@@ -5,10 +5,10 @@
  */
 declare(strict_types=1);
 
-namespace Magento\CurrencyPrecision\Model;
+namespace CommunityEngineering\CurrencyPrecision\Model;
 
-use Magento\CurrencyPrecision\Model\Config\CurrencyRoundingConfig;
-use Magento\CurrencyPrecision\Model\Config\Source\RoundingMode;
+use CommunityEngineering\CurrencyPrecision\Model\Config\CurrencyRoundingConfig;
+use CommunityEngineering\CurrencyPrecision\Model\Config\Source\RoundingMode;
 
 /**
  * Currency rounding service.

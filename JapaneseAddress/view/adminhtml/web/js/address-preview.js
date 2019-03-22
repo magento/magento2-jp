@@ -12,7 +12,7 @@ define([
     'use strict';
 
     return function (target) {
-        target.defaults.previewTpl = 'Magento_JapaneseAddress/address-preview';
+        target.defaults.previewTpl = 'CommunityEngineering_JapaneseAddress/address-preview';
 
         return target.extend({
 

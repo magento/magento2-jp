@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\JapaneseAddress\Plugin\Customer\Model\ResourceModel\Customer\Collection;
+namespace CommunityEngineering\JapaneseAddress\Plugin\Customer\Model\ResourceModel\Customer\Collection;
 
 use Magento\Customer\Model\ResourceModel\Customer\Collection;
 use Magento\Framework\Locale\ResolverInterface;

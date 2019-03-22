@@ -7,10 +7,10 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Magento_JapaneseDefaultCmsPages">
+    <module name="CommunityEngineering_JapaneseDefaultCmsPages">
         <sequence>
             <module name="Magento_Cms"/>
-            <module name="Magento_JapaneseDefaultConfig"/>
+            <module name="CommunityEngineering_JapaneseDefaultConfig"/>
         </sequence>
     </module>
 </config>

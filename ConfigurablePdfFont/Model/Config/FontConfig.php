@@ -5,11 +5,11 @@
  */
 declare(strict_types=1);
 
-namespace Magento\ConfigurablePdfFont\Model\Config;
+namespace CommunityEngineering\ConfigurablePdfFont\Model\Config;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\ConfigurablePdfFont\Model\Font;
-use Magento\ConfigurablePdfFont\Model\FontProvider;
+use CommunityEngineering\ConfigurablePdfFont\Model\Font;
+use CommunityEngineering\ConfigurablePdfFont\Model\FontProvider;
 
 /**
  * Configuration of fonts to use during PDF generation.

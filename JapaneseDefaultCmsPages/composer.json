@@ -1,5 +1,5 @@
 {
-    "name": "magento/module-japanese-default-cms-pages",
+    "name": "community-engineering/module-japanese-default-cms-pages",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -12,14 +12,14 @@
         "magento/module-cms": "*"
     },
     "suggest": {
-        "magento/module-japanese-default-config": "*"
+        "community-engineering/module-japanese-default-config": "*"
     },
     "autoload": {
         "files": [
             "registration.php"
         ],
         "psr-4": {
-            "Magento\\JapaneseDefaultCmsPages\\": ""
+            "CommunityEngineering\\JapaneseDefaultCmsPages\\": ""
         }
     }
 }

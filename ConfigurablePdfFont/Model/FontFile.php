@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\ConfigurablePdfFont\Model;
+namespace CommunityEngineering\ConfigurablePdfFont\Model;
 
 use Magento\Framework\Component\ComponentRegistrar;
 

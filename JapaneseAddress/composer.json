@@ -1,5 +1,5 @@
 {
-    "name": "magento/module-japanese-address",
+    "name": "community-engineering/module-japanese-address",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -24,15 +24,15 @@
         "magento/module-reports": "*"
     },
     "suggest": {
-        "magento/module-japanese-name": "*",
-        "magento/module-japanese-region": "*"
+        "community-engineering/module-japanese-name": "*",
+        "community-engineering/module-japanese-region": "*"
     },
     "autoload": {
         "files": [
             "registration.php"
         ],
         "psr-4": {
-            "Magento\\JapaneseAddress\\": ""
+            "CommunityEngineering\\JapaneseAddress\\": ""
         }
     }
 }

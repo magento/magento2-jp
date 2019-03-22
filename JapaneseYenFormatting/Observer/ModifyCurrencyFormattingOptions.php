@@ -5,12 +5,12 @@
  */
 declare(strict_types=1);
 
-namespace Magento\JapaneseYenFormatting\Observer;
+namespace CommunityEngineering\JapaneseYenFormatting\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Event\Observer;
 use Magento\JapanPrice\Model\CurrencyPrecision;
-use Magento\JapaneseYenFormatting\Model\CurrencyFormatOptionModifiers;
+use CommunityEngineering\JapaneseYenFormatting\Model\CurrencyFormatOptionModifiers;
 
 /**
  * Inject currency formatting options into default currency options.

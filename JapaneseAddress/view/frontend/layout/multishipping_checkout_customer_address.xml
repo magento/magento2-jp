@@ -7,6 +7,6 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Multishipping Checkout Customer Address Edit Form" design_abstraction="custom">
     <body>
-        <referenceBlock name="customer_address_edit" template="Magento_JapaneseAddress::address/edit.phtml"/>
+        <referenceBlock name="customer_address_edit" template="CommunityEngineering_JapaneseAddress::address/edit.phtml"/>
     </body>
 </page>

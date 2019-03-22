@@ -1,5 +1,5 @@
 {
-    "name": "magento/module-font-source-han-sans-japanese",
+    "name": "community-engineering/module-font-source-han-sans-japanese",
     "type": "magento2-module",
     "license": [
         "OFL-1.1"
@@ -11,14 +11,14 @@
     },
     "suggest": {
         "magento/module-sales": "*",
-        "magento/module-configurable-pdf-font": "*"
+        "community-engineering/module-configurable-pdf-font": "*"
     },
     "autoload": {
         "files": [
           "registration.php"
         ],
         "psr-4": {
-            "Magento\\FontSourceHanSansJapanese\\": ""
+            "CommunityEngineering\\FontSourceHanSansJapanese\\": ""
         }
     }
 }

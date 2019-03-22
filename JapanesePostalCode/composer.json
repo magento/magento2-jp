@@ -1,5 +1,5 @@
 {
-    "name": "magento/module-japanese-postal-code",
+    "name": "community-engineering/module-japanese-postal-code",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -30,7 +30,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Magento\\JapanesePostalCode\\": ""
+            "CommunityEngineering\\JapanesePostalCode\\": ""
         }
     }
 }

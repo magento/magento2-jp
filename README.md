@@ -11,7 +11,7 @@ Any Magento Community member are welcome to join to the project.
 
 **Slack:** [#japanese-localization](https://magentocommeng.slack.com/messages/CB3DG6HFH)
 
-**Release strategy:** Modules from this repository will be available as separate extensions to Magento 2 with possibility to install them with Composer metapackage `magento/japan-common`. Metapackage of the project will ba also available at Magento Marketplace after initial release.
+**Release strategy:** Modules from this repository will be available as separate extensions to Magento 2 with possibility to install them with Composer metapackage `community-engineering/japan-common`. Metapackage of the project will ba also available at Magento Marketplace after initial release.
 
 All development targeted to Magento 2.3 and will be compatible with all further Magento releases.
 
@@ -60,7 +60,7 @@ Development installation of Magento Japanese modules requires several simple add
     We highly recommend to use `<vendor>/<project>` folders inside `ext` folder to avoid naming conflicts.   
 6. Add Magento Japanese project to your Magento installation:
     ```sh
-    composer require magento/japan-common:@dev
+    composer require community-engineering/japan-common:@dev
     ```
 7. To avoid unintentional commit of modified `composer.json` and `composer.lock` files skip them:
     ```sh

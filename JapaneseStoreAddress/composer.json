@@ -1,5 +1,5 @@
 {
-    "name": "magento/module-japanese-store-address",
+    "name": "community-engineering/module-japanese-store-address",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -24,7 +24,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Magento\\JapaneseStoreAddress\\": ""
+            "CommunityEngineering\\JapaneseStoreAddress\\": ""
         }
     }
 }

@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\Kuromoji\Model\ElasticSearch\Adapter\Index;
+namespace CommunityEngineering\Kuromoji\Model\ElasticSearch\Adapter\Index;
 
 use Magento\Elasticsearch\Model\Adapter\Index\Builder as DefaultBuilder;
 

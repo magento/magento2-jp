@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Magento\JapaneseAddress\Plugin\Reports\Order\Collection;
+namespace CommunityEngineering\JapaneseAddress\Plugin\Reports\Order\Collection;
 
 use Magento\Reports\Model\ResourceModel\Order\Collection;
 use Magento\Framework\Locale\ResolverInterface;

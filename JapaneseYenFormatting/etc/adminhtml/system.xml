@@ -11,7 +11,7 @@
             <group id="options">
                 <field id="yen_formatting" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Japanese Yen Formatting</label>
-                    <source_model>Magento\JapaneseYenFormatting\Model\Config\Source\YenFormatting</source_model>
+                    <source_model>CommunityEngineering\JapaneseYenFormatting\Model\Config\Source\YenFormatting</source_model>
                     <config_path>currency/options/yen_formatting</config_path>
                 </field>
             </group>
