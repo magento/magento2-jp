@@ -5,9 +5,9 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseUrlRewrite\Plugin\Filter;
+namespace CommunityEngineering\JapaneseUrlRewrite\Plugin\Filter;
 
-use MagentoCommunity\JapaneseUrlRewrite\Model\Transliterator;
+use CommunityEngineering\JapaneseUrlRewrite\Model\Transliterator;
 
 /**
  * If Magento Core transliteration filter fails. Try to apply Katakana and Hiragana transliterators.

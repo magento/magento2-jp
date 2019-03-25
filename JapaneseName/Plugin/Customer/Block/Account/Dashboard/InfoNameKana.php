@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseName\Plugin\Customer\Block\Account\Dashboard;
+namespace CommunityEngineering\JapaneseName\Plugin\Customer\Block\Account\Dashboard;
 
 use Magento\Customer\Block\Account\Dashboard\Info;
 use Magento\Framework\Api\CustomAttributesDataInterface;

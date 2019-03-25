@@ -20,21 +20,21 @@
       data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
     <fieldset class="fieldset">
         <legend class="legend"><span><?= $block->escapeHtml(__('Contact Information')) ?></span></legend><br>
-        <?= $block->getBlockHtml('formkey') ?>
+        <?= /* @noEscape */ $block->getBlockHtml('formkey') ?>
         <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
         <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
         <?= $block->getNameBlockHtml() ?>
 
         <?php if ($_telephone->isEnabled()): ?>
-            <?= $_telephone->setTelephone($block->getAddress()->getTelephone())->toHtml() ?>
+            <?= /* @noEscape */ $_telephone->setTelephone($block->getAddress()->getTelephone())->toHtml() ?>
         <?php endif ?>
 
         <?php if ($_fax->isEnabled()): ?>
-            <?= $_fax->setFax($block->getAddress()->getFax())->toHtml() ?>
+            <?= /* @noEscape */ $_fax->setFax($block->getAddress()->getFax())->toHtml() ?>
         <?php endif ?>
 
         <?php if ($_company->isEnabled()): ?>
-            <?= $_company->setCompany($block->getAddress()->getCompany())->toHtml() ?>
+            <?= /* @noEscape */ $_company->setCompany($block->getAddress()->getCompany())->toHtml() ?>
         <?php endif ?>
     </fieldset>
     <fieldset class="fieldset">
@@ -43,7 +43,7 @@
         <div class="field country required">
             <label class="label" for="country"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('country_id') ?></span></label>
             <div class="control">
-                <?= $block->getCountryHtmlSelect() ?>
+                <?= /* @noEscape */ $block->getCountryHtmlSelect() ?>
             </div>
         </div>
 
@@ -197,7 +197,7 @@
                 "postcodeId": "#zip",
                 "form": "#form-validate",
                 "regionJson": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getRegionJson() ?>,
-                "defaultRegion": "<?= (int) $block->getRegionId() ?>",
+                "defaultRegion": "<?= /* @noEscape */ (int) $block->getRegionId() ?>",
                 "countriesWithOptionalZip": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getCountriesWithOptionalZip(true) ?>
             }
         }

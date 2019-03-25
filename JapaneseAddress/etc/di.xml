@@ -7,31 +7,31 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Customer\Model\Customer">
-        <plugin name="jpname" type="MagentoCommunity\JapaneseAddress\Plugin\Customer\Model\Name" sortOrder="100"/>
+        <plugin name="jpname" type="CommunityEngineering\JapaneseAddress\Plugin\Customer\Model\Name" sortOrder="100"/>
     </type>
     <type name="Magento\Customer\Helper\View">
-        <plugin name="jpname" type="MagentoCommunity\JapaneseAddress\Plugin\Customer\Helper\Name" sortOrder="100"/>
+        <plugin name="jpname" type="CommunityEngineering\JapaneseAddress\Plugin\Customer\Helper\Name" sortOrder="100"/>
     </type>
     <type name="Magento\Customer\Model\ResourceModel\Customer\Collection">
-        <plugin name="jpname" type="MagentoCommunity\JapaneseAddress\Plugin\Customer\Model\ResourceModel\Customer\Collection\Name" sortOrder="100"/>
+        <plugin name="jpname" type="CommunityEngineering\JapaneseAddress\Plugin\Customer\Model\ResourceModel\Customer\Collection\Name" sortOrder="100"/>
     </type>
     <type name="Magento\Reports\Model\ResourceModel\Order\Collection">
-        <plugin name="jpname" type="MagentoCommunity\JapaneseAddress\Plugin\Reports\Order\Collection\Name"/>
+        <plugin name="jpname" type="CommunityEngineering\JapaneseAddress\Plugin\Reports\Order\Collection\Name"/>
     </type>
     <type name="Magento\Sales\Model\Order">
-        <plugin name="jpname" type="MagentoCommunity\JapaneseAddress\Plugin\Sales\Model\Order\CustomerName"/>
+        <plugin name="jpname" type="CommunityEngineering\JapaneseAddress\Plugin\Sales\Model\Order\CustomerName"/>
     </type>
     <type name="Magento\Sales\Model\Order\Address">
-        <plugin name="jpname" type="MagentoCommunity\JapaneseAddress\Plugin\Sales\Model\Order\Address\Name"/>
+        <plugin name="jpname" type="CommunityEngineering\JapaneseAddress\Plugin\Sales\Model\Order\Address\Name"/>
     </type>
 
-    <type name="MagentoCommunity\JapaneseAddress\Plugin\Reports\Order\Collection\Name">
+    <type name="CommunityEngineering\JapaneseAddress\Plugin\Reports\Order\Collection\Name">
         <arguments>
             <argument name="nameSqlExpression" xsi:type="object">ReportCustomerNameAggregator</argument>
         </arguments>
     </type>
 
-    <virtualType name="CustomerNameExpression" type="MagentoCommunity\JapaneseAddress\Model\Db\Sql\ConditionalConcatExpression">
+    <virtualType name="CustomerNameExpression" type="CommunityEngineering\JapaneseAddress\Model\Db\Sql\ConditionalConcatExpression">
         <arguments>
             <argument name="parts" xsi:type="array">
                 <item name="prefix" xsi:type="array">
@@ -86,7 +86,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="CustomerNameAggregator" type="MagentoCommunity\JapaneseAddress\Model\Db\Sql\ConditionalConcatExpression">
+    <virtualType name="CustomerNameAggregator" type="CommunityEngineering\JapaneseAddress\Model\Db\Sql\ConditionalConcatExpression">
         <arguments>
             <argument name="parts" xsi:type="array">
                 <item name="lastname" xsi:type="array">
@@ -120,7 +120,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="ReportCustomerNameAggregator" type="MagentoCommunity\JapaneseAddress\Model\Db\Sql\ConditionalConcatExpression">
+    <virtualType name="ReportCustomerNameAggregator" type="CommunityEngineering\JapaneseAddress\Model\Db\Sql\ConditionalConcatExpression">
         <arguments>
             <argument name="parts" xsi:type="array">
                 <item name="lastname" xsi:type="array">
@@ -154,7 +154,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="ShippingNameAggregator" type="MagentoCommunity\JapaneseAddress\Model\Db\Sql\ConditionalConcatExpression">
+    <virtualType name="ShippingNameAggregator" type="CommunityEngineering\JapaneseAddress\Model\Db\Sql\ConditionalConcatExpression">
         <arguments>
             <argument name="parts" xsi:type="array">
                 <item name="lastname" xsi:type="array">
@@ -188,7 +188,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="BillingNameAggregator" type="MagentoCommunity\JapaneseAddress\Model\Db\Sql\ConditionalConcatExpression">
+    <virtualType name="BillingNameAggregator" type="CommunityEngineering\JapaneseAddress\Model\Db\Sql\ConditionalConcatExpression">
         <arguments>
             <argument name="parts" xsi:type="array">
                 <item name="lastname" xsi:type="array">

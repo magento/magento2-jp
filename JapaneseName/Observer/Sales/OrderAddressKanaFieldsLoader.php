@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseName\Observer\Sales;
+namespace CommunityEngineering\JapaneseName\Observer\Sales;
 
 use Magento\Framework\DataObject;
 use Magento\Sales\Api\Data\OrderAddressInterface;

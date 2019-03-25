@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseName\Model\Config\Source;
+namespace CommunityEngineering\JapaneseName\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
 

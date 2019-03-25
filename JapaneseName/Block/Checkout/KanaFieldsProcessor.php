@@ -5,13 +5,13 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseName\Block\Checkout;
+namespace CommunityEngineering\JapaneseName\Block\Checkout;
 
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 use Magento\Customer\Api\Data\CustomerInterface;
 use Magento\Customer\Model\Session;
-use MagentoCommunity\JapaneseName\Model\Config\KanaFieldsConfig;
-use MagentoCommunity\JapaneseName\Model\Config\Source\Kana;
+use CommunityEngineering\JapaneseName\Model\Config\KanaFieldsConfig;
+use CommunityEngineering\JapaneseName\Model\Config\Source\Kana;
 
 /**
  * This processor configure kana input fields at one page checkout page.

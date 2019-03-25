@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseName\Plugin\Customer\Model\Delegation;
+namespace CommunityEngineering\JapaneseName\Plugin\Customer\Model\Delegation;
 
 use Magento\Customer\Model\Delegation\Data\NewOperation;
 use Magento\Customer\Model\Delegation\Storage;

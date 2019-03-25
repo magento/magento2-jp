@@ -5,10 +5,10 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseYenFormatting\Model;
+namespace CommunityEngineering\JapaneseYenFormatting\Model;
 
-use MagentoCommunity\JapaneseYenFormatting\Model\Config\Source\YenFormatting;
-use MagentoCommunity\JapaneseYenFormatting\Model\Config\YenFormattingConfig;
+use CommunityEngineering\JapaneseYenFormatting\Model\Config\Source\YenFormatting;
+use CommunityEngineering\JapaneseYenFormatting\Model\Config\YenFormattingConfig;
 
 /**
  * Service to detect significant options for currency format.

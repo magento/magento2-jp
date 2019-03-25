@@ -9,17 +9,17 @@
     <type name="Magento\Checkout\Block\Onepage">
         <arguments>
             <argument name="layoutProcessors" xsi:type="array">
-                <item name="countryFieldVisibility" xsi:type="object">MagentoCommunity\JapaneseAddress\Block\Checkout\CountryFieldVisibility</item>
-                <item name="jpBillingAddressComponent" xsi:type="object">MagentoCommunity\JapaneseAddress\Block\Checkout\BillingAddressComponent</item>
+                <item name="countryFieldVisibility" xsi:type="object">CommunityEngineering\JapaneseAddress\Block\Checkout\CountryFieldVisibility</item>
+                <item name="jpBillingAddressComponent" xsi:type="object">CommunityEngineering\JapaneseAddress\Block\Checkout\BillingAddressComponent</item>
             </argument>
         </arguments>
     </type>
     <type name="Magento\Customer\Block\Form\Register">
-        <plugin name="address" type="MagentoCommunity\JapaneseAddress\Plugin\Customer\Block\Form\RegisterWithAddress"/>
-        <plugin name="addressFromQuote" type="MagentoCommunity\JapaneseAddress\Plugin\Customer\Block\Form\RegisterWithQuoteAddress"/>
-        <plugin name="countryVisibility" type="MagentoCommunity\JapaneseAddress\Plugin\Customer\Block\Form\CountryFieldVisibility"/>
+        <plugin name="address" type="CommunityEngineering\JapaneseAddress\Plugin\Customer\Block\Form\RegisterWithAddress"/>
+        <plugin name="addressFromQuote" type="CommunityEngineering\JapaneseAddress\Plugin\Customer\Block\Form\RegisterWithQuoteAddress"/>
+        <plugin name="countryVisibility" type="CommunityEngineering\JapaneseAddress\Plugin\Customer\Block\Form\CountryFieldVisibility"/>
     </type>
     <type name="Magento\Customer\Block\Address\Edit">
-        <plugin name="countryVisibility" type="MagentoCommunity\JapaneseAddress\Plugin\Customer\Block\Form\CountryFieldVisibility"/>
+        <plugin name="countryVisibility" type="CommunityEngineering\JapaneseAddress\Plugin\Customer\Block\Form\CountryFieldVisibility"/>
     </type>
 </config>

@@ -1,5 +1,5 @@
 {
-    "name": "magento-community/module-japanese-region",
+    "name": "community-engineering/module-japanese-region",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -18,7 +18,7 @@
         "sort-packages": true
     },
     "require": {
-        "php": "~7.1.3|~7.2.0",
+        "php": "~7.1.3||~7.2.0",
         "magento/framework": "*",
         "magento/module-config": "*",
         "magento/module-directory": "*"
@@ -28,7 +28,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "MagentoCommunity\\JapaneseRegion\\": ""
+            "CommunityEngineering\\JapaneseRegion\\": ""
         }
     }
 }

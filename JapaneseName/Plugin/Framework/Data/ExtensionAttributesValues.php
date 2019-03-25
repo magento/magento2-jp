@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseName\Plugin\Framework\Data;
+namespace CommunityEngineering\JapaneseName\Plugin\Framework\Data;
 
 use Magento\Framework\Api\AbstractSimpleObject;
 use Magento\Framework\Data\Form;

@@ -1,5 +1,5 @@
 {
-    "name": "magento-community/module-japanese-default-cms-pages",
+    "name": "community-engineering/module-japanese-default-cms-pages",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -7,19 +7,19 @@
     ],
     "description": "Magento2 default CMS pages for Japanese merchants.",
     "require": {
-        "php": "~7.1.3|~7.2.0",
+        "php": "~7.1.3||~7.2.0",
         "magento/framework": "*",
         "magento/module-cms": "*"
     },
     "suggest": {
-        "magento-community/module-japanese-default-config": "*"
+        "community-engineering/module-japanese-default-config": "*"
     },
     "autoload": {
         "files": [
             "registration.php"
         ],
         "psr-4": {
-            "MagentoCommunity\\JapaneseDefaultCmsPages\\": ""
+            "CommunityEngineering\\JapaneseDefaultCmsPages\\": ""
         }
     }
 }

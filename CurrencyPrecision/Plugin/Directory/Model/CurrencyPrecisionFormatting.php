@@ -5,10 +5,10 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\CurrencyPrecision\Plugin\Directory\Model;
+namespace CommunityEngineering\CurrencyPrecision\Plugin\Directory\Model;
 
 use Magento\Directory\Model\Currency;
-use MagentoCommunity\CurrencyPrecision\Model\CurrencyRounding;
+use CommunityEngineering\CurrencyPrecision\Model\CurrencyRounding;
 
 /**
  * Add currency precision option for formatting.

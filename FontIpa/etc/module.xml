@@ -6,9 +6,9 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="MagentoCommunity_FontIpa">
+    <module name="CommunityEngineering_FontIpa">
         <sequence>
-            <module name="MagentoCommunity_ConfigurablePdfFont"/>
+            <module name="CommunityEngineering_ConfigurablePdfFont"/>
         </sequence>
     </module>
 </config>

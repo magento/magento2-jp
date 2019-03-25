@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseUrlRewrite\Model;
+namespace CommunityEngineering\JapaneseUrlRewrite\Model;
 
 /**
  * Transliterator that try to convert Japanese text to Latin.
