@@ -7,9 +7,9 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Framework\Filter\Translit">
-        <plugin name="japanese" type="MagentoCommunity\JapaneseUrlRewrite\Plugin\Filter\Translit"/>
+        <plugin name="japanese" type="CommunityEngineering\JapaneseUrlRewrite\Plugin\Filter\Translit"/>
     </type>
     <type name="Magento\Framework\Filter\TranslitUrl">
-        <plugin name="japanese" type="MagentoCommunity\JapaneseUrlRewrite\Plugin\Filter\TranslitUrl"/>
+        <plugin name="japanese" type="CommunityEngineering\JapaneseUrlRewrite\Plugin\Filter\TranslitUrl"/>
     </type>
 </config>

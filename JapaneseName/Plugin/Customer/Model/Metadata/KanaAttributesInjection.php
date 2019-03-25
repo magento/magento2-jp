@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseName\Plugin\Customer\Model\Metadata;
+namespace CommunityEngineering\JapaneseName\Plugin\Customer\Model\Metadata;
 
 use Magento\Customer\Api\MetadataInterface;
 use Magento\Framework\Exception\NoSuchEntityException;

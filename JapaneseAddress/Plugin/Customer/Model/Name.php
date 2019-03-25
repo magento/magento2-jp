@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseAddress\Plugin\Customer\Model;
+namespace CommunityEngineering\JapaneseAddress\Plugin\Customer\Model;
 
 use Magento\Customer\Model\Customer;
 use Magento\Eav\Model\Config;

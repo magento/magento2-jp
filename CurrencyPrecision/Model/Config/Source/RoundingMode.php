@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\CurrencyPrecision\Model\Config\Source;
+namespace CommunityEngineering\CurrencyPrecision\Model\Config\Source;
 
 /**
  * Rounding Mode Types.

@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseRegion\Model\ResourceModel\Directory\Region;
+namespace CommunityEngineering\JapaneseRegion\Model\ResourceModel\Directory\Region;
 
 use Magento\Framework\Data\Collection as DataCollection;
 

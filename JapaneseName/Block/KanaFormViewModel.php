@@ -5,13 +5,13 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseName\Block;
+namespace CommunityEngineering\JapaneseName\Block;
 
 use Magento\Framework\Api\AttributeInterface;
 use Magento\Framework\Api\CustomAttributesDataInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
-use MagentoCommunity\JapaneseName\Model\Config\KanaFieldsConfig;
-use MagentoCommunity\JapaneseName\Model\Config\Source\Kana;
+use CommunityEngineering\JapaneseName\Model\Config\KanaFieldsConfig;
+use CommunityEngineering\JapaneseName\Model\Config\Source\Kana;
 
 /**
  * View model of kana fields representation at account management pages.

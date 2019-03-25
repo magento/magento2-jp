@@ -1,5 +1,5 @@
 {
-    "name": "magento-community/module-japanese-store-address",
+    "name": "community-engineering/module-japanese-store-address",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "php": "~7.1.3|~7.2.0",
+        "php": "~7.1.3||~7.2.0",
         "magento/framework": "*",
         "magento/module-store": "*"
     },
@@ -24,7 +24,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "MagentoCommunity\\JapaneseStoreAddress\\": ""
+            "CommunityEngineering\\JapaneseStoreAddress\\": ""
         }
     }
 }

@@ -5,10 +5,10 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseYenFormatting\Plugin\Directory\Model;
+namespace CommunityEngineering\JapaneseYenFormatting\Plugin\Directory\Model;
 
 use Magento\Directory\Model\Currency;
-use MagentoCommunity\JapaneseYenFormatting\Model\CurrencyFormatOptionModifiers;
+use CommunityEngineering\JapaneseYenFormatting\Model\CurrencyFormatOptionModifiers;
 
 /**
  * Apply Japanese Yen formatting for currency.

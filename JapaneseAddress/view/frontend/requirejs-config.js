@@ -7,7 +7,7 @@ var config = {
     config: {
         mixins: {
             'Magento_Checkout/js/model/shipping-rates-validator': {
-                'MagentoCommunity_JapaneseAddress/js/postcode-validation-fix': true
+                'CommunityEngineering_JapaneseAddress/js/postcode-validation-fix': true
             }
         }
     }

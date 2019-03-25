@@ -7,23 +7,23 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Customer\Block\Widget\Name">
-        <plugin name="kanaFieldsTemplate" type="MagentoCommunity\JapaneseName\Plugin\Customer\Block\Widget\Name"/>
+        <plugin name="kanaFieldsTemplate" type="CommunityEngineering\JapaneseName\Plugin\Customer\Block\Widget\Name"/>
         <arguments>
             <argument name="data" xsi:type="array">
-                <item name="kana" xsi:type="object">MagentoCommunity\JapaneseName\Block\KanaFormViewModel</item>
+                <item name="kana" xsi:type="object">CommunityEngineering\JapaneseName\Block\KanaFormViewModel</item>
             </argument>
         </arguments>
     </type>
     <type name="Magento\Customer\Block\Account\Dashboard\Info">
-        <plugin name="kana" type="MagentoCommunity\JapaneseName\Plugin\Customer\Block\Account\Dashboard\InfoNameKana"/>
+        <plugin name="kana" type="CommunityEngineering\JapaneseName\Plugin\Customer\Block\Account\Dashboard\InfoNameKana"/>
     </type>
     <type name="Magento\Customer\Block\Address\Edit">
-        <plugin name="copyCustomerKanaAttributes" type="MagentoCommunity\JapaneseName\Plugin\Customer\Block\Address\Edit\CopyKanaToNewAddress"/>
+        <plugin name="copyCustomerKanaAttributes" type="CommunityEngineering\JapaneseName\Plugin\Customer\Block\Address\Edit\CopyKanaToNewAddress"/>
     </type>
     <type name="Magento\Checkout\Block\Onepage">
         <arguments>
             <argument name="layoutProcessors" xsi:type="array">
-                <item name="kanaFields" xsi:type="object">MagentoCommunity\JapaneseName\Block\Checkout\KanaFieldsProcessor</item>
+                <item name="kanaFields" xsi:type="object">CommunityEngineering\JapaneseName\Block\Checkout\KanaFieldsProcessor</item>
             </argument>
         </arguments>
     </type>

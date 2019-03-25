@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseAddress\Setup\Patch\Data;
+namespace CommunityEngineering\JapaneseAddress\Setup\Patch\Data;
 
 use Magento\Eav\Model\Entity\Attribute\AbstractAttribute;
 use Magento\Framework\Setup\ModuleDataSetupInterface;

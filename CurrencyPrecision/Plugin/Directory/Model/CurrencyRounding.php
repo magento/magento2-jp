@@ -5,11 +5,11 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\CurrencyPrecision\Plugin\Directory\Model;
+namespace CommunityEngineering\CurrencyPrecision\Plugin\Directory\Model;
 
 use Magento\Directory\Model\PriceCurrency;
 use Magento\Store\Model\StoreManager;
-use MagentoCommunity\CurrencyPrecision\Model\CurrencyRounding as Model;
+use CommunityEngineering\CurrencyPrecision\Model\CurrencyRounding as Model;
 
 /**
  * Replace standard rounding method with rounding based on currency precision and with configured rounding method.

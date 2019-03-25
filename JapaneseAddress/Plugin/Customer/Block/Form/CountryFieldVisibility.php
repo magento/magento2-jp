@@ -5,10 +5,10 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseAddress\Plugin\Customer\Block\Form;
+namespace CommunityEngineering\JapaneseAddress\Plugin\Customer\Block\Form;
 
 use Magento\Framework\View\Element\AbstractBlock;
-use MagentoCommunity\JapaneseAddress\Model\Config\CountryInputConfig;
+use CommunityEngineering\JapaneseAddress\Model\Config\CountryInputConfig;
 
 /**
  * Modify address form to show or hide country field.

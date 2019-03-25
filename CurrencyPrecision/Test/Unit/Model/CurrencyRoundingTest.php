@@ -5,11 +5,11 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\CurrencyPrecision\Test\Unit\Model;
+namespace CommunityEngineering\CurrencyPrecision\Test\Unit\Model;
 
-use MagentoCommunity\CurrencyPrecision\Model\Config\CurrencyRoundingConfig;
-use MagentoCommunity\CurrencyPrecision\Model\Config\Source\RoundingMode;
-use MagentoCommunity\CurrencyPrecision\Model\CurrencyRounding;
+use CommunityEngineering\CurrencyPrecision\Model\Config\CurrencyRoundingConfig;
+use CommunityEngineering\CurrencyPrecision\Model\Config\Source\RoundingMode;
+use CommunityEngineering\CurrencyPrecision\Model\CurrencyRounding;
 use PHPUnit\Framework\TestCase;
 
 class CurrencyRoundingTest extends TestCase

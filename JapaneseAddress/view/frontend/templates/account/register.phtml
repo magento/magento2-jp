@@ -9,38 +9,38 @@
 
 /** @var \Magento\Customer\Block\Form\Register $block */
 ?>
-<?= $block->getChildHtml('form_fields_before') ?>
+<?= /* @noEscape */ $block->getChildHtml('form_fields_before') ?>
 <?php /* Extensions placeholder */ ?>
-<?= $block->getChildHtml('customer.form.register.extra') ?>
+<?= /* @noEscape */ $block->getChildHtml('customer.form.register.extra') ?>
 <form class="form create account form-create-account" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
     <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
     <fieldset class="fieldset create info">
         <legend class="legend"><span><?= $block->escapeHtml(__('Personal Information')) ?></span></legend><br>
         <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
         <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
-        <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
+        <?= /* @noEscape */ $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
         <?php if ($block->isNewsletterEnabled()): ?>
             <div class="field choice newsletter">
                 <input type="checkbox" name="is_subscribed" title="<?= $block->escapeHtmlAttr(__('Sign Up for Newsletter')) ?>" value="1" id="is_subscribed"<?php if ($block->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox">
                 <label for="is_subscribed" class="label"><span><?= $block->escapeHtml(__('Sign Up for Newsletter')) ?></span></label>
             </div>
             <?php /* Extensions placeholder */ ?>
-            <?= $block->getChildHtml('customer.form.register.newsletter') ?>
+            <?= /* @noEscape */ $block->getChildHtml('customer.form.register.newsletter') ?>
         <?php endif ?>
 
         <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
         <?php if ($_dob->isEnabled()): ?>
-            <?= $_dob->setDate($block->getFormData()->getDob())->toHtml() ?>
+            <?= /* @noEscape */ $_dob->setDate($block->getFormData()->getDob())->toHtml() ?>
         <?php endif ?>
 
         <?php $_taxvat = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Taxvat') ?>
         <?php if ($_taxvat->isEnabled()): ?>
-            <?= $_taxvat->setTaxvat($block->getFormData()->getTaxvat())->toHtml() ?>
+            <?= /* @noEscape */ $_taxvat->setTaxvat($block->getFormData()->getTaxvat())->toHtml() ?>
         <?php endif ?>
 
         <?php $_gender = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Gender') ?>
         <?php if ($_gender->isEnabled()): ?>
-            <?= $_gender->setGender($block->getFormData()->getGender())->toHtml() ?>
+            <?= /* @noEscape */ $_gender->setGender($block->getFormData()->getGender())->toHtml() ?>
         <?php endif ?>
     </fieldset>
     <?php if ($block->getShowAddressFields()): ?>
@@ -51,7 +51,7 @@
             <div class="field country required">
                 <label for="country" class="label"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('country_id') ?></span></label>
                 <div class="control">
-                    <?= $block->getCountryHtmlSelect() ?>
+                    <?= /* @noEscape */ $block->getCountryHtmlSelect() ?>
                 </div>
             </div>
 
@@ -102,17 +102,17 @@
 
             <?php $_telephone = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Telephone') ?>
             <?php if ($_telephone->isEnabled()): ?>
-                <?= $_telephone->setTelephone($block->getFormData()->getTelephone())->toHtml() ?>
+                <?= /* @noEscape */ $_telephone->setTelephone($block->getFormData()->getTelephone())->toHtml() ?>
             <?php endif ?>
 
             <?php $_fax = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Fax') ?>
             <?php if ($_fax->isEnabled()): ?>
-                <?= $_fax->setFax($block->getFormData()->getFax())->toHtml() ?>
+                <?= /* @noEscape */ $_fax->setFax($block->getFormData()->getFax())->toHtml() ?>
             <?php endif ?>
 
             <?php $_company = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Company') ?>
             <?php if ($_company->isEnabled()): ?>
-                <?= $_company->setCompany($block->getFormData()->getCompany())->toHtml() ?>
+                <?= /* @noEscape */ $_company->setCompany($block->getFormData()->getCompany())->toHtml() ?>
             <?php endif ?>
 
             <?php $addressAttributes = $block->getChildBlock('customer_form_address_user_attributes');?>
@@ -120,7 +120,7 @@
                 <?php $addressAttributes->setEntityType('customer_address'); ?>
                 <?php $addressAttributes->setFieldIdFormat('address:%1$s')->setFieldNameFormat('address[%1$s]');?>
                 <?php $block->restoreSessionData($addressAttributes->getMetadataForm(), 'address');?>
-                <?= $addressAttributes->setShowContainer(false)->toHtml() ?>
+                <?= /* @noEscape */ $addressAttributes->setShowContainer(false)->toHtml() ?>
             <?php endif;?>
             <input type="hidden" name="default_billing" value="1">
             <input type="hidden" name="default_shipping" value="1">
@@ -215,7 +215,7 @@
                 "postcodeId": "#zip",
                 "form": "#form-validate",
                 "regionJson": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getRegionJson() ?>,
-                "defaultRegion": "<?= (int) $block->getFormData()->getRegionId() ?>",
+                "defaultRegion": "<?= /* @noEscape */ (int) $block->getFormData()->getRegionId() ?>",
                 "countriesWithOptionalZip": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getCountriesWithOptionalZip(true) ?>
             }
         }
