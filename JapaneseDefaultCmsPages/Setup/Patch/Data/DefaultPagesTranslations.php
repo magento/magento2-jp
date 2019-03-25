@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace MagentoCommunity\JapaneseDefaultCmsPages\Setup\Patch\Data;
+namespace CommunityEngineering\JapaneseDefaultCmsPages\Setup\Patch\Data;
 
 use Magento\Cms\Model\PageFactory;
 use Magento\Framework\Component\ComponentRegistrar;
@@ -14,6 +14,8 @@ use Magento\Framework\Phrase;
 use Magento\Framework\Phrase\Renderer\Translate as TranslatePhraseRenderer;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Translate;
+use Magento\Framework\App\State;
+use Magento\Framework\Exception\LocalizedException;
 
 /**
  * Patch to apply Japanese translations of Magento Default CMS Pages.
@@ -42,22 +44,27 @@ class DefaultPagesTranslations implements DataPatchInterface
      */
     private $translatePhraseRenderer;
 
+    private $appState;
+
     /**
      * @param PageFactory $pageFactory
      * @param ComponentRegistrarInterface $componentRegistrar
      * @param Translate $translate
      * @param TranslatePhraseRenderer $translatePhraseRenderer
+     * @param State $appState
      */
     public function __construct(
         PageFactory $pageFactory,
         ComponentRegistrarInterface $componentRegistrar,
         Translate $translate,
-        TranslatePhraseRenderer $translatePhraseRenderer
+        TranslatePhraseRenderer $translatePhraseRenderer,
+        State $appState
     ) {
         $this->pageFactory = $pageFactory;
         $this->componentRegistrar = $componentRegistrar;
         $this->translate = $translate;
         $this->translatePhraseRenderer = $translatePhraseRenderer;
+        $this->appState = $appState;
     }
 
     /**
@@ -65,6 +72,11 @@ class DefaultPagesTranslations implements DataPatchInterface
      */
     public function apply()
     {
+        try {
+            $areaCode = $this->appState->getAreaCode();
+        } catch (LocalizedException $e) {
+            $this->appState->setAreaCode(\Magento\Framework\App\Area::AREA_FRONTEND);
+        }
         $this->runWithTranslation(function () {
             foreach ($this->getPagesTranslations() as $id => $translations) {
                 $contentTranslation = $this->getPageContentTranslationLocation($id);
@@ -140,7 +152,7 @@ class DefaultPagesTranslations implements DataPatchInterface
     private function getPageContentTranslationLocation(string $pageIdentifier) :? Phrase
     {
         $phrase = __(
-            'magento://MagentoCommunity_JapaneseDefaultCmsPages::i18n/en_US/%1.html',
+            'magento://CommunityEngineering_JapaneseDefaultCmsPages::i18n/en_US/%1.html',
             [$pageIdentifier]
         );
 
