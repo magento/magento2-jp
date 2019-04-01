@@ -42,7 +42,11 @@ class RegisterWithQuoteAddress
 
         foreach ($addresses[0] as $key => $value) {
             if (!$data->hasData($key)) {
-                $data->setData($key, $value);
+                if($key == 'region' && is_array($value)) {
+                    $data->setData($key, $value['region']);
+                } else {
+                    $data->setData($key, $value);
+                }
             }
         }
         return $data;
