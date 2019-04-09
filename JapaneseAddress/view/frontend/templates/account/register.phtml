@@ -92,7 +92,7 @@
                                     <span><?= $block->escapeHtml(__('Address')) ?></span>
                                 </label>
                                 <div class="control">
-                                    <input type="text" name="street[]" value="<?= $block->escapeHtml($block->getFormData()->getStreetLine($_i - 1)) ?>" title="<?= $block->escapeHtmlAttr(__('Street Address %1', $_i)) ?>" id="street_<?= /* @noEscape */ $_i ?>" class="input-text <?= $block->escapeHtmlAttr($_streetValidationClass) ?>">
+                                    <input type="text" name="street[]" value="<?= $block->escapeHtml($block->getFormData()->getStreet($_i - 1)) ?>" title="<?= $block->escapeHtmlAttr(__('Street Address %1', $_i)) ?>" id="street_<?= /* @noEscape */ $_i ?>" class="input-text <?= $block->escapeHtmlAttr($_streetValidationClass) ?>">
                                 </div>
                             </div>
                         <?php endfor; ?>
