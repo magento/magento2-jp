@@ -15,7 +15,7 @@ jobs:
     <<: *defaults
     steps:
       - run:
-          name: Cloning Magento 2.3-develop
+          name: Cloning Magento $CORE_GIT_BRANCH
           command: git clone https://github.com/$CORE_GIT_REPOSITORY.git --depth 1 --single-branch --branch $CORE_GIT_BRANCH .
 
       - checkout:
