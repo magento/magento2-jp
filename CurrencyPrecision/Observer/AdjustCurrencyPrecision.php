@@ -39,7 +39,7 @@ class AdjustCurrencyPrecision implements ObserverInterface
         $currencyCode = $event->getData('base_code');
         $currencyOptions = $event->getData('currency_options');
 
-        $currencyOptions->addData($this->getPrecisionOptions($currencyCode));
+        $currencyCode == null ? : $currencyOptions->addData($this->getPrecisionOptions($currencyCode));
 
         return $this;
     }
