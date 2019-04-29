@@ -44,7 +44,7 @@ class YenFormatting
         $price,
         $originalOptions = []
     ) {
-        $modifiers = $this->currencyFormatOptionModifiers->getOptions($currency->getCode());
+        $modifiers = $this->currencyFormatOptionModifiers->getOptions((string)$currency->getCode());
         $optionsToApply = array_merge($originalOptions, $modifiers);
         return [$price, $optionsToApply];
     }

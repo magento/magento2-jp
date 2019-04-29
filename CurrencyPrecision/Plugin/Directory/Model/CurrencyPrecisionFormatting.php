@@ -47,7 +47,7 @@ class CurrencyPrecisionFormatting
         $options = []
     ) {
         //round before formatting to apply configured rounding mode.
-        if ($currency->getCode() != null) {
+        if ($currency->getCode() !== null) {
             $price = $this->currencyRounding->round($currency->getCode(), (float)$price);
             $options['precision'] = $this->currencyRounding->getPrecision($currency->getCode());
         }

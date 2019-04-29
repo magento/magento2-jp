@@ -61,6 +61,10 @@ class CurrencyRounding
     ) {
         $targetCurrency = $priceCurrency->getCurrency($scope, $currency);
         $convertedAmount = $this->storeManager->getStore($scope)->getBaseCurrency()->convert($amount, $targetCurrency);
+        if ($targetCurrency->getCode() === null) {
+            return $convertedAmount;
+        }
+
         $roundedAmount = $this->round($targetCurrency->getCode(), (float)$convertedAmount);
         return $roundedAmount;
     }
@@ -80,6 +84,10 @@ class CurrencyRounding
         $amount
     ) {
         $currencyCode = $priceCurrency->getCurrency()->getCode();
+        if ($currencyCode === null) {
+            return $amount;
+        }
+
         $roundedAmount = $this->round($currencyCode, (float)$amount);
         return $roundedAmount;
     }
