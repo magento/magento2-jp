@@ -1,5 +1,6 @@
 {
     "name": "community-engineering/module-font-ipa",
+    "version": "1.0.0",
     "type": "magento2-module",
     "license": [
         "IPAFont-1.0"
@@ -15,11 +16,11 @@
     ],
     "require": {
         "php": "~7.1.3||~7.2.0",
-        "magento/framework": "*"
+        "magento/framework": "^102.0.0"
     },
     "suggest": {
-        "magento/module-sales": "*",
-        "community-engineering/module-configurable-pdf-font": "*"
+        "magento/module-sales": "^102.0.0",
+        "community-engineering/module-configurable-pdf-font": "^1.0.0"
     },
     "autoload": {
         "files": [

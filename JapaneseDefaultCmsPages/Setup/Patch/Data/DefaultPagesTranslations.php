@@ -83,9 +83,9 @@ class DefaultPagesTranslations implements DataPatchInterface
      * By default setup scripts not use translation.
      * This wrapper adds possibility to use translatable phrases during setup.
      *
-     * @param callable $task
+     * @param \Closure $task
      */
-    private function runWithTranslation(callable $task)
+    private function runWithTranslation(\Closure $task)
     {
         $originalPhraseRender = Phrase::getRenderer();
         try {
@@ -94,7 +94,7 @@ class DefaultPagesTranslations implements DataPatchInterface
                 $this->translatePhraseRenderer,
                 $originalPhraseRender,
             ]));
-            call_user_func($task);
+            $task();
         } finally {
             Phrase::setRenderer($originalPhraseRender);
         }
@@ -196,7 +196,9 @@ class DefaultPagesTranslations implements DataPatchInterface
         }
 
         $translationFile = $this->transformMagentoToFilePath($translation);
-        $translationText = @file_get_contents($translationFile);
+        // phpcs:disable Magento2.Functions.DiscouragedFunction
+        $translationText = file_get_contents($translationFile);
+        // phpcs:enable
         if (false === $translationText) {
             throw new \InvalidArgumentException(sprintf(
                 'Translation is expected in "%s" but file "%s" not found or is not readable.',

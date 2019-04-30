@@ -97,6 +97,14 @@ jobs:
           command: sed -i.bak 's/\^magento/\^(?:magento|community-engineering)/g' dev/tests/static/testsuite/Magento/Test/Integrity/ComposerTest.php
 
       - run:
+          name: Patch composer validation to allow MDE modules has version specified in
+          command: sed -i.bak 's/$this->assertNoVersionSpecified($json);/if (strpos($json->name, "community-engineering") !== 0) $this->assertNoVersionSpecified($json);/g' dev/tests/static/testsuite/Magento/Test/Integrity/ComposerTest.php
+
+      - run:
+          name: Patch declarative schema dependencies provider to ignore not core modules as implementation not support MDE
+          command: sed -i.bak 's/$result);/$result); if (!isset($result[1])) continue;/g' dev/tests/static/testsuite/Magento/Test/Integrity/Dependency/DeclarativeSchemaDependencyProvider.php
+
+      - run:
           name: Static Test
           command: ./vendor/phpunit/phpunit/phpunit -c dev/tests/static
 

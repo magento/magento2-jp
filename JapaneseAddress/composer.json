@@ -1,5 +1,6 @@
 {
     "name": "community-engineering/module-japanese-address",
+    "version": "1.0.0",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -16,16 +17,17 @@
     ],
     "require": {
         "php": "~7.1.3||~7.2.0",
-        "magento/framework": "*",
-        "magento/module-eav": "*",
-        "magento/module-customer": "*",
-        "magento/module-checkout": "*",
-        "magento/module-sales": "*",
-        "magento/module-reports": "*"
+        "magento/framework": "^102.0.0",
+        "magento/module-eav": "^102.0.0",
+        "magento/module-customer": "^102.0.0",
+        "magento/module-checkout": "^100.3.0",
+        "magento/module-sales": "^102.0.0",
+        "magento/module-reports": "^100.3.0",
+        "magento/module-ui": "^101.1.0"
     },
     "suggest": {
-        "community-engineering/module-japanese-name": "*",
-        "community-engineering/module-japanese-region": "*"
+        "community-engineering/module-japanese-name": "^1.0.0",
+        "community-engineering/module-japanese-region": "^1.0.0"
     },
     "autoload": {
         "files": [

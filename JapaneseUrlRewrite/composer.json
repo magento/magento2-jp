@@ -1,5 +1,6 @@
 {
     "name": "community-engineering/module-japanese-url-rewrite",
+    "version": "1.0.0",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -8,11 +9,11 @@
     "description": "Magento2 extension to allow use Japanese symbols in URL rewrites.",
     "require": {
         "php": "~7.1.3||~7.2.0",
-        "magento/framework": "*"
+        "magento/framework": "^102.0.0"
     },
     "suggest": {
-        "magento/module-catalog-url-rewrite": "*",
-        "magento/module-cms-url-rewrite": "*"
+        "magento/module-catalog-url-rewrite": "^100.3.0",
+        "magento/module-cms-url-rewrite": "^100.3.0"
     },
     "autoload": {
         "files": [
