@@ -22,7 +22,8 @@
         "magento/module-customer": "^102.0.0",
         "magento/module-checkout": "^100.3.0",
         "magento/module-sales": "^102.0.0",
-        "magento/module-reports": "^100.3.0"
+        "magento/module-reports": "^100.3.0",
+        "magento/module-ui": "^101.1.0"
     },
     "suggest": {
         "community-engineering/module-japanese-name": "^1.0.0",

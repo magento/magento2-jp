@@ -21,8 +21,8 @@
         "magento/module-eav": "^102.0.0",
         "magento/module-customer": "^102.0.0",
         "magento/module-checkout": "^100.3.0",
-        "magento/module-directory": "^100.3.0",
-        "magento/module-sales": "^102.0.0"
+        "magento/module-sales": "^102.0.0",
+        "magento/module-quote": "^101.1.0"
     },
     "autoload": {
         "files": [

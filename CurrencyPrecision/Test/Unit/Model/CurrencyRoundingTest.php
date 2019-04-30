@@ -12,6 +12,9 @@ use CommunityEngineering\CurrencyPrecision\Model\Config\Source\RoundingMode;
 use CommunityEngineering\CurrencyPrecision\Model\CurrencyRounding;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Currency Rounding Tests
+ */
 class CurrencyRoundingTest extends TestCase
 {
     /**

@@ -9,12 +9,26 @@ namespace CommunityEngineering\JapaneseName\Plugin\Customer\Model\Metadata;
 
 use Magento\Customer\Api\MetadataInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Psr\Log\LoggerInterface;
 
 /**
  * Register kana custom attributes.
  */
 class KanaAttributesInjection
 {
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
     /**
      * Add kana attributes metadata.
      *
@@ -53,6 +67,7 @@ class KanaAttributesInjection
             $attributes[] = $attributeMetadata;
         } catch (NoSuchEntityException $e) {
             // Ignore as 3-rd party extension may provide implementation without support of kana attributes
+            $this->logger->debug('Kana attributes in not supported: ' . $e->getLogMessage());
         }
 
         return $attributes;

@@ -72,9 +72,9 @@ class CurrencyRounding
     /**
      * Override original method to apply correct rounding logic.
      *
-     * @param PriceCurrency $priceCurrency Price Currency
-     * @param \Closure $proceed Closure
-     * @param float $amount Price
+     * @param PriceCurrency $priceCurrency
+     * @param \Closure $proceed
+     * @param float $amount
      * @return float
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
