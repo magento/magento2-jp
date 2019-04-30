@@ -8,6 +8,8 @@ declare(strict_types=1);
 namespace CommunityEngineering\JapaneseDefaultCmsPages\Setup\Patch\Data;
 
 use Magento\Cms\Model\PageFactory;
+use Magento\Framework\App\Area;
+use Magento\Framework\App\State;
 use Magento\Framework\Component\ComponentRegistrar;
 use Magento\Framework\Component\ComponentRegistrarInterface;
 use Magento\Framework\Phrase;
@@ -43,21 +45,29 @@ class DefaultPagesTranslations implements DataPatchInterface
     private $translatePhraseRenderer;
 
     /**
+     * @var State
+     */
+    private $appState;
+
+    /**
      * @param PageFactory $pageFactory
      * @param ComponentRegistrarInterface $componentRegistrar
      * @param Translate $translate
      * @param TranslatePhraseRenderer $translatePhraseRenderer
+     * @param State $appState
      */
     public function __construct(
         PageFactory $pageFactory,
         ComponentRegistrarInterface $componentRegistrar,
         Translate $translate,
-        TranslatePhraseRenderer $translatePhraseRenderer
+        TranslatePhraseRenderer $translatePhraseRenderer,
+        State $appState
     ) {
         $this->pageFactory = $pageFactory;
         $this->componentRegistrar = $componentRegistrar;
         $this->translate = $translate;
         $this->translatePhraseRenderer = $translatePhraseRenderer;
+        $this->appState = $appState;
     }
 
     /**
@@ -65,16 +75,21 @@ class DefaultPagesTranslations implements DataPatchInterface
      */
     public function apply()
     {
-        $this->runWithTranslation(function () {
-            foreach ($this->getPagesTranslations() as $id => $translations) {
-                $contentTranslation = $this->getPageContentTranslationLocation($id);
-                if ($contentTranslation !== null) {
-                    $translations['content'] = $contentTranslation;
-                }
+        $this->appState->emulateAreaCode(
+            Area::AREA_FRONTEND,
+            function () {
+                $this->runWithTranslation(function () {
+                    foreach ($this->getPagesTranslations() as $id => $translations) {
+                        $contentTranslation = $this->getPageContentTranslationLocation($id);
+                        if ($contentTranslation !== null) {
+                            $translations['content'] = $contentTranslation;
+                        }
 
-                $this->translatePage($id, $translations);
+                        $this->translatePage($id, $translations);
+                    }
+                });
             }
-        });
+        );
     }
 
     /**
