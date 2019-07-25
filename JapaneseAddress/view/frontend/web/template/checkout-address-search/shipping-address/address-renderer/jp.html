@@ -1,0 +1,72 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<li class="admin__action-multiselect-menu-inner-item _root"
+    data-role="option-group"
+    css="_parent: $data.optgroup">
+    <div class="action-menu-item"
+         css="_hover: $parent.isHovered(option, $element), _unclickable: $parent.isLabelDecoration($data), _last: $parent.addLastElement($data), '_with-checkbox': $parent.showCheckbox">
+        <div class="address-details">
+            <div>
+                <span text="$data.lastname"/>
+                <span text="$data.firstname"/>
+                <text if="$data.getNamekana()" args="'(' + $data.getNamekana() + ')'"/>
+            </div>
+            <if args="$parent.getCountryName($data.countryId)">
+                <text args="$parent.getCountryName($data.countryId)"/>
+            </if>
+            <div>
+                <span text="$data.postcode"/>
+                <span text="$data.region"/>
+                <span text="$data.city"/>
+            </div>
+            <div>
+                <text args="_.values($data.street).join('')"/>
+            </div>
+
+            <if args="_.isArray($data.customAttributes)">
+                <each args="data: $data.customAttributes, as: 'attribute'">
+                    <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
+                        <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+                    </if>
+                </each>
+            </if>
+            <ifnot args="_.isArray($data.customAttributes)">
+                <each args="data: Object.values($data.customAttributes), as: 'attribute'">
+                    <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
+                        <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+                    </if>
+                </each>
+            </ifnot>
+        </div>
+        <div class="ship-here" ifnot="$parent.isAddressSelected($data)">
+            <button type="button"
+                    class="action-primary action-select-shipping-item"
+                    click="$parent.selectShippingAddress.bind($parent, option)">
+                <span translate="'Ship Here'"/>
+            </button>
+        </div>
+        <div class="address-selected" if="$parent.isAddressSelected($data)">
+            <button type="button"
+                    class="action-primary">
+                <span translate="'Selected'"/>
+            </button>
+        </div>
+        <div class="edit-address" if="$data.isEditable()">
+            <button type="button"
+                    class="action-primary action-select-shipping-item"
+                    click="$parent.editAction.bind($parent)">
+                <span translate="'Edit'"/>
+            </button>
+        </div>
+        <div class="default-address" if="$data.isDefaultShipping()">
+            <button type="button"
+                    class="action-primary">
+                <span translate="'Default'"/>
+            </button>
+        </div>
+    </div>
+</li>
