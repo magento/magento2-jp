@@ -1,0 +1,57 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="billing-address-details">
+    <if args="_.isEmpty(currentBillingAddress())">
+        <p text="noAddressMessage"></p>
+    </if>
+    <ifnot args="_.isEmpty(currentBillingAddress())">
+        <text args="currentBillingAddress().prefix"/>
+        <text args="currentBillingAddress().lastname"/>
+        <text args="currentBillingAddress().middlename"/>
+        <text args="currentBillingAddress().firstname"/>
+        <text args="currentBillingAddress().suffix"/>
+        <text if="currentBillingAddress().getNamekana()" args="'(' + currentBillingAddress().getNamekana() + ')'"/><br/>
+        
+        <text args="currentBillingAddress().postcode"/><br/>
+        <span text="currentBillingAddress().region"></span><text args="currentBillingAddress().city "/>
+        <text args="_.values(currentBillingAddress().street).join('')"/>
+        <br/>
+        <a if="currentBillingAddress().telephone" attr="'href': 'tel:' + currentBillingAddress().telephone"
+           text="currentBillingAddress().telephone"></a><br/>
+        <if args="_.isArray(currentBillingAddress().customAttributes)">
+            <each args="data: currentBillingAddress().customAttributes, as: 'attribute'">
+                <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
+                    <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+                </if>
+            </each>
+        </if>
+        <ifnot args="_.isArray(currentBillingAddress().customAttributes)">
+            <each args="data: Object.values(currentBillingAddress().customAttributes), as: 'attribute'">
+                <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
+                    <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+                </if>
+            </each>
+        </ifnot>
+    </ifnot>
+
+    <div class="edit-address-popup">
+        <button type="button"
+                class="action action-additional"
+                visible="isAddressEditable(currentBillingAddress())"
+                click="editAddress">
+            <span translate="'Edit'"></span>
+        </button>
+    </div>
+    <div class="change-address-popup">
+        <button type="button"
+                class="action action-additional"
+                click="openAddressSelection">
+            <span translate="'Change Address'"></span>
+        </button>
+    </div>
+</div>
+

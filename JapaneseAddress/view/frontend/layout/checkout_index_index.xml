@@ -20,6 +20,22 @@
                                                 <item name="shippingAddress" xsi:type="array">
                                                     <item name="children" xsi:type="array">
                                                         <item name="address-list" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="addressDefault" xsi:type="array">
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">CommunityEngineering_JapaneseAddress/checkout-address-search/shipping-address/jp</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="selectShippingAddressModal" xsi:type="array">
+                                                                    <item name="children" xsi:type="array">
+                                                                        <item name="searchShippingAddress" xsi:type="array">
+                                                                            <item name="config" xsi:type="array">
+                                                                                <item name="addressTmpl" xsi:type="string">CommunityEngineering_JapaneseAddress/checkout-address-search/shipping-address/address-renderer/jp</item>
+                                                                            </item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
                                                             <item name="config" xsi:type="array">
                                                                 <item name="rendererTemplates" xsi:type="array">
                                                                     <item name="customer-address" xsi:type="array">
