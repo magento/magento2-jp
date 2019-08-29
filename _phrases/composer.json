@@ -1,5 +1,6 @@
 {
     "name": "community-engineering/language-ja_jp",
+    "version": "1.0.0",
     "type": "magento2-language",
     "description": "Japan (Japanese) language",
     "license": [
@@ -10,7 +11,7 @@
         "sort-packages": true
     },
     "require": {
-        "magento/framework": "*"
+        "magento/framework": "^102.0.0"
     },
     "autoload": {
         "files": [

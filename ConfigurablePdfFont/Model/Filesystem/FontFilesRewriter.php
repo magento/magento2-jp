@@ -53,7 +53,8 @@ class FontFilesRewriter
             $this->handler = $this->createRewriteHandler();
         }
 
-        $rewrittenPath = call_user_func($this->handler, $path);
+        $handler = $this->handler;
+        $rewrittenPath = $handler($path);
         return $rewrittenPath;
     }
 

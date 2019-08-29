@@ -52,6 +52,16 @@ class BillingAddressComponent implements LayoutProcessorInterface
                         'template' => 'CommunityEngineering_JapaneseAddress/checkout/billing-address'
                     ]
                 );
+            } elseif($component['component'] === 'Magento_CheckoutAddressSearch/js/view/billing-address') {
+                $component['config'] = array_merge(
+                    isset($component['config']) ? $component['config'] : [],
+                    [
+                        'detailsTemplate' => 'CommunityEngineering_JapaneseAddress/checkout-address-search/billing-address/jp'
+                    ]
+                );
+                $component['children']['billingAddressList']['children']
+                ['selectBillingAddressModal']['children']['searchBillingAddress']['addressTmpl'] =
+                    'CommunityEngineering_JapaneseAddress/checkout-address-search/billing-address/address-renderer/jp';
             } else {
                 $component['children'][$name] = $this->walkChildren($child);
             }
