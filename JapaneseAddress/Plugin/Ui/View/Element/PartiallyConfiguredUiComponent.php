@@ -32,11 +32,11 @@ class PartiallyConfiguredUiComponent
     public function afterGetChildComponents(UiComponentInterface $component, array $children)
     {
         $configuredChildren = [];
-        foreach ($children as $child) {
+        foreach ($children as $key => $child) {
             if ($child instanceof Field && null === $child->getData('config/formElement')) {
                 continue;
             }
-            $configuredChildren[] = $child;
+            $configuredChildren[$key] = $child;
         }
         return $configuredChildren;
     }
