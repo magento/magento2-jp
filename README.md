@@ -3,7 +3,7 @@ This repository contains set of modules required to provide a necessary user exp
 
 Initial implementation of modules listed here provided by [Veriteworks Inc.](https://veriteworks.co.jp/)
 
-Any Magento Community member are welcome to join to the project.
+Any Magento Community member are welcome to join the project.
 
 **Goal:** Adopt Magento 2 to Japanese market
 
@@ -11,7 +11,7 @@ Any Magento Community member are welcome to join to the project.
 
 **Slack:** [#japanese-localization](https://magentocommeng.slack.com/messages/CB3DG6HFH)
 
-**Release strategy:** Modules from this repository will be available as separate extensions to Magento 2 with possibility to install them with Composer metapackage `community-engineering/japan-common`. Metapackage of the project will ba also available at Magento Marketplace after initial release.
+**Release strategy:** Modules from this repository will be available as separate extensions to Magento 2 with possibility to install them with Composer metapackage `community-engineering/japan-common`. Metapackage of the project will be also available at Magento Marketplace after initial release.
 
 All development targeted to Magento 2.3 and will be compatible with all further Magento releases.
 
