@@ -7,8 +7,6 @@ Any Magento Community member are welcome to join the project.
 
 **Goal:** Adopt Magento 2 to Japanese market
 
-**Agile Board:** https://app.zenhub.com/workspace/o/magento/magento2-jp
-
 **Slack:** [#japanese-localization](https://magentocommeng.slack.com/messages/CB3DG6HFH)
 
 **Release strategy:** Modules from this repository will be available as separate extensions to Magento 2 with possibility to install them with Composer metapackage `community-engineering/japan-common`. Metapackage of the project will be also available at Magento Marketplace after initial release.
