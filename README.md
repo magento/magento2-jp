@@ -55,7 +55,7 @@ Development installation of Magento Japanese modules requires several simple add
     ```
 5. Clone source code of Magento Japanese project:
     ```sh
-    git clone git clone git@github.com:magento/magento2-jp.git ext/magento/magento2-jp
+    git clone git@github.com:magento/magento2-jp.git ext/magento/magento2-jp
     ```
     We highly recommend to use `<vendor>/<project>` folders inside `ext` folder to avoid naming conflicts.   
 6. Add Magento Japanese project to your Magento installation:
