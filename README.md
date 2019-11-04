@@ -9,7 +9,7 @@ Any Magento Community member are welcome to join the project.
 
 **Slack:** [#japanese-localization](https://magentocommeng.slack.com/messages/CB3DG6HFH)
 
-**Release strategy:** Modules from this repository will be available as separate extensions to Magento 2 with possibility to install them with Composer metapackage `community-engineering/japan-common`. Metapackage of the project will be also available at Magento Marketplace after initial release.
+**Release strategy:** Modules from this repository are available as separate extensions to Magento 2 with possibility to install them with Composer metapackage `community-engineering/japan-common`. Metapackage of the project is available at [Magento Marketplace](https://marketplace.magento.com/community-engineering-japan-common.html).
 
 All development targeted to Magento 2.3 and will be compatible with all further Magento releases.
 
