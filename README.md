@@ -3,15 +3,13 @@ This repository contains set of modules required to provide a necessary user exp
 
 Initial implementation of modules listed here provided by [Veriteworks Inc.](https://veriteworks.co.jp/)
 
-Any Magento Community member are welcome to join to the project.
+Any Magento Community member are welcome to join the project.
 
 **Goal:** Adopt Magento 2 to Japanese market
 
-**Agile Board:** https://app.zenhub.com/workspace/o/magento/magento2-jp
-
 **Slack:** [#japanese-localization](https://magentocommeng.slack.com/messages/CB3DG6HFH)
 
-**Release strategy:** Modules from this repository will be available as separate extensions to Magento 2 with possibility to install them with Composer metapackage `community-engineering/japan-common`. Metapackage of the project will ba also available at Magento Marketplace after initial release.
+**Release strategy:** Modules from this repository are available as separate extensions to Magento 2 with possibility to install them with Composer metapackage `community-engineering/japan-common`. Metapackage of the project is available at [Magento Marketplace](https://marketplace.magento.com/community-engineering-japan-common.html).
 
 All development targeted to Magento 2.3 and will be compatible with all further Magento releases.
 
@@ -55,7 +53,7 @@ Development installation of Magento Japanese modules requires several simple add
     ```
 5. Clone source code of Magento Japanese project:
     ```sh
-    git clone git clone git@github.com:magento/magento2-jp.git ext/magento/magento2-jp
+    git clone git@github.com:magento/magento2-jp.git ext/magento/magento2-jp
     ```
     We highly recommend to use `<vendor>/<project>` folders inside `ext` folder to avoid naming conflicts.   
 6. Add Magento Japanese project to your Magento installation:
