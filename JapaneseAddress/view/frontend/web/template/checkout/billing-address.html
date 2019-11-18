@@ -16,8 +16,7 @@
 
     <!-- ko template: 'CommunityEngineering_JapaneseAddress/checkout/billing-address/details' --><!-- /ko -->
     <fieldset class="fieldset" data-bind="visible: !isAddressDetailsVisible()">
-        <!-- ko template: 'Magento_Checkout/billing-address/list' --><!-- /ko -->
-        <!-- ko template: 'Magento_Checkout/billing-address/form' --><!-- /ko -->
+        <each args="getRegion('billing-address-list')" render="" />
         <div class="actions-toolbar">
             <div class="primary">
                 <button class="action action-update" type="button" data-bind="click: updateAddress">

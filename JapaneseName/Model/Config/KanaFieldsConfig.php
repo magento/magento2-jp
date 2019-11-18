@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace CommunityEngineering\JapaneseName\Model\Config;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\ScopeInterface;
 
 /**
  * Configuration of kana usage.
@@ -34,7 +35,7 @@ class KanaFieldsConfig
      */
     public function areEnabled(): bool
     {
-        $configValue = $this->config->getValue('customer/address/use_kana');
+        $configValue = $this->config->getValue('customer/address/use_kana', ScopeInterface::SCOPE_STORE);
         return (bool)$configValue;
     }
 
@@ -49,7 +50,7 @@ class KanaFieldsConfig
             return false;
         }
 
-        $configValue = $this->config->getValue('customer/address/require_kana');
+        $configValue = $this->config->getValue('customer/address/require_kana', ScopeInterface::SCOPE_STORE);
         return (bool)$configValue;
     }
 
@@ -60,7 +61,7 @@ class KanaFieldsConfig
      */
     public function getKanaType(): int
     {
-        $configValue = $this->config->getValue('customer/address/kana_type');
+        $configValue = $this->config->getValue('customer/address/kana_type', ScopeInterface::SCOPE_STORE);
         if (!in_array($configValue, [
             Source\Kana::TYPE_HIRAGANA,
             Source\Kana::TYPE_KATAKANA,

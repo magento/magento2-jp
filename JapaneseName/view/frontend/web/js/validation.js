@@ -27,7 +27,7 @@ define([
             handler: function (value) {
                 return /^([\u3040-\u309F|\u30FB-\u30FC])*$/.test(value);
             },
-            errorMessage: 'Please use Hiragana only in this field.'
+            errorMessage: $.mage.__('Please use Hiragana only in this field.')
         },
         {
             id: 'validate-katakana',
@@ -41,7 +41,7 @@ define([
             handler: function (value) {
                 return /^([\u30A1-\u30FC])*$/.test(value);
             },
-            errorMessage: 'Please use full width Katakana only in this field.'
+            errorMessage: $.mage.__('Please use full width Katakana only in this field.')
         },
         {
             id: 'validate-kana',
@@ -55,7 +55,7 @@ define([
             handler: function (value) {
                 return /^([\u3040-\u309F|\u30FB-\u30FC|\u30A1-\u30FC])*$/.test(value);
             },
-            errorMessage: 'Please use full width kana only in this field.'
+            errorMessage: $.mage.__('Please use full width kana only in this field.')
         }
     ];
 

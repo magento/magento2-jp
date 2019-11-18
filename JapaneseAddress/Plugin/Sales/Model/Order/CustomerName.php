@@ -64,7 +64,7 @@ class CustomerName
             $extensions->getCustomerLastnamekana(),
             $extensions->getCustomerFirstnamekana()
         );
-        if (!empty($customerNamekana)) {
+        if (!empty(trim($customerNamekana))) {
             $customerName = sprintf('%s (%s)', $customerName, $customerNamekana);
         }
 
