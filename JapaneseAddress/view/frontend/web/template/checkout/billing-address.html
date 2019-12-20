@@ -17,16 +17,10 @@
     <!-- ko template: 'CommunityEngineering_JapaneseAddress/checkout/billing-address/details' --><!-- /ko -->
     <fieldset class="fieldset" data-bind="visible: !isAddressDetailsVisible()">
         <each args="getRegion('billing-address-list')" render="" />
-        <div class="actions-toolbar">
-            <div class="primary">
-                <button class="action action-update" type="button" data-bind="click: updateAddress">
-                    <span data-bind="i18n: 'Update'"></span>
-                </button>
-                <button class="action action-cancel" type="button" data-bind="click: cancelAddressEdit">
-                    <span data-bind="i18n: 'Cancel'"></span>
-                </button>
-            </div>
+        <div data-bind="fadeVisible: isAddressFormVisible">
+            <render args="formTemplate"/>
         </div>
+        <render args="actionsTemplate"/>
     </fieldset>
 
 </div>
