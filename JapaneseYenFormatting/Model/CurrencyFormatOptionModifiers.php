@@ -34,7 +34,7 @@ class CurrencyFormatOptionModifiers
      * @param string $currencyCode
      * @return array
      */
-    public function getOptions(string $currencyCode): array
+    public function getOptions(string $currencyCode = ''): array
     {
         if ($currencyCode !== 'JPY') {
             return [];
