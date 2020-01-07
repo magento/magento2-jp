@@ -11,12 +11,27 @@ use Magento\Framework\DataObject;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Sales\Api\Data\OrderExtensionFactory;
 
 /**
  * Transfer kana data from main data object to extension attributes to hide persistence mechanism.
  */
 class OrderKanaFieldsLoader implements ObserverInterface
 {
+    /**
+     * @var OrderExtensionFactory
+     */
+    private $orderExtensionFactory;
+
+    /**
+     * OrderKanaFieldsLoader constructor.
+     * @param OrderExtensionFactory $orderExtensionFactory
+     */
+    public function __construct(
+        OrderExtensionFactory $orderExtensionFactory
+    ) {
+        $this->orderExtensionFactory = $orderExtensionFactory;
+    }
     /**
      * @inheritDoc
      */
@@ -52,7 +67,7 @@ class OrderKanaFieldsLoader implements ObserverInterface
 
         $orderExtension = $order->getExtensionAttributes();
         if ($orderExtension === null) {
-            $orderExtension = $this->cartExtensionFactory->create();
+            $orderExtension = $this->orderExtensionFactory->create();
         }
 
         if ($order->hasData('customer_firstnamekana')) {
