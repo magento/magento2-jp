@@ -42,8 +42,9 @@ class ModifyCurrencyFormattingOptions implements ObserverInterface
         $currencyCode = $event->getData('base_code');
         $currencyOptions = $event->getData('currency_options');
 
-        $currencyOptions->addData($this->currencyFormatOptionModifiers->getOptions($currencyCode));
-
+        if ($currencyCode !== null) {
+            $currencyOptions->addData($this->currencyFormatOptionModifiers->getOptions($currencyCode));
+        }
         return $this;
     }
 }
