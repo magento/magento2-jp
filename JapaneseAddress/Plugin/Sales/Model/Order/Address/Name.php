@@ -63,7 +63,7 @@ class Name
         }
 
         $namekana = trim(sprintf('%s %s', $extensions->getLastnamekana(), $extensions->getFirstnamekana()));
-        if (strlen($namekana) > 0) {
+        if ($namekana !== '') {
             $name = sprintf('%s (%s)', $name, $namekana);
         }
 
