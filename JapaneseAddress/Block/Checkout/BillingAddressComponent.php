@@ -34,7 +34,7 @@ class BillingAddressComponent implements LayoutProcessorInterface
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig
-    )
+    ) {
     {
         $this->scopeConfig = $scopeConfig;
     }
