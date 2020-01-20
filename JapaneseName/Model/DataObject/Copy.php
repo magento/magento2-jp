@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace CommunityEngineering\JapaneseName\Model\DataObject;
 
+use Magento\Framework\Api\ExtensibleDataInterface;
 /**
  * Behavior of this class should be moved to Magento\Framework\DataObject\Copy eventually.
  *
@@ -129,7 +130,7 @@ class Copy extends \Magento\Framework\DataObject\Copy
     /**
      * @inheritdoc
      */
-    protected function setAttributeValueFromExtensibleDataObject($target, $code, $value)
+    protected function setAttributeValueFromExtensibleDataObject(ExtensibleDataInterface $target, $code, $value)
     {
         try {
             parent::setAttributeValueFromExtensibleDataObject($target, $code, $value);
