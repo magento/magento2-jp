@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace CommunityEngineering\JapaneseAddress\Model\Config;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\ScopeInterface;
 
 /**
  * Address usage configuration for customer registration.
@@ -34,7 +35,7 @@ class CustomerRegistrationConfig
      */
     public function isAddressRequired(): bool
     {
-        $configValue = $this->config->getValue('customer/create_account/request_address');
+        $configValue = $this->config->getValue('customer/create_account/request_address', ScopeInterface::SCOPE_STORE);
         return (bool)$configValue;
     }
 }

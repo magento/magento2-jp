@@ -13,3 +13,6 @@
 "Last Name Kana","フリガナ（姓）"
 "Billing Firstname Kana","支払人の名 (フリガナ)"
 "Billing Lastname Kana","支払人の姓 (フリガナ)"
+"Please use full width kana only in this field.","全角かなで入力してください。"
+"Please use full width Katakana only in this field.","全角カタカナで入力してください。"
+"Please use Hiragana only in this field.","全角ひらがなで入力してください。"
