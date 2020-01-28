@@ -15,8 +15,15 @@ use CommunityEngineering\JapaneseName\Model\Config\KanaFieldsConfig;
  */
 class Name
 {
+    /**
+     * @var KanaFieldsConfig
+     */
     private $kanaFieldsConfig;
 
+    /**
+     * Name constructor.
+     * @param KanaFieldsConfig $kanaFieldsConfig
+     */
     public function __construct(
         KanaFieldsConfig $kanaFieldsConfig
     ) {
