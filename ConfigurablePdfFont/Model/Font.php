@@ -55,7 +55,7 @@ class Font
         $this->name = $data['name'];
         $this->regular = $data['regular'];
         $this->bold = $data['bold'] ?? null;
-        $this->italic = $data['bold'] ?? null;
+        $this->italic = $data['italic'] ?? null;
     }
 
     /**
