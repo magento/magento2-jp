@@ -15,4 +15,7 @@
     <type name="Magento\Framework\Locale\Format">
         <plugin name="locale_number_format" type="CommunityEngineering\CurrencyPrecision\Plugin\Locale\LocalizedFormat"/>
     </type>
+    <type name="Magento\Tax\Pricing\Adjustment">
+        <plugin name="modify_adjustment" type="CommunityEngineering\CurrencyPrecision\Plugin\Tax\Pricing\ModifyAdjustment"/>
+    </type>
 </config>
