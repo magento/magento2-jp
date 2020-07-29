@@ -1,23 +1,23 @@
 {
     "name": "community-engineering/japan-common",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Magento Japanese localization meta package.",
     "type": "metapackage",
     "require": {
         "community-engineering/language-ja_jp": "1.0.1",
-        "community-engineering/module-currency-precision": "1.0.1",
-        "community-engineering/module-configurable-pdf-font": "1.0.1",
-        "community-engineering/module-font-source-han-sans-japanese": "1.0.1",
-        "community-engineering/module-font-ipa": "1.0.1",
-        "community-engineering/module-japanese-default-config": "1.0.1",
-        "community-engineering/module-japanese-default-cms-pages": "1.0.1",
-        "community-engineering/module-japanese-name": "1.0.1",
-        "community-engineering/module-japanese-address": "1.0.1",
-        "community-engineering/module-japanese-region": "1.0.1",
-        "community-engineering/module-japanese-postal-code": "1.0.1",
-        "community-engineering/module-japanese-yen-formatting": "1.0.1",
-        "community-engineering/module-japanese-store-address": "1.0.1",
-        "community-engineering/module-japanese-url-rewrite": "1.0.1",
-        "community-engineering/module-kuromoji": "1.0.1"
+        "community-engineering/module-currency-precision": "1.0.2",
+        "community-engineering/module-configurable-pdf-font": "1.0.2",
+        "community-engineering/module-font-source-han-sans-japanese": "1.0.3",
+        "community-engineering/module-font-ipa": "1.0.2",
+        "community-engineering/module-japanese-default-config": "1.0.2",
+        "community-engineering/module-japanese-default-cms-pages": "1.0.2",
+        "community-engineering/module-japanese-name": "1.0.2",
+        "community-engineering/module-japanese-address": "1.0.2",
+        "community-engineering/module-japanese-region": "1.0.2",
+        "community-engineering/module-japanese-postal-code": "1.0.2",
+        "community-engineering/module-japanese-yen-formatting": "1.0.2",
+        "community-engineering/module-japanese-store-address": "1.0.2",
+        "community-engineering/module-japanese-url-rewrite": "1.0.2",
+        "community-engineering/module-kuromoji": "1.0.2"
     }
 }

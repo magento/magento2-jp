@@ -1,6 +1,6 @@
 {
     "name": "community-engineering/module-currency-precision",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
@@ -17,9 +17,9 @@
     ],
     "require": {
         "php": "~7.2.0||~7.3.0||~7.4.0",
-        "magento/framework": "^102.0.0",
-        "magento/module-store": "^101.0.0",
-        "magento/module-directory": "^100.3.0"
+        "magento/framework": "^102.0.0||^103.0.0",
+        "magento/module-store": "^101.0.0||^102.0.0",
+        "magento/module-directory": "^100.3.0||^100.4.0"
     },
     "autoload": {
         "files": [
