@@ -1,0 +1,30 @@
+{
+    "name": "community-engineering/module-japanese-store-pickup-address",
+    "version": "1.0.0",
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "description": "Magento2 extension for In Store Pickup address for Japanese format",
+    "authors":[
+        {
+            "name": "Hirokazu Nishi",
+            "email": "nishi@veriteworks.co.jp",
+            "homepage": "https://veriteworks.co.jp/",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": "~7.2.0||~7.3.0||~7.4.0",
+        "magento/module-inventory-in-store-pickup-frontend": "^1.0.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "CommunityEngineering\\JapaneseName\\": ""
+        }
+    }
+}
