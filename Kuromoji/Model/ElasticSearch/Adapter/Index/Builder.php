@@ -42,10 +42,6 @@ class Builder extends DefaultBuilder
             'kuromoji_baseform'
         ];
         $filter = $this->getFilter();
-        $filter['synonym_dict'] = [
-            'type' => 'synonym',
-            'synonyms_path' => 'synonym.txt'
-        ];
         $charFilter = $this->getCharFilter();
 
         $settings = [
@@ -57,8 +53,7 @@ class Builder extends DefaultBuilder
                         'filter' => array_merge(
                             ['lowercase', 'keyword_repeat'],
                             array_keys($filter),
-                            $analyzerFilter,
-                            ['synonym_dict']
+                            $analyzerFilter
                         ),
                         'char_filter' => array_keys($charFilter)
                     ]
