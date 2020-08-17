@@ -104,6 +104,8 @@ class CurrencyRoundingForAdmin
     }
 
     /**
+     * Set currency object when getCurrency called.
+     *
      * @param \Magento\Directory\Model\PriceCurrency $subject
      * @param $result
      * @param bool|int|ScopeInterface|string|null $scope
