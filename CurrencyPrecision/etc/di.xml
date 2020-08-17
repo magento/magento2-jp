@@ -9,9 +9,9 @@
     <type name="Magento\Directory\Model\Currency">
         <plugin name="modify_precision" type="CommunityEngineering\CurrencyPrecision\Plugin\Directory\Model\CurrencyPrecisionFormatting"/>
     </type>
-    <type name="Magento\Directory\Model\PriceCurrency">
-        <plugin name="modify_round" type="CommunityEngineering\CurrencyPrecision\Plugin\Directory\Model\CurrencyRounding"/>
-    </type>
+<!--    <type name="Magento\Directory\Model\PriceCurrency">-->
+<!--        <plugin name="modify_round" type="CommunityEngineering\CurrencyPrecision\Plugin\Directory\Model\CurrencyRounding"/>-->
+<!--    </type>-->
     <type name="Magento\Framework\Locale\Format">
         <plugin name="locale_number_format" type="CommunityEngineering\CurrencyPrecision\Plugin\Locale\LocalizedFormat"/>
     </type>

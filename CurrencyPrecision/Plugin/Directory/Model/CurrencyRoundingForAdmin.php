@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace CommunityEngineering\CurrencyPrecision\Plugin\Directory\Model;
 
+use Magento\Directory\Model\Currency;
 use Magento\Directory\Model\PriceCurrency;
 use Magento\Store\Model\StoreManager;
 use CommunityEngineering\CurrencyPrecision\Model\CurrencyRounding as Model;
@@ -14,7 +15,7 @@ use CommunityEngineering\CurrencyPrecision\Model\CurrencyRounding as Model;
 /**
  * Replace standard rounding method with rounding based on currency precision and with configured rounding method.
  */
-class CurrencyRounding
+class CurrencyRoundingForAdmin
 {
     /**
      * @var CurrencyRounding
@@ -25,6 +26,11 @@ class CurrencyRounding
      * @var StoreManager
      */
     private $storeManager;
+
+    /**
+     * @var Currency
+     */
+    private $currency;
 
     /**
      * @param Model $model
@@ -83,7 +89,12 @@ class CurrencyRounding
         \Closure $proceed,
         $amount
     ) {
-        $currencyCode = $priceCurrency->getCurrency()->getCode();
+        $currency = $this->currency;
+        $currencyCode = null;
+        if ($currency !== null) {
+            $currencyCode = $currency->getCode();
+        }
+
         if ($currencyCode === null) {
             return $amount;
         }
@@ -91,6 +102,24 @@ class CurrencyRounding
         $roundedAmount = $this->round($currencyCode, (float)$amount);
         return $roundedAmount;
     }
+
+    /**
+     * @param \Magento\Directory\Model\PriceCurrency $subject
+     * @param $result
+     * @param bool|int|ScopeInterface|string|null $scope
+     * @param AbstractModel|string|null $currency
+     */
+    public function afterGetCurrency(
+        PriceCurrency $subject,
+        $result,
+        $scope = null,
+        $currency = null
+    ) {
+        $this->currency = $result;
+        return $result;
+    }
+
+
 
     /**
      * Round currency using rounding service.
