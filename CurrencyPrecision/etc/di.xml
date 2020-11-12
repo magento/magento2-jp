@@ -18,4 +18,27 @@
     <type name="Magento\Tax\Pricing\Adjustment">
         <plugin name="modify_adjustment" type="CommunityEngineering\CurrencyPrecision\Plugin\Tax\Pricing\ModifyAdjustment"/>
     </type>
+    <type name="Magento\Paypal\Model\Api\Nvp">
+        <plugin name="modify_round" type="CommunityEngineering\CurrencyPrecision\Plugin\PayPal\Api\RoundAmount"/>
+    </type>
+    <type name="Magento\SalesRule\Model\Rule\Action\Discount\DiscountInterface">
+        <plugin name="round_discount"
+                type="CommunityEngineering\CurrencyPrecision\Plugin\SalesRule\RoundDiscount"
+                sortOrder="10"/>
+    </type>
+    <type name="Magento\Tax\Model\Sales\Total\Quote\CommonTaxCollector">
+        <plugin name="round_quote_item_price"
+                type="CommunityEngineering\CurrencyPrecision\Plugin\Tax\RoundQuoteItemPrice"
+                sortOrder="10"/>
+    </type>
+    <type name="Magento\Tax\Model\Sales\Total\Quote\Subtotal">
+        <plugin name="round_subtotal"
+                type="CommunityEngineering\CurrencyPrecision\Plugin\Tax\RoundSubtotal"
+                sortOrder="10"/>
+    </type>
+    <type name="Magento\Tax\Model\Sales\Total\Quote\Tax">
+        <plugin name="round_tax"
+                type="CommunityEngineering\CurrencyPrecision\Plugin\Tax\RoundTaxAmount"
+                sortOrder="10"/>
+    </type>
 </config>
