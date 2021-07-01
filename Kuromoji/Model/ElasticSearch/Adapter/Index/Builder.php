@@ -35,34 +35,16 @@ class Builder extends DefaultBuilder
      */
     public function build()
     {
-        $tokenizer = $this->getTokenizer();
         $analyzerFilter = [
             'cjk_width',
             'kuromoji_part_of_speech',
             'kuromoji_baseform'
         ];
-        $filter = $this->getFilter();
-        $charFilter = $this->getCharFilter();
 
-        $settings = [
-            'analysis' => [
-                'analyzer' => [
-                    'default' => [
-                        'type' => 'custom',
-                        'tokenizer' => key($tokenizer),
-                        'filter' => array_merge(
-                            ['lowercase', 'keyword_repeat'],
-                            array_keys($filter),
-                            $analyzerFilter
-                        ),
-                        'char_filter' => array_keys($charFilter)
-                    ]
-                ],
-                'tokenizer' => $tokenizer,
-                'filter' => $filter,
-                'char_filter' => $charFilter,
-            ],
-        ];
+        $settings = parent::build();
+
+        $settings['analysis']['analyzer']['default']['filter'] = array_merge(
+            $settings['analysis']['analyzer']['default']['filter'], $analyzerFilter);
 
         return $settings;
     }
