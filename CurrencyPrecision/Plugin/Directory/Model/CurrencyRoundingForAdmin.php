@@ -96,7 +96,7 @@ class CurrencyRoundingForAdmin
         }
 
         if ($currencyCode === null) {
-            return $amount;
+            return (float)$amount;
         }
 
         $roundedAmount = $this->round($currencyCode, (float)$amount);
