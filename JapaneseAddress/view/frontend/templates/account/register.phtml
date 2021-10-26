@@ -205,18 +205,28 @@
     });
 </script>
 <?php if ($block->getShowAddressFields()): ?>
+    <?php
+    $regionProvider = $block->getRegionProvider();
+    $regionJson = /* @noEscape */ $regionProvider->getRegionJson();
+    $formData = $block->getFormData();
+    $regionId = (int) $formData->getRegionId();
+    /** @var \Magento\Directory\Helper\Data $directoryHelper */
+    $directoryHelper = $block->getData('directoryHelper');
+    $countriesWithOptionalZip = /* @noEscape */ $directoryHelper->getCountriesWithOptionalZip(true);
+    $displayAll = $block->getConfig('general/region/display_all');
+    ?>
     <script type="text/x-magento-init">
     {
         "#country": {
-            "regionUpdater": {
-                "optionalRegionAllowed": <?= /* @noEscape */ $block->getConfig('general/region/display_all') ? 'true' : 'false' ?>,
+            "directoryRegionUpdater": {
+                "optionalRegionAllowed": <?= /* @noEscape */ $displayAll ? 'true' : 'false' ?>,
                 "regionListId": "#region_id",
                 "regionInputId": "#region",
                 "postcodeId": "#zip",
                 "form": "#form-validate",
-                "regionJson": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getRegionJson() ?>,
-                "defaultRegion": "<?= /* @noEscape */ (int) $block->getFormData()->getRegionId() ?>",
-                "countriesWithOptionalZip": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getCountriesWithOptionalZip(true) ?>
+                "regionJson": <?= /* @noEscape */ $regionJson ?>,
+                "defaultRegion": <?= /* @noEscape */ $regionId ?>,
+                "countriesWithOptionalZip": <?=  /* @noEscape */ $countriesWithOptionalZip ?>
             }
         }
     }
