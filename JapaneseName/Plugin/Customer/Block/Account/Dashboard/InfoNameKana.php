@@ -9,12 +9,27 @@ namespace CommunityEngineering\JapaneseName\Plugin\Customer\Block\Account\Dashbo
 
 use Magento\Customer\Block\Account\Dashboard\Info;
 use Magento\Framework\Api\CustomAttributesDataInterface;
+use Magento\Framework\Locale\ResolverInterface;
 
 /**
  * Display name kana at account dashboard
  */
 class InfoNameKana
 {
+    /**
+     * @var ResolverInterface
+     */
+    protected $localeResolver;
+
+    /**
+     * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
+     */
+    public function __construct(
+        ResolverInterface $localeResolver
+    ) {
+        $this->localeResolver = $localeResolver;
+    }
+
     /**
      * Add kana to name.
      *
@@ -24,6 +39,10 @@ class InfoNameKana
      */
     public function afterGetName(Info $info, $name)
     {
+        if ($this->localeResolver->getLocale() !== 'ja_JP') {
+            return $name;
+        }
+
         $customer = $info->getCustomer();
         if (!$customer) {
             return $name;

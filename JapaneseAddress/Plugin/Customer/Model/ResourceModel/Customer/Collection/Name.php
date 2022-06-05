@@ -50,9 +50,9 @@ class Name
      */
     public function aroundAddNameToSelect(Collection $collection, \Closure $proceed)
     {
-//        if($this->localeResolver->getLocale() != 'ja_JP') {
-//            return $proceed();
-//        }
+        if ($this->localeResolver->getLocale() !== 'ja_JP') {
+            return $proceed();
+        }
 
         $fields = [];
         $customerAccount = $this->fieldsetConfig->getFieldset('customer_account');

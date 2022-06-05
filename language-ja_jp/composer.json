@@ -1,8 +1,8 @@
 {
     "name": "community-engineering/language-ja_jp",
-    "version": "1.0.1",
+    "version": "1.0.19",
     "type": "magento2-language",
-    "description": "Japan (Japanese) language",
+    "description": "ja_JP language package.",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
@@ -11,11 +11,11 @@
         "sort-packages": true
     },
     "require": {
-        "magento/framework": "^102.0.0"
+        "magento/framework": "*"
     },
     "autoload": {
         "files": [
-          "registration.php"
+            "registration.php"
         ]
     }
 }

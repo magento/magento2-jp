@@ -9,6 +9,7 @@ namespace CommunityEngineering\JapaneseName\Plugin\Customer\Block\Widget;
 
 use Magento\Customer\Block\Widget\Name as Subject;
 use CommunityEngineering\JapaneseName\Model\Config\KanaFieldsConfig;
+use Magento\Framework\Locale\ResolverInterface;
 
 /**
  * Use name widget that corresponds to Japanese traditions and contains kana fields.
@@ -21,13 +22,20 @@ class Name
     private $kanaFieldsConfig;
 
     /**
-     * Name constructor.
-     * @param KanaFieldsConfig $kanaFieldsConfig
+     * @var ResolverInterface
+     */
+    protected $localeResolver;
+
+    /**
+     * @param \CommunityEngineering\JapaneseName\Model\Config\KanaFieldsConfig $kanaFieldsConfig
+     * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
      */
     public function __construct(
-        KanaFieldsConfig $kanaFieldsConfig
+        KanaFieldsConfig $kanaFieldsConfig,
+        ResolverInterface $localeResolver
     ) {
         $this->kanaFieldsConfig = $kanaFieldsConfig;
+        $this->localeResolver = $localeResolver;
     }
 
     /**
@@ -40,6 +48,10 @@ class Name
      */
     public function beforeSetTemplate(Subject $subject, string $template)
     {
+        if ($this->localeResolver->getLocale() !== 'ja_JP') {
+            return [$template];
+        }
+
         if ($template === 'Magento_Customer::widget/name.phtml' && $this->kanaFieldsConfig->areEnabled()) {
             return ['CommunityEngineering_JapaneseName::customer/widget/name.phtml'];
         }

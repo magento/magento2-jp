@@ -40,16 +40,16 @@ class CustomerName
         Order $order,
         string $customerName
     ) {
-//        if($this->localeResolver->getLocale() != 'ja_JP') {
-//            return $customerName;
-//        }
+        if ($this->localeResolver->getLocale() !== 'ja_JP') {
+            return $customerName;
+        }
 
         if (!$order->getCustomerLastname()) {
             return (string)__('Guest');
         }
 
         $customerName = sprintf(
-            '%s %s',
+            '%s %s様',
             $order->getCustomerLastname(),
             $order->getCustomerFirstname()
         );

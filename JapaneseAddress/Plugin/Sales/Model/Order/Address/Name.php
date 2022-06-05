@@ -40,9 +40,9 @@ class Name
         Address $address,
         string $name
     ) {
-//        if($this->localeResolver->getLocale() != 'ja_JP') {
-//            return $name;
-//        }
+        if ($this->localeResolver->getLocale() !== 'ja_JP') {
+            return $name;
+        }
 
         $name = '';
         if ($address->getPrefix()) {
@@ -55,6 +55,8 @@ class Name
         $name .= ' ' . $address->getFirstname();
         if ($address->getSuffix()) {
             $name .= ' ' . $address->getSuffix();
+        } else {
+            $name .= '様';
         }
 
         $extensions = $address->getExtensionAttributes();

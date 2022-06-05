@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace CommunityEngineering\JapaneseAddress\Plugin\Ui\View\Element;
 
+use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\View\Element\UiComponentInterface;
 use Magento\Ui\Component\Form\Field;
 

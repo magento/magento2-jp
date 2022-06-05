@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace CommunityEngineering\JapaneseAddress\Plugin\Customer\Block\Form;
 
+use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\View\Element\AbstractBlock;
 use CommunityEngineering\JapaneseAddress\Model\Config\CountryInputConfig;
 
@@ -16,15 +17,24 @@ use CommunityEngineering\JapaneseAddress\Model\Config\CountryInputConfig;
 class CountryFieldVisibility
 {
     /**
+     * @var ResolverInterface
+     */
+    protected $localeResolver;
+
+    /**
      * @var CountryInputConfig
      */
     private $countryFieldConfig;
 
     /**
-     * @param CountryInputConfig $countryFieldConfig
+     * @param \CommunityEngineering\JapaneseAddress\Model\Config\CountryInputConfig $countryFieldConfig
+     * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
      */
-    public function __construct(CountryInputConfig $countryFieldConfig)
-    {
+    public function __construct(
+        CountryInputConfig $countryFieldConfig,
+        ResolverInterface $localeResolver
+    ) {
+        $this->localeResolver = $localeResolver;
         $this->countryFieldConfig = $countryFieldConfig;
     }
 
@@ -38,7 +48,7 @@ class CountryFieldVisibility
      */
     public function afterToHtml(AbstractBlock $block, $html)
     {
-        if ($this->countryFieldConfig->isVisibleAtStorefront()) {
+        if ($this->countryFieldConfig->isVisibleAtStorefront() || $this->localeResolver->getLocale() !== 'ja_JP') {
             return $html;
         }
 

@@ -1,0 +1,7 @@
+{
+    "admin_user": {
+        "column": {
+            "interface_locale": true
+        }
+    }
+}

@@ -50,9 +50,9 @@ class Name
         Customer $customer,
         string $name
     ) {
-//        if($this->localeResolver->getLocale() != 'ja_JP') {
-//            return $name;
-//        }
+        if ($this->localeResolver->getLocale() !== 'ja_JP') {
+            return $name;
+        }
 
         $name = '';
         if ($this->config->getAttribute('customer', 'prefix')->getIsVisible()
@@ -71,6 +71,8 @@ class Name
             && $customer->getSuffix()
         ) {
             $name .= ' ' . $customer->getSuffix();
+        } else {
+            $name .= '様';
         }
         return $name;
     }

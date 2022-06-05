@@ -9,12 +9,27 @@ namespace CommunityEngineering\JapaneseAddress\Plugin\Customer\Block\Form;
 
 use Magento\Customer\Block\Form\Register;
 use Magento\Framework\DataObject;
+use Magento\Framework\Locale\ResolverInterface;
 
 /**
  * If customer decided to create account after order placement address data should be filled from quote data.
  */
 class RegisterWithQuoteAddress
 {
+    /**
+     * @var ResolverInterface
+     */
+    protected $localeResolver;
+
+    /**
+     * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
+     */
+    public function __construct(
+        ResolverInterface $localeResolver
+    ) {
+        $this->localeResolver = $localeResolver;
+    }
+
     /**
      * Copy address data to top level data transfer object to make them available in form
      *
@@ -25,7 +40,7 @@ class RegisterWithQuoteAddress
      */
     public function afterGetFormData(Register $form, $data)
     {
-        if (!$data instanceof DataObject) {
+        if (!$data instanceof DataObject || $this->localeResolver->getLocale() !== 'ja_JP') {
             return $data;
         }
 

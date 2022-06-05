@@ -27,6 +27,9 @@
     <type name="Magento\Framework\View\Element\UiComponentInterface">
         <plugin name="crossVersionCompatibility" type="CommunityEngineering\JapaneseAddress\Plugin\Ui\View\Element\PartiallyConfiguredUiComponent"/>
     </type>
+    <type name="Magento\Customer\Model\Address\Config">
+        <plugin name="CommunityEngineering_JapaneseAddress::Plugin_Customer_Model_Address_Config" type="CommunityEngineering\JapaneseAddress\Plugin\Customer\Model\Address\Config"/>
+    </type>
 
     <type name="CommunityEngineering\JapaneseAddress\Plugin\Reports\Order\Collection\Name">
         <arguments>

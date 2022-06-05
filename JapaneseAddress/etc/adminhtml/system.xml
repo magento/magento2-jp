@@ -22,6 +22,21 @@
                     <config_path>customer/address/country_show</config_path>
                 </field>
             </group>
+            <group id="address_templates">
+                <field id="text_jp" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Text (Japan Locale)</label>
+                </field>
+                <field id="oneline_jp" translate="label" type="textarea" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Text One Line (Japan Locale)</label>
+                </field>
+                <field id="html_jp" translate="label" type="textarea" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>HTML (Japan Locale)</label>
+                    <comment>Only 'b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'sub', 'sup', 'ul' tags are allowed</comment>
+                </field>
+                <field id="pdf_jp" translate="label" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>PDF (Japan Locale)</label>
+                </field>
+            </group>
         </section>
     </system>
 </config>

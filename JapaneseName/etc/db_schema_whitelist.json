@@ -1,0 +1,38 @@
+{
+    "customer_entity": {
+        "column": {
+            "firstnamekana": true,
+            "lastnamekana": true
+        }
+    },
+    "customer_address_entity": {
+        "column": {
+            "firstnamekana": true,
+            "lastnamekana": true
+        }
+    },
+    "quote": {
+        "column": {
+            "customer_firstnamekana": true,
+            "customer_lastnamekana": true
+        }
+    },
+    "quote_address": {
+        "column": {
+            "firstnamekana": true,
+            "lastnamekana": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "customer_firstnamekana": true,
+            "customer_lastnamekana": true
+        }
+    },
+    "sales_order_address": {
+        "column": {
+            "firstnamekana": true,
+            "lastnamekana": true
+        }
+    }
+}

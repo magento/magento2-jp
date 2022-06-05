@@ -55,9 +55,9 @@ class Name
         string $name,
         CustomerInterface $customerData
     ) {
-//        if($this->localeResolver->getLocale() != 'ja_JP') {
-//            return $name;
-//        }
+        if ($this->localeResolver->getLocale() !== 'ja_JP') {
+            return $name;
+        }
 
         $name = '';
         $prefixMetadata = $this->customerMetadataService->getAttributeMetadata('prefix');
@@ -77,6 +77,8 @@ class Name
         $suffixMetadata = $this->customerMetadataService->getAttributeMetadata('suffix');
         if ($suffixMetadata->isVisible() && $customerData->getSuffix()) {
             $name .= ' ' . $customerData->getSuffix();
+        } else {
+            $name .= '様';
         }
 
         return $name;

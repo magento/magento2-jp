@@ -52,9 +52,9 @@ class Name
         \Closure $proceed,
         $alias = 'name'
     ) {
-//        if($this->localeResolver->getLocale() != 'ja_JP') {
-//            return $proceed($alias);
-//        }
+        if ($this->localeResolver->getLocale() !== 'ja_JP') {
+            return $proceed($alias);
+        }
 
         $subject->getSelect()->columns([$alias => (string)$this->nameSqlExpression]);
         return $subject;
