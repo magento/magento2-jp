@@ -51,6 +51,8 @@ class Renderer
 
         if ($localeCode === 'ja_JP') {
             $type .= Config::JAPAN_LOCALE_SUFFIX;
+        } else {
+            $type .= Config::OTHER_LOCALE_SUFFIX;
         }
 
         return [$address, $type];
