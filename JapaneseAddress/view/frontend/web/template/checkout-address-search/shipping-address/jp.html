@@ -6,15 +6,15 @@
 -->
 <div class="shipping-address-item selected">
     <if args="defaultAddress()">
-        <text args="defaultAddress().prefix"/>
-        <text args="defaultAddress().lastname"/>
-        <text args="defaultAddress().middlename"/>
-        <text args="defaultAddress().firstname"/>
-        <text args="defaultAddress().suffix"/>
-        <text if="defaultAddress().getNamekana()" args="'(' + defaultAddress().getNamekana() + ')'"/><br/>
+        <text args="defaultAddress().prefix"></text>
+        <text args="defaultAddress().lastname"></text>
+        <text args="defaultAddress().middlename"></text>
+        <text args="defaultAddress().firstname"></text>
+        <text args="defaultAddress().suffix"></text>
+        <text if="defaultAddress().getNamekana()" args="'(' + defaultAddress().getNamekana() + ')'"></text><br/>
 
-        <text args="defaultAddress().postcode"/><br/>
-        <span text="defaultAddress().region"></span><text args="defaultAddress().city "/><text args="_.values(defaultAddress().street).join('')"/>
+        <text args="defaultAddress().postcode"></text><br/>
+        <span text="defaultAddress().region"></span><text args="defaultAddress().city "></text><text args="_.values(defaultAddress().street).join('')"></text>
         <br/>
         <a if="defaultAddress().telephone" attr="'href': 'tel:' + defaultAddress().telephone"
            text="defaultAddress().telephone"></a><br/>
@@ -22,14 +22,14 @@
         <if args="_.isArray(defaultAddress().customAttributes)">
             <each args="data: defaultAddress().customAttributes, as: 'attribute'">
                 <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
-                    <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+                    <if args="attribute.label"><text args="attribute.label"></text>: </if><text args="attribute.value"></text><br/>
                 </if>
             </each>
         </if>
         <ifnot args="_.isArray(defaultAddress().customAttributes)">
             <each args="data: Object.values(defaultAddress().customAttributes), as: 'attribute'">
                 <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
-                    <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+                    <if args="attribute.label"><text args="attribute.label"></text>: </if><text args="attribute.value"></text><br/>
                 </if>
             </each>
         </ifnot>

@@ -38,7 +38,7 @@ class Config
      */
     public function beforeGetFormatByCode(\Magento\Customer\Model\Address\Config $subject, string $typeCode)
     {
-        if ($this->localeResolver->getLocale() !== 'ja_JP') {
+        if ($this->localeResolver->getLocale() !== 'ja_JP' || str_contains($typeCode, self::JAPAN_LOCALE_SUFFIX)) {
             return [$typeCode];
         }
 

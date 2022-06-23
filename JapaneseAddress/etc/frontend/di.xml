@@ -12,6 +12,7 @@
                 <item name="addressFieldsOrder" xsi:type="object">CommunityEngineering\JapaneseAddress\Block\Checkout\AddressFieldsOrder</item>
                 <item name="countryFieldVisibility" xsi:type="object">CommunityEngineering\JapaneseAddress\Block\Checkout\CountryFieldVisibility</item>
                 <item name="jpBillingAddressComponent" xsi:type="object">CommunityEngineering\JapaneseAddress\Block\Checkout\BillingAddressComponent</item>
+                <item name="jpShippingAddressComponent" xsi:type="object">CommunityEngineering\JapaneseAddress\Block\Checkout\ShippingAddressComponent</item>
             </argument>
         </arguments>
     </type>

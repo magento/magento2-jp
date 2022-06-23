@@ -30,6 +30,10 @@
     <type name="Magento\Customer\Model\Address\Config">
         <plugin name="CommunityEngineering_JapaneseAddress::Plugin_Customer_Model_Address_Config" type="CommunityEngineering\JapaneseAddress\Plugin\Customer\Model\Address\Config"/>
     </type>
+    <type name="Magento\Sales\Model\Order\Address\Renderer">
+        <plugin name="CommunityEngineering_JapaneseAddress::Plugin_Sales_Model_Order_Address_Renderer" type="CommunityEngineering\JapaneseAddress\Plugin\Sales\Model\Order\Address\Renderer"/>
+    </type>
+
 
     <type name="CommunityEngineering\JapaneseAddress\Plugin\Reports\Order\Collection\Name">
         <arguments>

@@ -5,25 +5,25 @@
  */
 -->
 <div if="isAddressDetailsVisible() && currentBillingAddress()" class="billing-address-details">
-    <text args="currentBillingAddress().prefix"/> <text args="currentBillingAddress().lastname"/> <text args="currentBillingAddress().middlename"/>
-    <text args="currentBillingAddress().firstname"/> <text args="currentBillingAddress().suffix"/>
-    <text if="currentBillingAddress().getNamekana()" args="'(' + currentBillingAddress().getNamekana() + ')'"/><br/>
-    〒<text args="currentBillingAddress().postcode"/><br/>
-    <text args="currentBillingAddress().region"/><text args="currentBillingAddress().city"/><text args="_.values(currentBillingAddress().street)[0]"/>
-    <text args="_.values(currentBillingAddress().street)[1]"/><text args="_.values(currentBillingAddress().street)[2]"/></br>
+    <text args="currentBillingAddress().prefix"></text> <text args="currentBillingAddress().lastname"></text> <text args="currentBillingAddress().middlename"></text>
+    <text args="currentBillingAddress().firstname"></text> <text args="currentBillingAddress().suffix"></text>
+    <text args="'(' + currentBillingAddress().getNamekana() + ')'" if="currentBillingAddress().getNamekana()"></text><br/>
+    〒<text args="currentBillingAddress().postcode"></text><br/>
+    <text args="currentBillingAddress().region"></text><text args="currentBillingAddress().city"></text><text args="_.values(currentBillingAddress().street)[0]"></text>
+    <text args="_.values(currentBillingAddress().street)[1]"></text><text args="_.values(currentBillingAddress().street)[2]"></text></br>
     <a if="currentBillingAddress().telephone" attr="'href': 'tel:' + currentBillingAddress().telephone" text="currentBillingAddress().telephone"></a><br/>
 
     <if args="_.isArray(currentBillingAddress().customAttributes)">
         <each args="data: currentBillingAddress().customAttributes, as: 'attribute'">
             <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
-                <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+                <if args="attribute.label"><text args="attribute.label"></text>: </if><text args="attribute.value"></text><br/>
             </if>
         </each>
     </if>
     <ifnot args="_.isArray(currentBillingAddress().customAttributes)">
         <each args="data: Object.values(currentBillingAddress().customAttributes), as: 'attribute'">
             <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
-                <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+                <if args="attribute.label"><text args="attribute.label"></text>: </if><text args="attribute.value"></text><br/>
             </if>
         </each>
     </ifnot>

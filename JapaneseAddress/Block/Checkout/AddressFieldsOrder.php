@@ -2,7 +2,6 @@
 
 namespace CommunityEngineering\JapaneseAddress\Block\Checkout;
 
-use CommunityEngineering\JapaneseAddress\Model\Config\CountryInputConfig;
 use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 use Magento\Directory\Helper\Data as DirectoryHelper;
 use Magento\Eav\Model\Entity\Attribute\AbstractAttribute;
@@ -54,28 +53,60 @@ class AddressFieldsOrder implements LayoutProcessorInterface
             return $jsLayout;
         }
 
-        $shippingAddressFieldsetPath = $this->arrayManager->findPath('shipping-address-fieldset', $jsLayout, 'components');
-        $shippingAddressFieldsetChildrenPath = $this->arrayManager->findPath('children', $jsLayout, $shippingAddressFieldsetPath);
-        if ($shippingAddressFieldsetPath && $shippingAddressFieldsetChildrenPath) {
+        $shippingStepPath = $this->arrayManager->findPath('shipping-step', $jsLayout, 'components');
+        $billingStepPath = $this->arrayManager->findPath('billing-step', $jsLayout, 'components');
+        if ($shippingStepPath) {
+            $shippingAddressFieldsetPath = $this->arrayManager->findPath('shipping-address-fieldset', $jsLayout, $shippingStepPath);
+            $shippingAddressFieldsetChildrenPath = $this->arrayManager->findPath('children', $jsLayout, $shippingAddressFieldsetPath);
 
-            $availableAttributes = $this->eavConfig->getEntityAttributes(\Magento\Customer\Api\AddressMetadataInterface::ENTITY_TYPE_ADDRESS);
-            $availableAttributes = $this->sortAttributesByPosition($availableAttributes);
-            $orderedAttributes = array_flip($this->getAttributesOrder());
-            $undefinedOrderShift = (count($orderedAttributes) + 1) * 10;
+            if ($shippingAddressFieldsetPath && $shippingAddressFieldsetChildrenPath) {
+                $jsLayout = $this->formFieldSortOrder($shippingAddressFieldsetChildrenPath, $jsLayout);
+            }
+        }
 
-            foreach ($availableAttributes as $attributeCode => $attribute) {
-                if (isset($orderedAttributes[$attributeCode])) {
-                    $position = ($orderedAttributes[$attributeCode] + 1) * 10;
-                } else {
-                    $position = $undefinedOrderShift;
-                    $undefinedOrderShift += 10;
+        if ($billingStepPath) {
+            $paymentListPath = $this->arrayManager->findPath('payments-list', $jsLayout, $billingStepPath);
+            $formFieldPaths = $this->arrayManager->findPaths('form-fields', $jsLayout, $paymentListPath);
+            if (!empty($formFieldPaths)) {
+                foreach ($formFieldPaths as $formFieldPath) {
+                    $childrenFormFieldPath = $this->arrayManager->findPath('children', $jsLayout, $formFieldPath);
+
+                    if ($paymentListPath && $formFieldPath && $childrenFormFieldPath) {
+                        $jsLayout = $this->formFieldSortOrder($childrenFormFieldPath, $jsLayout);
+                    }
                 }
+            }
+        }
 
-                $attributeCodePath = $this->arrayManager->findPath($attributeCode, $jsLayout, $shippingAddressFieldsetChildrenPath);
-                $sortOrderPath = $this->arrayManager->findPath('sortOrder', $jsLayout, $attributeCodePath);
-                if ($attributeCodePath && $sortOrderPath) {
-                    $jsLayout = $this->arrayManager->set($sortOrderPath, $jsLayout, $position);
-                }
+
+        return $jsLayout;
+    }
+
+    /**
+     * @param string $childrenFieldPath
+     * @param array $jsLayout
+     *
+     * @return array
+     */
+    private function formFieldSortOrder(string $childrenFieldPath, array $jsLayout)
+    {
+        $availableAttributes = $this->eavConfig->getEntityAttributes(\Magento\Customer\Api\AddressMetadataInterface::ENTITY_TYPE_ADDRESS);
+        $availableAttributes = $this->sortAttributesByPosition($availableAttributes);
+        $orderedAttributes = array_flip($this->getAttributesOrder());
+        $undefinedOrderShift = (count($orderedAttributes) + 1) * 10;
+
+        foreach ($availableAttributes as $attributeCode => $attribute) {
+            if (isset($orderedAttributes[$attributeCode])) {
+                $position = ($orderedAttributes[$attributeCode] + 1) * 10;
+            } else {
+                $position = $undefinedOrderShift;
+                $undefinedOrderShift += 10;
+            }
+
+            $attributeCodePath = $this->arrayManager->findPath($attributeCode, $jsLayout, $childrenFieldPath);
+            $sortOrderPath = $this->arrayManager->findPath('sortOrder', $jsLayout, $attributeCodePath);
+            if ($attributeCodePath && $sortOrderPath) {
+                $jsLayout = $this->arrayManager->set($sortOrderPath, $jsLayout, $position);
             }
         }
 
@@ -124,6 +155,7 @@ class AddressFieldsOrder implements LayoutProcessorInterface
      * Sort list of attributes by position.
      *
      * @param array $attributes
+     *
      * @return array
      */
     private function sortAttributesByPosition(array $attributes): array

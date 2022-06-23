@@ -9,30 +9,30 @@
         <p text="noAddressMessage"></p>
     </if>
     <ifnot args="_.isEmpty(currentBillingAddress())">
-        <text args="currentBillingAddress().prefix"/>
-        <text args="currentBillingAddress().lastname"/>
-        <text args="currentBillingAddress().middlename"/>
-        <text args="currentBillingAddress().firstname"/>
-        <text args="currentBillingAddress().suffix"/>
-        <text if="currentBillingAddress().getNamekana()" args="'(' + currentBillingAddress().getNamekana() + ')'"/><br/>
-        
-        <text args="currentBillingAddress().postcode"/><br/>
-        <span text="currentBillingAddress().region"></span><text args="currentBillingAddress().city "/>
-        <text args="_.values(currentBillingAddress().street).join('')"/>
+        <text args="currentBillingAddress().prefix"></text>
+        <text args="currentBillingAddress().lastname"></text>
+        <text args="currentBillingAddress().middlename"></text>
+        <text args="currentBillingAddress().firstname"></text>
+        <text args="currentBillingAddress().suffix"></text>
+        <text if="currentBillingAddress().getNamekana()" args="'(' + currentBillingAddress().getNamekana() + ')'"></text><br/>
+
+        <text args="currentBillingAddress().postcode"></text><br/>
+        <span text="currentBillingAddress().region"></span><text args="currentBillingAddress().city "></text>
+        <text args="_.values(currentBillingAddress().street).join('')"></text>
         <br/>
         <a if="currentBillingAddress().telephone" attr="'href': 'tel:' + currentBillingAddress().telephone"
            text="currentBillingAddress().telephone"></a><br/>
         <if args="_.isArray(currentBillingAddress().customAttributes)">
             <each args="data: currentBillingAddress().customAttributes, as: 'attribute'">
                 <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
-                    <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+                    <if args="attribute.label"><text args="attribute.label"></text>: </if><text args="attribute.value"></text><br/>
                 </if>
             </each>
         </if>
         <ifnot args="_.isArray(currentBillingAddress().customAttributes)">
             <each args="data: Object.values(currentBillingAddress().customAttributes), as: 'attribute'">
                 <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
-                    <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+                    <if args="attribute.label"><text args="attribute.label"></text>: </if><text args="attribute.value"></text><br/>
                 </if>
             </each>
         </ifnot>

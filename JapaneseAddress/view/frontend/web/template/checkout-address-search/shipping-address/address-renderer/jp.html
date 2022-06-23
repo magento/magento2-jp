@@ -11,33 +11,33 @@
          css="_hover: $parent.isHovered(option, $element), _unclickable: $parent.isLabelDecoration($data), _last: $parent.addLastElement($data), '_with-checkbox': $parent.showCheckbox">
         <div class="address-details">
             <div>
-                <span text="$data.lastname"/>
-                <span text="$data.firstname"/>
-                <text if="$data.getNamekana()" args="'(' + $data.getNamekana() + ')'"/>
+                <span text="$data.lastname"></span>
+                <span text="$data.firstname"></span>
+                <text if="$data.getNamekana()" args="'(' + $data.getNamekana() + ')'"></text>
             </div>
             <if args="$parent.getCountryName($data.countryId)">
-                <text args="$parent.getCountryName($data.countryId)"/>
+                <text args="$parent.getCountryName($data.countryId)"></text>
             </if>
             <div>
-                <span text="$data.postcode"/>
-                <span text="$data.region"/>
-                <span text="$data.city"/>
+                <span text="$data.postcode"></span>
+                <span text="$data.region"></span>
+                <span text="$data.city"></span>
             </div>
             <div>
-                <text args="_.values($data.street).join('')"/>
+                <text args="_.values($data.street).join('')"></text>
             </div>
 
             <if args="_.isArray($data.customAttributes)">
                 <each args="data: $data.customAttributes, as: 'attribute'">
                     <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
-                        <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+                        <if args="attribute.label"><text args="attribute.label"></text>: </if><text args="attribute.value"></text><br/>
                     </if>
                 </each>
             </if>
             <ifnot args="_.isArray($data.customAttributes)">
                 <each args="data: Object.values($data.customAttributes), as: 'attribute'">
                     <if args="['firstnamekana', 'lastnamekana'].indexOf(attribute.attribute_code) === -1">
-                        <if args="attribute.label"><text args="attribute.label"/>: </if><text args="attribute.value"/><br/>
+                        <if args="attribute.label"><text args="attribute.label"></text>: </if><text args="attribute.value"></text><br/>
                     </if>
                 </each>
             </ifnot>
@@ -46,26 +46,26 @@
             <button type="button"
                     class="action-primary action-select-shipping-item"
                     click="$parent.selectShippingAddress.bind($parent, option)">
-                <span translate="'Ship Here'"/>
+                <span translate="'Ship Here'"></span>
             </button>
         </div>
         <div class="address-selected" if="$parent.isAddressSelected($data)">
             <button type="button"
                     class="action-primary">
-                <span translate="'Selected'"/>
+                <span translate="'Selected'"></span>
             </button>
         </div>
         <div class="edit-address" if="$data.isEditable()">
             <button type="button"
                     class="action-primary action-select-shipping-item"
                     click="$parent.editAction.bind($parent)">
-                <span translate="'Edit'"/>
+                <span translate="'Edit'"></span>
             </button>
         </div>
         <div class="default-address" if="$data.isDefaultShipping()">
             <button type="button"
                     class="action-primary">
-                <span translate="'Default'"/>
+                <span translate="'Default'"></span>
             </button>
         </div>
     </div>

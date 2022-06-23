@@ -16,11 +16,11 @@
 
     <!-- ko template: 'CommunityEngineering_JapaneseAddress/checkout/billing-address/details' --><!-- /ko -->
     <fieldset class="fieldset" data-bind="visible: !isAddressDetailsVisible()">
-        <each args="getRegion('billing-address-list')" render="" />
+        <each args="getRegion('billing-address-list')" render=""></each>
         <div data-bind="fadeVisible: isAddressFormVisible">
-            <render args="formTemplate"/>
+            <render args="formTemplate"></render>
         </div>
-        <render args="actionsTemplate"/>
+        <render args="actionsTemplate"></render>
     </fieldset>
 
 </div>

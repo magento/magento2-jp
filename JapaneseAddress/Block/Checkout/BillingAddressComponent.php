@@ -75,7 +75,7 @@ class BillingAddressComponent implements LayoutProcessorInterface
                         'template' => 'CommunityEngineering_JapaneseAddress/checkout/billing-address'
                     ]
                 );
-            } elseif($component['component'] === 'Magento_CheckoutAddressSearch/js/view/billing-address') {
+            } elseif ($component['component'] === 'Magento_CheckoutAddressSearch/js/view/billing-address') {
                 $component['config'] = array_merge(
                     isset($component['config']) ? $component['config'] : [],
                     [
