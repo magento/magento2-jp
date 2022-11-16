@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace CommunityEngineering\CurrencyPrecision\Plugin\Locale;
 
+use CommunityEngineering\CurrencyPrecision\Model\CurrencyRounding;
 use Magento\Framework\Locale\Format;
-use Magento\Framework\Locale\Resolver;
 
 /**
  * Plugin for implement correct locale aware number parsing.
@@ -16,16 +16,19 @@ use Magento\Framework\Locale\Resolver;
 class LocalizedFormat
 {
     /**
-     * @var Resolver
+     * @var \CommunityEngineering\CurrencyPrecision\Model\CurrencyRounding
      */
-    private $localeResolver;
+    protected $currencyRounding;
 
     /**
-     * @param Resolver $localeResolver
+     * LocalizedFormat constructor.
+     *
+     * @param \CommunityEngineering\CurrencyPrecision\Model\CurrencyRounding $currencyRounding
      */
-    public function __construct(Resolver $localeResolver)
-    {
-        $this->localeResolver = $localeResolver;
+    public function __construct(
+        CurrencyRounding $currencyRounding
+    ) {
+        $this->currencyRounding = $currencyRounding;
     }
 
     /**
@@ -33,9 +36,12 @@ class LocalizedFormat
      *
      * @param Format $format
      * @param mixed $value
+     *
      * @return array
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     *
+     * @see \Magento\Framework\Locale\Format::getNumber()
      */
     public function beforeGetNumber(Format $format, $value)
     {
@@ -43,8 +49,10 @@ class LocalizedFormat
             return [$value];
         }
 
-        $formatter = new \NumberFormatter($this->localeResolver->getLocale(), \NumberFormatter::DECIMAL);
+        $formatter = $this->currencyRounding->getNumberFormatter(null, [], null, \NumberFormatter::DECIMAL);
+
         $number = $formatter->parse($value);
+
         return [(string)$number]; // trigger core logic with dot handling for backward compatibility
     }
 }
