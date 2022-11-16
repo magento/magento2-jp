@@ -24,7 +24,7 @@ class Builder extends DefaultBuilder
                 'type' => 'kuromoji_tokenizer',
                 'mode'=> 'search',
                 'discard_punctuation'=> 'true',
-                'user_dictionary' => 'search_dic.csv'
+                //'user_dictionary' => 'search_dic.csv'
             ],
         ];
         return $tokenizer;
@@ -42,10 +42,6 @@ class Builder extends DefaultBuilder
             'kuromoji_baseform'
         ];
         $filter = $this->getFilter();
-        $filter['synonym_dict'] = [
-            'type' => 'synonym',
-            'synonyms_path' => 'synonym.txt'
-        ];
         $charFilter = $this->getCharFilter();
 
         $settings = [
@@ -58,9 +54,33 @@ class Builder extends DefaultBuilder
                             ['lowercase', 'keyword_repeat'],
                             array_keys($filter),
                             $analyzerFilter,
-                            ['synonym_dict']
                         ),
                         'char_filter' => array_keys($charFilter)
+                    ],
+                    // this analyzer must not include stemmer filter
+                    'prefix_search' => [
+                        'type' => 'custom',
+                        'tokenizer' => key($tokenizer),
+                        'filter' => array_merge(
+                            ['lowercase', 'keyword_repeat']
+                        ),
+                        'char_filter' => array_keys($charFilter)
+                    ],
+                    'sku' => [
+                        'type' => 'custom',
+                        'tokenizer' => 'keyword',
+                        'filter' => array_merge(
+                            ['lowercase', 'keyword_repeat'],
+                            array_keys($filter)
+                        ),
+                    ],
+                    // this analyzer must not include stemmer filter
+                    'sku_prefix_search' => [
+                        'type' => 'custom',
+                        'tokenizer' => 'keyword',
+                        'filter' => array_merge(
+                            ['lowercase', 'keyword_repeat']
+                        ),
                     ]
                 ],
                 'tokenizer' => $tokenizer,
