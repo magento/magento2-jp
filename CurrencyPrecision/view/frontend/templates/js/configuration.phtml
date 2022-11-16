@@ -1,0 +1,10 @@
+<?php
+/**
+ * @var \CommunityEngineering\CurrencyPrecision\Block\Configuration $block
+ */
+
+$jsonContent = $block->getConfigurationJson();
+?>
+<script>
+    window.roundingMode = window.roundingMode || <?= $jsonContent ?>;
+</script>
