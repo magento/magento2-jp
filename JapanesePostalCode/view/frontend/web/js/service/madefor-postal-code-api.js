@@ -91,7 +91,7 @@ define([
                 return result.promise();
             }
 
-            callApi(parsedPostalCode).success(function (apiResponse) {
+            callApi(parsedPostalCode).done(function (apiResponse) {
                 var data;
 
                 if (typeof apiResponse.data === 'undefined' || typeof apiResponse.data[0] === 'undefined') {
